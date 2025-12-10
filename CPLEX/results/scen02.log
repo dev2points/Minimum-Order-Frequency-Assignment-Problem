@@ -1,0 +1,76 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		3000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		600
+[runlim] argv[4]:		scen02
+[runlim] start:			Wed Dec 10 23:19:30 2025
+[runlim] main pid:		48736
+Building MIP model...
+[runlim] sample:		10.0 time, 10.1 real, 30.1 MB
+[runlim] sample:		20.0 time, 20.1 real, 33.1 MB
+Build time: 27.92s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_TimeLimit                               600
+Tried aggregator 2 times.
+MIP Presolve eliminated 189061 rows and 37 columns.
+MIP Presolve modified 10296 coefficients.
+Aggregator did 4002 substitutions.
+Reduced MIP has 10396 rows, 4009 columns, and 111743 nonzeros.
+Reduced MIP has 4009 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.71 sec. (646.22 ticks)
+Found incumbent of value 44.000000 after 0.84 sec. (811.97 ticks)
+Probing time = 0.01 sec. (2.13 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 10396 rows, 4009 columns, and 111743 nonzeros.
+Reduced MIP has 4009 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.10 sec. (113.30 ticks)
+Probing time = 0.03 sec. (2.50 ticks)
+Clique table members: 10396.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 12 threads.
+Root relaxation solution time = 0.58 sec. (388.35 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           44.0000        0.0000           100.00%
+*     0+    0                           30.0000        0.0000           100.00%
+*     0+    0                           20.0000        0.0000           100.00%
+*     0+    0                           18.0000        0.0000           100.00%
+*     0+    0                           16.0000        0.0000           100.00%
+      0     0       14.0000    11       16.0000       14.0000     3424   12.50%
+*     0+    0                           14.0000       14.0000             0.00%
+      0     0        cutoff             14.0000       14.0000     3424    0.00%
+Elapsed time = 1.65 sec. (1370.29 ticks, tree = 0.01 MB, solutions = 6)
+
+Root node processing (before b&c):
+  Real time             =    1.65 sec. (1370.83 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    1.65 sec. (1370.83 ticks)
+Solve time: 1.65s
+Solution :
+{44, 282, 44, 282, 16, 254, 792, 554, 282, 44, 30, 268, 792, 554, 792, 554, 380, 142, 30, 268, 30, 268, 254, 16, 142, 380, 30, 268, 666, 428, 254, 16, 366, 128, 380, 142, 554, 792, 16, 254, 16, 254, 428, 666, 554, 792, 16, 254, 44, 282, 44, 282, 428, 666, 366, 128, 554, 792, 30, 268, 16, 254, 428, 666, 268, 30, 792, 554, 16, 254, 792, 554, 792, 554, 366, 128, 366, 128, 380, 142, 366, 128, 30, 268, 282, 44, 268, 30, 268, 30, 30, 268, 282, 44, 428, 666, 366, 128, 792, 554, 554, 792, 282, 44, 254, 16, 554, 792, 16, 254, 44, 282, 380, 142, 380, 142, 44, 282, 380, 142, 30, 268, 366, 128, 30, 268, 142, 380, 428, 666, 282, 44, 428, 666, 366, 128, 30, 268, 44, 282, 30, 268, 30, 268, 428, 666, 16, 254, 16, 254, 666, 428, 554, 792, 128, 366, 554, 792, 16, 254, 428, 666, 366, 128, 142, 380, 30, 268, 428, 666, 30, 268, 44, 282, 44, 282, 380, 142, 792, 554, 16, 254, 428, 666, 282, 44, 380, 142, 30, 268, 128, 366, 282, 44, 428, 666, 268, 30, 282, 44}
+Correct solution!
+Number of labels used: 14
+Total time: 29.59s
+Memory used: 162.88 MB
+[runlim] end:			Wed Dec 10 23:19:59 2025
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			29.74 seconds
+[runlim] time:			32.47 seconds
+[runlim] space:			190.0 MB
+[runlim] samples:		296
