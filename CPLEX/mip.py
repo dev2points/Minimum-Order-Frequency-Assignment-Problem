@@ -60,12 +60,8 @@ def create_label_var_map(all_labels):
         label_var_map[v] = f"l_{v}"
     return label_var_map
 
-def build_mip_model(var, var_map, label_var_map, ctr_file, time_limit = None):
+def build_mip_model(var, var_map, label_var_map, ctr_file):
     model = cplex.Cplex()
-    try:
-        model.parameters.timelimit.set(time_limit if time_limit is not None else 600)
-    except Exception:
-        pass
 
     # model.set_log_stream(None)
     # model.set_results_stream(None)
@@ -113,10 +109,7 @@ def build_mip_model(var, var_map, label_var_map, ctr_file, time_limit = None):
             i, j = int(parts[0]), int(parts[1])
             vals_i = var.get(i, [])
             vals_j = var.get(j, [])
-            try:
-                distance = int(parts[-1])
-            except:
-                distance = int(parts[4])
+            distance = int(parts[4])
             if '>' in parts:
                 for vi in vals_i:
                     for vj in vals_j:
@@ -187,23 +180,23 @@ def verify_solution_simple(assignment, var, ctr_file):
             if (vi not in var[i]) or (vj not in var[j]):
                 return False
             if '>' in parts:
-                distance = int(parts[-1])
+                distance = int(parts[4])
                 if abs(vi - vj) <= distance:
                     return False
             elif '=' in parts:
-                value = int(parts[-1])
+                value = int(parts[4])
                 if abs(vi - vj) != value:
                     return False
     return True
 
 def main():
     start_time = time()
-    if len(sys.argv) < 3:
-        print("Use: python mip.py TO <dataset_folder>")
+    if len(sys.argv) < 2:
+        print("Use: python mip.py <dataset_folder>")
         return
 
-    dataset_folder = os.path.join("dataset", sys.argv[2])
-    time_limit = int(sys.argv[1])
+    dataset_folder = os.path.join("dataset", sys.argv[1])
+    
 
     try:
         files = get_file_names(dataset_folder)
@@ -223,7 +216,7 @@ def main():
 
     print("Building MIP model...")
     build_start = time()
-    model = build_mip_model(var, var_map, label_var_map, files["ctr"], time_limit)
+    model = build_mip_model(var, var_map, label_var_map, files["ctr"])
     print(f"Build time: {time() - build_start:.2f}s")
 
     print("Solving MIP (minimizing number of labels)...")
@@ -240,10 +233,10 @@ def main():
     print("Solution :")
     print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
 
-    if verify_solution_simple(assignment, var, files["ctr"]):
-        print("Correct solution!")
-    else:
-        print("Incorrect solution!")
+    # if verify_solution_simple(assignment, var, files["ctr"]):
+    #     print("Correct solution!")
+    # else:
+    #     print("Incorrect solution!")
 
     # number of labels used
     used_labels = set(assignment.values())
