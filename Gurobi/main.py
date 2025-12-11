@@ -2,6 +2,7 @@ from multiprocessing import process
 import os
 import sys
 import psutil
+import gurobipy as gp
 from time import time
 from gurobipy import Model, GRB
 
@@ -101,12 +102,42 @@ def build_gurobi_model(var, ctr_file):
                             model.addConstr(x[(i, vi)] == x[(j, vj)])
 
     # Minimize number of labels used
-    #model.setObjective(sum(y[v] for v in label_set), GRB.MINIMIZE)
+    model.setObjective(sum(y[v] for v in label_set), GRB.MINIMIZE)
 
     return model, x, y
+def mycallback(model, where):
+    if where == GRB.Callback.MIPSOL:
+
+        vals = model.cbGetSolution(model._vars)
+
+        sol_dict = {var: val for var, val in zip(model._vars, vals)}
+
+        solution = extract_solution_from_dict(model._map, sol_dict)
 
 
-def extract_solution(model, x):
+        print(solution)
+        print("\nNumber of labels used:", len(set(solution.values())))
+
+        # if verify_solution(solution, model._domain, model._ctr_file) :
+        #     print("Solution is CORRECT!")
+        # else:
+        #     print("Solution is INCORRECT!")
+        print(f"Total time used: {time() - model._time:.2f} sec")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print("================================")
+
+def extract_solution_from_dict(var_map, sol_dict):
+    solution = {}
+
+    for var, val in sol_dict.items():
+        if val > 0.5:
+            i, v = var_map[var]
+            solution[i] = v
+
+    return solution
+
+def extract_solution(x):
     solution = {}
     for (i, v), var in x.items():
         if var.X > 0.5:
@@ -153,7 +184,6 @@ def verify_solution(solution, var, ctr_file):
 
 def main():
     start_time = time()
-    Time = start_time
 
     if len(sys.argv) < 2:
         print("Use: python main.py <dataset_folder>")
@@ -168,83 +198,27 @@ def main():
 
     print("Building Gurobi model...")
     model, x, y = build_gurobi_model(var, files["ctr"])
+    model.update()
+    model._vars = list(x.values())
+    model._map = {var: (i, v) for (i, v), var in x.items()}
+    model._domain = var
+    model._ctr_file = files["ctr"]
+    model._time = start_time
+
+
     print(f"Build time used: {time() - start_time:.2f} sec")
-    start_time = time()
+    
 
     print("Solving...")
-    model.optimize()
+    model.optimize(mycallback)
 
     if model.status != GRB.OPTIMAL:
         print("No solution found.")
-        print(f"Solve time used: {time() - start_time:.2f} sec")
-        return
-
-    solution = extract_solution(model, x)
-    used_labels = len(set(solution.values()))
-    print(f"Solve time used: {time() - start_time:.2f} sec")
-    print("Solution")
-    print("{" + ", ".join(f"{solution[i]}" for i in sorted(solution)) + "}")
-    print("Labels used:", used_labels)
-    if verify_solution(solution, var, files["ctr"]):
-        print("Solution is CORRECT!")
-    else:
-        print("Solution is WRONG!")
-    
-    print(f"Total time used: {time() - Time:.2f} sec")
-    process = psutil.Process(os.getpid())
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    print("========================\n")
-    
-    while True:
-        start_time = time()
-        Time = start_time
-        # Sao chép model
-        print(f"\nTrying to find UB = {used_labels - 1}...")
-        model2 = model.copy()
-
-        # Lấy lại biến x, y từ model2
-        x2 = {}
-        y2 = {}
-
-        for (i, v) in x:
-            x2[(i, v)] = model2.getVarByName(f"x_{i}_{v}")
-
-        for v in y:
-            y2[v] = model2.getVarByName(f"y_{v}")
-
-        # Thêm ràng buộc mới vào model2  
-        model2.addConstr(sum(y2[v] for v in y2) <= used_labels - 1)
-        print(f"Build time used: {time() - start_time:.2f} sec")
-
-        # Giải
-        model2.optimize()
-
-        print(f"Solve time used: {time() - start_time:.2f} sec")
-        if model2.status != GRB.OPTIMAL:
-            print("No better solution found.")
-            break
-
-        solution = extract_solution(model2, x2)
-        used_labels = len(set(solution.values()))
-
-        print("Solution: ")
-        print("{" + ", ".join(f"{solution[i]}" for i in sorted(solution)) + "}")
-        print("Labels used:", used_labels)
-
-        if verify_solution(solution, var, files["ctr"]):
-            print("Solution is CORRECT!")
-            # Cập nhật model hiện tại
-            model = model2
-            x = x2
-            y = y2
-        else:
-            print("Solution is WRONG!")
-            break
-        
-        print(f"Total time used: {time() - Time:.2f} sec")
+        print(f"Total time used: {time() - start_time:.2f} sec")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-        print("========================\n")
+        return
+    
 
 
 if __name__ == "__main__":

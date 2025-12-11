@@ -47,15 +47,16 @@ def read_var(file, domain):
 
 def create_var_map(var):
     var_map = {}
-    counter = 1
+    counter = 0
     for i, vals in var.items():
         for v in vals:
-            var_map[(i, v)] = counter
             counter += 1
-    return var_map # dict mapping (i, v) to variable number
+            var_map[(i, v)] = counter
+            
+    return counter, var_map # dict mapping (i, v) to variable number
 
-def create_order_var_map(var,var_map, solver):
-    counter = solver.nof_vars() + 1
+def create_order_var_map(var,var_map, last_var_num, solver):
+    counter = last_var_num + 1
     order_var_map = {}
 
     for u, labels in var.items():
@@ -83,17 +84,10 @@ def create_order_var_map(var,var_map, solver):
 
     return order_var_map # dict mapping (u,i) to order variable number
 
-def build_constraints(solver, var, var_map, ctr_file):
-    # Exactly One
-    for i, vals in var.items():
-        lit = [var_map[(i, v)] for v in vals]
-        solver.add_clause(lit)
-        for j in range(len(vals)):
-            for k in range(j+1, len(vals)):
-                solver.add_clause([-var_map[(i, vals[j])], -var_map[(i, vals[k])]])
+def build_constraints(solver, var, var_map, last_var_num, ctr_file):
 
     # Order encoding of distance constraints
-    order_var_map = create_order_var_map(var,var_map, solver)
+    order_var_map = create_order_var_map(var,var_map, last_var_num, solver)    
 
     with open(ctr_file) as f:
         for line in f:
@@ -174,6 +168,7 @@ def build_constraints(solver, var, var_map, ctr_file):
                                 break
                         if len(clause) > 1:
                             solver.add_clause(clause)  
+    
 
     
     
@@ -270,12 +265,13 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    var_map = create_var_map(var)
+    solver = Solver(name='glucose4')
+    last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")
-    solver = Solver(name='glucose4')
+    
     # solver = Cadical195()
-    build_constraints(solver, var, var_map, files["ctr"])
+    build_constraints(solver, var, var_map, last_var_num, files["ctr"])
 
     assignment = solve_and_print(solver, var_map)
     if assignment is None:
@@ -287,8 +283,7 @@ def main():
     else:   
         print("Incorrect solution!")
         return
-    end_time = time()
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Total time: {time() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
@@ -298,7 +293,6 @@ def main():
     
 
     while num_lables > 1:
-        start_time = time()
         
         print("--------------------------------------------------")
         print(f"\nTrying with at most {num_lables - 1} labels...")
@@ -309,18 +303,20 @@ def main():
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
             break
-        if verify_solution_simple(assignment, var, files["ctr"]):
-            print("Correct solution!")
-            new_num_lables = len(set(assignment.values()))
-            print("Number of lables used: ", new_num_lables)
-            num_lables = new_num_lables 
+        # if verify_solution_simple(assignment, var, files["ctr"]):
+        #     print("Correct solution!")
+        #     new_num_lables = len(set(assignment.values()))
+        #     print("Number of lables used: ", new_num_lables)
+        #     num_lables = new_num_lables 
             
-        else:
-            print("Incorrect solution!")
-            break
+        # else:
+        #     print("Incorrect solution!")
+        #     break
+        new_num_lables = len(set(assignment.values()))
+        print("Number of lables used: ", new_num_lables)
+        num_lables = new_num_lables
 
-        end_time = time()
-        print(f"Time taken: {end_time - start_time:.2f} seconds")
+        print(f"Total time: {time() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
