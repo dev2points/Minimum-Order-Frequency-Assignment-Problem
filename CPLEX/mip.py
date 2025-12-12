@@ -5,6 +5,54 @@ from time import time
 import psutil
 import cplex
 from cplex.exceptions import CplexError
+from cplex.callbacks import MIPInfoCallback
+
+class MyIncumbentCallback(MIPInfoCallback):
+    def __init__(self, env, model, var_list, var_map, start_time):
+        super().__init__(env)
+        self.model = model
+        self.var_list = var_list      # list tên biến x_{i,v}
+        self.var_map = var_map        # dict: name → (i,v)
+        self.start_time = start_time
+        self.name_to_idx = {
+            n: model.variables.get_indices(n)
+            for n in model.variables.get_names()
+        }
+
+    
+
+    def __call__(self):
+        if not self.has_incumbent():
+            return
+
+        vals = self.get_incumbent_values()
+
+        # --- sol_dict ---------------------------------------------------------
+        sol_dict = {}
+        for name in self.var_list:
+            idx = self.name_to_idx[name]
+            sol_dict[name] = vals[idx]
+
+        # --- extract solution -------------------------------------------------
+        solution = extract_solution_from_dict(self.var_map, sol_dict)
+
+        print("\n========== NEW INCUMBENT SOLUTION ==========")
+        print(solution)
+        print("Number of labels used:", len(set(solution.values())))
+        print(f"Total time: {time() - self.start_time:.2f} sec")
+
+        process = psutil.Process(os.getpid())
+        print(f"Memory: {process.memory_info().rss/1024**2:.2f} MB")
+        print("=============================================")
+
+    
+def extract_solution_from_dict(var_map, sol_dict):
+        solution = {}
+        for name, val in sol_dict.items():
+            if val > 0.5:    # binary
+                i, v = var_map[name]
+                solution[i] = v
+        return solution
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -218,6 +266,13 @@ def main():
     build_start = time()
     model = build_mip_model(var, var_map, label_var_map, files["ctr"])
     print(f"Build time: {time() - build_start:.2f}s")
+
+    var_list = list(var_map.values())  # list tên x_{i,v}
+    reverse_var_map = {name: key for key, name in var_map.items()}   # name → (i,v)
+
+    model.register_callback(
+        lambda env: MyIncumbentCallback(env, model, var_list, reverse_var_map, start_time)
+    )
 
     print("Solving MIP (minimizing number of labels)...")
     solve_start = time()
