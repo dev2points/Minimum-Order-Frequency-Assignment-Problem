@@ -1,4 +1,4 @@
-using CPLEX;
+using CP;
 
 // Sets
 int NODES = ...; // số lượng nodes
@@ -26,17 +26,17 @@ dvar boolean l[Labels];
 
 minimize sum(v in Labels) l[v];
 
-subject to {
+constraints {
     forall(i in Nodes)
         sum(v in domain[i]) x[i][v] == 1;
 }
 
-subject to {
+constraints {
     forall(i in Nodes, v in domain[i])
         x[i][v] <= l[v];
 }
 
-subject to {
+constraints {
     forall(c in ctr) {
         if(c.type == ">") {
             // không được có |vi - vj| <= value
