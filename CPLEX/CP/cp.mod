@@ -1,69 +1,70 @@
 using CP;
 
+// PARAMETERS
+int LABELS = ...;
+
 // Sets
-int NODES = ...; // số lượng nodes
-int LABELS = ...; // số lượng labels
-range Nodes = 1..NODES;
+{int} Nodes = ...;
 range Labels = 1..LABELS;
 
-// Domain của mỗi node 
-{int} domain[Nodes] = ...; // đọc từ file domain hoặc định nghĩa trực tiếp
+// Domain cho mỗi node
+{int} domain[Nodes] = ...;
 
-// Các ràng buộc khoảng cách
+// Distance constraints
 tuple DistanceConstraint {
     int i;
     int j;
-    string type; 
+    string type;
     int value;
 }
 {DistanceConstraint} ctr = ...;
 
-// x[i,v] = 1 nếu node i được gán label v
-dvar boolean x[Nodes][Labels];
+// Tách theo loại
+{DistanceConstraint} ctrGreater = { c | c in ctr : c.type == ">" };
+{DistanceConstraint} ctrEqual   = { c | c in ctr : c.type == "=" };
 
-// l[v] = 1 nếu label v được sử dụng
+// Variables
+dvar boolean x[Nodes][Labels];
 dvar boolean l[Labels];
 
+// Objective
 minimize sum(v in Labels) l[v];
 
+// 1 label per node
 constraints {
     forall(i in Nodes)
         sum(v in domain[i]) x[i][v] == 1;
 }
 
+// x <= l
 constraints {
     forall(i in Nodes, v in domain[i])
         x[i][v] <= l[v];
 }
 
+// TYPE ">"
 constraints {
-    forall(c in ctr) {
-        if(c.type == ">") {
-            // không được có |vi - vj| <= value
-            forall(vi in domain[c.i], vj in domain[c.j] : abs(vi - vj) <= c.value)
-                x[c.i][vi] + x[c.j][vj] <= 1;
+    forall(c in ctrGreater)
+        forall(vi in domain[c.i], vj in domain[c.j] : abs(vi - vj) <= c.value)
+            x[c.i][vi] + x[c.j][vj] <= 1;
+}
+
+// TYPE "="
+constraints {
+    forall(c in ctrEqual) {
+
+        forall(vi in domain[c.i]) {
+            if (sum(vj in domain[c.j] : abs(vi - vj) == c.value) 1 > 0)
+                x[c.i][vi] <= sum(vj in domain[c.j] : abs(vi - vj) == c.value) x[c.j][vj];
+            else
+                x[c.i][vi] == 0;
         }
-        else if (c.type == "=") {
 
-            // Hướng i -> j
-            forall(vi in domain[c.i]) {
-
-                // xem có label j nào hợp lệ hay không
-                if (sum(vj in domain[c.j] : abs(vi - vj) == c.value) 1 > 0)
-                    x[c.i][vi] <= sum(vj in domain[c.j] : abs(vi - vj) == c.value) x[c.j][vj];
-                else
-                    x[c.i][vi] == 0;
-            }
-
-            // Hướng j -> i
-            forall(vj in domain[c.j]) {
-
-                if (sum(vi in domain[c.i] : abs(vi - vj) == c.value) 1 > 0)
-                    x[c.j][vj] <= sum(vi in domain[c.i] : abs(vi - vj) == c.value) x[c.i][vi];
-                else
-                    x[c.j][vj] == 0;
-            }
+        forall(vj in domain[c.j]) {
+            if (sum(vi in domain[c.i] : abs(vi - vj) == c.value) 1 > 0)
+                x[c.j][vj] <= sum(vi in domain[c.i] : abs(vi - vj) == c.value) x[c.i][vi];
+            else
+                x[c.j][vj] == 0;
         }
     }
 }
-

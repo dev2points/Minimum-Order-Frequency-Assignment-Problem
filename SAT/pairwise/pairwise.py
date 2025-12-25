@@ -41,9 +41,40 @@ def read_var(file, domain):
             if not parts:
                 continue
             idx = int(parts[0])
-            subset_idx = int(parts[1])
-            var[idx] = domain[subset_idx]
+            if len(parts) >= 4:
+                var[idx] = [int(parts[-2])]
+            else:
+                var[idx] = domain[int(parts[1])]
     return var # domain subset for each variable
+def delete_invalid_labels(var, ctr_file):
+    # Read constraints and remove invalid labels from domain
+    with open(ctr_file) as f:
+        for line in f:
+            parts = line.strip().split()
+            if not parts:
+                continue
+
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+
+            # --- check an toàn ---
+            if var[u] is None or var[v] is None:
+                raise ValueError(f"Uninitialized domain at u={u}, v={v}")
+
+            # --- dùng domain cũ ---
+            old_u = var[u].copy()
+            old_v = var[v].copy()
+
+
+            if '>' in parts:
+                var[u] = [
+                    lu for lu in old_u
+                    if any(abs(lu - lv) > distance for lv in old_v)
+                ]
+                var[v] = [
+                    lv for lv in old_v
+                    if any(abs(lv - lu) > distance for lu in old_u)
+                ]
 
 def create_var_map(var):
     var_map = {}
@@ -107,6 +138,7 @@ def build_constraints(solver, var, var_map, ctr_file):
                     for vj in vals_j:
                         if abs(vi - vj) <= distance:
                             solver.add_clause([-var_map[(i, vi)], -var_map[(j, vj)]])
+                            
             elif '=' in parts:
                 target = int(parts[4])
                 for vi in vals_i:
@@ -163,7 +195,8 @@ def solve_and_print(solver, var_map):
             if model[varnum-1] > 0:
                 assignment[i] = v
         print("Solution:")
-        print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
+        # print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
+        print(assignment)
         return assignment
     else:
         print("Cannot find solution.")
@@ -210,6 +243,7 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
+    delete_invalid_labels(var, files["ctr"])
     solver = Solver(name='glucose4')
     last_var_num, var_map = create_var_map(var)
 
@@ -246,12 +280,16 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
+            print(f"Total time: {time() - start_time:.2f} seconds")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            
             break
-        # if verify_solution_simple(assignment, var, files["ctr"]):
-        #     print("Correct solution!")
-        # else:
-        #     print("Incorrect solution!")
-        #     break
+        if verify_solution_simple(assignment, var, files["ctr"]):
+            print("Correct solution!")
+        else:
+            print("Incorrect solution!")
+            break
         new_num_lables = len(set(assignment.values()))
         print("Number of lables used: ", new_num_lables)
         num_lables = new_num_lables

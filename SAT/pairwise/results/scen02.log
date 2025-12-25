@@ -6,14 +6,14 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		scen02
-[runlim] start:			Fri Dec 12 18:55:14 2025
-[runlim] main pid:		103032
+[runlim] start:			Thu Dec 18 16:18:58 2025
+[runlim] main pid:		45076
 Solve first problem:
 Solution:
 {268, 30, 268, 30, 268, 30, 254, 16, 268, 30, 680, 442, 352, 114, 352, 114, 254, 16, 254, 16, 254, 16, 254, 16, 666, 428, 338, 100, 352, 114, 254, 16, 352, 114, 338, 100, 254, 16, 352, 114, 352, 114, 44, 282, 44, 282, 352, 114, 268, 30, 282, 44, 254, 16, 324, 86, 666, 428, 338, 100, 156, 394, 254, 16, 666, 428, 338, 100, 254, 16, 30, 268, 30, 268, 338, 100, 30, 268, 296, 58, 282, 44, 268, 30, 268, 30, 338, 100, 128, 366, 666, 428, 58, 296, 366, 128, 100, 338, 324, 86, 352, 114, 666, 428, 324, 86, 254, 16, 366, 128, 352, 114, 114, 352, 296, 58, 268, 30, 142, 380, 282, 44, 268, 30, 268, 30, 338, 100, 100, 338, 282, 44, 268, 30, 338, 100, 268, 30, 282, 44, 268, 30, 282, 44, 268, 30, 296, 58, 254, 16, 254, 16, 394, 156, 366, 128, 254, 16, 352, 114, 44, 282, 394, 156, 324, 86, 254, 16, 44, 282, 268, 30, 324, 86, 268, 30, 254, 16, 296, 58, 254, 16, 268, 30, 338, 100, 268, 30, 338, 100, 268, 30, 352, 114, 282, 44, 268, 30, 268, 30}
 Correct solution!
 Number of lables used:  24
-Total time: 0.28 seconds
+Total time: 0.29 seconds
 Memory used: 37.30 MB
 --------------------------------------------------
 
@@ -22,7 +22,7 @@ Solution:
 {792, 554, 764, 526, 114, 352, 764, 526, 114, 352, 414, 652, 484, 722, 764, 526, 652, 414, 484, 722, 484, 722, 708, 470, 86, 324, 44, 282, 526, 764, 484, 722, 554, 792, 554, 792, 470, 708, 792, 554, 792, 554, 736, 498, 736, 498, 652, 414, 282, 44, 282, 44, 792, 554, 86, 324, 484, 722, 352, 114, 722, 484, 652, 414, 114, 352, 526, 764, 792, 554, 764, 526, 764, 526, 498, 736, 86, 324, 352, 114, 324, 86, 282, 44, 282, 44, 352, 114, 526, 764, 736, 498, 44, 282, 352, 114, 722, 484, 652, 414, 792, 554, 114, 352, 652, 414, 352, 114, 652, 414, 484, 722, 722, 484, 86, 324, 708, 470, 708, 470, 526, 764, 324, 86, 722, 484, 708, 470, 764, 526, 352, 114, 736, 498, 282, 44, 352, 114, 352, 114, 282, 44, 282, 44, 324, 86, 282, 44, 282, 44, 324, 86, 652, 414, 114, 352, 282, 44, 652, 414, 736, 498, 44, 282, 554, 792, 324, 86, 708, 470, 282, 44, 352, 114, 282, 44, 282, 44, 324, 86, 282, 44, 44, 282, 484, 722, 708, 470, 44, 282, 708, 470, 282, 44, 114, 352, 708, 470, 282, 44}
 Number of lables used:  18
 Total time: 0.38 seconds
-Memory used: 38.68 MB
+Memory used: 38.55 MB
 --------------------------------------------------
 
 Trying with at most 17 labels...
@@ -30,7 +30,7 @@ Solution:
 {764, 526, 764, 526, 792, 554, 764, 526, 792, 554, 414, 652, 498, 736, 764, 526, 652, 414, 484, 722, 484, 722, 708, 470, 764, 526, 44, 282, 526, 764, 484, 722, 554, 792, 554, 792, 470, 708, 792, 554, 792, 554, 736, 498, 736, 498, 652, 414, 282, 44, 282, 44, 414, 652, 44, 282, 498, 736, 44, 282, 722, 484, 652, 414, 652, 414, 526, 764, 792, 554, 764, 526, 764, 526, 282, 44, 708, 470, 708, 470, 764, 526, 282, 44, 722, 484, 282, 44, 526, 764, 736, 498, 44, 282, 498, 736, 484, 722, 652, 414, 414, 652, 310, 72, 708, 470, 414, 652, 652, 414, 484, 722, 722, 484, 736, 498, 708, 470, 708, 470, 708, 470, 498, 736, 282, 44, 708, 470, 764, 526, 736, 498, 764, 526, 282, 44, 736, 498, 708, 470, 282, 44, 282, 44, 310, 72, 282, 44, 282, 44, 652, 414, 652, 414, 282, 44, 282, 44, 652, 414, 736, 498, 44, 282, 554, 792, 484, 722, 708, 470, 282, 44, 484, 722, 282, 44, 282, 44, 792, 554, 282, 44, 44, 282, 484, 722, 708, 470, 44, 282, 708, 470, 282, 44, 764, 526, 708, 470, 282, 44}
 Number of lables used:  16
 Total time: 0.38 seconds
-Memory used: 38.68 MB
+Memory used: 38.55 MB
 --------------------------------------------------
 
 Trying with at most 15 labels...
@@ -38,76 +38,74 @@ Solution:
 {296, 58, 296, 58, 296, 58, 310, 72, 366, 128, 128, 366, 680, 442, 680, 442, 254, 16, 268, 30, 268, 30, 128, 366, 680, 442, 128, 366, 680, 442, 324, 86, 310, 72, 680, 442, 254, 16, 442, 680, 442, 680, 86, 324, 86, 324, 442, 680, 324, 86, 310, 72, 324, 86, 16, 254, 128, 366, 58, 296, 324, 86, 254, 16, 442, 680, 254, 16, 16, 254, 16, 254, 16, 254, 86, 324, 442, 680, 680, 442, 296, 58, 268, 30, 268, 30, 58, 296, 366, 128, 310, 72, 72, 310, 128, 366, 30, 268, 16, 254, 72, 310, 296, 58, 310, 72, 366, 128, 254, 16, 58, 296, 324, 86, 680, 442, 268, 30, 268, 30, 324, 86, 366, 128, 268, 30, 268, 30, 296, 58, 296, 58, 324, 86, 30, 268, 442, 680, 296, 58, 128, 366, 72, 310, 680, 442, 296, 58, 254, 16, 254, 16, 254, 16, 128, 366, 254, 16, 442, 680, 86, 324, 16, 254, 366, 128, 268, 30, 268, 30, 58, 296, 86, 324, 128, 366, 310, 72, 680, 442, 254, 16, 58, 296, 128, 366, 268, 30, 128, 366, 296, 58, 86, 324, 268, 30, 310, 72, 30, 268}
 Number of lables used:  14
 Total time: 0.45 seconds
-Memory used: 40.43 MB
+Memory used: 40.30 MB
 --------------------------------------------------
 
 Trying with at most 13 labels...
-[runlim] sample:		9.7 time, 10.1 real, 92.6 MB
-[runlim] sample:		19.4 time, 20.1 real, 92.6 MB
-[runlim] sample:		29.1 time, 28.7 real, 92.6 MB
-[runlim] sample:		38.9 time, 38.7 real, 92.6 MB
-[runlim] sample:		48.5 time, 48.7 real, 92.6 MB
-[runlim] sample:		58.2 time, 58.7 real, 92.6 MB
-[runlim] sample:		68.0 time, 67.8 real, 92.6 MB
-[runlim] sample:		77.6 time, 77.8 real, 92.6 MB
-[runlim] sample:		87.3 time, 87.8 real, 135.0 MB
-[runlim] sample:		97.1 time, 96.8 real, 104.2 MB
-[runlim] sample:		106.6 time, 106.8 real, 104.2 MB
-[runlim] sample:		116.3 time, 116.8 real, 136.0 MB
-[runlim] sample:		126.0 time, 125.7 real, 104.1 MB
-[runlim] sample:		135.8 time, 135.7 real, 104.1 MB
-[runlim] sample:		145.5 time, 145.7 real, 104.1 MB
-[runlim] sample:		155.2 time, 154.8 real, 104.1 MB
-[runlim] sample:		164.9 time, 164.8 real, 104.2 MB
-[runlim] sample:		174.6 time, 174.8 real, 144.8 MB
-[runlim] sample:		184.3 time, 184.8 real, 142.9 MB
-[runlim] sample:		194.0 time, 193.9 real, 138.9 MB
-[runlim] sample:		203.7 time, 203.9 real, 104.2 MB
-[runlim] sample:		213.4 time, 213.9 real, 142.6 MB
-[runlim] sample:		223.1 time, 222.9 real, 104.1 MB
-[runlim] sample:		232.8 time, 232.9 real, 138.9 MB
-[runlim] sample:		242.5 time, 242.9 real, 147.9 MB
-[runlim] sample:		252.2 time, 251.9 real, 135.6 MB
-[runlim] sample:		261.9 time, 261.9 real, 144.3 MB
-[runlim] sample:		271.6 time, 271.9 real, 152.2 MB
-[runlim] sample:		281.3 time, 281.0 real, 149.4 MB
-[runlim] sample:		291.0 time, 291.0 real, 135.6 MB
-[runlim] sample:		300.7 time, 301.0 real, 147.4 MB
-[runlim] sample:		310.4 time, 311.0 real, 155.6 MB
-[runlim] sample:		320.1 time, 320.0 real, 139.1 MB
-[runlim] sample:		329.8 time, 330.0 real, 146.5 MB
-[runlim] sample:		339.4 time, 340.0 real, 149.5 MB
-[runlim] sample:		349.1 time, 348.9 real, 152.8 MB
-[runlim] sample:		358.8 time, 358.9 real, 155.0 MB
-[runlim] sample:		368.4 time, 368.9 real, 157.9 MB
-[runlim] sample:		378.2 time, 377.9 real, 138.6 MB
-[runlim] sample:		387.8 time, 387.9 real, 142.3 MB
-[runlim] sample:		397.5 time, 397.9 real, 143.7 MB
-[runlim] sample:		407.2 time, 406.9 real, 145.7 MB
-[runlim] sample:		416.9 time, 416.9 real, 147.0 MB
-[runlim] sample:		426.6 time, 426.9 real, 146.4 MB
-[runlim] sample:		436.3 time, 436.9 real, 146.4 MB
-[runlim] sample:		446.0 time, 445.9 real, 147.5 MB
-[runlim] sample:		455.7 time, 455.9 real, 147.2 MB
-[runlim] sample:		465.4 time, 465.9 real, 147.2 MB
-[runlim] sample:		475.1 time, 474.9 real, 146.9 MB
-[runlim] sample:		484.8 time, 484.9 real, 146.3 MB
-[runlim] sample:		494.5 time, 494.9 real, 141.2 MB
-[runlim] sample:		504.2 time, 503.9 real, 163.5 MB
-[runlim] sample:		513.9 time, 513.9 real, 151.1 MB
-[runlim] sample:		523.5 time, 523.9 real, 143.4 MB
-[runlim] sample:		533.2 time, 532.9 real, 138.0 MB
-[runlim] sample:		543.0 time, 542.9 real, 163.7 MB
-[runlim] sample:		552.6 time, 552.9 real, 162.1 MB
-[runlim] sample:		562.3 time, 562.9 real, 159.7 MB
-[runlim] sample:		572.0 time, 571.9 real, 156.2 MB
-[runlim] sample:		581.7 time, 581.9 real, 151.2 MB
-[runlim] sample:		591.4 time, 591.9 real, 143.3 MB
-[runlim] end:			Fri Dec 12 19:05:14 2025
+[runlim] sample:		10.0 time, 10.1 real, 92.5 MB
+[runlim] sample:		20.0 time, 20.1 real, 92.5 MB
+[runlim] sample:		30.0 time, 30.1 real, 92.5 MB
+[runlim] sample:		40.0 time, 40.1 real, 92.5 MB
+[runlim] sample:		50.0 time, 50.1 real, 92.5 MB
+[runlim] sample:		60.0 time, 60.1 real, 92.5 MB
+[runlim] sample:		70.0 time, 70.1 real, 92.5 MB
+[runlim] sample:		80.0 time, 80.1 real, 99.5 MB
+[runlim] sample:		90.0 time, 90.1 real, 135.1 MB
+[runlim] sample:		100.0 time, 100.1 real, 104.0 MB
+[runlim] sample:		110.0 time, 110.1 real, 134.3 MB
+[runlim] sample:		120.0 time, 120.1 real, 104.0 MB
+[runlim] sample:		130.0 time, 130.1 real, 104.0 MB
+[runlim] sample:		140.0 time, 140.1 real, 104.0 MB
+[runlim] sample:		150.0 time, 150.1 real, 137.8 MB
+[runlim] sample:		160.0 time, 160.1 real, 139.5 MB
+[runlim] sample:		170.0 time, 170.1 real, 136.8 MB
+[runlim] sample:		180.0 time, 180.1 real, 135.7 MB
+[runlim] sample:		190.0 time, 190.1 real, 104.0 MB
+[runlim] sample:		200.0 time, 200.1 real, 145.9 MB
+[runlim] sample:		210.0 time, 210.1 real, 138.5 MB
+[runlim] sample:		220.0 time, 220.1 real, 149.4 MB
+[runlim] sample:		230.0 time, 230.1 real, 137.7 MB
+[runlim] sample:		240.0 time, 240.1 real, 147.5 MB
+[runlim] sample:		250.0 time, 250.1 real, 135.6 MB
+[runlim] sample:		260.0 time, 260.1 real, 145.5 MB
+[runlim] sample:		270.0 time, 270.1 real, 153.5 MB
+[runlim] sample:		280.0 time, 280.1 real, 104.0 MB
+[runlim] sample:		290.0 time, 290.1 real, 142.7 MB
+[runlim] sample:		300.0 time, 300.1 real, 153.7 MB
+[runlim] sample:		310.0 time, 310.1 real, 142.8 MB
+[runlim] sample:		320.0 time, 320.1 real, 150.5 MB
+[runlim] sample:		330.0 time, 330.1 real, 156.5 MB
+[runlim] sample:		340.0 time, 340.1 real, 136.9 MB
+[runlim] sample:		350.0 time, 350.1 real, 140.8 MB
+[runlim] sample:		360.0 time, 360.1 real, 147.0 MB
+[runlim] sample:		370.0 time, 370.1 real, 153.2 MB
+[runlim] sample:		380.0 time, 380.1 real, 158.5 MB
+[runlim] sample:		390.0 time, 390.1 real, 161.7 MB
+[runlim] sample:		400.0 time, 400.1 real, 139.9 MB
+[runlim] sample:		410.0 time, 410.1 real, 143.2 MB
+[runlim] sample:		420.0 time, 420.1 real, 145.1 MB
+[runlim] sample:		430.0 time, 430.1 real, 145.4 MB
+[runlim] sample:		440.0 time, 440.1 real, 147.8 MB
+[runlim] sample:		450.0 time, 450.1 real, 148.8 MB
+[runlim] sample:		460.0 time, 460.1 real, 149.4 MB
+[runlim] sample:		470.0 time, 470.1 real, 151.7 MB
+[runlim] sample:		480.0 time, 480.1 real, 153.4 MB
+[runlim] sample:		490.0 time, 490.1 real, 149.6 MB
+[runlim] sample:		500.0 time, 500.1 real, 139.8 MB
+[runlim] sample:		510.0 time, 510.1 real, 155.3 MB
+[runlim] sample:		520.0 time, 520.1 real, 151.7 MB
+[runlim] sample:		530.0 time, 530.1 real, 150.2 MB
+[runlim] sample:		540.0 time, 540.1 real, 149.4 MB
+[runlim] sample:		550.0 time, 550.1 real, 147.8 MB
+[runlim] sample:		560.0 time, 560.1 real, 143.3 MB
+[runlim] sample:		570.0 time, 570.1 real, 181.2 MB
+[runlim] sample:		580.0 time, 580.1 real, 165.8 MB
+[runlim] sample:		590.0 time, 590.1 real, 162.1 MB
+[runlim] end:			Thu Dec 18 16:28:58 2025
 [runlim] status:		out of time
 [runlim] result:		2
 [runlim] children:		0
-[runlim] real:			600.05 seconds
-[runlim] time:			600.24 seconds
-[runlim] space:			198.6 MB
-[runlim] samples:		6191
+[runlim] real:			600.04 seconds
+[runlim] time:			599.87 seconds
+[runlim] space:			200.1 MB
+[runlim] samples:		5999

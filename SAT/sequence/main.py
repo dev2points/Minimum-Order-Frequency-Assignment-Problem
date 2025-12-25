@@ -41,18 +41,43 @@ def read_var(file, domain):
             if not parts:
                 continue
             idx = int(parts[0])
-            subset_idx = int(parts[1])
-            var[idx] = domain[subset_idx]
+            if len(parts) >= 4:
+                var[idx] = [int(parts[-2])]
+            else:
+                var[idx] = domain[int(parts[1])]
     return var # domain subset for each variable
+
+def delete_invalid_labels(var, ctr_file):
+    # Read constraints and remove invalid labels from domain
+    with open(ctr_file) as f:
+        for line in f:
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '>' in parts:
+                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+    with open(ctr_file) as f:
+        for line in f:
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '=' in parts:
+                # Remove labels from domain that violate the equality constraint
+                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
 
 def create_var_map(var):
     var_map = {}
-    counter = 0
+    counter = 1
     for i, vals in var.items():
         for v in vals:
-            counter += 1
             var_map[(i, v)] = counter
-            
+            counter += 1
     return counter, var_map # dict mapping (i, v) to variable number
 
 def create_order_var_map(var,var_map, last_var_num, solver):
@@ -87,7 +112,7 @@ def create_order_var_map(var,var_map, last_var_num, solver):
 def build_constraints(solver, var, var_map, last_var_num, ctr_file):
 
     # Order encoding of distance constraints
-    order_var_map = create_order_var_map(var,var_map, last_var_num, solver)    
+    order_var_map = create_order_var_map(var,var_map,last_var_num, solver)
 
     with open(ctr_file) as f:
         for line in f:
@@ -168,7 +193,6 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                                 break
                         if len(clause) > 1:
                             solver.add_clause(clause)  
-    
 
     
     
@@ -218,7 +242,7 @@ def solve_and_print(solver, var_map):
             if model[varnum-1] > 0:
                 assignment[i] = v
         print("Solution:")
-        print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
+        print(assignment)
         return assignment
     else:
         print("Cannot find solution.")
@@ -265,11 +289,11 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    solver = Solver(name='glucose4')
+    delete_invalid_labels(var, files["ctr"])
     last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")
-    
+    solver = Solver(name='glucose4')
     # solver = Cadical195()
     build_constraints(solver, var, var_map, last_var_num, files["ctr"])
 
@@ -283,7 +307,8 @@ def main():
     else:   
         print("Incorrect solution!")
         return
-    print(f"Total time: {time() - start_time:.2f} seconds")
+    end_time = time()
+    print(f"Time taken: {end_time - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
@@ -303,20 +328,17 @@ def main():
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
             break
-        # if verify_solution_simple(assignment, var, files["ctr"]):
-        #     print("Correct solution!")
-        #     new_num_lables = len(set(assignment.values()))
-        #     print("Number of lables used: ", new_num_lables)
-        #     num_lables = new_num_lables 
+        if verify_solution_simple(assignment, var, files["ctr"]):
+            print("Correct solution!")
+            new_num_lables = len(set(assignment.values()))
+            print("Number of lables used: ", new_num_lables)
+            num_lables = new_num_lables 
             
-        # else:
-        #     print("Incorrect solution!")
-        #     break
-        new_num_lables = len(set(assignment.values()))
-        print("Number of lables used: ", new_num_lables)
-        num_lables = new_num_lables
+        else:
+            print("Incorrect solution!")
+            break
 
-        print(f"Total time: {time() - start_time:.2f} seconds")
+        print(f"Time taken: {time() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 

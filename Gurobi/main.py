@@ -45,8 +45,10 @@ def read_var(file, domain):
             if not parts:
                 continue
             idx = int(parts[0])
-            subset_idx = int(parts[1])
-            var[idx] = domain[subset_idx]
+            if len(parts) >= 4:
+                var[idx] = [int(parts[-2])]
+            else:
+                var[idx] = domain[int(parts[1])]
     return var
 
 
