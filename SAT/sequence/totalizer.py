@@ -5,6 +5,7 @@ from time import time
 from pysat.solvers import Solver
 from pypblib import pblib
 from pysat.pb import PBEnc
+from pysat.card import ITotalizer
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -212,36 +213,38 @@ def build_label_constraints(solver, var_map, label_var_map):
         lb_varnum = label_var_map[v]
         solver.add_clause([-varnum, lb_varnum])
 
-def add_limit_label_constraints(solver, label_var_map, UB):
-    top = solver.nof_vars()
+def build_totalizer(solver, xs):
+    if len(xs) == 1:
+        s = solver.nof_vars() + 1
+        solver.add_clause([-xs[0], s])
+        return [s]
 
-    # 1. tạo x_vars
-    x_vars = []
-    for _ in range(UB):
-        top += 1
-        x_vars.append(top)
+    mid = len(xs) // 2
+    L = build_totalizer(solver, xs[:mid])
+    R = build_totalizer(solver, xs[mid:])
 
-    # x_i -> x_{i+1}
-    for i in range(UB - 1):
-        solver.add_clause([-x_vars[i], x_vars[i + 1]])
+    n, m = len(L), len(R)
+    S = []
+    for _ in range(n + m):
+        S.append(solver.nof_vars() + 1)
 
-    # 2. các biến cần giới hạn
-    label_vars = list(label_var_map.values()) + x_vars
+    for i in range(n):
+        solver.add_clause([-L[i], S[i]])
+    for j in range(m):
+        solver.add_clause([-R[j], S[j]])
+    for i in range(n):
+        for j in range(m):
+            solver.add_clause([-L[i], -R[j], S[i + j + 1]])
 
-    # 3. Sequential Counter – MẠNH NHẤT cho UB > 10
-    enc = PBEnc.leq(
-        lits=label_vars,
-        weights=[1] * len(label_vars),
-        bound=UB,
-        top_id=top,
-        encoding=1   # 🔥 Sequential Counter
-    )
+    return S
 
-    # 4. thêm clause
-    for c in enc.clauses:
-        solver.add_clause(c)
+def add_limit_label_constraints(solver, label_var_map):
+    label_vars = list(label_var_map.values())
 
-    return x_vars
+    # Build totalizer once
+    S = build_totalizer(solver, label_vars)
+    
+    return S
 
 
 
@@ -313,8 +316,8 @@ def main():
         return
     if verify_solution_simple(assignment, var, files["ctr"]):
         print("Correct solution!")
-        num_lables = len(set(assignment.values()))
-        print("Number of lables used: ", num_lables)
+        num_labels = len(set(assignment.values()))
+        print("Number of labels used: ", num_labels)
     else:   
         print("Incorrect solution!")
         return
@@ -322,36 +325,46 @@ def main():
     print(f"Time taken: {end_time - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
-    build_label_constraints(solver, var_map, lable_var_map)
-    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
+    label_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
+    build_label_constraints(solver, var_map, label_var_map)
+
+    label_vars = list(label_var_map.values())
+    num_labels = len(label_vars)
+
+    tot = ITotalizer(lits=label_vars, ubound=num_labels)
+
+    for c in tot.cnf.clauses:
+        solver.add_clause(c)
+
+    S = tot.rhs
+
+    best_K = num_labels
+
+    while True:
+        print(f"Trying to find solution with at most {best_K - 1} labels...")
+        if solver.solve(assumptions=[-S[best_K - 1]]):
+            model = solver.get_model()
+            assignment = {}
+            for (i, v), varnum in var_map.items():
+                if model[varnum-1] > 0:
+                    assignment[i] = v
+            print("Solution:")
+            print(assignment)
+            best_K = len(set(assignment.values()))
+            print(f"Number of labels used: {best_K}")
+            print(f"Time taken: {time() - start_time:.2f} seconds")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        else:
+            print(f"No solution with at most {best_K - 1} labels.")
+            print(f"Optimal value = {best_K}")
+            print(f"Time taken: {time() - start_time:.2f} seconds")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            break
+
 
     
-
-    while num_lables > 1:
-        
-        print("--------------------------------------------------")
-        print(f"\nTrying with at most {num_lables - 1} labels...")
-        solver.add_clause([x_vars[num_lables - 1]])
-        assignment = solve_and_print(solver, var_map)
-        if assignment is None:
-            print("No more solutions found.")
-            print("Optimal number of labels used: ", num_lables)
-            print(f"Time taken: {time() - start_time:.2f} seconds")
-            break
-        if verify_solution_simple(assignment, var, files["ctr"]):
-            print("Correct solution!")
-            new_num_lables = len(set(assignment.values()))
-            print("Number of lables used: ", new_num_lables)
-            num_lables = new_num_lables 
-            
-        else:
-            print("Incorrect solution!")
-            break
-
-        print(f"Time taken: {time() - start_time:.2f} seconds")
-        process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     solver.delete()
 

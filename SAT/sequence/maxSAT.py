@@ -4,7 +4,9 @@ import sys
 from time import time
 from pysat.solvers import Solver
 from pypblib import pblib
-from pysat.pb import PBEnc
+
+from pysat.formula import WCNF
+from pysat.examples.rc2 import RC2
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -94,16 +96,16 @@ def create_order_var_map(var,var_map, last_var_num, solver):
     for u, labels in var.items():
         #(1)
         last_i = labels[-1]
-        solver.add_clause([-var_map[(u, last_i)], order_var_map[(u, last_i)]])   # x -> y
-        solver.add_clause([-order_var_map[(u, last_i)], var_map[(u, last_i)]])   # y -> x
+        solver.append([-var_map[(u, last_i)], order_var_map[(u, last_i)]])   # x -> y
+        solver.append([-order_var_map[(u, last_i)], var_map[(u, last_i)]])   # y -> x
         for idx in range(1, len(labels)):
-            solver.add_clause([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx - 1])]]) #(4)
-        solver.add_clause([order_var_map[(u, labels[0])]]) #(3)
+            solver.append([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx - 1])]]) #(4)
+        solver.append([order_var_map[(u, labels[0])]]) #(3)
         #(2)
         for idx in range(len(labels)-1):
-            solver.add_clause([-var_map[(u, labels[idx])], order_var_map[(u, labels[idx])]])
-            solver.add_clause([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])  
-            solver.add_clause([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]])
+            solver.append([-var_map[(u, labels[idx])], order_var_map[(u, labels[idx])]])
+            solver.append([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])  
+            solver.append([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]])
                 
 
     
@@ -129,25 +131,25 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                 for iu in vals_u:
                     for jv in vals_v:
                         if abs(iu - jv) == distance:
-                            solver.add_clause([-var_map[(u, iu)],  var_map[(v, jv)]])
-                            solver.add_clause([-var_map[(v, jv)],  var_map[(u, iu)]])
+                            solver.append([-var_map[(u, iu)],  var_map[(v, jv)]])
+                            solver.append([-var_map[(v, jv)],  var_map[(u, iu)]])
                 
             elif '>' in parts:
                 # (5)
                 for iu in vals_u:
                     if (iu - distance  <= vals_v[0] and iu + distance > vals_v[-1]):
-                        solver.add_clause([-var_map[(u, iu)]]) #(5)
+                        solver.append([-var_map[(u, iu)]]) #(5)
                     elif (iu - distance <= vals_v[0]):
                         for jv in vals_v:
                             if jv - iu > distance:
-                               solver.add_clause([-var_map[(u, iu)], order_var_map[(v, jv)]]) #(6)
+                               solver.append([-var_map[(u, iu)], order_var_map[(v, jv)]]) #(6)
                                break
                     elif iu + distance > vals_v[-1]:
                         T = iu - distance 
                         # tìm nhãn gần nhất >= T
                         for t in vals_v:
                             if t >= T:
-                                solver.add_clause([-var_map[(u, iu)], -order_var_map[(v, t)]]) #(7)
+                                solver.append([-var_map[(u, iu)], -order_var_map[(v, t)]]) #(7)
                                 break
                     else : # (8)
                         limit_low  = iu - distance 
@@ -163,22 +165,22 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                                 clause.append(order_var_map[(v, t)])
                                 break
                         if len(clause) > 1:
-                            solver.add_clause(clause)   
+                            solver.append(clause)   
 
                 for jv in vals_v:
                     if (jv - distance  <= vals_u[0] and jv + distance > vals_u[-1]):
-                        solver.add_clause([-var_map[(v, jv)]]) #(5)
+                        solver.append([-var_map[(v, jv)]]) #(5)
                     elif (jv - distance <= vals_u[0]):
                         for iu in vals_u:
                             if jv - iu > distance:
-                               solver.add_clause([-var_map[(v, jv)], order_var_map[(u, iu)]]) #(6)
+                               solver.append([-var_map[(v, jv)], order_var_map[(u, iu)]]) #(6)
                                break
                     elif jv + distance > vals_u[-1]:
                         T = jv - distance 
                         # tìm nhãn gần nhất >= T
                         for t in vals_u:
                             if t >= T:
-                                solver.add_clause([-var_map[(v, jv)], -order_var_map[(u, t)]]) #(7)
+                                solver.append([-var_map[(v, jv)], -order_var_map[(u, t)]]) #(7)
                                 break
                     else : # (8)
                         limit_low  = jv - distance 
@@ -193,70 +195,51 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                                 clause.append(order_var_map[(u, t)])
                                 break
                         if len(clause) > 1:
-                            solver.add_clause(clause)  
+                            solver.append(clause)  
 
     
     
                             
 def create_label_var_map(labels, start_index):
     label_var_map = {}
-    current = start_index
+    cur = start_index
     for lb in labels:
-        label_var_map[lb] = current
-        current += 1
+        label_var_map[lb] = cur
+        cur += 1
     return label_var_map
     
-# ánh xạ biến active -> biến xác nhận label được sử dụng    
-def build_label_constraints(solver, var_map, label_var_map):
+def add_label_linking(wcnf, var_map, label_var_map):
+    # nếu (i=v) được chọn → label v được dùng
+    for (i, v), x in var_map.items():
+        wcnf.append([-x, label_var_map[v]])
+
+def add_soft_label_costs(wcnf, label_var_map):
+    for lb_var in label_var_map.values():
+        # soft clause: ¬label_used
+        wcnf.append([-lb_var], weight=1)
+
+
+
+def solve_maxsat(wcnf, var_map, var, ctr_file):
+    with RC2(wcnf) as rc2:
+        model = rc2.compute()
+
+    if model is None:
+        print("UNSAT")
+        return None
+
+    assignment = {}
     for (i, v), varnum in var_map.items():
-        lb_varnum = label_var_map[v]
-        solver.add_clause([-varnum, lb_varnum])
+        if model[varnum - 1] > 0:
+            assignment[i] = v
 
-def add_limit_label_constraints(solver, label_var_map, UB):
-    top = solver.nof_vars()
-
-    # 1. tạo x_vars
-    x_vars = []
-    for _ in range(UB):
-        top += 1
-        x_vars.append(top)
-
-    # x_i -> x_{i+1}
-    for i in range(UB - 1):
-        solver.add_clause([-x_vars[i], x_vars[i + 1]])
-
-    # 2. các biến cần giới hạn
-    label_vars = list(label_var_map.values()) + x_vars
-
-    # 3. Sequential Counter – MẠNH NHẤT cho UB > 10
-    enc = PBEnc.leq(
-        lits=label_vars,
-        weights=[1] * len(label_vars),
-        bound=UB,
-        top_id=top,
-        encoding=1   # 🔥 Sequential Counter
-    )
-
-    # 4. thêm clause
-    for c in enc.clauses:
-        solver.add_clause(c)
-
-    return x_vars
-
-
-
-def solve_and_print(solver, var_map):
-    if solver.solve():
-        model = solver.get_model()
-        assignment = {}
-        for (i, v), varnum in var_map.items():
-            if model[varnum-1] > 0:
-                assignment[i] = v
-        print("Solution:")
-        print(assignment)
+    if verify_solution_simple(assignment, var, ctr_file):
+        print("Correct solution!")
+        print("Assignment:", assignment)
+        print("Labels used:", len(set(assignment.values())))
         return assignment
     else:
-        print("Cannot find solution.")
+        print("Incorrect solution!")
         return None
 
 def verify_solution_simple(assignment, var, ctr_file):
@@ -286,74 +269,41 @@ def verify_solution_simple(assignment, var, ctr_file):
 
 def main():
     start_time = time()
+
     if len(sys.argv) < 2:
         print("Use: python main.py <dataset_folder>")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
-
-    try:
-        files = get_file_names(dataset_folder)
-    except ValueError as e:
-        print(e)
-        return
+    files = get_file_names(dataset_folder)
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
     delete_invalid_labels(var, files["ctr"])
+
     last_var_num, var_map = create_var_map(var)
 
-    print("Solve first problem:")
-    solver = Solver(name='glucose4')
-    # solver = Cadical195()
-    build_constraints(solver, var, var_map, last_var_num, files["ctr"])
+    wcnf = WCNF()
 
-    assignment = solve_and_print(solver, var_map)
-    if assignment is None:
-        return
-    if verify_solution_simple(assignment, var, files["ctr"]):
-        print("Correct solution!")
-        num_lables = len(set(assignment.values()))
-        print("Number of lables used: ", num_lables)
-    else:   
-        print("Incorrect solution!")
-        return
+    # Hard constraints
+    build_constraints(wcnf, var, var_map, last_var_num, files["ctr"])
+
+    # Label vars
+    label_var_map = create_label_var_map(domain[0], wcnf.nv + 1)
+
+    # Linking
+    add_label_linking(wcnf, var_map, label_var_map)
+
+    # Soft costs
+    add_soft_label_costs(wcnf, label_var_map)
+
+    # Solve
+    assignment = solve_maxsat(wcnf, var_map, var, files["ctr"])
+
     end_time = time()
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time: {end_time - start_time:.2f}s")
     process = psutil.Process(os.getpid())
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
-    build_label_constraints(solver, var_map, lable_var_map)
-    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
-
-    
-
-    while num_lables > 1:
-        
-        print("--------------------------------------------------")
-        print(f"\nTrying with at most {num_lables - 1} labels...")
-        solver.add_clause([x_vars[num_lables - 1]])
-        assignment = solve_and_print(solver, var_map)
-        if assignment is None:
-            print("No more solutions found.")
-            print("Optimal number of labels used: ", num_lables)
-            print(f"Time taken: {time() - start_time:.2f} seconds")
-            break
-        if verify_solution_simple(assignment, var, files["ctr"]):
-            print("Correct solution!")
-            new_num_lables = len(set(assignment.values()))
-            print("Number of lables used: ", new_num_lables)
-            num_lables = new_num_lables 
-            
-        else:
-            print("Incorrect solution!")
-            break
-
-        print(f"Time taken: {time() - start_time:.2f} seconds")
-        process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-
-    solver.delete()
+    print(f"Memory: {process.memory_info().rss / 1024**2:.2f} MB")
 
 if __name__ == "__main__":
     main()

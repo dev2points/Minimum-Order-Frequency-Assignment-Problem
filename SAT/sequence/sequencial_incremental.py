@@ -4,7 +4,7 @@ import sys
 from time import time
 from pysat.solvers import Solver
 from pypblib import pblib
-from pysat.pb import PBEnc
+from pysat.card import CardEnc, EncType
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -213,40 +213,74 @@ def build_label_constraints(solver, var_map, label_var_map):
         solver.add_clause([-varnum, lb_varnum])
 
 def add_limit_label_constraints(solver, label_var_map, UB):
-    top = solver.nof_vars()
+    """
+    Encode: sum(label_vars) <= UB using Sequential Counter
+    Return:
+        S: rhs counter variables (for assumptions)
+    """
 
-    # 1. tạo x_vars
-    x_vars = []
-    for _ in range(UB):
-        top += 1
-        x_vars.append(top)
+    label_vars = list(label_var_map.values())
 
-    # x_i -> x_{i+1}
-    for i in range(UB - 1):
-        solver.add_clause([-x_vars[i], x_vars[i + 1]])
-
-    # 2. các biến cần giới hạn
-    label_vars = list(label_var_map.values()) + x_vars
-
-    # 3. Sequential Counter – MẠNH NHẤT cho UB > 10
-    enc = PBEnc.leq(
+    enc = CardEnc.atmost(
         lits=label_vars,
-        weights=[1] * len(label_vars),
         bound=UB,
-        top_id=top,
-        encoding=1   # 🔥 Sequential Counter
+        encoding=EncType.seqcounter,
+        top_id=solver.nof_vars()
     )
 
-    # 4. thêm clause
     for c in enc.clauses:
         solver.add_clause(c)
 
-    return x_vars
+    # S[i] <=> sum(label_vars) <= i+1
+    return enc.rhs
+
+def add_limit_label_constraints(solver, lits, K):
+
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+    
+    n = len(lits)
+    top = solver.nof_vars()
+
+    # s[i][j] : i in [0..n-1], j in [0..K-1]
+    s = [[0] * K for _ in range(n)]
+
+    # tạo biến phụ
+    for i in range(n):
+        for j in range(K):
+            top += 1
+            s[i][j] = top
+
+    # (1) ¬x_i ∨ s[i][0]
+    for i in range(n):
+        solver.add_clause([-lits[i], s[i][0]])
+
+    # (2) ¬s[i-1][j] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(K):
+            solver.add_clause([-s[i-1][j], s[i][j]])
+
+    # (3) ¬x_i ∨ ¬s[i-1][j-1] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(1, K):
+            solver.add_clause([-lits[i], -s[i-1][j-1], s[i][j]])
+
+    # (4) ¬x_i ∨ ¬s[i-1][K-1]
+    for i in range(1, n):
+        solver.add_clause([-lits[i], -s[i-1][K-1]])
+
+    # rhs[j-1] <=> sum(lits) <= j
+    rhs = [s[n-1][j] for j in range(K)]
+
+    return rhs
 
 
 
-def solve_and_print(solver, var_map):
-    if solver.solve():
+def solve_and_print(solver, var_map, x_var, ub):
+    assumption = []
+    if x_var != None and ub != None :
+        assumption = [-x_var[ub]]
+    if solver.solve(assumptions = assumption):
         model = solver.get_model()
         assignment = {}
         for (i, v), varnum in var_map.items():
@@ -308,13 +342,13 @@ def main():
     # solver = Cadical195()
     build_constraints(solver, var, var_map, last_var_num, files["ctr"])
 
-    assignment = solve_and_print(solver, var_map)
+    assignment = solve_and_print(solver, var_map, None, None)
     if assignment is None:
         return
     if verify_solution_simple(assignment, var, files["ctr"]):
         print("Correct solution!")
-        num_lables = len(set(assignment.values()))
-        print("Number of lables used: ", num_lables)
+        num_labels = len(set(assignment.values()))
+        print("Number of lables used: ", num_labels)
     else:   
         print("Incorrect solution!")
         return
@@ -324,26 +358,25 @@ def main():
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
-    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
+    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels)
 
     
 
-    while num_lables > 1:
+    while num_labels > 1:
         
         print("--------------------------------------------------")
-        print(f"\nTrying with at most {num_lables - 1} labels...")
-        solver.add_clause([x_vars[num_lables - 1]])
-        assignment = solve_and_print(solver, var_map)
+        print(f"\nTrying with at most {num_labels - 1} labels...")
+        assignment = solve_and_print(solver, var_map, rhs, num_labels - 1)
         if assignment is None:
             print("No more solutions found.")
-            print("Optimal number of labels used: ", num_lables)
+            print("Optimal number of labels used: ", num_labels)
             print(f"Time taken: {time() - start_time:.2f} seconds")
             break
         if verify_solution_simple(assignment, var, files["ctr"]):
             print("Correct solution!")
-            new_num_lables = len(set(assignment.values()))
-            print("Number of lables used: ", new_num_lables)
-            num_lables = new_num_lables 
+            num_labels = len(set(assignment.values()))
+            print("Number of lables used: ", num_labels)
+            
             
         else:
             print("Incorrect solution!")
