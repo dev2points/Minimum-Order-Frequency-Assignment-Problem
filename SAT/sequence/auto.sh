@@ -1,16 +1,6 @@
-TO=600
-MO=8000
-RESULTS_DIR=results/sequencial_incremental
-mkdir -p $RESULTS_DIR
-
-
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py graph01  2>&1 | tee $RESULTS_DIR/graph01.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py graph02  2>&1 | tee $RESULTS_DIR/graph02.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py graph08  2>&1 | tee $RESULTS_DIR/graph08.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py graph09  2>&1 | tee $RESULTS_DIR/graph09.log
-runlim -r $TO -s $MO  python3 -u sequencial_incremental.py graph14  2>&1 | tee $RESULTS_DIR/graph14.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py scen01  2>&1 | tee $RESULTS_DIR/scen01.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py scen02  2>&1 | tee $RESULTS_DIR/scen02.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py scen03  2>&1 | tee $RESULTS_DIR/scen03.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py scen04  2>&1 | tee $RESULTS_DIR/scen04.log
-# runlim -r $TO -s $MO  python3 -u sequencial_incremental.py scen11  2>&1 | tee $RESULTS_DIR/scen11.log
+# ./sc_assumptions.sh
+# ./sc_incremental.sh
+./nsc_assumptions.sh
+./nsc_incremental.sh
+./tot_assumptions.sh
+./tot_incremental.sh

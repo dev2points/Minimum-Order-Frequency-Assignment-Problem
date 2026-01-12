@@ -1,4 +1,4 @@
-TO=600
+TO=900
 MO=8000
 RESULTS_DIR=results
 mkdir -p $RESULTS_DIR

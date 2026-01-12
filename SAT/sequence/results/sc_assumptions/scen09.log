@@ -1,0 +1,33 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		8000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		scen09
+[runlim] argv[4]:		sc
+[runlim] argv[5]:		assumptions
+[runlim] start:			Sun Jan 11 22:52:12 2026
+[runlim] main pid:		124376
+Solve first problem:
+Traceback (most recent call last):
+  File "/home/satsolver/Minimum-Order-Frequency-Assignment-Problem/SAT/sequence/main.py", line 466, in <module>
+    main()
+  File "/home/satsolver/Minimum-Order-Frequency-Assignment-Problem/SAT/sequence/main.py", line 417, in main
+    build_constraints(solver, var, var_map, last_var_num, files["ctr"])
+  File "/home/satsolver/Minimum-Order-Frequency-Assignment-Problem/SAT/sequence/main.py", line 116, in build_constraints
+    order_var_map = create_order_var_map(var,var_map,last_var_num, solver)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/satsolver/Minimum-Order-Frequency-Assignment-Problem/SAT/sequence/main.py", line 96, in create_order_var_map
+    last_i = labels[-1]
+             ~~~~~~^^^^
+IndexError: list index out of range
+[runlim] end:			Sun Jan 11 22:52:12 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			0.95 seconds
+[runlim] time:			0.08 seconds
+[runlim] space:			31.3 MB
+[runlim] samples:		1

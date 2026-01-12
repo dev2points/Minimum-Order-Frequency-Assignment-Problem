@@ -277,10 +277,9 @@ def add_limit_label_constraints(solver, lits, K):
 
 
 def solve_and_print(solver, var_map, x_var, ub):
-    assumption = []
     if x_var != None and ub != None :
-        assumption = [-x_var[ub]]
-    if solver.solve(assumptions = assumption):
+        solver.add_clause([-x_var[ub]])
+    if solver.solve():
         model = solver.get_model()
         assignment = {}
         for (i, v), varnum in var_map.items():

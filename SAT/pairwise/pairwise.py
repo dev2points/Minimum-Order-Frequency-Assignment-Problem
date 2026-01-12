@@ -53,28 +53,22 @@ def delete_invalid_labels(var, ctr_file):
             parts = line.strip().split()
             if not parts:
                 continue
-
             u, v = int(parts[0]), int(parts[1])
             distance = int(parts[4])
-
-            # --- check an toàn ---
-            if var[u] is None or var[v] is None:
-                raise ValueError(f"Uninitialized domain at u={u}, v={v}")
-
-            # --- dùng domain cũ ---
-            old_u = var[u].copy()
-            old_v = var[v].copy()
-
-
             if '>' in parts:
-                var[u] = [
-                    lu for lu in old_u
-                    if any(abs(lu - lv) > distance for lv in old_v)
-                ]
-                var[v] = [
-                    lv for lv in old_v
-                    if any(abs(lv - lu) > distance for lu in old_u)
-                ]
+                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+    with open(ctr_file) as f:
+        for line in f:
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '=' in parts:
+                # Remove labels from domain that violate the equality constraint
+                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
 
 def create_var_map(var):
     var_map = {}
@@ -93,26 +87,7 @@ def create_order_var_map(var,var_map, last_var_num, solver):
     for u, labels in var.items():
         for i in labels:
             order_var_map[(u,i)] = counter
-            counter += 1
-
-    # Monotonicity constraints 
-    for u, labels in var.items():
-        #(1)
-        last_i = labels[-1]
-        solver.add_clause([-var_map[(u, last_i)], order_var_map[(u, last_i)]])   # x -> y
-        solver.add_clause([-order_var_map[(u, last_i)], var_map[(u, last_i)]])   # y -> x
-        for idx in range(1, len(labels)):
-            solver.add_clause([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx - 1])]]) #(4)
-        solver.add_clause([order_var_map[(u, labels[0])]]) #(3)
-        #(2)
-        for idx in range(len(labels)-1):
-            solver.add_clause([-var_map[(u, labels[idx])], order_var_map[(u, labels[idx])]])
-            solver.add_clause([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])  
-            solver.add_clause([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]])
-                
-
-    
-
+            counter += 1             
     return order_var_map # dict mapping (u,i) to order variable number
 
 def build_constraints(solver, var, var_map, ctr_file):
@@ -243,7 +218,7 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    delete_invalid_labels(var, files["ctr"])
+    #delete_invalid_labels(var, files["ctr"])
     solver = Solver(name='glucose4')
     last_var_num, var_map = create_var_map(var)
 

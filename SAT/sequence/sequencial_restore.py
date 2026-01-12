@@ -5,6 +5,7 @@ from time import time
 from pysat.solvers import Solver, Glucose4
 from pypblib import pblib
 from pysat.pb import PBEnc
+from pysat.card import CardEnc, EncType
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -212,15 +213,16 @@ def build_label_constraints(clauses, var_map, label_var_map):
         lb_varnum = label_var_map[v]
         clauses.append([-varnum, lb_varnum])
 
-def add_limit_label_constraints(solver, label_var_map, max_labels):
-    label_vars = list(label_var_map.values())
-    
-    atmost_k = PBEnc.leq(lits=label_vars, weights=[1]*len(label_vars),
-                         bound=max_labels, encoding = 1) 
+def add_limit_label_constraints(solver, lits, K):
 
-    for clause in atmost_k.clauses:
-        solver.add_clause(clause)
-    return atmost_k
+    if isinstance(lits, dict):
+        lits = [None] + list(lits.values())  # padding index 0
+    else:
+        lits = [None] + lits
+
+    cnf = PBEnc.atmost(lits=lits, weights=[1] * len(lits), bound=K, encoding='cardnet')
+    solver.append_formula(cnf.clauses)
+ 
 
 
 def solve_and_print(solver, var_map):
@@ -282,7 +284,7 @@ def main():
     last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")
-    solver = Solver(name='glucose4')
+    solver = Solver(name='Glucose4')
     # solver = Cadical195()
 
     clauses = []
@@ -307,13 +309,17 @@ def main():
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     atmost_k = build_label_constraints(clauses, var_map, lable_var_map)
-    add_limit_label_constraints(solver, lable_var_map,num_lables)
+    
 
     
 
     while True:
         print(f"\nSolving with at most {num_lables - 1} labels...")
-        solver.add_clause([atmost_k[num_lables - 1]])
+        solver.delete()
+        solver = Solver(name='Glucose4')
+        for clause in clauses:
+            solver.add_clause(clause)
+        add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
         assignment = solve_and_print(solver, var_map)
         if assignment is None:
             print(f"Time taken: {time() - start_time:.2f} seconds")
