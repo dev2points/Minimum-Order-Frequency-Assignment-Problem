@@ -3,7 +3,6 @@ import psutil
 import sys
 from time import time
 from pysat.solvers import Solver
-from pypblib import pblib
 from pysat.card import ITotalizer
 
 def get_file_names(dataset_folder):
@@ -138,14 +137,14 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
             elif '>' in parts:
                 # (5)
                 for iu in vals_u:
-                    if (iu - distance  <= vals_v[0] and iu + distance > vals_v[-1]):
+                    if (iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]):
                         solver.add_clause([-var_map[(u, iu)]]) #(5)
                     elif (iu - distance <= vals_v[0]):
                         for jv in vals_v:
                             if jv - iu > distance:
                                solver.add_clause([-var_map[(u, iu)], order_var_map[(v, jv)]]) #(6)
                                break
-                    elif iu + distance > vals_v[-1]:
+                    elif iu + distance >= vals_v[-1]:
                         T = iu - distance 
                         # tìm nhãn gần nhất >= T
                         for t in vals_v:
@@ -162,21 +161,21 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                                 clause.append(-order_var_map[(v, t)])
                                 break
                         for t in vals_v:
-                            if t >= limit_high:
+                            if t > limit_high:
                                 clause.append(order_var_map[(v, t)])
                                 break
                         if len(clause) > 1:
                             solver.add_clause(clause)   
 
                 for jv in vals_v:
-                    if (jv - distance  <= vals_u[0] and jv + distance > vals_u[-1]):
+                    if (jv - distance <= vals_u[0] and jv + distance >= vals_u[-1]):
                         solver.add_clause([-var_map[(v, jv)]]) #(5)
                     elif (jv - distance <= vals_u[0]):
                         for iu in vals_u:
                             if jv - iu > distance:
                                solver.add_clause([-var_map[(v, jv)], order_var_map[(u, iu)]]) #(6)
                                break
-                    elif jv + distance > vals_u[-1]:
+                    elif jv + distance >= vals_u[-1]:
                         T = jv - distance 
                         # tìm nhãn gần nhất >= T
                         for t in vals_u:
@@ -192,7 +191,7 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                                 clause.append(-order_var_map[(u, t)])
                                 break
                         for t in vals_u:
-                            if t >= limit_high:
+                            if t > limit_high:
                                 clause.append(order_var_map[(u, t)])
                                 break
                         if len(clause) > 1:
@@ -215,7 +214,7 @@ def build_label_constraints(solver, var_map, label_var_map):
         lb_varnum = label_var_map[v]
         solver.add_clause([-varnum, lb_varnum])
 
-def amk_nsc(solver, lits, K):
+def amk_nsc_full(solver, lits, K):
     if isinstance(lits, dict):
         lits = list(lits.values())
 
@@ -272,7 +271,45 @@ def amk_nsc(solver, lits, K):
     rhs = [r[n][j] for j in range(1, K + 1)]
     return rhs
 
-def amk_sc(solver, lits, K):
+def amk_nsc(solver, lits, K):
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+
+    n = len(lits)
+    top = solver.nof_vars()
+
+    # r[i][j] với i = 1..n, j = 1..K
+    r = [[0] * (K + 1) for _ in range(n + 1)]
+
+    # tạo biến phụ
+    for i in range(1, n + 1):
+        for j in range(1, K + 1):
+            top += 1
+            r[i][j] = top
+
+    # (1)  ¬x_i ∨ r(i,1)
+    for i in range(1, n + 1):
+        solver.add_clause([-lits[i - 1], r[i][1]])
+
+    # (2)  ¬r(i-1,j) ∨ r(i,j)
+    for i in range(2, n + 1):
+        for j in range(1, min(i - 1, K) + 1):
+            solver.add_clause([-r[i - 1][j], r[i][j]])
+
+    # (3)  ¬x_i ∨ ¬r(i-1,j-1) ∨ r(i,j)
+    for i in range(2, n + 1):
+        for j in range(2, min(i, K) + 1):
+            solver.add_clause([-lits[i - 1], -r[i - 1][j - 1], r[i][j]])
+
+    # (8)  ¬x_i ∨ ¬r(i-1,K)
+    for i in range(K + 1, n + 1):
+        solver.add_clause([-lits[i - 1], -r[i - 1][K]])
+
+    # rhs[j-1] ⇔ sum(lits) ≤ j
+    rhs = [r[n][j] for j in range(1, K + 1)]
+    return rhs
+
+def amk_sc_full(solver, lits, K):
     if isinstance(lits, dict):
         lits = list(lits.values())
     
@@ -299,11 +336,48 @@ def amk_sc(solver, lits, K):
             solver.add_clause([-lits[i - 1], -s[i - 1][j - 1], s[i][j]])  # (5)
             solver.add_clause([-s[i - 1][j], s[i][j]])  # (6)
         solver.add_clause([-lits[i - 1], -s[i - 1][K]])  # (7)
-
     
-    solver.add_clause([-s[n - 1][K]])  # (8)
-    # rhs[j-1] <=> sum(lits) <= j
+
     rhs = [s[n][j] for j in range(1, K + 1)]
+
+    return rhs
+
+def amk_sc(solver, lits, K):
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+    
+    n = len(lits)
+    top = solver.nof_vars()
+
+    # s[i][j] : i in [0..n-1], j in [0..K-1]
+    s = [[0] * K for _ in range(n)]
+
+    # tạo biến phụ
+    for i in range(n):
+        for j in range(K):
+            top += 1
+            s[i][j] = top
+
+    # (1) ¬x_i ∨ s[i][0]
+    for i in range(n):
+        solver.add_clause([-lits[i], s[i][0]])
+
+    # (2) ¬s[i-1][j] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(K):
+            solver.add_clause([-s[i-1][j], s[i][j]])
+
+    # (3) ¬x_i ∨ ¬s[i-1][j-1] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(1, K):
+            solver.add_clause([-lits[i], -s[i-1][j-1], s[i][j]])
+
+    # (4) ¬x_i ∨ ¬s[i-1][K-1]
+    for i in range(1, n):
+        solver.add_clause([-lits[i], -s[i-1][K-1]])
+
+    # rhs[j-1] <=> sum(lits) <= j
+    rhs = [s[n-1][j] for j in range(K)]
 
     return rhs
 
@@ -324,6 +398,10 @@ def add_limit_label_constraints(solver, lits, K, strategy):
         return amk_nsc(solver, lits, K)
     elif strategy == 'sc':
         return amk_sc(solver, lits, K)
+    if strategy == 'nsc_full':
+        return amk_nsc_full(solver, lits, K)
+    elif strategy == 'sc_full':
+        return amk_sc_full(solver, lits, K)
     elif strategy == 'tot':
         return amk_tot(solver, lits, K)
 
@@ -336,7 +414,11 @@ def solve_and_print(solver, var_map, rhs, num_labels, type):
         raise ValueError("Type must be either 'incremental', 'assumptions', or 'first'")
     if type == 'incremental':
         solver.add_clause([-rhs[num_labels - 1]])
-    status = solver.solve([-rhs[num_labels - 1]]) if type == 'assumptions' else solver.solve()
+    status = None
+    if type == 'assumptions':
+        status = solver.solve(assumptions = [-rhs[num_labels - 1]]) 
+    else :
+        status = solver.solve()
     if status:
         model = solver.get_model()
         assignment = {}
@@ -377,6 +459,7 @@ def verify_solution(assignment, var, var_file, ctr_file):
             if '>' in parts:
                 distance = int(parts[4])
                 if abs(vi - vj) <= distance:
+                    print(f"\n{i} ({vi}) {j} ({vj}) <= {distance}")
                     return False
             elif '=' in parts:
                 value = int(parts[4])
@@ -386,19 +469,24 @@ def verify_solution(assignment, var, var_file, ctr_file):
 
 def main():
     start_time = time()
-    strategys = ['nsc', 'sc', 'tot']
+    solvers = ["glucose4", "cadical195"]
+    strategys = ['nsc', 'sc', 'tot', 'sc_full', 'nsc_full']
     sat_types = ['incremental', 'assumptions']
-    helpers = "Use: python3 main.py <dataset_folder> <strategy> <sat_type>\n" \
+    helpers = "Use: python3 main.py <dataset_folder> <strategy> <sat_type> <solver>\n" \
     "  strategy: 'nsc', 'sc', or 'tot'\n" \
-    "  sat_type: 'incremental' or 'assumptions'\n"
-    if len(sys.argv) < 4:
+    "  sat_type: 'incremental' or 'assumptions'\n"\
+    "   solver: 'glucose4', 'cadical195'\n"
+    if len(sys.argv) < 5:
         print(helpers)
         return
     if sys.argv[2] not in strategys:
-        raise ValueError("Strategy must be either 'nsc', 'sc', or 'tot'"
+        raise ValueError("Strategy must be either 'nsc', 'sc', 'nsc_full', 'sc_full' or 'tot'"
         f"\n {helpers}")
     if sys.argv[3] not in sat_types:
         raise ValueError("sat_type must be either 'incremental' or 'assumptions'" \
+        f"\n {helpers}")
+    if sys.argv[4] not in solvers:
+        raise ValueError("solver must be either 'glucose4' or 'cadical195'"\
         f"\n {helpers}")
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
@@ -411,11 +499,11 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    #delete_invalid_labels(var, files["ctr"])
+    delete_invalid_labels(var, files["ctr"])
     last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")
-    solver = Solver(name= 'glucose4')
+    solver = Solver(name= sys.argv[4])
     # solver = Cadical195()
     build_constraints(solver, var, var_map, last_var_num, files["ctr"])
 
@@ -443,7 +531,7 @@ def main():
         
         print("--------------------------------------------------")
         print(f"\nTrying with at most {num_labels - 1} labels...")
-        assignment = solve_and_print(solver, var_map, rhs, num_labels - 1, sys.argv[3])
+        assignment = solve_and_print(solver, var_map, rhs, num_labels, sys.argv[3])
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_labels)

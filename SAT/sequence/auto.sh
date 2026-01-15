@@ -1,6 +1,12 @@
-# ./sc_assumptions.sh
-# ./sc_incremental.sh
+./sc_assumptions.sh
+./sc_incremental.sh
 ./nsc_assumptions.sh
 ./nsc_incremental.sh
 ./tot_assumptions.sh
 ./tot_incremental.sh
+./sc_full_assumptions.sh
+./sc_full_incremental.sh
+./nsc_full_assumptions.sh
+./nsc_full_incremental.sh
+./glucose4.sh
+./cadical195.sh
