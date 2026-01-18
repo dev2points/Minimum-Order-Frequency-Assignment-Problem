@@ -1,5 +1,5 @@
 TO=900
-MO=6000
+MO=6    000
 RESULTS_DIR=results
 mkdir -p $RESULTS_DIR
 
