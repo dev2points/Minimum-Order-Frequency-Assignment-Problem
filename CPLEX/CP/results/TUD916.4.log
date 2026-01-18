@@ -5,19 +5,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD916.4
-[runlim] start:			Sun Jan 18 13:36:46 2026
-[runlim] main pid:		1214
-[runlim] sample:		9.9 time, 10.1 real, 563.5 MB
-[runlim] sample:		19.9 time, 20.1 real, 1167.0 MB
-[runlim] sample:		29.9 time, 29.7 real, 2007.7 MB
-[runlim] sample:		39.9 time, 39.7 real, 2034.4 MB
-[runlim] sample:		49.8 time, 49.7 real, 4138.5 MB
-[runlim] sample:		59.6 time, 59.7 real, 4951.2 MB
-[runlim] end:			Sun Jan 18 13:37:48 2026
+[runlim] start:			Sun Jan 18 16:44:44 2026
+[runlim] main pid:		752
+[runlim] sample:		9.9 time, 10.5 real, 574.1 MB
+[runlim] sample:		19.8 time, 20.0 real, 1203.5 MB
+[runlim] sample:		29.5 time, 30.0 real, 2037.6 MB
+[runlim] sample:		39.4 time, 40.0 real, 2032.9 MB
+[runlim] sample:		49.3 time, 49.6 real, 4269.5 MB
+[runlim] sample:		59.1 time, 59.6 real, 4988.9 MB
+[runlim] end:			Sun Jan 18 16:45:46 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		433
-[runlim] real:			62.66 seconds
-[runlim] time:			62.65 seconds
-[runlim] space:			6068.3 MB
-[runlim] samples:		630
+[runlim] children:		438
+[runlim] real:			62.96 seconds
+[runlim] time:			62.31 seconds
+[runlim] space:			6046.2 MB
+[runlim] samples:		633

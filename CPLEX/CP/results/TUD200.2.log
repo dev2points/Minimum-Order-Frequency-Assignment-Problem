@@ -5,52 +5,30 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.2
-[runlim] start:			Sun Jan 18 12:49:36 2026
-[runlim] main pid:		660
-[runlim] sample:		9.8 time, 9.4 real, 659.4 MB
-[runlim] sample:		19.5 time, 19.4 real, 2144.8 MB
+[runlim] start:			Sun Jan 18 16:26:30 2026
+[runlim] main pid:		602
+[runlim] sample:		9.9 time, 10.1 real, 661.5 MB
+[runlim] sample:		19.8 time, 20.1 real, 2242.9 MB
 Building CP model...
-Build time: 5.07s
+Build time: 5.74s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 7728 variables, 713710 constraints
  ! Presolve      : 713912 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 7.02s (7.00s extraction + 0.02s propagation)
+ ! Initial process time : 7.08s (7.05s extraction + 0.04s propagation)
  !  . Log search space  : 7728.0 (before), 7728.0 (after)
  !  . Memory usage      : 97.9 MB (before), 97.9 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0       7728                 -
  + New bound is 0
-                        0       7728    1            -
- + New bound is 1
-                     1378       6230    1   F     0 != l_478
- + New bound is 2
- *            46     7399  10.45s       1      (gap is 95.65%)
-              46    11934       1544    1            -
- + New bound is 46 (gap is 0.00%)
- ! ----------------------------------------------------------------------------
- ! Search completed, 1 solution found.
- ! Best objective         : 46 (optimal - effective tol. is 0)
- ! Best bound             : 46
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 55493
- ! Number of fails        : 17021
- ! Total memory usage     : 1.7 GB (1.7 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 11.54s (4.54s engine + 7.00s extraction)
- ! Search speed (br. / s) : 12223.1
- ! ----------------------------------------------------------------------------
-
-FINAL SOLUTION:
-{708, 470, 778, 540, 16, 254, 16, 254, 30, 268, 86, 324, 680, 442, 16, 254, 240, 478, 114, 352, 156, 394, 708, 470, 16, 254, 16, 254, 722, 484, 764, 526, 792, 554, 16, 254, 680, 442, 722, 484, 16, 254, 652, 414, 666, 428, 16, 254, 114, 352, 736, 498, 240, 478, 708, 470, 652, 414, 694, 456, 16, 254, 170, 408, 750, 512, 792, 554, 86, 324, 44, 282, 652, 414, 128, 366, 652, 414, 680, 442, 792, 554, 792, 554, 128, 366, 16, 254, 128, 366, 764, 526, 792, 554, 750, 512, 142, 380, 722, 484, 114, 352, 16, 254, 156, 394, 764, 526, 30, 268, 792, 554, 708, 470, 652, 414, 778, 540, 170, 408, 16, 254, 708, 470, 792, 554, 16, 254, 792, 554, 44, 282, 792, 554, 16, 254, 156, 394, 30, 268, 156, 394, 778, 540, 86, 324, 750, 512, 652, 414, 666, 428, 30, 268, 792, 554, 680, 442, 792, 554, 142, 380, 16, 254, 86, 324, 792, 554, 16, 254, 666, 428, 666, 428, 792, 554, 722, 484, 652, 414, 58, 296, 792, 554, 792, 554, 86, 324, 72, 310, 142, 380, 792, 554, 680, 442, 16, 254, 792, 554}
-Number of labels used: 46
-[runlim] end:			Sun Jan 18 12:50:02 2026
-[runlim] status:		ok
-[runlim] result:		0
-[runlim] children:		206
-[runlim] real:			26.66 seconds
-[runlim] time:			35.14 seconds
-[runlim] space:			3505.4 MB
-[runlim] samples:		272
+[runlim] end:			Sun Jan 18 16:26:54 2026
+[runlim] status:		out of memory
+[runlim] result:		3
+[runlim] children:		187
+[runlim] real:			24.63 seconds
+[runlim] time:			56.50 seconds
+[runlim] space:			6091.8 MB
+[runlim] samples:		245

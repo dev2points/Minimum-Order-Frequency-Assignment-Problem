@@ -5,20 +5,20 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.4
-[runlim] start:			Sun Jan 18 13:05:02 2026
-[runlim] main pid:		689
-[runlim] sample:		9.7 time, 10.1 real, 890.7 MB
+[runlim] start:			Sun Jan 18 16:41:54 2026
+[runlim] main pid:		673
+[runlim] sample:		9.9 time, 10.1 real, 882.0 MB
 Building CP model...
-Build time: 3.64s
+Build time: 3.74s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 6960 variables, 463335 constraints
  ! Presolve      : 463537 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 4.26s (4.24s extraction + 0.02s propagation)
+ ! Initial process time : 4.32s (4.30s extraction + 0.02s propagation)
  !  . Log search space  : 6960.0 (before), 6960.0 (after)
  !  . Memory usage      : 60.4 MB (before), 60.4 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0       6960                 -
@@ -27,35 +27,37 @@ Solving CP Optimizer...
  + New bound is 1
                       483       5522    4   F     1 != l_408
  + New bound is 2
- *            41    16919  7.22s        1      (gap is 95.12%)
- *            21    15820  7.59s        4      (gap is 90.48%)
-              21    15850          4    4   F     1 != x_171_170
- + New bound is 12 (gap is 42.86%)
-              21    15940          4    4   F     0 != x_66_478
- + New bound is 18 (gap is 14.29%)
- *            20    15975  7.76s        4      (gap is 10.00%)
-              20    16069       4146    4   F     1 != x_65_142
+ *            44     7039  9.40s        4      (gap is 95.45%)
+[runlim] sample:		70.0 time, 20.1 real, 2213.1 MB
+ *            23    16225  11.43s       2      (gap is 91.30%)
+              23    16225          4    2   F        -
+ + New bound is 13 (gap is 43.48%)
+              23    16293          4    2   F     1 != x_65_170
+ + New bound is 19 (gap is 17.39%)
+ *            21    16385  11.69s       2      (gap is 9.52%)
+ *            20    16405  11.72s       2      (gap is 5.00%)
+              20    16419          4    2   F     1 != x_109_792
  + New bound is 20 (gap is 0.00%)
  ! ----------------------------------------------------------------------------
- ! Search completed, 3 solutions found.
+ ! Search completed, 4 solutions found.
  ! Best objective         : 20 (optimal - effective tol. is 0)
  ! Best bound             : 20
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 79967
- ! Number of fails        : 25275
- ! Total memory usage     : 1.1 GB (1.1 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 7.79s (3.56s engine + 4.24s extraction)
- ! Search speed (br. / s) : 22525.9
+ ! Number of branches     : 182615
+ ! Number of fails        : 55477
+ ! Total memory usage     : 1.5 GB (1.5 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 11.75s (7.45s engine + 4.30s extraction)
+ ! Search speed (br. / s) : 24512.1
  ! ----------------------------------------------------------------------------
 
 FINAL SOLUTION:
-{86, 324, 86, 324, 86, 324, 156, 394, 128, 366, 792, 554, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 792, 554, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 792, 554, 170, 408, 72, 310, 792, 554, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 792, 554, 240, 478, 100, 338, 128, 366, 792, 554, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 792, 554, 170, 408, 240, 478, 156, 394, 792, 554, 114, 352, 72, 310, 792, 554, 72, 310, 156, 394, 792, 554, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 792, 554, 792, 554, 170, 408, 86, 324, 128, 366, 156, 394, 792, 554, 240, 478, 72, 310, 114, 352, 792, 554, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 792, 554, 792, 554, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+{86, 324, 86, 324, 792, 554, 156, 394, 128, 366, 792, 554, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 792, 554, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 792, 554, 170, 408, 72, 310, 792, 554, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 792, 554, 240, 478, 100, 338, 128, 366, 792, 554, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 792, 554, 170, 408, 240, 478, 156, 394, 792, 554, 114, 352, 72, 310, 792, 554, 72, 310, 156, 394, 792, 554, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 792, 554, 792, 554, 170, 408, 86, 324, 128, 366, 156, 394, 792, 554, 240, 478, 72, 310, 114, 352, 792, 554, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 792, 554, 792, 554, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
 Number of labels used: 20
-[runlim] end:			Sun Jan 18 13:05:20 2026
+[runlim] end:			Sun Jan 18 16:42:16 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		138
-[runlim] real:			18.18 seconds
-[runlim] time:			24.13 seconds
-[runlim] space:			2241.0 MB
-[runlim] samples:		180
+[runlim] children:		177
+[runlim] real:			22.21 seconds
+[runlim] time:			75.66 seconds
+[runlim] space:			3904.2 MB
+[runlim] samples:		220

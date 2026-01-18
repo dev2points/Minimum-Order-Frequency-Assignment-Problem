@@ -5,33 +5,33 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen07
-[runlim] start:			Sun Jan 18 12:32:25 2026
-[runlim] main pid:		462
-[runlim] sample:		9.8 time, 10.2 real, 570.7 MB
-[runlim] sample:		19.7 time, 20.2 real, 1282.9 MB
-[runlim] sample:		29.7 time, 30.2 real, 1580.1 MB
-[runlim] sample:		39.8 time, 40.2 real, 3532.7 MB
-[runlim] sample:		49.8 time, 49.7 real, 5584.5 MB
+[runlim] start:			Sun Jan 18 16:09:18 2026
+[runlim] main pid:		514
+[runlim] sample:		9.8 time, 10.1 real, 546.6 MB
+[runlim] sample:		19.7 time, 20.1 real, 1273.3 MB
+[runlim] sample:		29.5 time, 29.6 real, 1578.6 MB
+[runlim] sample:		39.4 time, 39.6 real, 3298.6 MB
+[runlim] sample:		49.2 time, 49.6 real, 5627.6 MB
 Building CP model...
-Build time: 15.09s
+Build time: 15.39s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 15996 variables, 1842244 constraints
  ! Presolve      : 1842646 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 19.56s (19.47s extraction + 0.09s propagation)
+ ! Initial process time : 20.07s (19.99s extraction + 0.09s propagation)
  !  . Log search space  : 15996.0 (before), 15996.0 (after)
  !  . Memory usage      : 229.7 MB (before), 229.7 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0      15996                 -
  + New bound is 0
-[runlim] end:			Sun Jan 18 12:33:20 2026
+[runlim] end:			Sun Jan 18 16:10:14 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		403
-[runlim] real:			55.18 seconds
-[runlim] time:			59.19 seconds
-[runlim] space:			6135.6 MB
-[runlim] samples:		554
+[runlim] children:		415
+[runlim] real:			56.04 seconds
+[runlim] time:			68.77 seconds
+[runlim] space:			6175.0 MB
+[runlim] samples:		569

@@ -5,18 +5,18 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen09
-[runlim] start:			Sun Jan 18 12:34:32 2026
-[runlim] main pid:		623
+[runlim] start:			Sun Jan 18 16:11:26 2026
+[runlim] main pid:		538
 Building CP model...
-Build time: 0.65s
+Build time: 0.66s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 4368 variables, 91482 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 0.09s (0.09s extraction + 0.00s propagation)
+ ! Initial process time : 0.11s (0.10s extraction + 0.02s propagation)
  !  . Log search space  : 3782.0 (before), 3782.0 (after)
  !  . Memory usage      : 3.0 MB (before), 3.0 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0       4368                 -
@@ -28,14 +28,14 @@ Solving CP Optimizer...
  ! Number of branches     : 0
  ! Number of fails        : 0
  ! Total memory usage     : 78.7 MB (77.7 MB CP Optimizer + 1.0 MB Concert)
- ! Time spent in solve    : 0.11s (0.02s engine + 0.09s extraction)
+ ! Time spent in solve    : 0.12s (0.02s engine + 0.10s extraction)
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-[runlim] end:			Sun Jan 18 12:34:34 2026
+[runlim] end:			Sun Jan 18 16:11:28 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		12
-[runlim] real:			2.25 seconds
-[runlim] time:			1.86 seconds
-[runlim] space:			214.6 MB
+[runlim] real:			2.14 seconds
+[runlim] time:			1.85 seconds
+[runlim] space:			222.7 MB
 [runlim] samples:		20

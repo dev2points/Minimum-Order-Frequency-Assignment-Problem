@@ -5,21 +5,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph13
-[runlim] start:			Sun Jan 18 12:29:24 2026
-[runlim] main pid:		428
-[runlim] sample:		9.9 time, 10.2 real, 428.4 MB
-[runlim] sample:		19.8 time, 20.2 real, 610.5 MB
-[runlim] sample:		29.6 time, 30.2 real, 765.0 MB
-[runlim] sample:		39.3 time, 39.7 real, 1199.5 MB
-[runlim] sample:		49.1 time, 49.7 real, 2163.1 MB
-[runlim] sample:		59.0 time, 59.7 real, 2487.6 MB
-[runlim] sample:		69.0 time, 69.2 real, 3375.3 MB
-[runlim] sample:		78.8 time, 79.2 real, 5546.7 MB
-[runlim] end:			Sun Jan 18 12:30:45 2026
+[runlim] start:			Sun Jan 18 16:06:56 2026
+[runlim] main pid:		470
+[runlim] sample:		10.3 time, 10.9 real, 574.1 MB
+[runlim] sample:		20.3 time, 20.9 real, 1115.1 MB
+[runlim] sample:		30.1 time, 30.9 real, 1870.7 MB
+[runlim] sample:		40.0 time, 40.9 real, 2471.4 MB
+[runlim] sample:		50.0 time, 50.9 real, 2525.7 MB
+[runlim] sample:		60.0 time, 60.9 real, 5123.1 MB
+[runlim] end:			Sun Jan 18 16:08:01 2026
 [runlim] status:		out of memory
 [runlim] result:		3
 [runlim] children:		407
-[runlim] real:			81.08 seconds
-[runlim] time:			80.72 seconds
-[runlim] space:			6002.7 MB
-[runlim] samples:		819
+[runlim] real:			65.38 seconds
+[runlim] time:			64.54 seconds
+[runlim] space:			6001.3 MB
+[runlim] samples:		645

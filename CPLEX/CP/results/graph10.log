@@ -5,33 +5,33 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph10
-[runlim] start:			Sun Jan 18 12:27:24 2026
-[runlim] main pid:		394
-[runlim] sample:		9.9 time, 10.3 real, 585.7 MB
-[runlim] sample:		19.8 time, 20.3 real, 1327.0 MB
-[runlim] sample:		29.7 time, 29.8 real, 1584.2 MB
-[runlim] sample:		39.6 time, 39.8 real, 3610.4 MB
-[runlim] sample:		49.5 time, 49.8 real, 5615.6 MB
+[runlim] start:			Sun Jan 18 16:04:57 2026
+[runlim] main pid:		416
+[runlim] sample:		9.4 time, 10.5 real, 535.9 MB
+[runlim] sample:		19.4 time, 20.5 real, 1257.7 MB
+[runlim] sample:		29.4 time, 30.5 real, 1583.9 MB
+[runlim] sample:		39.4 time, 40.5 real, 3434.8 MB
+[runlim] sample:		49.4 time, 50.5 real, 5601.9 MB
 Building CP model...
-Build time: 14.79s
+Build time: 15.44s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 27024 variables, 1840053 constraints
  ! Presolve      : 1840735 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 19.40s (19.33s extraction + 0.07s propagation)
+ ! Initial process time : 19.54s (19.47s extraction + 0.08s propagation)
  !  . Log search space  : 27024.0 (before), 27024.0 (after)
  !  . Memory usage      : 238.2 MB (before), 238.2 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0      27024                 -
  + New bound is 0
-[runlim] end:			Sun Jan 18 12:28:19 2026
+[runlim] end:			Sun Jan 18 16:05:53 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		409
-[runlim] real:			55.66 seconds
-[runlim] time:			59.86 seconds
-[runlim] space:			6078.8 MB
-[runlim] samples:		558
+[runlim] children:		408
+[runlim] real:			56.96 seconds
+[runlim] time:			68.43 seconds
+[runlim] space:			6422.6 MB
+[runlim] samples:		564

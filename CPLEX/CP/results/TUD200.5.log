@@ -5,45 +5,45 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.5
-[runlim] start:			Sun Jan 18 13:05:20 2026
-[runlim] main pid:		699
-[runlim] sample:		9.7 time, 10.2 real, 548.8 MB
+[runlim] start:			Sun Jan 18 16:42:16 2026
+[runlim] main pid:		691
+[runlim] sample:		10.2 time, 10.2 real, 548.3 MB
 Building CP model...
-Build time: 5.13s
+Build time: 4.95s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 7636 variables, 614769 constraints
  ! Presolve      : 614971 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 5.85s (5.83s extraction + 0.03s propagation)
+ ! Initial process time : 6.20s (6.17s extraction + 0.04s propagation)
  !  . Log search space  : 7636.0 (before), 7636.0 (after)
  !  . Memory usage      : 89.9 MB (before), 89.9 MB (after)
- ! Using parallel search with 4 workers.
+ ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0       7636                 -
  + New bound is 0
+[runlim] sample:		46.5 time, 20.2 real, 4055.7 MB
                         0       7636    1            -
  + New bound is 1
                       622       6054    4   F     0 != l_408
  + New bound is 2
-[runlim] sample:		25.6 time, 19.4 real, 2254.0 MB
  ! ----------------------------------------------------------------------------
  ! Search completed, model has no solution.
  ! Best bound             : 2
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 45586
- ! Number of fails        : 13338
- ! Total memory usage     : 1.5 GB (1.5 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 8.97s (3.15s engine + 5.83s extraction)
- ! Search speed (br. / s) : 14471.7
+ ! Number of branches     : 100604
+ ! Number of fails        : 27942
+ ! Total memory usage     : 2.1 GB (2.1 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 12.75s (6.59s engine + 6.17s extraction)
+ ! Search speed (br. / s) : 15289.4
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-[runlim] end:			Sun Jan 18 13:05:41 2026
+[runlim] end:			Sun Jan 18 16:42:41 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		159
-[runlim] real:			21.33 seconds
-[runlim] time:			27.52 seconds
-[runlim] space:			3073.8 MB
-[runlim] samples:		218
+[runlim] children:		196
+[runlim] real:			25.56 seconds
+[runlim] time:			77.68 seconds
+[runlim] space:			5328.8 MB
+[runlim] samples:		253
