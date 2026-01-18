@@ -1,0 +1,23 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		6000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		TUD916.4
+[runlim] start:			Sun Jan 18 13:36:46 2026
+[runlim] main pid:		1214
+[runlim] sample:		9.9 time, 10.1 real, 563.5 MB
+[runlim] sample:		19.9 time, 20.1 real, 1167.0 MB
+[runlim] sample:		29.9 time, 29.7 real, 2007.7 MB
+[runlim] sample:		39.9 time, 39.7 real, 2034.4 MB
+[runlim] sample:		49.8 time, 49.7 real, 4138.5 MB
+[runlim] sample:		59.6 time, 59.7 real, 4951.2 MB
+[runlim] end:			Sun Jan 18 13:37:48 2026
+[runlim] status:		out of memory
+[runlim] result:		3
+[runlim] children:		433
+[runlim] real:			62.66 seconds
+[runlim] time:			62.65 seconds
+[runlim] space:			6068.3 MB
+[runlim] samples:		630

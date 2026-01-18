@@ -1,0 +1,39 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		8000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		graph12
+[runlim] start:			Sat Jan 17 02:59:21 2026
+[runlim] main pid:		76969
+Building MIP model...
+[runlim] sample:		10.0 time, 10.1 real, 30.6 MB
+Build time: 19.84s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Infeasibility row 'c3':  0  = 1.
+Presolve time = 0.02 sec. (21.47 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (30.23 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (30.23 ticks)
+Solve time: 0.04s
+CPLEX Error  1217: No solution exists.
+No solution found.
+[runlim] end:			Sat Jan 17 02:59:41 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			20.02 seconds
+[runlim] time:			20.00 seconds
+[runlim] space:			34.2 MB
+[runlim] samples:		199

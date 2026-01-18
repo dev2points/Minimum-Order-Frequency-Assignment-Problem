@@ -1,0 +1,83 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		8000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		graph06
+[runlim] start:			Sat Jan 17 02:21:46 2026
+[runlim] main pid:		63888
+Building MIP model...
+[runlim] sample:		9.9 time, 10.7 real, 32.3 MB
+[runlim] sample:		20.0 time, 20.7 real, 34.7 MB
+[runlim] sample:		30.0 time, 30.7 real, 36.1 MB
+[runlim] sample:		39.9 time, 40.7 real, 38.3 MB
+[runlim] sample:		50.0 time, 50.7 real, 40.1 MB
+[runlim] sample:		60.0 time, 60.7 real, 42.1 MB
+[runlim] sample:		69.9 time, 70.7 real, 43.9 MB
+[runlim] sample:		80.0 time, 80.7 real, 44.7 MB
+[runlim] sample:		90.0 time, 90.7 real, 44.9 MB
+[runlim] sample:		100.0 time, 100.7 real, 47.6 MB
+[runlim] sample:		110.0 time, 110.7 real, 47.9 MB
+[runlim] sample:		120.0 time, 120.7 real, 50.2 MB
+[runlim] sample:		130.0 time, 130.7 real, 51.1 MB
+[runlim] sample:		139.9 time, 140.7 real, 51.4 MB
+[runlim] sample:		150.0 time, 150.7 real, 51.7 MB
+[runlim] sample:		160.0 time, 160.7 real, 54.6 MB
+[runlim] sample:		169.9 time, 170.7 real, 55.4 MB
+[runlim] sample:		180.0 time, 180.7 real, 55.8 MB
+[runlim] sample:		190.0 time, 190.7 real, 56.1 MB
+[runlim] sample:		199.9 time, 200.7 real, 56.2 MB
+[runlim] sample:		209.9 time, 210.7 real, 56.3 MB
+[runlim] sample:		220.0 time, 220.7 real, 60.4 MB
+[runlim] sample:		229.9 time, 230.7 real, 60.9 MB
+[runlim] sample:		239.9 time, 240.7 real, 61.2 MB
+[runlim] sample:		250.0 time, 250.7 real, 61.4 MB
+[runlim] sample:		260.0 time, 260.7 real, 61.6 MB
+[runlim] sample:		269.9 time, 270.7 real, 61.7 MB
+[runlim] sample:		280.0 time, 280.7 real, 65.7 MB
+[runlim] sample:		290.0 time, 290.7 real, 66.7 MB
+[runlim] sample:		299.9 time, 300.7 real, 67.2 MB
+[runlim] sample:		310.0 time, 310.7 real, 67.6 MB
+[runlim] sample:		320.0 time, 320.7 real, 66.9 MB
+[runlim] sample:		329.9 time, 330.7 real, 67.1 MB
+[runlim] sample:		340.0 time, 340.7 real, 67.3 MB
+[runlim] sample:		350.0 time, 350.7 real, 67.4 MB
+[runlim] sample:		359.9 time, 360.7 real, 67.6 MB
+[runlim] sample:		369.9 time, 370.7 real, 72.8 MB
+[runlim] sample:		380.0 time, 380.7 real, 73.7 MB
+[runlim] sample:		390.0 time, 390.7 real, 74.3 MB
+[runlim] sample:		399.9 time, 400.7 real, 74.7 MB
+[runlim] sample:		410.0 time, 410.7 real, 74.9 MB
+[runlim] sample:		420.0 time, 420.7 real, 75.1 MB
+[runlim] sample:		429.9 time, 430.7 real, 75.2 MB
+Build time: 435.34s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 2 times.
+[runlim] sample:		445.0 time, 440.7 real, 404.0 MB
+Infeasibility row 'c25':  0  = 1.
+Presolve time = 13.61 sec. (23577.91 ticks)
+
+Root node processing (before b&c):
+  Real time             =   13.67 sec. (23630.06 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =   13.67 sec. (23630.06 ticks)
+Solve time: 13.68s
+CPLEX Error  1217: No solution exists.
+No solution found.
+[runlim] end:			Sat Jan 17 02:29:15 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			449.86 seconds
+[runlim] time:			467.54 seconds
+[runlim] space:			419.5 MB
+[runlim] samples:		4491

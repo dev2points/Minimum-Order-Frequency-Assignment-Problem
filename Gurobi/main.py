@@ -9,7 +9,7 @@ from gurobipy import Model, GRB
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    if base.lower().startswith("graph"):
+    if base.lower().startswith(("graph", "tud")):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
@@ -82,6 +82,8 @@ def build_gurobi_model(var, ctr_file):
     # distance constraints
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -160,6 +162,8 @@ def verify_solution(solution, var, ctr_file):
     # Check distance constraints
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue

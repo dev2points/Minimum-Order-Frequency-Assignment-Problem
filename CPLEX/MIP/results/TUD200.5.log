@@ -1,0 +1,50 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		8000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		TUD200.5
+[runlim] start:			Sat Jan 17 04:06:22 2026
+[runlim] main pid:		100559
+Building MIP model...
+[runlim] sample:		10.0 time, 10.5 real, 31.5 MB
+[runlim] sample:		20.1 time, 20.9 real, 33.8 MB
+[runlim] sample:		30.0 time, 30.9 real, 36.1 MB
+[runlim] sample:		40.2 time, 40.9 real, 38.4 MB
+[runlim] sample:		50.3 time, 50.9 real, 41.0 MB
+[runlim] sample:		60.2 time, 60.9 real, 43.7 MB
+[runlim] sample:		70.2 time, 70.9 real, 44.7 MB
+[runlim] sample:		80.3 time, 80.9 real, 48.1 MB
+[runlim] sample:		90.4 time, 90.9 real, 48.5 MB
+[runlim] sample:		100.4 time, 100.9 real, 52.2 MB
+Build time: 106.59s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 2 times.
+[runlim] sample:		115.5 time, 110.9 real, 241.0 MB
+Infeasibility row 'c69':  0  = 1.
+Presolve time = 6.73 sec. (12226.66 ticks)
+
+Root node processing (before b&c):
+  Real time             =    6.76 sec. (12255.87 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    6.76 sec. (12255.87 ticks)
+Solve time: 6.77s
+CPLEX Error  1217: No solution exists.
+No solution found.
+[runlim] end:			Sat Jan 17 04:08:15 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			113.97 seconds
+[runlim] time:			122.71 seconds
+[runlim] space:			258.0 MB
+[runlim] samples:		1130

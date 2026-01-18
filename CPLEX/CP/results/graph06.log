@@ -1,0 +1,52 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		8000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		graph06
+[runlim] start:			Sun Jan 18 02:27:05 2026
+[runlim] main pid:		524
+[runlim] sample:		9.9 time, 10.8 real, 645.3 MB
+[runlim] sample:		19.9 time, 20.8 real, 1355.5 MB
+[runlim] sample:		29.8 time, 30.8 real, 3190.3 MB
+Building CP model...
+Build time: 8.21s
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 15132 variables, 1095819 constraints
+ ! Presolve      : 1096221 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 11.38s (11.34s extraction + 0.04s propagation)
+ !  . Log search space  : 15132.0 (before), 15132.0 (after)
+ !  . Memory usage      : 168.5 MB (before), 168.5 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0      15132                 -
+ + New bound is 0
+[runlim] sample:		97.5 time, 40.8 real, 3927.0 MB
+                        0      15132    1            -
+ + New bound is 1
+[runlim] sample:		158.6 time, 50.8 real, 3555.7 MB
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 1
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 171521
+ ! Number of fails        : 40107
+ ! Total memory usage     : 4.0 GB (4.0 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 37.86s (26.52s engine + 11.34s extraction)
+ ! Search speed (br. / s) : 6467.6
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+[runlim] sample:		210.3 time, 60.8 real, 3765.5 MB
+[runlim] sample:		211.4 time, 70.8 real, 4280.0 MB
+[runlim] end:			Sun Jan 18 02:28:22 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		669
+[runlim] real:			77.44 seconds
+[runlim] time:			212.46 seconds
+[runlim] space:			7333.3 MB
+[runlim] samples:		766

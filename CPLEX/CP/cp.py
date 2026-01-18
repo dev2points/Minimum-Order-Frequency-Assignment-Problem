@@ -10,7 +10,7 @@ from docplex.cp.model import CpoModel
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    if base.lower().startswith("graph"):
+    if base.lower().startswith(("graph", "tud")):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
@@ -29,6 +29,8 @@ def read_domain(file):
     domain = []
     with open(file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -40,6 +42,8 @@ def read_var(file, domain):
     var = {}
     with open(file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -73,6 +77,8 @@ def build_cp_model(var, var_map, ctr_file):
     # distance constraints
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -144,6 +150,11 @@ def main():
 
     if result is None:
         print("No solution found.")
+        return
+
+    status = result.get_solve_status()
+    if status not in ("Optimal", "Feasible"):
+        print("No valid solution:", status)
         return
 
     assignment = {}

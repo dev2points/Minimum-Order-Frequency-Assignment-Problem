@@ -7,7 +7,7 @@ from pysat.card import ITotalizer
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    if base.lower().startswith("graph"):
+    if base.lower().startswith(("graph", "tud")):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
@@ -51,6 +51,8 @@ def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -61,6 +63,8 @@ def delete_invalid_labels(var, ctr_file):
                 var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -70,6 +74,11 @@ def delete_invalid_labels(var, ctr_file):
                 # Remove labels from domain that violate the equality constraint
                 var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
                 var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+    for i,vals in var.items():
+        if len(vals) == 0:
+            print("Warning: variable", i, "has no valid labels after preprocessing.")
+            return False
+    return True
 
 def create_var_map(var):
     var_map = {}
@@ -119,6 +128,8 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
 
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -446,6 +457,8 @@ def verify_solution(assignment, var, var_file, ctr_file):
 
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -499,7 +512,10 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    delete_invalid_labels(var, files["ctr"])
+    if(not delete_invalid_labels(var, files["ctr"])):
+        print("Cannot find solution!")
+        return
+        
     last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")

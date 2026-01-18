@@ -56,7 +56,7 @@ def extract_solution_from_dict(var_map, sol_dict):
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    if base.lower().startswith("graph"):
+    if base.lower().startswith(("graph", "tud")):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
@@ -153,6 +153,8 @@ def build_mip_model(var, var_map, label_var_map, ctr_file):
     # Distance constraints 
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -219,6 +221,8 @@ def verify_solution_simple(assignment, var, ctr_file):
         return False
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue

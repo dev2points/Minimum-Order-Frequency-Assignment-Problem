@@ -1,0 +1,49 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	900 seconds
+[runlim] space limit:		6000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		TUD200.5
+[runlim] start:			Sun Jan 18 13:05:20 2026
+[runlim] main pid:		699
+[runlim] sample:		9.7 time, 10.2 real, 548.8 MB
+Building CP model...
+Build time: 5.13s
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 7636 variables, 614769 constraints
+ ! Presolve      : 614971 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 5.85s (5.83s extraction + 0.03s propagation)
+ !  . Log search space  : 7636.0 (before), 7636.0 (after)
+ !  . Memory usage      : 89.9 MB (before), 89.9 MB (after)
+ ! Using parallel search with 4 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0       7636                 -
+ + New bound is 0
+                        0       7636    1            -
+ + New bound is 1
+                      622       6054    4   F     0 != l_408
+ + New bound is 2
+[runlim] sample:		25.6 time, 19.4 real, 2254.0 MB
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 2
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 45586
+ ! Number of fails        : 13338
+ ! Total memory usage     : 1.5 GB (1.5 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 8.97s (3.15s engine + 5.83s extraction)
+ ! Search speed (br. / s) : 14471.7
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+[runlim] end:			Sun Jan 18 13:05:41 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		159
+[runlim] real:			21.33 seconds
+[runlim] time:			27.52 seconds
+[runlim] space:			3073.8 MB
+[runlim] samples:		218
