@@ -173,26 +173,19 @@ def build_mip_model(var, var_map, label_var_map, ctr_file):
                                 rhs=[1.0]
                             )
             elif '=' in parts:
+                target = int(parts[4])
+
                 for vi in vals_i:
-                    allowed = [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == distance]
-                    if allowed:
-                        inds = [var_map[(i,vi)]] + allowed
-                        coeffs = [1.0] + [-1.0]*len(allowed)
-                        model.linear_constraints.add(
-                            lin_expr=[cplex.SparsePair(ind=inds, val=coeffs)],
-                            senses=["L"],
-                            rhs=[0.0]
-                        )
-                for vj in vals_j:
-                    allowed = [var_map[(i, vi)] for vi in vals_i if abs(vi - vj) == distance]
-                    if allowed:
-                        inds = [var_map[(j,vj)]] + allowed
-                        coeffs = [1.0] + [-1.0]*len(allowed)
-                        model.linear_constraints.add(
-                            lin_expr=[cplex.SparsePair(ind=inds, val=coeffs)],
-                            senses=["L"],
-                            rhs=[0.0]
-                        )
+                    for vj in vals_j:
+                        if abs(vi - vj) == target:
+                            model.linear_constraints.add(
+                                lin_expr=[cplex.SparsePair(
+                                    ind=[var_map[(i, vi)], var_map[(j, vj)]],
+                                    val=[1.0, -1.0]
+                                )],
+                                senses=["E"],
+                                rhs=[0.0]
+                            )
 
     # Objective: minimize sum of label variables
     obj_inds = l_names
@@ -281,10 +274,10 @@ def main():
     )
 
     print("Solving MIP (minimizing number of labels)...")
-    solve_start = time()
+    # solve_start = time()
     model.solve()
-    solve_time = time() - solve_start
-    print(f"Solve time: {solve_time:.2f}s")
+    # solve_time = time() - solve_start
+    # print(f"Solve time: {solve_time:.2f}s")
 
     assignment = extract_assignment_from_solution(model, var, var_map)
     if assignment is None:
@@ -305,9 +298,9 @@ def main():
     # print("Labels used:", sorted(list(used_labels)))
 
     end_time = time()
-    print(f"Total time: {end_time - start_time:.2f}s")
+    # print(f"Total time: {end_time - start_time:.2f}s")
     proc = psutil.Process(os.getpid())
-    print(f"Memory used: {proc.memory_info().rss / 1024**2:.2f} MB")
+    # print(f"Memory used: {proc.memory_info().rss / 1024**2:.2f} MB")
 
 if __name__ == "__main__":
     main()

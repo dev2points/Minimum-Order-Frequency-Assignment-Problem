@@ -1,49 +1,47 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		8000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		graph05
-[runlim] start:			Sat Jan 17 02:20:06 2026
-[runlim] main pid:		63237
+[runlim] start:			Tue Jan 20 13:48:28 2026
+[runlim] main pid:		41464
 Building MIP model...
-[runlim] sample:		9.9 time, 10.1 real, 31.0 MB
-[runlim] sample:		19.9 time, 20.1 real, 33.5 MB
-[runlim] sample:		30.0 time, 30.1 real, 36.4 MB
-[runlim] sample:		39.9 time, 40.1 real, 38.6 MB
-[runlim] sample:		49.9 time, 50.1 real, 41.1 MB
-[runlim] sample:		60.0 time, 60.1 real, 43.9 MB
-[runlim] sample:		69.9 time, 70.1 real, 44.7 MB
-[runlim] sample:		79.9 time, 80.1 real, 48.2 MB
-[runlim] sample:		89.9 time, 90.1 real, 48.6 MB
-Build time: 94.06s
+[runlim] sample:		10.0 time, 10.1 real, 31.4 MB
+[runlim] sample:		20.0 time, 20.1 real, 34.6 MB
+[runlim] sample:		30.0 time, 30.1 real, 36.6 MB
+[runlim] sample:		39.9 time, 40.1 real, 38.8 MB
+[runlim] sample:		49.9 time, 50.1 real, 41.4 MB
+[runlim] sample:		59.9 time, 60.1 real, 44.8 MB
+[runlim] sample:		69.9 time, 70.1 real, 48.0 MB
+[runlim] sample:		79.9 time, 80.1 real, 48.8 MB
+Build time: 85.79s
 Solving MIP (minimizing number of labels)...
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
 Legacy callback                                  i
 Tried aggregator 2 times.
-[runlim] sample:		108.9 time, 100.1 real, 222.2 MB
+[runlim] sample:		96.4 time, 90.1 real, 221.6 MB
 Infeasibility row 'c11':  0  = 1.
-Presolve time = 6.41 sec. (11047.02 ticks)
+Presolve time = 5.67 sec. (11047.02 ticks)
 
 Root node processing (before b&c):
-  Real time             =    6.44 sec. (11072.54 ticks)
+  Real time             =    5.69 sec. (11072.54 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    6.44 sec. (11072.54 ticks)
-Solve time: 6.45s
+Total (root+branch&cut) =    5.69 sec. (11072.54 ticks)
 CPLEX Error  1217: No solution exists.
 No solution found.
-[runlim] end:			Sat Jan 17 02:21:46 2026
+[runlim] end:			Tue Jan 20 13:49:59 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			100.73 seconds
-[runlim] time:			109.45 seconds
-[runlim] space:			222.2 MB
-[runlim] samples:		1006
+[runlim] real:			91.65 seconds
+[runlim] time:			98.85 seconds
+[runlim] space:			222.4 MB
+[runlim] samples:		915

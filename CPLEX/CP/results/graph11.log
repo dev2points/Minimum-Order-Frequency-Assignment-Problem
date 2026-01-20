@@ -1,25 +1,24 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		6000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph11
-[runlim] start:			Sun Jan 18 16:05:53 2026
-[runlim] main pid:		434
-[runlim] sample:		10.2 time, 11.0 real, 569.6 MB
-[runlim] sample:		20.2 time, 21.0 real, 1279.6 MB
-[runlim] sample:		30.0 time, 31.0 real, 1645.6 MB
-[runlim] sample:		39.9 time, 41.0 real, 3287.5 MB
-[runlim] sample:		49.8 time, 51.0 real, 5562.1 MB
+[runlim] start:			Tue Jan 20 17:57:27 2026
+[runlim] main pid:		153205
+[runlim] sample:		10.0 time, 10.2 real, 607.0 MB
+[runlim] sample:		19.9 time, 20.2 real, 1522.3 MB
+[runlim] sample:		29.9 time, 30.2 real, 1657.4 MB
+[runlim] sample:		39.9 time, 40.2 real, 3637.3 MB
+[runlim] sample:		49.9 time, 50.2 real, 5284.3 MB
 Building CP model...
-Build time: 15.69s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 25688 variables, 1930538 constraints
  ! Presolve      : 1931220 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 20.20s (20.13s extraction + 0.08s propagation)
+ ! Initial process time : 16.34s (16.27s extraction + 0.08s propagation)
  !  . Log search space  : 25688.0 (before), 25688.0 (after)
  !  . Memory usage      : 244.6 MB (before), 244.6 MB (after)
  ! Using parallel search with 12 workers.
@@ -27,11 +26,11 @@ Solving CP Optimizer...
  !          Best Branches  Non-fixed    W       Branch decision
                         0      25688                 -
  + New bound is 0
-[runlim] end:			Sun Jan 18 16:06:52 2026
+[runlim] end:			Tue Jan 20 17:58:26 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		431
-[runlim] real:			59.88 seconds
-[runlim] time:			72.71 seconds
-[runlim] space:			6476.8 MB
-[runlim] samples:		589
+[runlim] children:		439
+[runlim] real:			59.23 seconds
+[runlim] time:			144.68 seconds
+[runlim] space:			14031.7 MB
+[runlim] samples:		590

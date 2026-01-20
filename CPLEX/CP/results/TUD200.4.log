@@ -1,21 +1,20 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		6000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.4
-[runlim] start:			Sun Jan 18 16:41:54 2026
-[runlim] main pid:		673
-[runlim] sample:		9.9 time, 10.1 real, 882.0 MB
+[runlim] start:			Tue Jan 20 18:34:17 2026
+[runlim] main pid:		169805
+[runlim] sample:		10.0 time, 10.1 real, 1067.9 MB
 Building CP model...
-Build time: 3.74s
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 6960 variables, 463335 constraints
  ! Presolve      : 463537 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 4.32s (4.30s extraction + 0.02s propagation)
+ ! Initial process time : 3.64s (3.63s extraction + 0.01s propagation)
  !  . Log search space  : 6960.0 (before), 6960.0 (after)
  !  . Memory usage      : 60.4 MB (before), 60.4 MB (after)
  ! Using parallel search with 12 workers.
@@ -27,15 +26,14 @@ Solving CP Optimizer...
  + New bound is 1
                       483       5522    4   F     1 != l_408
  + New bound is 2
- *            44     7039  9.40s        4      (gap is 95.45%)
-[runlim] sample:		70.0 time, 20.1 real, 2213.1 MB
- *            23    16225  11.43s       2      (gap is 91.30%)
+ *            44     7039  8.06s        4      (gap is 95.45%)
+ *            23    16225  9.80s        2      (gap is 91.30%)
               23    16225          4    2   F        -
  + New bound is 13 (gap is 43.48%)
               23    16293          4    2   F     1 != x_65_170
  + New bound is 19 (gap is 17.39%)
- *            21    16385  11.69s       2      (gap is 9.52%)
- *            20    16405  11.72s       2      (gap is 5.00%)
+ *            21    16385  10.05s       2      (gap is 9.52%)
+ *            20    16405  10.09s       2      (gap is 5.00%)
               20    16419          4    2   F     1 != x_109_792
  + New bound is 20 (gap is 0.00%)
  ! ----------------------------------------------------------------------------
@@ -46,18 +44,18 @@ Solving CP Optimizer...
  ! Number of branches     : 182615
  ! Number of fails        : 55477
  ! Total memory usage     : 1.5 GB (1.5 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 11.75s (7.45s engine + 4.30s extraction)
- ! Search speed (br. / s) : 24512.1
+ ! Time spent in solve    : 10.10s (6.47s engine + 3.63s extraction)
+ ! Search speed (br. / s) : 28224.9
  ! ----------------------------------------------------------------------------
 
 FINAL SOLUTION:
 {86, 324, 86, 324, 792, 554, 156, 394, 128, 366, 792, 554, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 792, 554, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 792, 554, 170, 408, 72, 310, 792, 554, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 792, 554, 240, 478, 100, 338, 128, 366, 792, 554, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 792, 554, 170, 408, 240, 478, 156, 394, 792, 554, 114, 352, 72, 310, 792, 554, 72, 310, 156, 394, 792, 554, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 792, 554, 792, 554, 170, 408, 86, 324, 128, 366, 156, 394, 792, 554, 240, 478, 72, 310, 114, 352, 792, 554, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 792, 554, 792, 554, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
 Number of labels used: 20
-[runlim] end:			Sun Jan 18 16:42:16 2026
+[runlim] end:			Tue Jan 20 18:34:36 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		177
-[runlim] real:			22.21 seconds
-[runlim] time:			75.66 seconds
-[runlim] space:			3904.2 MB
-[runlim] samples:		220
+[runlim] children:		155
+[runlim] real:			19.75 seconds
+[runlim] time:			66.51 seconds
+[runlim] space:			3779.2 MB
+[runlim] samples:		196

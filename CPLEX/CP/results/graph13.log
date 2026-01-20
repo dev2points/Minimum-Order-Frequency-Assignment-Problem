@@ -1,23 +1,39 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		6000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph13
-[runlim] start:			Sun Jan 18 16:06:56 2026
-[runlim] main pid:		470
-[runlim] sample:		10.3 time, 10.9 real, 574.1 MB
-[runlim] sample:		20.3 time, 20.9 real, 1115.1 MB
-[runlim] sample:		30.1 time, 30.9 real, 1870.7 MB
-[runlim] sample:		40.0 time, 40.9 real, 2471.4 MB
-[runlim] sample:		50.0 time, 50.9 real, 2525.7 MB
-[runlim] sample:		60.0 time, 60.9 real, 5123.1 MB
-[runlim] end:			Sun Jan 18 16:08:01 2026
+[runlim] start:			Tue Jan 20 17:58:29 2026
+[runlim] main pid:		153706
+[runlim] sample:		10.0 time, 11.0 real, 610.8 MB
+[runlim] sample:		20.0 time, 21.0 real, 1153.6 MB
+[runlim] sample:		29.9 time, 31.0 real, 2191.0 MB
+[runlim] sample:		39.9 time, 41.0 real, 2491.9 MB
+[runlim] sample:		49.9 time, 51.0 real, 3723.0 MB
+[runlim] sample:		59.9 time, 61.0 real, 5968.6 MB
+[runlim] sample:		69.9 time, 71.0 real, 7805.9 MB
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 35224 variables, 2871236 constraints
+ ! Presolve      : 2872154 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 24.87s (24.77s extraction + 0.10s propagation)
+ !  . Log search space  : 35224.0 (before), 35224.0 (after)
+ !  . Memory usage      : 397.2 MB (before), 397.2 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0      35224                 -
+ + New bound is 0
+[runlim] sample:		130.2 time, 81.0 real, 11578.3 MB
+[runlim] end:			Tue Jan 20 17:59:55 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		407
-[runlim] real:			65.38 seconds
-[runlim] time:			64.54 seconds
-[runlim] space:			6001.3 MB
-[runlim] samples:		645
+[runlim] children:		639
+[runlim] real:			86.86 seconds
+[runlim] time:			197.96 seconds
+[runlim] space:			14123.8 MB
+[runlim] samples:		858

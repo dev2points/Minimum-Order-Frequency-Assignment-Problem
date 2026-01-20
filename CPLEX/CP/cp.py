@@ -120,7 +120,7 @@ def build_cp_model(var, var_map, ctr_file):
     return mdl, x_vars
 
 def main():
-    start_time = time()
+    # start_time = time()
     if len(sys.argv) < 2:
         print("Use: python cp.py <dataset_folder>")
         return
@@ -138,9 +138,9 @@ def main():
     var_map = create_var_map(var)
 
     print("Building CP model...")
-    build_start = time()
+    # build_start = time()
     mdl, x_vars = build_cp_model(var, var_map, files["ctr"])
-    print(f"Build time: {time() - build_start:.2f}s")
+    # print(f"Build time: {time() - build_start:.2f}s")
 
 
 

@@ -1,75 +1,71 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		8000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		scen06
-[runlim] start:			Sat Jan 17 03:28:25 2026
-[runlim] main pid:		87179
+[runlim] start:			Tue Jan 20 14:37:05 2026
+[runlim] main pid:		63266
 Building MIP model...
-[runlim] sample:		10.0 time, 10.5 real, 30.9 MB
-[runlim] sample:		20.0 time, 20.5 real, 33.5 MB
-[runlim] sample:		29.9 time, 30.5 real, 36.5 MB
-[runlim] sample:		39.9 time, 40.5 real, 38.9 MB
-[runlim] sample:		49.9 time, 50.5 real, 41.3 MB
-[runlim] sample:		59.9 time, 60.5 real, 43.6 MB
-[runlim] sample:		69.9 time, 70.5 real, 44.6 MB
-[runlim] sample:		80.0 time, 80.5 real, 47.8 MB
-[runlim] sample:		90.0 time, 90.5 real, 48.9 MB
-[runlim] sample:		99.9 time, 100.5 real, 49.1 MB
-[runlim] sample:		110.0 time, 110.5 real, 53.1 MB
-[runlim] sample:		120.0 time, 120.5 real, 53.5 MB
-[runlim] sample:		129.9 time, 130.5 real, 53.6 MB
-[runlim] sample:		139.9 time, 140.5 real, 58.3 MB
-[runlim] sample:		150.0 time, 150.5 real, 58.8 MB
-[runlim] sample:		159.9 time, 160.5 real, 59.0 MB
-[runlim] sample:		169.9 time, 170.5 real, 59.0 MB
-[runlim] sample:		180.0 time, 180.5 real, 63.5 MB
-Build time: 182.47s
+[runlim] sample:		10.0 time, 10.1 real, 31.6 MB
+[runlim] sample:		20.0 time, 20.1 real, 33.4 MB
+[runlim] sample:		30.0 time, 30.1 real, 36.5 MB
+[runlim] sample:		40.0 time, 40.1 real, 39.0 MB
+[runlim] sample:		50.0 time, 50.1 real, 41.5 MB
+[runlim] sample:		59.9 time, 60.1 real, 44.5 MB
+[runlim] sample:		69.9 time, 70.1 real, 45.4 MB
+[runlim] sample:		79.9 time, 80.1 real, 49.0 MB
+[runlim] sample:		89.9 time, 90.1 real, 49.3 MB
+[runlim] sample:		99.9 time, 100.1 real, 53.4 MB
+[runlim] sample:		109.9 time, 110.1 real, 53.6 MB
+[runlim] sample:		119.9 time, 120.1 real, 57.8 MB
+[runlim] sample:		129.9 time, 130.1 real, 58.9 MB
+[runlim] sample:		139.9 time, 140.1 real, 59.1 MB
+[runlim] sample:		149.9 time, 150.1 real, 59.3 MB
+Build time: 155.51s
 Solving MIP (minimizing number of labels)...
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
 Legacy callback                                  i
 Tried aggregator 2 times.
-[runlim] sample:		200.8 time, 190.5 real, 314.6 MB
+[runlim] sample:		165.8 time, 160.1 real, 293.0 MB
 Aggregator has done 4010 substitutions...
 MIP Presolve eliminated 745150 rows and 1270 columns.
 MIP Presolve modified 366845 coefficients.
 Aggregator did 4010 substitutions.
 Reduced MIP has 88908 rows, 2784 columns, and 314055 nonzeros.
 Reduced MIP has 2784 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 8.08 sec. (13430.02 ticks)
+Presolve time = 6.99 sec. (13430.02 ticks)
 Probing fixed 893 vars, tightened 0 bounds.
 Probing changed sense of 31 constraints.
-Probing time = 0.08 sec. (10.64 ticks)
+Probing time = 0.03 sec. (10.64 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 84300 rows and 1020 columns.
 MIP Presolve modified 3501 coefficients.
 Reduced MIP has 4523 rows, 1764 columns, and 69557 nonzeros.
 Reduced MIP has 1764 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.30 sec. (464.91 ticks)
+Presolve time = 0.25 sec. (464.91 ticks)
 Probing fixed 83 vars, tightened 0 bounds.
 Probing changed sense of 30 constraints.
 Probing time = 0.01 sec. (4.04 ticks)
 
 Root node processing (before b&c):
-  Real time             =    9.72 sec. (16218.07 ticks)
+  Real time             =    8.43 sec. (16218.07 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    9.72 sec. (16218.07 ticks)
-Solve time: 9.72s
+Total (root+branch&cut) =    8.43 sec. (16218.07 ticks)
 CPLEX Error  1217: No solution exists.
 No solution found.
-[runlim] end:			Sat Jan 17 03:31:37 2026
+[runlim] end:			Tue Jan 20 14:39:49 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			192.76 seconds
-[runlim] time:			203.52 seconds
-[runlim] space:			322.9 MB
-[runlim] samples:		1922
+[runlim] real:			164.11 seconds
+[runlim] time:			173.63 seconds
+[runlim] space:			323.1 MB
+[runlim] samples:		1640
