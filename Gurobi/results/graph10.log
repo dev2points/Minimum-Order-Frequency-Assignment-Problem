@@ -1,0 +1,84 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		graph10
+[runlim] start:			Wed Jan 21 00:25:48 2026
+[runlim] main pid:		24189
+Building Gurobi model...
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2663665
+Academic license 2663665 - for non-commercial use only - registered to tu___@vnu.edu.vn
+[runlim] sample:		10.0 time, 10.5 real, 447.4 MB
+Build time used: 11.57 sec
+Solving...
+[runlim] sample:		39.8 time, 20.5 real, 1409.1 MB
+[runlim] sample:		90.0 time, 30.5 real, 1413.0 MB
+[runlim] sample:		137.3 time, 40.5 real, 1524.9 MB
+[runlim] sample:		158.3 time, 50.5 real, 1526.2 MB
+[runlim] sample:		178.6 time, 60.5 real, 1531.5 MB
+[runlim] sample:		201.0 time, 70.5 real, 1818.1 MB
+[runlim] sample:		251.1 time, 80.5 real, 1993.2 MB
+[runlim] sample:		301.2 time, 90.5 real, 2017.9 MB
+[runlim] sample:		351.3 time, 100.5 real, 2026.6 MB
+[runlim] sample:		401.4 time, 110.5 real, 2050.4 MB
+[runlim] sample:		451.5 time, 120.5 real, 2114.8 MB
+[runlim] sample:		501.6 time, 130.5 real, 2113.7 MB
+[runlim] sample:		551.7 time, 140.5 real, 2292.9 MB
+[runlim] sample:		601.9 time, 150.5 real, 2294.4 MB
+[runlim] sample:		652.0 time, 160.5 real, 2241.9 MB
+[runlim] sample:		702.1 time, 170.5 real, 2241.9 MB
+[runlim] sample:		752.2 time, 180.5 real, 2241.9 MB
+[runlim] sample:		802.4 time, 190.5 real, 2432.8 MB
+[runlim] sample:		852.5 time, 200.5 real, 2457.9 MB
+[runlim] sample:		902.6 time, 210.5 real, 2459.3 MB
+[runlim] sample:		952.7 time, 220.5 real, 2454.4 MB
+[runlim] sample:		1002.8 time, 230.5 real, 2456.6 MB
+[runlim] sample:		1052.9 time, 240.5 real, 2457.2 MB
+[runlim] sample:		1103.0 time, 250.5 real, 2484.8 MB
+[runlim] sample:		1153.1 time, 260.5 real, 2483.4 MB
+[runlim] sample:		1203.2 time, 270.5 real, 2484.2 MB
+[runlim] sample:		1251.7 time, 280.5 real, 2487.0 MB
+[runlim] sample:		1292.0 time, 290.5 real, 2487.7 MB
+[runlim] sample:		1332.3 time, 300.5 real, 2487.9 MB
+[runlim] sample:		1368.7 time, 310.5 real, 2486.7 MB
+[runlim] sample:		1399.1 time, 320.5 real, 2488.4 MB
+[runlim] sample:		1439.3 time, 330.5 real, 2502.2 MB
+[runlim] sample:		1479.5 time, 340.5 real, 2537.7 MB
+[runlim] sample:		1519.7 time, 350.5 real, 2521.0 MB
+[runlim] sample:		1559.9 time, 360.5 real, 2521.7 MB
+[runlim] sample:		1600.0 time, 370.5 real, 2522.0 MB
+[runlim] sample:		1640.2 time, 380.5 real, 2522.0 MB
+[runlim] sample:		1680.4 time, 390.5 real, 2522.8 MB
+[runlim] sample:		1720.6 time, 400.5 real, 2523.1 MB
+[runlim] sample:		1760.8 time, 410.5 real, 2523.1 MB
+[runlim] sample:		1801.0 time, 420.5 real, 2504.1 MB
+[runlim] sample:		1841.2 time, 430.5 real, 2506.3 MB
+[runlim] sample:		1881.3 time, 440.5 real, 2508.0 MB
+[runlim] sample:		1921.5 time, 450.5 real, 2508.2 MB
+[runlim] sample:		1957.7 time, 460.5 real, 2508.9 MB
+[runlim] sample:		1991.7 time, 470.5 real, 2508.9 MB
+[runlim] sample:		2031.9 time, 480.5 real, 2545.8 MB
+[runlim] sample:		2072.1 time, 490.5 real, 2545.9 MB
+[runlim] sample:		2112.3 time, 500.5 real, 2545.9 MB
+[runlim] sample:		2152.5 time, 510.5 real, 2572.3 MB
+[runlim] sample:		2192.7 time, 520.5 real, 2545.1 MB
+[runlim] sample:		2232.9 time, 530.5 real, 2546.3 MB
+[runlim] sample:		2273.1 time, 540.5 real, 2552.7 MB
+[runlim] sample:		2313.3 time, 550.5 real, 2623.7 MB
+[runlim] sample:		2353.5 time, 560.5 real, 2615.8 MB
+[runlim] sample:		2393.7 time, 570.5 real, 2616.3 MB
+[runlim] sample:		2433.9 time, 580.5 real, 2545.2 MB
+[runlim] sample:		2474.1 time, 590.5 real, 2545.7 MB
+[runlim] end:			Wed Jan 21 00:35:48 2026
+[runlim] status:		out of time
+[runlim] result:		2
+[runlim] children:		0
+[runlim] real:			600.13 seconds
+[runlim] time:			2512.40 seconds
+[runlim] space:			2623.8 MB
+[runlim] samples:		5996

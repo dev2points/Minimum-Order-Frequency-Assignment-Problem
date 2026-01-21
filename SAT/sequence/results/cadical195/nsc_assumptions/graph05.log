@@ -9,15 +9,15 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Tue Jan 20 19:32:42 2026
-[runlim] main pid:		193392
+[runlim] start:			Wed Jan 21 12:41:19 2026
+[runlim] main pid:		11761
 Warning: variable 181 has no valid labels after preprocessing.
 Cannot find solution!
-[runlim] end:			Tue Jan 20 19:32:42 2026
+[runlim] end:			Wed Jan 21 12:41:19 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			0.82 seconds
+[runlim] real:			0.67 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0.0 MB
 [runlim] samples:		0

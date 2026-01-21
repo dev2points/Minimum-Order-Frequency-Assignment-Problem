@@ -38,7 +38,7 @@ runlim -r $TO -s $MO  python3 -u main.py graph12 nsc assumptions cadical195 2>&1
 runlim -r $TO -s $MO  python3 -u main.py graph13 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/graph13.log
 runlim -r $TO -s $MO  python3 -u main.py scen05 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen05.log
 runlim -r $TO -s $MO  python3 -u main.py scen06 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen06.log
-runlim -r $TO -s $MO  python3 -u main.py scen07 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen08.log
+runlim -r $TO -s $MO  python3 -u main.py scen07 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen07.log
 runlim -r $TO -s $MO  python3 -u main.py scen08 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen08.log
 runlim -r $TO -s $MO  python3 -u main.py scen09 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen09.log
 runlim -r $TO -s $MO  python3 -u main.py scen10 nsc assumptions cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen10.log
