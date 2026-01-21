@@ -1,7 +1,7 @@
 [runlim] version:		1.10
 [runlim] time limit:		311040000 seconds
-[runlim] real time limit:	900 seconds
-[runlim] space limit:		8000 MB
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		main.py
@@ -9,15 +9,15 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Wed Jan 21 12:41:59 2026
-[runlim] main pid:		12073
+[runlim] start:			Wed Jan 21 16:20:41 2026
+[runlim] main pid:		109224
 Solve first problem:
 Cannot find solution.
-[runlim] end:			Wed Jan 21 12:42:00 2026
+[runlim] end:			Wed Jan 21 16:20:42 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			1.37 seconds
+[runlim] real:			1.09 seconds
 [runlim] time:			0.69 seconds
-[runlim] space:			48.0 MB
+[runlim] space:			48.1 MB
 [runlim] samples:		7
