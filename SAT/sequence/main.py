@@ -226,6 +226,7 @@ def build_label_constraints(solver, var_map, label_var_map):
         solver.add_clause([-varnum, lb_varnum])
 
 def amk_nsc(solver, lits, K):
+
     if isinstance(lits, dict):
         lits = list(lits.values())
 
@@ -235,11 +236,15 @@ def amk_nsc(solver, lits, K):
     # r[i][j] với i = 1..n, j = 1..K
     r = [[0] * (K + 1) for _ in range(n + 1)]
 
-    # tạo biến phụ
-    for i in range(1, n + 1):
+    for i in range(1, K):
+        for j in range(1, i + 1):
+            top += 1
+            r[i][j] = top
+    for i in range(K, n + 1):
         for j in range(1, K + 1):
             top += 1
             r[i][j] = top
+
 
     # (1)  ¬x_i ∨ r(i,1)
     for i in range(1, n + 1):
@@ -254,11 +259,6 @@ def amk_nsc(solver, lits, K):
     for i in range(2, n + 1):
         for j in range(2, min(i, K) + 1):
             solver.add_clause([-lits[i - 1], -r[i - 1][j - 1], r[i][j]])
-    
-    # (4)  x_i ∨ ¬r(i-1,j-1) ∨ r(i,j)
-    for i in range(2, n + 1):
-        for j in range(2, min(i, K) + 1):
-            solver.add_clause([lits[i - 1], r[i - 1][j - 1], -r[i][j]])
 
     # (5)  x_i ∨ ¬r(i,i)
     for i in range(1, K + 1):
@@ -269,7 +269,12 @@ def amk_nsc(solver, lits, K):
         for j in range(2, min(i, K) + 1):
             solver.add_clause([r[i - 1][j - 1], -r[i][j]])
 
-    # (7)  ¬x_i ∨ ¬r(i-1,K)
+    # (7)  x_i ∨ r(i-1,j-1) ∨ ¬r(i,j)
+    for i in range(2, n + 1):
+        for j in range(1, min(i - 1, K) + 1):
+            solver.add_clause([lits[i - 1], r[i - 1][j], -r[i][j]])
+
+    # (8)  ¬x_i ∨ ¬r(i-1,K)
     for i in range(K + 1, n + 1):
         solver.add_clause([-lits[i - 1], -r[i - 1][K]])
 
@@ -277,7 +282,8 @@ def amk_nsc(solver, lits, K):
     rhs = [r[n][j] for j in range(1, K + 1)]
     return rhs
 
-def amk_sc_reduced(solver, lits, K):
+
+def amk_nsc_reduced(solver, lits, K):
     if isinstance(lits, dict):
         lits = list(lits.values())
 
@@ -322,7 +328,6 @@ def amk_sc_reduced(solver, lits, K):
 def amk_sc(solver, lits, K):
     if isinstance(lits, dict):
         lits = list(lits.values())
-    
     n = len(lits)
     top = solver.nof_vars()
 
@@ -330,14 +335,10 @@ def amk_sc(solver, lits, K):
     s = [[0] * (K + 1) for _ in range(n + 1)]
 
     # tạo biến phụ
-    for i in range(1, K):
-        for j in range(1, i + 1):
-            top += 1
-            s[i][j] = top
-    for i in range(K, n + 1):
+    for i in range(1, n + 1):
         for j in range(1, K + 1):
             top += 1
-            s[i][j] = top
+            s[i][j] = top    
 
     solver.add_clause([-lits[0], s[1][1]])  # (1)   
     for j in range(2, K + 1):
@@ -353,6 +354,45 @@ def amk_sc(solver, lits, K):
     
 
     rhs = [s[n][j] for j in range(1, K + 1)]
+
+    return rhs
+
+def amk_sc_reduced(solver, lits, K):
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+    
+    n = len(lits)
+    top = solver.nof_vars()
+
+    # s[i][j] : i in [0..n-1], j in [0..K-1]
+    s = [[0] * K for _ in range(n)]
+
+    # tạo biến phụ
+    for i in range(n):
+        for j in range(K):
+            top += 1
+            s[i][j] = top
+
+    # (1) ¬x_i ∨ s[i][0]
+    for i in range(n):
+        solver.add_clause([-lits[i], s[i][0]])
+
+    # (2) ¬s[i-1][j] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(K):
+            solver.add_clause([-s[i-1][j], s[i][j]])
+
+    # (3) ¬x_i ∨ ¬s[i-1][j-1] ∨ s[i][j]
+    for i in range(1, n):
+        for j in range(1, K):
+            solver.add_clause([-lits[i], -s[i-1][j-1], s[i][j]])
+
+    # (4) ¬x_i ∨ ¬s[i-1][K-1]
+    for i in range(1, n):
+        solver.add_clause([-lits[i], -s[i-1][K-1]])
+
+    # rhs[j-1] <=> sum(lits) <= j
+    rhs = [s[n-1][j] for j in range(K)]
 
     return rhs
 
@@ -373,8 +413,10 @@ def add_limit_label_constraints(solver, lits, K, strategy):
         return amk_nsc(solver, lits, K)
     elif strategy == 'sc':
         return amk_sc(solver, lits, K)
-    if strategy == 'sc_reduced':
+    elif strategy == 'sc_reduced':
         return amk_sc_reduced(solver, lits, K)
+    elif strategy == 'nsc_reduced':
+        return amk_nsc_reduced(solver, lits, K)
     elif strategy == 'tot':
         return amk_tot(solver, lits, K)
 
@@ -445,7 +487,7 @@ def verify_solution(assignment, var, var_file, ctr_file):
 def main():
     start_time = time()
     solvers = ["glucose4", "cadical195"]
-    strategys = ['sc_reduced', 'tot', 'sc', 'nsc']
+    strategys = ['nsc_reduced', 'sc_reduced', 'tot', 'sc', 'nsc']
     sat_types = ['incremental', 'assumptions']
     helpers = "Use: python3 main.py <dataset_folder> <strategy> <sat_type> <solver>\n" \
     "  strategy: 'nsc', 'sc', or 'tot'\n" \
@@ -455,14 +497,14 @@ def main():
         print(helpers)
         return
     if sys.argv[2] not in strategys:
-        raise ValueError("Strategy must be either 'nsc', 'sc', 'sc_reduced' or 'tot'"
+        raise ValueError("Strategy must be either 'nsc', 'sc', 'nsc_reduced', 'sc_reduced' or 'tot'"
         f"\n {helpers}")
     if sys.argv[3] not in sat_types:
         raise ValueError("sat_type must be either 'incremental' or 'assumptions'" \
         f"\n {helpers}")
-    if sys.argv[4] not in solvers:
-        raise ValueError("solver must be either 'glucose4' or 'cadical195'"\
-        f"\n {helpers}")
+    # if sys.argv[4] not in solvers:
+    #     raise ValueError("solver must be either 'glucose4' or 'cadical195'"\
+    #     f"\n {helpers}")
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
 
@@ -496,13 +538,12 @@ def main():
         print("Incorrect solution!")
         return
     end_time = time()
-    # print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time taken: {end_time - start_time:.2f} seconds")
     # process = psutil.Process(os.getpid())
     # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
     rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
-
     
 
     while num_labels > 1:
@@ -513,7 +554,7 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_labels)
-            # print(f"Time taken: {time() - start_time:.2f} seconds")
+            print(f"Time taken: {time() - start_time:.2f} seconds")
             break
         # if verify_solution(assignment, var, files["var"], files["ctr"]):
         #     print("Correct solution!")
@@ -522,8 +563,8 @@ def main():
         #     break
         num_labels = len(set(assignment.values())) 
         print("Number of lables used: ", num_labels)
-        # print(f"Time taken: {time() - start_time:.2f} seconds")
-        #process = psutil.Process(os.getpid())
+        print(f"Time taken: {time() - start_time:.2f} seconds")
+        # process = psutil.Process(os.getpid())
         # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     solver.delete()

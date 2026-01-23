@@ -1,0 +1,23 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		graph11
+[runlim] argv[4]:		sc
+[runlim] argv[5]:		assumptions
+[runlim] argv[6]:		cadical195
+[runlim] start:			Fri Jan 23 00:01:06 2026
+[runlim] main pid:		39134
+Solve first problem:
+Cannot find solution.
+[runlim] end:			Fri Jan 23 00:01:07 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			1.35 seconds
+[runlim] time:			0.39 seconds
+[runlim] space:			35.3 MB
+[runlim] samples:		4

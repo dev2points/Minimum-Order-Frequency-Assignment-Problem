@@ -1,0 +1,23 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		TUD200.5
+[runlim] argv[4]:		sc_reduced
+[runlim] argv[5]:		assumptions
+[runlim] argv[6]:		cadical195
+[runlim] start:			Fri Jan 23 14:47:29 2026
+[runlim] main pid:		98480
+Solve first problem:
+Cannot find solution.
+[runlim] end:			Fri Jan 23 14:47:30 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			1.15 seconds
+[runlim] time:			0.09 seconds
+[runlim] space:			22.0 MB
+[runlim] samples:		1

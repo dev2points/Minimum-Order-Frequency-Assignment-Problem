@@ -9,15 +9,15 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Wed Jan 21 16:20:01 2026
-[runlim] main pid:		108915
+[runlim] start:			Fri Jan 23 14:37:04 2026
+[runlim] main pid:		93313
 Solve first problem:
 Cannot find solution.
-[runlim] end:			Wed Jan 21 16:20:01 2026
+[runlim] end:			Fri Jan 23 14:37:04 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			0.64 seconds
+[runlim] real:			0.41 seconds
 [runlim] time:			0.19 seconds
 [runlim] space:			27.8 MB
 [runlim] samples:		2
