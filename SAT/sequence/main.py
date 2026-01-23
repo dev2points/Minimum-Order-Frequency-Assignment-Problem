@@ -554,7 +554,7 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_labels)
-            print(f"Time taken: {time() - start_time:.2f} seconds")
+            # print(f"Time taken: {time() - start_time:.2f} seconds")
             break
         # if verify_solution(assignment, var, files["var"], files["ctr"]):
         #     print("Correct solution!")

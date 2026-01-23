@@ -39,10 +39,10 @@ class MyIncumbentCallback(MIPInfoCallback):
         print("\n========== NEW INCUMBENT SOLUTION ==========")
         print(solution)
         print("Number of labels used:", len(set(solution.values())))
-        print(f"Total time: {time() - self.start_time:.2f} sec")
+        # print(f"Total time: {time() - self.start_time:.2f} sec")
 
-        process = psutil.Process(os.getpid())
-        print(f"Memory: {process.memory_info().rss/1024**2:.2f} MB")
+        # process = psutil.Process(os.getpid())
+        # print(f"Memory: {process.memory_info().rss/1024**2:.2f} MB")
         print("=============================================")
 
     

@@ -126,9 +126,9 @@ def mycallback(model, where):
         #     print("Solution is CORRECT!")
         # else:
         #     print("Solution is INCORRECT!")
-        print(f"Total time used: {time() - model._time:.2f} sec")
-        process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        # print(f"Total time used: {time() - model._time:.2f} sec")
+        # process = psutil.Process(os.getpid())
+        # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         print("================================")
 
 def extract_solution_from_dict(var_map, sol_dict):
