@@ -1,5 +1,5 @@
-TO=900
-MO=8000
+TO=600
+MO=14000
 GLU_RESULTS_DIR=results/glucose4/tot_incremental 
 CAD_RESULTS_DIR=results/cadical195/tot_incremental 
 mkdir -p $CAD_RESULTS_DIR
