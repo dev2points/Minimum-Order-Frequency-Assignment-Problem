@@ -1,10 +1,10 @@
-./nsc_incremental.sh
-./nsc_assumptions.sh
+# ./nsc_incremental.sh
+# ./nsc_assumptions.sh
 ./nsc_reduced_assumptions.sh
 ./nsc_reduced_incremental.sh
 ./sc_reduced_incremental.sh
 ./sc_reduced_assumptions.sh
 ./sc_incremental.sh
 ./sc_assumptions.sh
-./tot_assumptions.sh
-./tot_incremental.sh
+# ./tot_assumptions.sh
+# ./tot_incremental.sh

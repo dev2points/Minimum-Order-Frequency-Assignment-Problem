@@ -28,7 +28,7 @@ runlim -r $TO -s $MO  python3 -u main.py graph12 sc incremental cadical195 2>&1 
 runlim -r $TO -s $MO  python3 -u main.py graph13 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/graph13.log
 runlim -r $TO -s $MO  python3 -u main.py scen05 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen05.log
 runlim -r $TO -s $MO  python3 -u main.py scen06 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen06.log
-runlim -r $TO -s $MO  python3 -u main.py scen07 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen08.log
+runlim -r $TO -s $MO  python3 -u main.py scen07 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen07.log
 runlim -r $TO -s $MO  python3 -u main.py scen08 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen08.log
 runlim -r $TO -s $MO  python3 -u main.py scen09 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen09.log
 runlim -r $TO -s $MO  python3 -u main.py scen10 sc incremental cadical195 2>&1 | tee $CAD_RESULTS_DIR/scen10.log

@@ -245,7 +245,6 @@ def amk_nsc(solver, lits, K):
             top += 1
             r[i][j] = top
 
-
     # (1)  ¬x_i ∨ r(i,1)
     for i in range(1, n + 1):
         solver.add_clause([-lits[i - 1], r[i][1]])
@@ -281,6 +280,7 @@ def amk_nsc(solver, lits, K):
     # rhs[j-1] ⇔ sum(lits) ≤ j
     rhs = [r[n][j] for j in range(1, K + 1)]
     return rhs
+
 
 
 def amk_nsc_reduced(solver, lits, K):
