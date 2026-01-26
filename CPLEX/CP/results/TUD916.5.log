@@ -5,35 +5,15 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD916.5
-[runlim] start:			Tue Jan 20 18:57:42 2026
-[runlim] main pid:		180383
-[runlim] sample:		10.0 time, 10.7 real, 608.6 MB
-[runlim] sample:		20.0 time, 20.7 real, 1149.3 MB
-[runlim] sample:		29.9 time, 30.7 real, 2146.5 MB
-[runlim] sample:		39.9 time, 40.7 real, 2184.5 MB
-[runlim] sample:		49.9 time, 50.7 real, 4570.5 MB
-[runlim] sample:		59.9 time, 60.7 real, 5892.6 MB
-[runlim] sample:		69.9 time, 70.7 real, 8158.0 MB
-Building CP model...
-Solving CP Optimizer...
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 34524 variables, 2660699 constraints
- ! Presolve      : 2661617 extractables eliminated
- ! LogVerbosity         = Terse
- ! Initial process time : 23.44s (23.35s extraction + 0.09s propagation)
- !  . Log search space  : 34524.0 (before), 34524.0 (after)
- !  . Memory usage      : 379.6 MB (before), 379.6 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0      34524                 -
- + New bound is 0
-[runlim] sample:		166.4 time, 80.7 real, 12509.7 MB
-[runlim] end:			Tue Jan 20 18:59:04 2026
-[runlim] status:		out of memory
-[runlim] result:		3
-[runlim] children:		607
-[runlim] real:			82.79 seconds
-[runlim] time:			189.78 seconds
-[runlim] space:			14327.7 MB
-[runlim] samples:		821
+[runlim] start:			Sun Jan 25 08:41:20 2026
+[runlim] main pid:		34646
+Warning: variable 41 has no valid labels after preprocessing.
+Cannot find solution!
+[runlim] end:			Sun Jan 25 08:41:21 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			1.25 seconds
+[runlim] time:			0.19 seconds
+[runlim] space:			23.1 MB
+[runlim] samples:		2

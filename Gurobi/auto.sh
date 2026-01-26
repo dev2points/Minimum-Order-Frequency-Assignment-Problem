@@ -41,6 +41,9 @@ runlim -r $TO -s $MO  python3 -u main.py TUD916.3  2>&1 | tee $RESULTS_DIR/TUD91
 runlim -r $TO -s $MO  python3 -u main.py TUD916.4  2>&1 | tee $RESULTS_DIR/TUD916.4.log
 runlim -r $TO -s $MO  python3 -u main.py TUD916.5  2>&1 | tee $RESULTS_DIR/TUD916.5.log
 
-# cd ..
-# cd SAT/sequence
-# ./auto.sh
+cd ..
+cd CPLEX/MIP
+./auto.sh
+cd ..
+cd CP
+./auto.sh

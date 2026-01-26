@@ -5,47 +5,43 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen06
-[runlim] start:			Tue Jan 20 18:09:55 2026
-[runlim] main pid:		158858
-[runlim] sample:		10.0 time, 10.2 real, 750.5 MB
-[runlim] sample:		20.0 time, 20.2 real, 2674.1 MB
+[runlim] start:			Sun Jan 25 07:58:12 2026
+[runlim] main pid:		14968
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 8064 variables, 844204 constraints
- ! Presolve      : 844406 extractables eliminated
+ ! Minimization problem - 5882 variables, 385048 constraints
+ ! Presolve      : 385250 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 7.32s (7.29s extraction + 0.04s propagation)
- !  . Log search space  : 8064.0 (before), 8064.0 (after)
- !  . Memory usage      : 108.9 MB (before), 108.9 MB (after)
+ ! Initial process time : 3.05s (3.02s extraction + 0.03s propagation)
+ !  . Log search space  : 5882.0 (before), 5882.0 (after)
+ !  . Memory usage      : 53.4 MB (before), 53.4 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0       8064                 -
+                        0       5882                 -
  + New bound is 0
-                        0       8064    1            -
+[runlim] sample:		10.9 time, 10.7 real, 1190.4 MB
+                        0       5882    1            -
  + New bound is 1
-[runlim] sample:		97.8 time, 30.2 real, 3634.9 MB
-[runlim] sample:		161.8 time, 40.2 real, 3703.9 MB
-[runlim] sample:		224.5 time, 50.2 real, 3795.8 MB
-[runlim] sample:		284.8 time, 60.2 real, 3869.4 MB
-[runlim] sample:		347.0 time, 70.2 real, 3941.2 MB
+[runlim] sample:		88.2 time, 20.7 real, 2243.3 MB
+[runlim] sample:		161.6 time, 30.7 real, 2267.9 MB
  ! ----------------------------------------------------------------------------
  ! Search completed, model has no solution.
  ! Best bound             : 1
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 1827741
- ! Number of fails        : 453540
- ! Total memory usage     : 2.8 GB (2.8 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 59.35s (52.07s engine + 7.29s extraction)
- ! Search speed (br. / s) : 35108.4
+ ! Number of branches     : 1255342
+ ! Number of fails        : 416357
+ ! Total memory usage     : 1.4 GB (1.4 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 25.05s (22.03s engine + 3.02s extraction)
+ ! Search speed (br. / s) : 57009.2
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-[runlim] end:			Tue Jan 20 18:11:11 2026
+[runlim] end:			Sun Jan 25 07:58:45 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		684
-[runlim] real:			76.08 seconds
-[runlim] time:			371.29 seconds
-[runlim] space:			6649.0 MB
-[runlim] samples:		759
+[runlim] children:		292
+[runlim] real:			33.36 seconds
+[runlim] time:			175.86 seconds
+[runlim] space:			3022.8 MB
+[runlim] samples:		326

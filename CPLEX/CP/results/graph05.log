@@ -5,42 +5,15 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph05
-[runlim] start:			Tue Jan 20 17:46:12 2026
-[runlim] main pid:		148123
-[runlim] sample:		10.0 time, 10.1 real, 1041.9 MB
-Building CP model...
-Solving CP Optimizer...
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 7464 variables, 536201 constraints
- ! Presolve      : 536403 extractables eliminated
- ! LogVerbosity         = Terse
- ! Initial process time : 4.40s (4.38s extraction + 0.03s propagation)
- !  . Log search space  : 7464.0 (before), 7464.0 (after)
- !  . Memory usage      : 83.4 MB (before), 83.4 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0       7464                 -
- + New bound is 0
-                        0       7464    1            -
- + New bound is 1
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 1
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 107637
- ! Number of fails        : 33029
- ! Total memory usage     : 2.0 GB (2.0 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 10.30s (5.92s engine + 4.38s extraction)
- ! Search speed (br. / s) : 18181.9
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-[runlim] sample:		67.9 time, 20.1 real, 2641.6 MB
-[runlim] end:			Tue Jan 20 17:46:33 2026
+[runlim] start:			Sun Jan 25 07:48:42 2026
+[runlim] main pid:		10661
+Warning: variable 181 has no valid labels after preprocessing.
+Cannot find solution!
+[runlim] end:			Sun Jan 25 07:48:42 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		161
-[runlim] real:			21.07 seconds
-[runlim] time:			68.10 seconds
-[runlim] space:			4458.8 MB
-[runlim] samples:		209
+[runlim] children:		0
+[runlim] real:			0.24 seconds
+[runlim] time:			0.09 seconds
+[runlim] space:			22.7 MB
+[runlim] samples:		1

@@ -1,0 +1,115 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		TUD916.4
+[runlim] start:			Sat Jan 24 20:19:36 2026
+[runlim] main pid:		77051
+Building MIP model...
+[runlim] sample:		10.0 time, 10.1 real, 34.0 MB
+[runlim] sample:		20.0 time, 20.1 real, 36.4 MB
+[runlim] sample:		30.0 time, 30.1 real, 37.9 MB
+[runlim] sample:		40.0 time, 40.1 real, 39.3 MB
+[runlim] sample:		50.0 time, 50.1 real, 40.8 MB
+[runlim] sample:		60.0 time, 60.1 real, 43.7 MB
+[runlim] sample:		70.0 time, 70.1 real, 44.2 MB
+[runlim] sample:		79.9 time, 80.1 real, 46.0 MB
+[runlim] sample:		89.9 time, 90.1 real, 46.4 MB
+[runlim] sample:		99.9 time, 100.1 real, 48.9 MB
+[runlim] sample:		109.9 time, 110.1 real, 49.4 MB
+[runlim] sample:		119.9 time, 120.1 real, 49.7 MB
+[runlim] sample:		129.9 time, 130.1 real, 52.5 MB
+[runlim] sample:		139.9 time, 140.1 real, 52.9 MB
+[runlim] sample:		149.9 time, 150.1 real, 53.2 MB
+[runlim] sample:		159.9 time, 160.1 real, 53.5 MB
+[runlim] sample:		169.8 time, 170.1 real, 56.7 MB
+[runlim] sample:		179.8 time, 180.1 real, 57.3 MB
+[runlim] sample:		189.8 time, 190.1 real, 57.5 MB
+[runlim] sample:		199.8 time, 200.1 real, 57.7 MB
+[runlim] sample:		209.8 time, 210.1 real, 57.9 MB
+Build time: 212.56s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 3 times.
+Aggregator has done 6633 substitutions...
+MIP Presolve eliminated 602235 rows and 10096 columns.
+MIP Presolve modified 410272 coefficients.
+Aggregator did 6633 substitutions.
+Reduced MIP has 8848 rows, 2565 columns, and 76709 nonzeros.
+Reduced MIP has 2565 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 5.09 sec. (10857.83 ticks)
+Found incumbent of value 48.000000 after 5.19 sec. (11023.11 ticks)
+Probing fixed 1226 vars, tightened 0 bounds.
+Probing changed sense of 1133 constraints.
+Probing time = 0.01 sec. (5.27 ticks)
+Cover probing fixed 11 vars, tightened 127 bounds.
+Tried aggregator 3 times.
+MIP Presolve eliminated 6912 rows and 1890 columns.
+MIP Presolve modified 877 coefficients.
+Aggregator did 12 substitutions.
+Reduced MIP has 1916 rows, 663 columns, and 9999 nonzeros.
+Reduced MIP has 663 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (35.78 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing changed sense of 286 constraints.
+Probing time = 0.00 sec. (5.29 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 838 rows and 195 columns.
+MIP Presolve modified 36 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 1075 rows, 465 columns, and 4713 nonzeros.
+Reduced MIP has 465 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.11 ticks)
+Probing changed sense of 20 constraints.
+Probing time = 0.00 sec. (1.60 ticks)
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 273 rows and 81 columns.
+MIP Presolve modified 27 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 797 rows, 379 columns, and 3585 nonzeros.
+Reduced MIP has 379 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.58 ticks)
+Probing changed sense of 13 constraints.
+Probing time = 0.00 sec. (1.24 ticks)
+Clique table members: 1245.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 12 threads.
+Root relaxation solution time = 0.00 sec. (2.30 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           48.0000       26.0000            45.83%
+*     0+    0                           40.0000       26.0000            35.00%
+*     0+    0                           38.0000       26.0000            31.58%
+*     0+    0                           36.0000       26.0000            27.78%
+*     0+    0                           34.0000       26.0000            23.53%
+*     0     0      integral     0       26.0000       26.0000      117    0.00%
+Elapsed time = 5.26 sec. (11101.46 ticks, tree = 0.00 MB, solutions = 6)
+
+Root node processing (before b&c):
+  Real time             =    5.26 sec. (11102.62 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    5.26 sec. (11102.62 ticks)
+Solution :
+{128, 366, 100, 338, 666, 428, 142, 380, 86, 324, 114, 352, 86, 324, 86, 324, 240, 478, 72, 310, 142, 380, 652, 414, 694, 456, 680, 442, 72, 310, 72, 310, 666, 428, 170, 408, 72, 310, 156, 394, 156, 394, 86, 324, 72, 310, 86, 324, 694, 456, 114, 352, 142, 380, 128, 366, 652, 414, 86, 324, 142, 380, 652, 414, 694, 456, 114, 352, 128, 366, 156, 394, 86, 324, 170, 408, 142, 380, 652, 414, 170, 408, 142, 380, 652, 414, 156, 394, 170, 408, 72, 310, 694, 456, 156, 394, 114, 352, 72, 310, 142, 380, 694, 456, 114, 352, 694, 456, 100, 338, 114, 352, 72, 310, 156, 394, 156, 394, 114, 352, 100, 338, 128, 366, 100, 338, 142, 380, 114, 352, 694, 456, 240, 478, 666, 428, 128, 366, 142, 380, 680, 442, 142, 380, 128, 366, 170, 408, 694, 456, 100, 338, 680, 442, 142, 380, 652, 414, 666, 428, 114, 352, 86, 324, 680, 442, 680, 442, 114, 352, 100, 338, 680, 442, 72, 310, 694, 456, 170, 408, 128, 366, 128, 366, 156, 394, 86, 324, 114, 352, 72, 310, 100, 338, 86, 324, 128, 366, 142, 380, 72, 310, 156, 394, 86, 324, 100, 338, 86, 324, 240, 478, 156, 394, 100, 338, 694, 456, 170, 408, 142, 380, 240, 478, 170, 408, 72, 310, 128, 366, 128, 366, 170, 408, 128, 366, 72, 310, 694, 456, 694, 456, 680, 442, 694, 456, 72, 310, 170, 408, 694, 456, 86, 324, 100, 338, 128, 366, 86, 324, 170, 408, 156, 394, 170, 408, 72, 310, 142, 380, 310, 72, 128, 366, 72, 310, 86, 324, 72, 310, 414, 652, 100, 338, 114, 352, 170, 408, 72, 310, 694, 456, 694, 456, 666, 428, 114, 352, 100, 338, 240, 478, 156, 394, 100, 338, 694, 456, 680, 442, 694, 456, 240, 478, 72, 310, 128, 366, 694, 456, 666, 428, 694, 456, 128, 366, 72, 310, 652, 414, 72, 310, 680, 442, 128, 366, 680, 442, 114, 352, 680, 442, 128, 366, 240, 478, 694, 456, 142, 380, 324, 86, 240, 478, 666, 428, 100, 338, 142, 380, 170, 408, 156, 394, 128, 366, 170, 408, 240, 478, 72, 310, 666, 428, 72, 310, 114, 352, 100, 338, 86, 324, 680, 442, 156, 394, 156, 394, 680, 442, 142, 380, 128, 366, 128, 366, 128, 366, 694, 456, 170, 408, 156, 394, 652, 414, 240, 478, 694, 456, 240, 478, 240, 478, 156, 394, 156, 394, 142, 380, 156, 394, 114, 352, 652, 414, 100, 338, 142, 380, 142, 380, 72, 310, 156, 394, 100, 338, 694, 456, 100, 338, 128, 366, 72, 310, 694, 456, 694, 456, 652, 414, 666, 428, 86, 324, 694, 456, 652, 414, 114, 352, 694, 456, 142, 380, 652, 414, 170, 408, 156, 394, 666, 428, 114, 352, 680, 442, 114, 352, 100, 338, 694, 456, 86, 324, 666, 428, 694, 456, 142, 380, 114, 352, 142, 380, 680, 442, 72, 310, 100, 338, 694, 456, 240, 478, 240, 478, 170, 408, 666, 428, 170, 408, 86, 324, 666, 428, 142, 380, 142, 380, 170, 408, 240, 478, 142, 380, 100, 338, 114, 352, 240, 478, 128, 366, 170, 408, 100, 338, 240, 478, 652, 414, 680, 442, 694, 456, 86, 324, 86, 324, 114, 352, 694, 456, 86, 324, 652, 414, 170, 408, 72, 310, 170, 408, 128, 366, 666, 428, 680, 442, 156, 394, 170, 408, 694, 456, 240, 478, 128, 366, 170, 408, 72, 310, 100, 338, 240, 478, 72, 310, 694, 456, 652, 414, 86, 324, 156, 394, 170, 408, 72, 310, 86, 324, 694, 456, 680, 442, 680, 442, 72, 310, 114, 352, 694, 456, 240, 478, 652, 414, 170, 408, 652, 414, 86, 324, 72, 310, 240, 478, 156, 394, 142, 380, 142, 380, 72, 310, 86, 324, 142, 380, 142, 380, 128, 366, 652, 414, 72, 310, 72, 310, 170, 408, 72, 310, 86, 324, 680, 442, 694, 456, 72, 310, 652, 414, 128, 366, 114, 352, 142, 380, 86, 324, 114, 352, 666, 428, 170, 408, 694, 456, 680, 442, 156, 394, 72, 310, 170, 408, 156, 394, 72, 310, 86, 324, 128, 366, 240, 478, 694, 456, 128, 366, 240, 478, 156, 394, 652, 414, 142, 380, 142, 380, 142, 380, 128, 366, 128, 366, 666, 428, 652, 414, 114, 352, 694, 456, 100, 338, 128, 366, 240, 478, 652, 414, 128, 366, 72, 310, 100, 338, 694, 456, 170, 408, 694, 456, 72, 310, 142, 380, 72, 310, 694, 456, 652, 414, 156, 394, 680, 442, 86, 324, 240, 478, 694, 456, 72, 310, 666, 428, 170, 408, 694, 456, 652, 414, 72, 310, 156, 394, 114, 352, 86, 324, 240, 478, 680, 442, 86, 324, 114, 352, 142, 380, 694, 456, 652, 414, 156, 394, 86, 324, 680, 442, 666, 428, 240, 478, 128, 366, 72, 310, 694, 456, 114, 352, 72, 310, 114, 352, 114, 352, 666, 428, 86, 324, 142, 380, 100, 338, 170, 408, 86, 324, 156, 394, 652, 414, 128, 366, 72, 310, 694, 456, 680, 442, 666, 428, 72, 310, 72, 310, 114, 352, 394, 156, 652, 414, 680, 442, 128, 366, 72, 310, 128, 366, 170, 408, 694, 456, 680, 442, 694, 456, 694, 456, 652, 414, 170, 408, 240, 478, 86, 324, 100, 338, 128, 366, 694, 456, 156, 394, 72, 310, 694, 456, 156, 394, 694, 456, 680, 442, 128, 366, 694, 456, 72, 310, 666, 428, 694, 456}
+Number of labels used: 26
+[runlim] end:			Sat Jan 24 20:23:14 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			218.24 seconds
+[runlim] time:			221.90 seconds
+[runlim] space:			261.2 MB
+[runlim] samples:		2181

@@ -5,36 +5,15 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph07
-[runlim] start:			Tue Jan 20 17:47:25 2026
-[runlim] main pid:		148709
-Building CP model...
-Solving CP Optimizer...
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 3851 variables, 87683 constraints
- ! LogVerbosity         = Terse
- ! Initial process time : 0.09s (0.09s extraction + 0.00s propagation)
- !  . Log search space  : 3549.0 (before), 3549.0 (after)
- !  . Memory usage      : 2.8 MB (before), 2.8 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0       3851                 -
- + New bound is 0
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 0
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 0
- ! Number of fails        : 0
- ! Total memory usage     : 76.1 MB (75.2 MB CP Optimizer + 0.9 MB Concert)
- ! Time spent in solve    : 0.10s (0.01s engine + 0.09s extraction)
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-[runlim] end:			Tue Jan 20 17:47:27 2026
+[runlim] start:			Sun Jan 25 07:48:50 2026
+[runlim] main pid:		10733
+Warning: variable 3 has no valid labels after preprocessing.
+Cannot find solution!
+[runlim] end:			Sun Jan 25 07:48:50 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		11
-[runlim] real:			2.09 seconds
-[runlim] time:			1.69 seconds
-[runlim] space:			207.8 MB
-[runlim] samples:		18
+[runlim] children:		0
+[runlim] real:			0.21 seconds
+[runlim] time:			0.00 seconds
+[runlim] space:			0.0 MB
+[runlim] samples:		0

@@ -54,6 +54,39 @@ def read_var(file, domain):
                 var[idx] = domain[int(parts[1])]
     return var
 
+def delete_invalid_labels(var, ctr_file):
+    # Read constraints and remove invalid labels from domain
+    with open(ctr_file) as f:
+        for line in f:
+            if line.strip() == '\x00':
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '>' in parts:
+                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+    with open(ctr_file) as f:
+        for line in f:
+            if line.strip() == '\x00':
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '=' in parts:
+                # Remove labels from domain that violate the equality constraint
+                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+    for i,vals in var.items():
+        if len(vals) == 0:
+            print("Warning: variable", i, "has no valid labels after preprocessing.")
+            return False
+    return True
+
 def create_var_map(var):
     var_map = {}
     for i, vals in var.items():
@@ -135,6 +168,10 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
+    if(not delete_invalid_labels(var, files["ctr"])):
+        print("Cannot find solution!")
+        return
+    
     var_map = create_var_map(var)
 
     print("Building CP model...")

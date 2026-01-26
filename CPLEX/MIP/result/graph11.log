@@ -1,0 +1,58 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		graph11
+[runlim] start:			Sat Jan 24 19:27:48 2026
+[runlim] main pid:		53872
+Building MIP model...
+[runlim] sample:		10.0 time, 10.1 real, 33.5 MB
+[runlim] sample:		20.0 time, 20.1 real, 35.6 MB
+[runlim] sample:		30.0 time, 30.1 real, 37.1 MB
+[runlim] sample:		40.0 time, 40.1 real, 38.5 MB
+[runlim] sample:		49.9 time, 50.1 real, 40.1 MB
+[runlim] sample:		59.9 time, 60.1 real, 41.9 MB
+[runlim] sample:		69.9 time, 70.1 real, 43.9 MB
+[runlim] sample:		79.9 time, 80.1 real, 44.2 MB
+[runlim] sample:		89.9 time, 90.1 real, 46.5 MB
+[runlim] sample:		99.9 time, 100.1 real, 47.0 MB
+[runlim] sample:		109.9 time, 110.1 real, 49.2 MB
+[runlim] sample:		119.9 time, 120.1 real, 52.1 MB
+[runlim] sample:		129.9 time, 130.1 real, 52.7 MB
+[runlim] sample:		139.9 time, 140.1 real, 52.9 MB
+[runlim] sample:		149.9 time, 150.1 real, 55.9 MB
+[runlim] sample:		159.8 time, 160.1 real, 56.9 MB
+[runlim] sample:		169.8 time, 170.1 real, 57.2 MB
+[runlim] sample:		179.8 time, 180.1 real, 55.9 MB
+[runlim] sample:		189.8 time, 190.1 real, 56.2 MB
+[runlim] sample:		199.8 time, 200.1 real, 60.0 MB
+[runlim] sample:		209.8 time, 210.1 real, 60.7 MB
+Build time: 217.29s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Infeasibility row 'c54':  0  = 1.
+Presolve time = 0.15 sec. (86.99 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.18 sec. (122.28 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.18 sec. (122.28 ticks)
+CPLEX Error  1217: No solution exists.
+No solution found.
+[runlim] end:			Sat Jan 24 19:31:25 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			217.83 seconds
+[runlim] time:			217.50 seconds
+[runlim] space:			151.8 MB
+[runlim] samples:		2177

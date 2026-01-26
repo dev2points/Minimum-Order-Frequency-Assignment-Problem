@@ -5,57 +5,58 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.4
-[runlim] start:			Tue Jan 20 18:34:17 2026
-[runlim] main pid:		169805
-[runlim] sample:		10.0 time, 10.1 real, 1067.9 MB
+[runlim] start:			Sun Jan 25 08:20:37 2026
+[runlim] main pid:		25335
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 6960 variables, 463335 constraints
- ! Presolve      : 463537 extractables eliminated
+ ! Minimization problem - 3724 variables, 131372 constraints
+ ! Presolve      : 120552 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 3.64s (3.63s extraction + 0.01s propagation)
- !  . Log search space  : 6960.0 (before), 6960.0 (after)
- !  . Memory usage      : 60.4 MB (before), 60.4 MB (after)
+ ! Initial process time : 0.94s (0.94s extraction + 0.00s propagation)
+ !  . Log search space  : 3486.0 (before), 3486.0 (after)
+ !  . Memory usage      : 18.0 MB (before), 18.0 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0       6960                 -
- + New bound is 0
-                        0       6960    1            -
- + New bound is 1
-                      483       5522    4   F     1 != l_408
- + New bound is 2
- *            44     7039  8.06s        4      (gap is 95.45%)
- *            23    16225  9.80s        2      (gap is 91.30%)
-              23    16225          4    2   F        -
- + New bound is 13 (gap is 43.48%)
-              23    16293          4    2   F     1 != x_65_170
- + New bound is 19 (gap is 17.39%)
- *            21    16385  10.05s       2      (gap is 9.52%)
- *            20    16405  10.09s       2      (gap is 5.00%)
-              20    16419          4    2   F     1 != x_109_792
+                        0       3486                 -
+ + New bound is 10
+                        0       3486    1            -
+ + New bound is 11
+                      186       3111    1   F     0 != x_139_72
+ + New bound is 12
+ *            40      825  1.67s        2      (gap is 70.00%)
+ *            34      459  1.68s        6      (gap is 64.71%)
+ *            24     4479  1.99s        9      (gap is 50.00%)
+ *            23     6115  2.24s        9      (gap is 47.83%)
+ *            22     6555  2.27s        9      (gap is 45.45%)
+              22     6981          4    1   F        -
+ + New bound is 18 (gap is 18.18%)
+              22     6621          1    4   F        -
+ + New bound is 19 (gap is 13.64%)
+ *            20     6670  2.28s        4      (gap is 5.00%)
+              20     7151        807    1   F     0 != x_71_778
  + New bound is 20 (gap is 0.00%)
  ! ----------------------------------------------------------------------------
- ! Search completed, 4 solutions found.
+ ! Search completed, 6 solutions found.
  ! Best objective         : 20 (optimal - effective tol. is 0)
  ! Best bound             : 20
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 182615
- ! Number of fails        : 55477
- ! Total memory usage     : 1.5 GB (1.5 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 10.10s (6.47s engine + 3.63s extraction)
- ! Search speed (br. / s) : 28224.9
+ ! Number of branches     : 86065
+ ! Number of fails        : 33782
+ ! Total memory usage     : 519.7 MB (518.8 MB CP Optimizer + 0.9 MB Concert)
+ ! Time spent in solve    : 2.44s (1.50s engine + 0.94s extraction)
+ ! Search speed (br. / s) : 57376.7
  ! ----------------------------------------------------------------------------
 
 FINAL SOLUTION:
-{86, 324, 86, 324, 792, 554, 156, 394, 128, 366, 792, 554, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 792, 554, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 792, 554, 170, 408, 72, 310, 792, 554, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 792, 554, 240, 478, 100, 338, 128, 366, 792, 554, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 792, 554, 170, 408, 240, 478, 156, 394, 792, 554, 114, 352, 72, 310, 792, 554, 72, 310, 156, 394, 792, 554, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 792, 554, 792, 554, 170, 408, 86, 324, 128, 366, 156, 394, 792, 554, 240, 478, 72, 310, 114, 352, 792, 554, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 792, 554, 792, 554, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+{86, 324, 86, 324, 652, 414, 156, 394, 128, 366, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
 Number of labels used: 20
-[runlim] end:			Tue Jan 20 18:34:36 2026
+[runlim] end:			Sun Jan 25 08:20:42 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		155
-[runlim] real:			19.75 seconds
-[runlim] time:			66.51 seconds
-[runlim] space:			3779.2 MB
-[runlim] samples:		196
+[runlim] children:		38
+[runlim] real:			5.13 seconds
+[runlim] time:			15.44 seconds
+[runlim] space:			964.2 MB
+[runlim] samples:		50
