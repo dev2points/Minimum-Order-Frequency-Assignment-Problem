@@ -3,11 +3,11 @@ import psutil
 import sys
 from time import time
 from pysat.solvers import Solver
-from pypblib import pblib
+from pysat.card import ITotalizer
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    if base.lower().startswith("graph"):
+    if base.lower().startswith(("graph", "tud")):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
@@ -50,6 +50,8 @@ def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -60,6 +62,8 @@ def delete_invalid_labels(var, ctr_file):
                 var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -101,6 +105,8 @@ def build_constraints(solver, var, var_map, ctr_file):
     # Distance constraints
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -139,38 +145,125 @@ def build_label_constraints(solver, var_map, label_var_map):
         lb_varnum = label_var_map[v]
         solver.add_clause([-varnum, lb_varnum])
 
-def add_limit_label_constraints(solver, label_var_map, UB):
-    first_free_var = solver.nof_vars() 
-    x_vars = []
-    for i in range(UB):
-        first_free_var += 1
-        x_vars.append(first_free_var)
+def add_limit_label_constraints(solver, lits, K):
+    # if isinstance(lits, dict):
+    #     lits = list(lits.values())
 
-    for i in range(UB - 1):
-        solver.add_clause([-x_vars[i], x_vars[i + 1]])
+    # n = len(lits)
+    # top = solver.nof_vars()
 
-    label_vars = list(label_var_map.values())
-    label_vars.extend(x_vars)
+    # # r[i][j] với i = 1..n, j = 1..K
+    # r = [[0] * (K + 1) for _ in range(n + 1)]
 
-    config = pblib.PBConfig()
-    pb2 = pblib.Pb2cnf(config)
-    formular = []
-    atmost_k = pb2.encode_leq([1]*len(label_vars), label_vars, UB, formular,solver.nof_vars() +1)
-
-    for clause in formular:
-        solver.add_clause(clause)
-    return x_vars
+    # for i in range(1, K):
+    #     for j in range(1, i + 1):
+    #         top += 1
+    #         r[i][j] = top
+    # for i in range(K, n + 1):
+    #     for j in range(1, K + 1):
+    #         top += 1
+    #         r[i][j] = top
 
 
-def solve_and_print(solver, var_map):
-    if solver.solve():
+    # # (1)  ¬x_i ∨ r(i,1)
+    # for i in range(1, n + 1):
+    #     solver.add_clause([-lits[i - 1], r[i][1]])
+
+    # # (2)  ¬r(i-1,j) ∨ r(i,j)
+    # for i in range(2, n + 1):
+    #     for j in range(1, min(i - 1, K) + 1):
+    #         solver.add_clause([-r[i - 1][j], r[i][j]])
+
+    # # (3)  ¬x_i ∨ ¬r(i-1,j-1) ∨ r(i,j)
+    # for i in range(2, n + 1):
+    #     for j in range(2, min(i, K) + 1):
+    #         solver.add_clause([-lits[i - 1], -r[i - 1][j - 1], r[i][j]])
+
+    # # (5)  x_i ∨ ¬r(i,i)
+    # for i in range(1, K + 1):
+    #     solver.add_clause([lits[i - 1], -r[i][i]])
+
+    # # (6)  r(i-1,j-1) ∨ ¬r(i,j)
+    # for i in range(2, n + 1):
+    #     for j in range(2, min(i, K) + 1):
+    #         solver.add_clause([r[i - 1][j - 1], -r[i][j]])
+
+    # # (7)  x_i ∨ r(i-1,j-1) ∨ ¬r(i,j)
+    # for i in range(2, n + 1):
+    #     for j in range(1, min(i - 1, K) + 1):
+    #         solver.add_clause([lits[i - 1], r[i - 1][j], -r[i][j]])
+
+    # # (8)  ¬x_i ∨ ¬r(i-1,K)
+    # for i in range(K + 1, n + 1):
+    #     solver.add_clause([-lits[i - 1], -r[i - 1][K]])
+
+    # # rhs[j-1] ⇔ sum(lits) ≤ j
+    # rhs = [r[n][j] for j in range(1, K + 1)]
+    # return rhs
+
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+    
+    top = solver.nof_vars()
+    tot = ITotalizer(lits=lits, ubound=K, top_id=top)
+
+    for c in tot.cnf.clauses:
+        solver.add_clause(c)
+
+    return tot.rhs
+
+def delete_invalid_labels(var, ctr_file):
+    # Read constraints and remove invalid labels from domain
+    with open(ctr_file) as f:
+        for line in f:
+            if line.strip() == '\x00':
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '>' in parts:
+                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+    with open(ctr_file) as f:
+        for line in f:
+            if line.strip() == '\x00':
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+            u, v = int(parts[0]), int(parts[1])
+            distance = int(parts[4])
+            if '=' in parts:
+                # Remove labels from domain that violate the equality constraint
+                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
+                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+    for i,vals in var.items():
+        if len(vals) == 0:
+            print("Warning: variable", i, "has no valid labels after preprocessing.")
+            return False
+    return True
+
+def solve_and_print(solver, var_map, rhs, num_labels, type):
+    if type != 'incremental' and type != 'assumptions' and type != 'first':
+        raise ValueError("Type must be either 'incremental', 'assumptions', or 'first'")
+    if type == 'incremental':
+        solver.add_clause([-rhs[num_labels - 1]])
+    status = None
+    if type == 'assumptions':
+        status = solver.solve(assumptions = [-rhs[num_labels - 1]]) 
+    else :
+        status = solver.solve()
+    if status:
         model = solver.get_model()
         assignment = {}
         for (i, v), varnum in var_map.items():
             if model[varnum-1] > 0:
+                if i in assignment:
+                    raise ValueError(f"Warning: variable {i} assigned multiple values.")
                 assignment[i] = v
         print("Solution:")
-        # print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
         print(assignment)
         return assignment
     else:
@@ -182,6 +275,8 @@ def verify_solution_simple(assignment, var, ctr_file):
         return False
     with open(ctr_file) as f:
         for line in f:
+            if line.strip() == '\x00':
+                continue
             parts = line.strip().split()
             if not parts:
                 continue
@@ -218,7 +313,7 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    #delete_invalid_labels(var, files["ctr"])
+    delete_invalid_labels(var, files["ctr"])
     solver = Solver(name='glucose4')
     last_var_num, var_map = create_var_map(var)
 
@@ -227,16 +322,19 @@ def main():
     # solver = Cadical195()
     build_constraints(solver, var, var_map, files["ctr"])
 
-    assignment = solve_and_print(solver, var_map)
+    assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
         return
-    if verify_solution_simple(assignment, var, files["ctr"]):
-        print("Correct solution!")
-        num_lables = len(set(assignment.values()))
-        print("Number of lables used: ", num_lables)
-    else:   
-        print("Incorrect solution!")
-        return
+    
+    num_lables = len(set(assignment.values()))
+    print("Number of lables used: ", num_lables)
+    # if verify_solution_simple(assignment, var, files["ctr"]):
+    #     print("Correct solution!")
+        
+        
+    # else:   
+    #     print("Incorrect solution!")
+    #     return
     print(f"Total time: {time() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
@@ -250,8 +348,7 @@ def main():
         
         print("--------------------------------------------------")
         print(f"\nTrying with at most {num_lables - 1} labels...")
-        solver.add_clause([x_vars[num_lables - 1]])
-        assignment = solve_and_print(solver, var_map)
+        assignment = solve_and_print(solver, var_map, x_vars, num_lables, sys.argv[2])
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
@@ -260,11 +357,11 @@ def main():
             print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
             
             break
-        if verify_solution_simple(assignment, var, files["ctr"]):
-            print("Correct solution!")
-        else:
-            print("Incorrect solution!")
-            break
+        # if verify_solution_simple(assignment, var, files["ctr"]):
+        #     print("Correct solution!")
+        # else:
+        #     print("Incorrect solution!")
+        #     break
         new_num_lables = len(set(assignment.values()))
         print("Number of lables used: ", new_num_lables)
         num_lables = new_num_lables

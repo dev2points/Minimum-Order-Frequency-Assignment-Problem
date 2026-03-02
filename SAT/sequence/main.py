@@ -439,6 +439,8 @@ def solve_and_print(solver, var_map, rhs, num_labels, type):
         assignment = {}
         for (i, v), varnum in var_map.items():
             if model[varnum-1] > 0:
+                if i in assignment:
+                    raise ValueError(f"Warning: variable {i} assigned multiple values.")
                 assignment[i] = v
         print("Solution:")
         print(assignment)
