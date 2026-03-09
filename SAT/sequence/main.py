@@ -2,6 +2,7 @@ import os
 # import psutil
 import sys
 from time import time
+import psutil
 from pysat.solvers import Solver
 from pysat.card import ITotalizer
 
@@ -520,6 +521,8 @@ def main():
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
         
     last_var_num, var_map = create_var_map(var)

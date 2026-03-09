@@ -313,7 +313,11 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    delete_invalid_labels(var, files["ctr"])
+    if(not delete_invalid_labels(var, files["ctr"])):
+        print("Cannot find solution!")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
     solver = Solver(name='glucose4')
     last_var_num, var_map = create_var_map(var)
 

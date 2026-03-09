@@ -7,16 +7,16 @@
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		scen09
 [runlim] argv[4]:		incremental
-[runlim] start:			Fri Feb 27 00:03:33 2026
-[runlim] main pid:		14093
+[runlim] start:			Sun Mar  8 23:04:19 2026
+[runlim] main pid:		14708
 Warning: variable 13 has no valid labels after preprocessing.
-Solve first problem:
-Cannot find solution.
-[runlim] end:			Fri Feb 27 00:03:33 2026
+Cannot find solution!
+Memory used: 17.07 MB
+[runlim] end:			Sun Mar  8 23:04:19 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			0.60 seconds
+[runlim] real:			0.06 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0.0 MB
 [runlim] samples:		0

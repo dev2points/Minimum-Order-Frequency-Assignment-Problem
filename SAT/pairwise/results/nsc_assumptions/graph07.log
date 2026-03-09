@@ -7,16 +7,16 @@
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		graph07
 [runlim] argv[4]:		assumptions
-[runlim] start:			Thu Feb 26 22:34:26 2026
-[runlim] main pid:		12992
+[runlim] start:			Sun Mar  8 23:04:18 2026
+[runlim] main pid:		14687
 Warning: variable 3 has no valid labels after preprocessing.
-Solve first problem:
-Cannot find solution.
-[runlim] end:			Thu Feb 26 22:34:26 2026
+Cannot find solution!
+Memory used: 17.11 MB
+[runlim] end:			Sun Mar  8 23:04:18 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			0.62 seconds
+[runlim] real:			0.57 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0.0 MB
 [runlim] samples:		0
