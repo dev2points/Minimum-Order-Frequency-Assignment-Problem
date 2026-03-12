@@ -1,6 +1,6 @@
 TO=600
 MO=14000
-RESULTS_DIR=result
+RESULTS_DIR=result/no_pre_processing
 mkdir -p $RESULTS_DIR
 
 

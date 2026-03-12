@@ -1,20 +1,21 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph13
-[runlim] start:			Sun Jan 25 07:50:01 2026
-[runlim] main pid:		11314
-[runlim] sample:		10.0 time, 10.7 real, 665.6 MB
-[runlim] sample:		20.0 time, 20.7 real, 1581.5 MB
+[runlim] start:			Tue Mar 10 18:46:15 2026
+[runlim] child:			8310
+[runlim] sample:		9.98 time, 10.01 real, 642 MB, 0.96 load
+[runlim] sample:		19.95 time, 20.01 real, 1279 MB, 0.97 load
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
  ! Minimization problem - 22914 variables, 1124457 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 4.42s (4.38s extraction + 0.05s propagation)
+ ! Initial process time : 4.32s (4.30s extraction + 0.03s propagation)
  !  . Log search space  : 22906.0 (before), 22906.0 (after)
  !  . Memory usage      : 240.9 MB (before), 240.9 MB (after)
  ! Using parallel search with 12 workers.
@@ -29,14 +30,18 @@ Solving CP Optimizer...
  ! Number of branches     : 0
  ! Number of fails        : 0
  ! Total memory usage     : 1.1 GB (1.1 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 4.49s (0.11s engine + 4.38s extraction)
+ ! Time spent in solve    : 4.38s (0.09s engine + 4.30s extraction)
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-[runlim] end:			Sun Jan 25 07:50:28 2026
+Total time: 25.08s
+Memory used: 994.66 MB
+[runlim] end:			Tue Mar 10 18:46:43 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		164
-[runlim] real:			27.50 seconds
-[runlim] time:			25.46 seconds
-[runlim] space:			2582.3 MB
-[runlim] samples:		268
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			27.18 seconds
+[runlim] time:			27.02 seconds
+[runlim] space:			2582 MB
+[runlim] load:			0.97 maximum
+[runlim] samples:		272

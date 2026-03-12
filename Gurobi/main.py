@@ -3,7 +3,7 @@ import os
 import sys
 import psutil
 import gurobipy as gp
-from time import time
+import time
 from gurobipy import Model, GRB
 
 
@@ -159,7 +159,7 @@ def mycallback(model, where):
         #     print("Solution is CORRECT!")
         # else:
         #     print("Solution is INCORRECT!")
-        print(f"Total time used: {time() - model._time:.2f} sec")
+        print(f"Total time used: {time.perf_counter() - model._time:.2f} sec")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         print("================================")
@@ -222,7 +222,7 @@ def verify_solution(solution, var, ctr_file):
 
 
 def main():
-    start_time = time()
+    start_time = time.perf_counter()
 
     if len(sys.argv) < 2:
         print("Use: python main.py <dataset_folder>")
@@ -234,9 +234,12 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    if(not delete_invalid_labels(var, files["ctr"])):
-        print("Cannot find solution!")
-        return
+    # if(not delete_invalid_labels(var, files["ctr"])):
+    #     print("Cannot find solution!")
+    #     print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
+    #     process = psutil.Process(os.getpid())
+    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    #     return
 
     print("Building Gurobi model...")
     model, x, y = build_gurobi_model(var, files["ctr"])
@@ -248,7 +251,7 @@ def main():
     model._time = start_time
 
 
-    print(f"Build time used: {time() - start_time:.2f} sec")
+    print(f"Build time used: {time.perf_counter() - start_time:.2f} sec")
     
 
     print("Solving...")
@@ -256,7 +259,7 @@ def main():
 
     if model.status != GRB.OPTIMAL:
         print("No solution found.")
-        print(f"Total time used: {time() - start_time:.2f} sec")
+        print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return

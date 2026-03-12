@@ -1,4 +1,5 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
@@ -6,10 +7,10 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		TUD200.4
-[runlim] start:			Sat Jan 24 19:57:04 2026
-[runlim] main pid:		67037
+[runlim] start:			Tue Mar 10 04:52:28 2026
+[runlim] child:			7932
 Building MIP model...
-Build time: 8.01s
+Build time: 8.15s
 Solving MIP (minimizing number of labels)...
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
@@ -20,8 +21,8 @@ MIP Presolve modified 91650 coefficients.
 Aggregator did 1726 substitutions.
 Reduced MIP has 1967 rows, 529 columns, and 20703 nonzeros.
 Reduced MIP has 529 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 1.17 sec. (2615.50 ticks)
-Found incumbent of value 48.000000 after 1.19 sec. (2645.46 ticks)
+Presolve time = 1.18 sec. (2615.50 ticks)
+Found incumbent of value 48.000000 after 1.20 sec. (2645.46 ticks)
 Probing fixed 256 vars, tightened 0 bounds.
 Probing changed sense of 447 constraints.
 Probing time = 0.00 sec. (1.08 ticks)
@@ -53,24 +54,28 @@ Root relaxation solution time = 0.00 sec. (2.24 ticks)
 *     0+    0                           24.0000       18.0000            25.00%
 *     0+    0                           22.0000       18.0000            18.18%
 *     0     0      integral     0       20.0000       20.0000      136    0.00%
-Elapsed time = 1.21 sec. (2669.14 ticks, tree = 0.00 MB, solutions = 4)
+Elapsed time = 1.22 sec. (2669.14 ticks, tree = 0.00 MB, solutions = 4)
 
 Root node processing (before b&c):
-  Real time             =    1.21 sec. (2669.31 ticks)
+  Real time             =    1.22 sec. (2669.31 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    1.21 sec. (2669.31 ticks)
+Total (root+branch&cut) =    1.22 sec. (2669.31 ticks)
 Solution :
 {86, 324, 86, 324, 86, 324, 156, 394, 652, 414, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
 Number of labels used: 20
-[runlim] end:			Sat Jan 24 19:57:14 2026
+Total time: 9.43s
+Memory used: 62.10 MB
+[runlim] end:			Tue Mar 10 04:52:38 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		0
-[runlim] real:			10.20 seconds
-[runlim] time:			10.23 seconds
-[runlim] space:			74.6 MB
-[runlim] samples:		93
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			9.48 seconds
+[runlim] time:			10.36 seconds
+[runlim] space:			77 MB
+[runlim] load:			1.61 maximum
+[runlim] samples:		95

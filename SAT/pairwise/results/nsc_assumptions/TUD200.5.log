@@ -1,4 +1,5 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
@@ -7,15 +8,19 @@
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		TUD200.5
 [runlim] argv[4]:		assumptions
-[runlim] start:			Thu Feb 26 22:39:50 2026
-[runlim] main pid:		13048
+[runlim] start:			Tue Mar 10 18:45:49 2026
+[runlim] child:			8259
 Solve first problem:
 Cannot find solution.
-[runlim] end:			Thu Feb 26 22:39:50 2026
+Time taken: 0.27 seconds 
+Memory used: 27.10 MB
+[runlim] end:			Tue Mar 10 18:45:49 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		0
-[runlim] real:			0.69 seconds
-[runlim] time:			0.19 seconds
-[runlim] space:			26.2 MB
-[runlim] samples:		2
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.31 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			26 MB
+[runlim] load:			0.70 maximum
+[runlim] samples:		3

@@ -2,7 +2,7 @@
 import os
 import sys
 import psutil
-from time import time
+import time
 from docplex.cp.model import CpoModel
 
 
@@ -153,7 +153,7 @@ def build_cp_model(var, var_map, ctr_file):
     return mdl, x_vars
 
 def main():
-    # start_time = time()
+    start_time = time.perf_counter()
     if len(sys.argv) < 2:
         print("Use: python cp.py <dataset_folder>")
         return
@@ -170,14 +170,17 @@ def main():
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
+        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
     
     var_map = create_var_map(var)
 
     print("Building CP model...")
-    # build_start = time()
+    # build_start = time.perf_counter()
     mdl, x_vars = build_cp_model(var, var_map, files["ctr"])
-    # print(f"Build time: {time() - build_start:.2f}s")
+    # print(f"Build time: {time.perf_counter() - build_start:.2f}s")
 
 
 
@@ -192,6 +195,9 @@ def main():
     status = result.get_solve_status()
     if status not in ("Optimal", "Feasible"):
         print("No valid solution:", status)
+        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
 
     assignment = {}
@@ -202,6 +208,9 @@ def main():
     print("\nFINAL SOLUTION:")
     print("{" + ", ".join(f"{v}" for i, v in sorted(assignment.items())) + "}")
     print("Number of labels used:", len(set(assignment.values())))
+    print(f"Total time: {time.perf_counter() - start_time:.2f}s")
+    process = psutil.Process(os.getpid())
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
 
 if __name__ == "__main__":

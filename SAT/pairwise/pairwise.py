@@ -1,7 +1,7 @@
 import os
 import psutil
 import sys
-from time import time
+import time
 from pysat.solvers import Solver
 from pysat.card import ITotalizer
 
@@ -146,71 +146,71 @@ def build_label_constraints(solver, var_map, label_var_map):
         solver.add_clause([-varnum, lb_varnum])
 
 def add_limit_label_constraints(solver, lits, K):
-    # if isinstance(lits, dict):
-    #     lits = list(lits.values())
-
-    # n = len(lits)
-    # top = solver.nof_vars()
-
-    # # r[i][j] với i = 1..n, j = 1..K
-    # r = [[0] * (K + 1) for _ in range(n + 1)]
-
-    # for i in range(1, K):
-    #     for j in range(1, i + 1):
-    #         top += 1
-    #         r[i][j] = top
-    # for i in range(K, n + 1):
-    #     for j in range(1, K + 1):
-    #         top += 1
-    #         r[i][j] = top
-
-
-    # # (1)  ¬x_i ∨ r(i,1)
-    # for i in range(1, n + 1):
-    #     solver.add_clause([-lits[i - 1], r[i][1]])
-
-    # # (2)  ¬r(i-1,j) ∨ r(i,j)
-    # for i in range(2, n + 1):
-    #     for j in range(1, min(i - 1, K) + 1):
-    #         solver.add_clause([-r[i - 1][j], r[i][j]])
-
-    # # (3)  ¬x_i ∨ ¬r(i-1,j-1) ∨ r(i,j)
-    # for i in range(2, n + 1):
-    #     for j in range(2, min(i, K) + 1):
-    #         solver.add_clause([-lits[i - 1], -r[i - 1][j - 1], r[i][j]])
-
-    # # (5)  x_i ∨ ¬r(i,i)
-    # for i in range(1, K + 1):
-    #     solver.add_clause([lits[i - 1], -r[i][i]])
-
-    # # (6)  r(i-1,j-1) ∨ ¬r(i,j)
-    # for i in range(2, n + 1):
-    #     for j in range(2, min(i, K) + 1):
-    #         solver.add_clause([r[i - 1][j - 1], -r[i][j]])
-
-    # # (7)  x_i ∨ r(i-1,j-1) ∨ ¬r(i,j)
-    # for i in range(2, n + 1):
-    #     for j in range(1, min(i - 1, K) + 1):
-    #         solver.add_clause([lits[i - 1], r[i - 1][j], -r[i][j]])
-
-    # # (8)  ¬x_i ∨ ¬r(i-1,K)
-    # for i in range(K + 1, n + 1):
-    #     solver.add_clause([-lits[i - 1], -r[i - 1][K]])
-
-    # # rhs[j-1] ⇔ sum(lits) ≤ j
-    # rhs = [r[n][j] for j in range(1, K + 1)]
-    # return rhs
-
     if isinstance(lits, dict):
         lits = list(lits.values())
-    
+
+    n = len(lits)
     top = solver.nof_vars()
-    tot = ITotalizer(lits=lits, ubound=K, top_id=top)
 
-    for c in tot.cnf.clauses:
-        solver.add_clause(c)
+    # r[i][j] với i = 1..n, j = 1..K
+    r = [[0] * (K + 1) for _ in range(n + 1)]
 
-    return tot.rhs
+    for i in range(1, K):
+        for j in range(1, i + 1):
+            top += 1
+            r[i][j] = top
+    for i in range(K, n + 1):
+        for j in range(1, K + 1):
+            top += 1
+            r[i][j] = top
+
+
+    # (1)  ¬x_i ∨ r(i,1)
+    for i in range(1, n + 1):
+        solver.add_clause([-lits[i - 1], r[i][1]])
+
+    # (2)  ¬r(i-1,j) ∨ r(i,j)
+    for i in range(2, n + 1):
+        for j in range(1, min(i - 1, K) + 1):
+            solver.add_clause([-r[i - 1][j], r[i][j]])
+
+    # (3)  ¬x_i ∨ ¬r(i-1,j-1) ∨ r(i,j)
+    for i in range(2, n + 1):
+        for j in range(2, min(i, K) + 1):
+            solver.add_clause([-lits[i - 1], -r[i - 1][j - 1], r[i][j]])
+
+    # (5)  x_i ∨ ¬r(i,i)
+    for i in range(1, K + 1):
+        solver.add_clause([lits[i - 1], -r[i][i]])
+
+    # (6)  r(i-1,j-1) ∨ ¬r(i,j)
+    for i in range(2, n + 1):
+        for j in range(2, min(i, K) + 1):
+            solver.add_clause([r[i - 1][j - 1], -r[i][j]])
+
+    # (7)  x_i ∨ r(i-1,j-1) ∨ ¬r(i,j)
+    for i in range(2, n + 1):
+        for j in range(1, min(i - 1, K) + 1):
+            solver.add_clause([lits[i - 1], r[i - 1][j], -r[i][j]])
+
+    # (8)  ¬x_i ∨ ¬r(i-1,K)
+    for i in range(K + 1, n + 1):
+        solver.add_clause([-lits[i - 1], -r[i - 1][K]])
+
+    # rhs[j-1] ⇔ sum(lits) ≤ j
+    rhs = [r[n][j] for j in range(1, K + 1)]
+    return rhs
+
+    # if isinstance(lits, dict):
+    #     lits = list(lits.values())
+    
+    # top = solver.nof_vars()
+    # tot = ITotalizer(lits=lits, ubound=K, top_id=top)
+
+    # for c in tot.cnf.clauses:
+    #     solver.add_clause(c)
+
+    # return tot.rhs
 
 def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
@@ -298,7 +298,7 @@ def verify_solution_simple(assignment, var, ctr_file):
     return True
 
 def main():
-    start_time = time()
+    start_time = time.perf_counter()
     if len(sys.argv) < 2:
         print("Use: python main.py <dataset_folder>")
         return
@@ -315,6 +315,7 @@ def main():
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
@@ -328,6 +329,9 @@ def main():
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
     
     num_lables = len(set(assignment.values()))
@@ -339,12 +343,30 @@ def main():
     # else:   
     #     print("Incorrect solution!")
     #     return
-    print(f"Total time: {time() - start_time:.2f} seconds")
+    print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
+
     x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
+
+    # x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
+    # print("--------------------------------------------------")
+    # print(f"\nTrying with at most {num_lables - 1} labels...")
+
+    # assignment = solve_and_print(solver, var_map, None, None, 'first')
+    # if assignment is None:
+    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
+    #     process = psutil.Process(os.getpid())
+    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    #     return
+    
+    # num_lables = len(set(assignment.values()))
+    # print("Number of lables used: ", num_lables)
+    # print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
+    # process = psutil.Process(os.getpid())
+    # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     
 
@@ -356,7 +378,7 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
-            print(f"Total time: {time() - start_time:.2f} seconds")
+            print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
             process = psutil.Process(os.getpid())
             print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
             
@@ -370,7 +392,7 @@ def main():
         print("Number of lables used: ", new_num_lables)
         num_lables = new_num_lables
 
-        print(f"Total time: {time() - start_time:.2f} seconds")
+        print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 

@@ -1,6 +1,6 @@
 TO=600
 MO=14000
-RESULTS_DIR=results
+RESULTS_DIR=results/no_pre_processing
 mkdir -p $RESULTS_DIR
 
 
@@ -20,9 +20,9 @@ runlim -r $TO -s $MO  python3 -u main.py graph04  2>&1 | tee $RESULTS_DIR/graph0
 runlim -r $TO -s $MO  python3 -u main.py graph05  2>&1 | tee $RESULTS_DIR/graph05.log
 runlim -r $TO -s $MO  python3 -u main.py graph06  2>&1 | tee $RESULTS_DIR/graph06.log
 runlim -r $TO -s $MO  python3 -u main.py graph07  2>&1 | tee $RESULTS_DIR/graph07.log
-runlim -r $TO -s $MO  python3 -u main.py graph10  2>&1 | tee $RESULTS_DIR/graph010.log
+runlim -r $TO -s $MO  python3 -u main.py graph10  2>&1 | tee $RESULTS_DIR/graph10.log
 runlim -r $TO -s $MO  python3 -u main.py graph11  2>&1 | tee $RESULTS_DIR/graph11.log
-runlim -r $TO -s $MO  python3 -u main.py graph12  2>&1 | tee $RESULTS_DIR/graph012.log
+runlim -r $TO -s $MO  python3 -u main.py graph12  2>&1 | tee $RESULTS_DIR/graph12.log
 runlim -r $TO -s $MO  python3 -u main.py graph13  2>&1 | tee $RESULTS_DIR/graph13.log
 runlim -r $TO -s $MO  python3 -u main.py scen05  2>&1 | tee $RESULTS_DIR/scen05.log
 runlim -r $TO -s $MO  python3 -u main.py scen06  2>&1 | tee $RESULTS_DIR/scen06.log
@@ -40,10 +40,3 @@ runlim -r $TO -s $MO  python3 -u main.py TUD916.2  2>&1 | tee $RESULTS_DIR/TUD91
 runlim -r $TO -s $MO  python3 -u main.py TUD916.3  2>&1 | tee $RESULTS_DIR/TUD916.3.log
 runlim -r $TO -s $MO  python3 -u main.py TUD916.4  2>&1 | tee $RESULTS_DIR/TUD916.4.log
 runlim -r $TO -s $MO  python3 -u main.py TUD916.5  2>&1 | tee $RESULTS_DIR/TUD916.5.log
-
-cd ..
-cd CPLEX/MIP
-./auto.sh
-cd ..
-cd CP
-./auto.sh

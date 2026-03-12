@@ -1,7 +1,7 @@
 import os
 # import psutil
 import sys
-from time import time
+import time
 import psutil
 from pysat.solvers import Solver
 from pysat.card import ITotalizer
@@ -488,7 +488,7 @@ def verify_solution(assignment, var, var_file, ctr_file):
     return True
 
 def main():
-    start_time = time()
+    start_time = time.perf_counter()
     solvers = ["glucose4", "cadical195"]
     strategys = ['nsc_reduced', 'sc_reduced', 'tot', 'sc', 'nsc']
     sat_types = ['incremental', 'assumptions']
@@ -521,6 +521,7 @@ def main():
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
@@ -534,23 +535,48 @@ def main():
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
-    if verify_solution(assignment, var, files["var"], files["ctr"]):
-        print("Correct solution!")
-        num_labels = len(set(assignment.values()))
-        print("Number of lables used: ", num_labels)
-    else:   
-        print("Incorrect solution!")
-        return
-    end_time = time()
+    # if verify_solution(assignment, var, files["var"], files["ctr"]):
+    #     print("Correct solution!")
+    #     num_labels = len(set(assignment.values()))
+    #     print("Number of lables used: ", num_labels)
+    # else:   
+    #     print("Incorrect solution!")
+    #     return
+    num_labels = len(set(assignment.values()))
+    print("Number of lables used: ", num_labels)
+    end_time = time.perf_counter()
     print(f"Time taken: {end_time - start_time:.2f} seconds")
-    # process = psutil.Process(os.getpid())
-    # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    process = psutil.Process(os.getpid())
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
-    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
-    
 
+    # rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
+
+    # print("--------------------------------------------------")
+    # print(f"\nTrying with at most {num_labels - 1} labels...")
+
+    # assignment = solve_and_print(solver, var_map, None, None, 'first')
+    # if assignment is None:
+    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+    #     process = psutil.Process(os.getpid())
+    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    #     return
+    # num_labels = len(set(assignment.values()))
+    # print("Number of lables used: ", num_labels)
+    # if verify_solution(assignment, var, files["var"], files["ctr"]):
+    #     print("Correct solution!")
+    #     num_labels = len(set(assignment.values()))
+    #     print("Number of lables used: ", num_labels)
+    # else:   
+    #     print("Incorrect solution!")
+    #     return
+    
+    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
     while num_labels > 1:
         
         print("--------------------------------------------------")
@@ -559,7 +585,9 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_labels)
-            print(f"Time taken: {time() - start_time:.2f} seconds")
+            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
             break
         # if verify_solution(assignment, var, files["var"], files["ctr"]):
         #     print("Correct solution!")
@@ -568,9 +596,9 @@ def main():
         #     break
         num_labels = len(set(assignment.values())) 
         print("Number of lables used: ", num_labels)
-        print(f"Time taken: {time() - start_time:.2f} seconds")
-        # process = psutil.Process(os.getpid())
-        # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     solver.delete()
 

@@ -1,4 +1,5 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
@@ -7,16 +8,19 @@
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		scen10
 [runlim] argv[4]:		assumptions
-[runlim] start:			Sun Mar  8 23:04:18 2026
-[runlim] main pid:		14696
+[runlim] start:			Tue Mar 10 18:45:49 2026
+[runlim] child:			8256
 Warning: variable 13 has no valid labels after preprocessing.
 Cannot find solution!
-Memory used: 16.99 MB
-[runlim] end:			Sun Mar  8 23:04:18 2026
+Time taken: 0.01 seconds
+Memory used: 17.26 MB
+[runlim] end:			Tue Mar 10 18:45:49 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
-[runlim] real:			0.76 seconds
+[runlim] processes:		0
+[runlim] real:			0.05 seconds
 [runlim] time:			0.00 seconds
-[runlim] space:			0.0 MB
-[runlim] samples:		0
+[runlim] space:			0 MB
+[runlim] load:			0.70 maximum
+[runlim] samples:		1

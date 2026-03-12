@@ -1,0 +1,23 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		pairwise_no_preprocessing.py
+[runlim] argv[3]:		scen08
+[runlim] argv[4]:		assumptions
+[runlim] start:			Wed Mar 11 22:44:35 2026
+[runlim] main pid:		12546
+Solve first problem:
+Cannot find solution.
+Time taken: 2.84 seconds 
+Memory used: 199.90 MB
+[runlim] end:			Wed Mar 11 22:44:38 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			3.76 seconds
+[runlim] time:			2.79 seconds
+[runlim] space:			196.2 MB
+[runlim] samples:		28

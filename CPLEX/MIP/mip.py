@@ -1,7 +1,7 @@
 # mip_cplex.py
 import os
 import sys
-from time import time
+import time
 import psutil
 import cplex
 from cplex.exceptions import CplexError
@@ -39,7 +39,7 @@ class MyIncumbentCallback(MIPInfoCallback):
         print("\n========== NEW INCUMBENT SOLUTION ==========")
         print(solution)
         print("Number of labels used:", len(set(solution.values())))
-        print(f"Total time: {time() - self.start_time:.2f} sec")
+        print(f"Total time: {time.perf_counter() - self.start_time:.2f} sec")
 
         process = psutil.Process(os.getpid())
         print(f"Memory: {process.memory_info().rss/1024**2:.2f} MB")
@@ -277,7 +277,7 @@ def verify_solution_simple(assignment, var, ctr_file):
     return True
 
 def main():
-    start_time = time()
+    start_time = time.perf_counter()
     if len(sys.argv) < 2:
         print("Use: python mip.py <dataset_folder>")
         return
@@ -295,6 +295,9 @@ def main():
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
     var_map = create_var_map(var)
 
@@ -305,9 +308,9 @@ def main():
     label_var_map = create_label_var_map(all_labels)
 
     print("Building MIP model...")
-    build_start = time()
+    build_start = time.perf_counter()
     model = build_mip_model(var, var_map, label_var_map, files["ctr"])
-    print(f"Build time: {time() - build_start:.2f}s")
+    print(f"Build time: {time.perf_counter() - build_start:.2f}s")
 
     var_list = list(var_map.values())  # list tên x_{i,v}
     reverse_var_map = {name: key for key, name in var_map.items()}   # name → (i,v)
@@ -317,14 +320,17 @@ def main():
     )
 
     print("Solving MIP (minimizing number of labels)...")
-    # solve_start = time()
+    # solve_start = time.perf_counter()
     model.solve()
-    # solve_time = time() - solve_start
+    # solve_time = time.perf_counter() - solve_start
     # print(f"Solve time: {solve_time:.2f}s")
 
     assignment = extract_assignment_from_solution(model, var, var_map)
     if assignment is None:
         print("No solution found.")
+        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
 
     print("Solution :")
@@ -340,10 +346,10 @@ def main():
     print("Number of labels used:", len(used_labels))
     # print("Labels used:", sorted(list(used_labels)))
 
-    end_time = time()
-    # print(f"Total time: {end_time - start_time:.2f}s")
+    end_time = time.perf_counter()
+    print(f"Total time: {end_time - start_time:.2f}s")
     proc = psutil.Process(os.getpid())
-    # print(f"Memory used: {proc.memory_info().rss / 1024**2:.2f} MB")
+    print(f"Memory used: {proc.memory_info().rss / 1024**2:.2f} MB")
 
 if __name__ == "__main__":
     main()
