@@ -1,0 +1,57 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		scen08
+[runlim] start:			Tue Mar 10 18:47:34 2026
+[runlim] child:			8389
+[runlim] sample:		9.99 time, 10.01 real, 584 MB, 2.24 load
+[runlim] sample:		19.99 time, 20.01 real, 1085 MB, 2.13 load
+[runlim] sample:		29.98 time, 30.01 real, 3909 MB, 1.95 load
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 24312 variables, 1268781 constraints
+ ! Presolve      : 1269699 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 10.65s (10.60s extraction + 0.05s propagation)
+ !  . Log search space  : 24312.0 (before), 24312.0 (after)
+ !  . Memory usage      : 190.1 MB (before), 190.1 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0      24312                 -
+ + New bound is 0
+[runlim] sample:		106.19 time, 40.02 real, 5490 MB, 3.00 load
+                        0      24312    1            -
+ + New bound is 1
+[runlim] sample:		188.05 time, 50.01 real, 5879 MB, 3.54 load
+[runlim] sample:		262.86 time, 60.01 real, 5934 MB, 4.37 load
+[runlim] sample:		327.54 time, 70.01 real, 5949 MB, 4.53 load
+[runlim] sample:		390.27 time, 80.01 real, 5978 MB, 5.38 load
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 1
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 265554
+ ! Number of fails        : 50783
+ ! Total memory usage     : 4.7 GB (4.7 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 62.38s (51.79s engine + 10.60s extraction)
+ ! Search speed (br. / s) : 5128.5
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 85.17s
+Memory used: 1106.11 MB
+[runlim] end:			Tue Mar 10 18:49:02 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			87.74 seconds
+[runlim] time:			422.76 seconds
+[runlim] space:			10322 MB
+[runlim] load:			5.38 maximum
+[runlim] samples:		878

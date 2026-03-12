@@ -1,0 +1,28 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		scen06
+[runlim] start:			Sat Jan 24 18:36:04 2026
+[runlim] main pid:		31213
+Building Gurobi model...
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2663665
+Academic license 2663665 - for non-commercial use only - registered to tu___@vnu.edu.vn
+Build time used: 2.42 sec
+Solving...
+No solution found.
+Total time used: 3.28 sec
+Memory used: 217.68 MB
+[runlim] end:			Sat Jan 24 18:36:07 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			3.46 seconds
+[runlim] time:			5.56 seconds
+[runlim] space:			245.3 MB
+[runlim] samples:		34

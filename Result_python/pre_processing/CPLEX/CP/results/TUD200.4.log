@@ -1,0 +1,67 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		TUD200.4
+[runlim] start:			Tue Mar 10 02:32:45 2026
+[runlim] child:			6973
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 3724 variables, 131372 constraints
+ ! Presolve      : 120552 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 0.91s (0.91s extraction + 0.00s propagation)
+ !  . Log search space  : 3486.0 (before), 3486.0 (after)
+ !  . Memory usage      : 18.0 MB (before), 18.0 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0       3486                 -
+ + New bound is 10
+                        0       3486    1            -
+ + New bound is 11
+                      186       3111    1   F     0 != x_139_72
+ + New bound is 12
+ *            40      825  1.56s        2      (gap is 70.00%)
+ *            34      459  1.57s        6      (gap is 64.71%)
+ *            24     4479  1.88s        9      (gap is 50.00%)
+ *            23     6115  2.13s        9      (gap is 47.83%)
+ *            22     6555  2.15s        9      (gap is 45.45%)
+              22     6981          4    1   F        -
+ + New bound is 18 (gap is 18.18%)
+              22     6621          1    4   F        -
+ + New bound is 19 (gap is 13.64%)
+ *            20     6670  2.18s        4      (gap is 5.00%)
+              20     7151        807    1   F     0 != x_71_778
+ + New bound is 20 (gap is 0.00%)
+ ! ----------------------------------------------------------------------------
+ ! Search completed, 6 solutions found.
+ ! Best objective         : 20 (optimal - effective tol. is 0)
+ ! Best bound             : 20
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 86065
+ ! Number of fails        : 33782
+ ! Total memory usage     : 519.7 MB (518.8 MB CP Optimizer + 0.9 MB Concert)
+ ! Time spent in solve    : 2.33s (1.42s engine + 0.91s extraction)
+ ! Search speed (br. / s) : 60609.2
+ ! ----------------------------------------------------------------------------
+
+FINAL SOLUTION:
+{86, 324, 86, 324, 652, 414, 156, 394, 128, 366, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+Number of labels used: 20
+Total time: 4.64s
+Memory used: 148.72 MB
+[runlim] end:			Tue Mar 10 02:32:50 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			4.97 seconds
+[runlim] time:			15.19 seconds
+[runlim] space:			963 MB
+[runlim] load:			7.03 maximum
+[runlim] samples:		50

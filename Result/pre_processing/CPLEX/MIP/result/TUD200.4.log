@@ -1,0 +1,76 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		TUD200.4
+[runlim] start:			Sat Jan 24 19:57:04 2026
+[runlim] main pid:		67037
+Building MIP model...
+Build time: 8.01s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 2 times.
+MIP Presolve eliminated 119100 rows and 1469 columns.
+MIP Presolve modified 91650 coefficients.
+Aggregator did 1726 substitutions.
+Reduced MIP has 1967 rows, 529 columns, and 20703 nonzeros.
+Reduced MIP has 529 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1.17 sec. (2615.50 ticks)
+Found incumbent of value 48.000000 after 1.19 sec. (2645.46 ticks)
+Probing fixed 256 vars, tightened 0 bounds.
+Probing changed sense of 447 constraints.
+Probing time = 0.00 sec. (1.08 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1538 rows and 298 columns.
+MIP Presolve modified 111 coefficients.
+Reduced MIP has 429 rows, 227 columns, and 3860 nonzeros.
+Reduced MIP has 227 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (10.81 ticks)
+Probing time = 0.00 sec. (0.72 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 1 columns.
+MIP Presolve modified 56 coefficients.
+Reduced MIP has 419 rows, 226 columns, and 3786 nonzeros.
+Reduced MIP has 226 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.15 ticks)
+Probing time = 0.00 sec. (0.72 ticks)
+Clique table members: 554.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 12 threads.
+Root relaxation solution time = 0.00 sec. (2.24 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           48.0000       18.0000            62.50%
+*     0+    0                           24.0000       18.0000            25.00%
+*     0+    0                           22.0000       18.0000            18.18%
+*     0     0      integral     0       20.0000       20.0000      136    0.00%
+Elapsed time = 1.21 sec. (2669.14 ticks, tree = 0.00 MB, solutions = 4)
+
+Root node processing (before b&c):
+  Real time             =    1.21 sec. (2669.31 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    1.21 sec. (2669.31 ticks)
+Solution :
+{86, 324, 86, 324, 86, 324, 156, 394, 652, 414, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+Number of labels used: 20
+[runlim] end:			Sat Jan 24 19:57:14 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			10.20 seconds
+[runlim] time:			10.23 seconds
+[runlim] space:			74.6 MB
+[runlim] samples:		93

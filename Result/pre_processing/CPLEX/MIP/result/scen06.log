@@ -1,0 +1,51 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		scen06
+[runlim] start:			Sat Jan 24 19:41:49 2026
+[runlim] main pid:		60216
+Building MIP model...
+[runlim] sample:		10.0 time, 10.2 real, 31.3 MB
+[runlim] sample:		20.0 time, 20.2 real, 35.0 MB
+[runlim] sample:		30.0 time, 30.2 real, 38.8 MB
+[runlim] sample:		40.0 time, 40.2 real, 41.5 MB
+Build time: 41.08s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 2 times.
+MIP Presolve eliminated 363703 rows and 640 columns.
+MIP Presolve modified 134409 coefficients.
+Aggregator did 2919 substitutions.
+Reduced MIP has 13607 rows, 2323 columns, and 225186 nonzeros.
+Reduced MIP has 2323 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 3.61 sec. (6562.18 ticks)
+Probing fixed 531 vars, tightened 0 bounds.
+Probing changed sense of 181 constraints.
+Probing time = 0.01 sec. (5.64 ticks)
+Cover probing fixed 125 vars, tightened 0 bounds.
+Presolve time = 0.07 sec. (114.45 ticks)
+
+Root node processing (before b&c):
+  Real time             =    3.96 sec. (7205.05 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    3.96 sec. (7205.05 ticks)
+CPLEX Error  1217: No solution exists.
+No solution found.
+[runlim] end:			Sat Jan 24 19:42:34 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			45.36 seconds
+[runlim] time:			49.86 seconds
+[runlim] space:			167.0 MB
+[runlim] samples:		451

@@ -1,7 +1,7 @@
 TO=600
 MO=14000
 
-RESULT=results/no_pre_processing/nsc_assumptions 
+RESULT=results/nsc_assumptions 
 mkdir -p $RESULT
 
 NO_RESULT=results/no_pre_processing/nsc_assumptions 

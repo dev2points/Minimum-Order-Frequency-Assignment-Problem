@@ -1,0 +1,102 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		scen05
+[runlim] start:			Sat Jan 24 19:40:32 2026
+[runlim] main pid:		59639
+Building MIP model...
+[runlim] sample:		10.0 time, 10.1 real, 30.7 MB
+[runlim] sample:		20.0 time, 20.1 real, 34.2 MB
+[runlim] sample:		30.0 time, 30.1 real, 37.4 MB
+[runlim] sample:		40.0 time, 40.1 real, 39.6 MB
+[runlim] sample:		50.0 time, 50.1 real, 42.1 MB
+[runlim] sample:		60.0 time, 60.1 real, 44.9 MB
+[runlim] sample:		70.0 time, 70.1 real, 45.4 MB
+Build time: 71.85s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 2 times.
+MIP Presolve eliminated 401296 rows and 1656 columns.
+MIP Presolve modified 212854 coefficients.
+Aggregator did 4618 substitutions.
+Reduced MIP has 15868 rows, 3008 columns, and 231265 nonzeros.
+Reduced MIP has 3008 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 4.75 sec. (8186.92 ticks)
+Found incumbent of value 48.000000 after 4.93 sec. (8522.90 ticks)
+Probing fixed 1089 vars, tightened 0 bounds.
+Probing changed sense of 2660 constraints.
+Probing time = 0.02 sec. (6.40 ticks)
+Cover probing fixed 12 vars, tightened 17 bounds.
+Tried aggregator 4 times.
+MIP Presolve eliminated 15341 rows and 2709 columns.
+MIP Presolve modified 10366 coefficients.
+Aggregator did 47 substitutions.
+Reduced MIP has 442 rows, 250 columns, and 1680 nonzeros.
+Reduced MIP has 250 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.07 sec. (135.20 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing changed sense of 14 constraints.
+Probing time = 0.00 sec. (0.32 ticks)
+Tried aggregator 5 times.
+MIP Presolve eliminated 330 rows and 151 columns.
+MIP Presolve added 1 rows and 1 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 13 substitutions.
+Reduced MIP has 100 rows, 86 columns, and 315 nonzeros.
+Reduced MIP has 86 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.35 ticks)
+Probing changed sense of 4 constraints.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 57 rows and 42 columns.
+MIP Presolve modified 2 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 42 rows, 43 columns, and 173 nonzeros.
+Reduced MIP has 43 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.19 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 9 rows and 9 columns.
+Reduced MIP has 33 rows, 33 columns, and 148 nonzeros.
+Reduced MIP has 33 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.11 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
+Clique table members: 47.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 12 threads.
+Root relaxation solution time = 0.00 sec. (0.04 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           44.0000       38.0000            13.64%
+*     0     0      integral     0       40.0000       40.0000        4    0.00%
+Elapsed time = 5.03 sec. (8691.78 ticks, tree = 0.00 MB, solutions = 4)
+
+Root node processing (before b&c):
+  Real time             =    5.03 sec. (8692.21 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    5.03 sec. (8692.21 ticks)
+Solution :
+{156, 394, 156, 394, 16, 254, 128, 366, 736, 498, 254, 16, 128, 366, 428, 666, 792, 554, 554, 792, 30, 268, 792, 554, 666, 428, 442, 680, 72, 310, 428, 666, 128, 366, 764, 526, 44, 282, 254, 16, 442, 680, 736, 498, 268, 30, 310, 72, 736, 498, 792, 554, 310, 72, 764, 526, 324, 86, 442, 680, 114, 352, 498, 736, 310, 72, 58, 296, 268, 30, 296, 58, 72, 310, 554, 792, 296, 58, 296, 58, 30, 268, 30, 268, 296, 58, 366, 128, 128, 366, 16, 254, 484, 722, 792, 554, 156, 394, 240, 478, 792, 554, 254, 16, 156, 394, 324, 86, 554, 792, 526, 764, 394, 156, 30, 268, 310, 72, 254, 16, 156, 394, 456, 694, 310, 72, 282, 44, 792, 554, 526, 764, 394, 156, 394, 156, 268, 30, 708, 470, 680, 442, 778, 540, 442, 680, 722, 484, 128, 366, 352, 114, 352, 114, 72, 310, 778, 540, 722, 484, 778, 540, 366, 128, 268, 30, 428, 666, 764, 526, 778, 540, 394, 156, 58, 296, 764, 526, 16, 254, 352, 114, 352, 114, 680, 442, 268, 30, 694, 456, 666, 428, 498, 736, 156, 394, 72, 310, 428, 666, 652, 414, 792, 554, 254, 16, 442, 680, 540, 778, 366, 128, 114, 352, 708, 470, 526, 764, 324, 86, 540, 778, 484, 722, 30, 268, 58, 296, 554, 792, 680, 442, 16, 254, 778, 540, 366, 128, 666, 428, 366, 128, 526, 764, 268, 30, 442, 680, 296, 58, 680, 442, 268, 30, 498, 736, 526, 764, 324, 86, 310, 72, 86, 324, 764, 526, 540, 778, 540, 778, 722, 484, 30, 268, 282, 44, 498, 736, 128, 366, 680, 442, 128, 366, 128, 366, 128, 366, 16, 254, 128, 366, 680, 442, 792, 554, 442, 680, 394, 156, 778, 540, 310, 72, 44, 282, 296, 58, 694, 456, 128, 366, 254, 16, 554, 792, 442, 680, 708, 470, 442, 680, 352, 114, 58, 296, 526, 764, 540, 778, 30, 268, 694, 456, 128, 366, 498, 736, 540, 778, 16, 254, 324, 86, 296, 58, 114, 352, 526, 764, 44, 282, 722, 484, 540, 778, 268, 30, 764, 526, 296, 58, 540, 778, 428, 666, 282, 44, 764, 526, 268, 30, 778, 540, 128, 366, 554, 792, 498, 736, 282, 44, 526, 764, 268, 30, 268, 30, 694, 456, 778, 540, 310, 72, 114, 352, 282, 44, 254, 16}
+Number of labels used: 40
+[runlim] end:			Sat Jan 24 19:41:49 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			77.18 seconds
+[runlim] time:			83.29 seconds
+[runlim] space:			193.6 MB
+[runlim] samples:		770
