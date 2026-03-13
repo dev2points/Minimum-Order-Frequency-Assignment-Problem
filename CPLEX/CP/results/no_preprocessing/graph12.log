@@ -1,0 +1,42 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		graph12
+[runlim] start:			Fri Mar 13 05:07:42 2026
+[runlim] main pid:		24288
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 6918 variables, 178648 constraints
+ ! LogVerbosity         = Terse
+ ! Initial process time : 0.18s (0.18s extraction + 0.00s propagation)
+ !  . Log search space  : 6408.0 (before), 6408.0 (after)
+ !  . Memory usage      : 5.1 MB (before), 5.1 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0       6918                 -
+ + New bound is 0
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 0
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 152.7 MB (151.1 MB CP Optimizer + 1.6 MB Concert)
+ ! Time spent in solve    : 0.20s (0.02s engine + 0.18s extraction)
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 3.25s
+Memory used: 201.24 MB
+[runlim] end:			Fri Mar 13 05:07:46 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		20
+[runlim] real:			4.14 seconds
+[runlim] time:			3.36 seconds
+[runlim] space:			382.5 MB
+[runlim] samples:		36

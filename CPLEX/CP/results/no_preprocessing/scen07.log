@@ -1,0 +1,36 @@
+[runlim] version:		1.10
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		scen07
+[runlim] start:			Fri Mar 13 05:20:23 2026
+[runlim] main pid:		24420
+[runlim] sample:		10.0 time, 10.5 real, 603.6 MB
+[runlim] sample:		20.0 time, 20.5 real, 1475.4 MB
+[runlim] sample:		30.0 time, 30.5 real, 1591.5 MB
+[runlim] sample:		40.0 time, 40.5 real, 3716.4 MB
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 15996 variables, 1842244 constraints
+ ! Presolve      : 1842646 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 15.69s (15.63s extraction + 0.07s propagation)
+ !  . Log search space  : 15996.0 (before), 15996.0 (after)
+ !  . Memory usage      : 229.7 MB (before), 229.7 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0      15996                 -
+ + New bound is 0
+[runlim] sample:		65.2 time, 50.5 real, 7317.4 MB
+[runlim] end:			Fri Mar 13 05:21:18 2026
+[runlim] status:		out of memory
+[runlim] result:		3
+[runlim] children:		402
+[runlim] real:			55.27 seconds
+[runlim] time:			121.11 seconds
+[runlim] space:			14022.1 MB
+[runlim] samples:		547

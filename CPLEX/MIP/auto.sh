@@ -1,6 +1,6 @@
 TO=600
 MO=14000
-RESULTS_DIR=result/no_pre_processing
+RESULTS_DIR=result/no_preprocessing
 mkdir -p $RESULTS_DIR
 
 
@@ -15,31 +15,34 @@ runlim -r $TO -s $MO  python3 -u mip.py scen03  2>&1 | tee $RESULTS_DIR/scen03.l
 runlim -r $TO -s $MO  python3 -u mip.py scen04  2>&1 | tee $RESULTS_DIR/scen04.log
 runlim -r $TO -s $MO  python3 -u mip.py scen11  2>&1 | tee $RESULTS_DIR/scen11.log
 
-# runlim -r $TO -s $MO  python3 -u mip.py graph03  2>&1 | tee $RESULTS_DIR/graph03.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph04  2>&1 | tee $RESULTS_DIR/graph04.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph05  2>&1 | tee $RESULTS_DIR/graph05.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph06  2>&1 | tee $RESULTS_DIR/graph06.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph07  2>&1 | tee $RESULTS_DIR/graph07.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph10  2>&1 | tee $RESULTS_DIR/graph10.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph11  2>&1 | tee $RESULTS_DIR/graph11.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph12  2>&1 | tee $RESULTS_DIR/graph12.log
-# runlim -r $TO -s $MO  python3 -u mip.py graph13  2>&1 | tee $RESULTS_DIR/graph13.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen05  2>&1 | tee $RESULTS_DIR/scen05.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen06  2>&1 | tee $RESULTS_DIR/scen06.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen07  2>&1 | tee $RESULTS_DIR/scen07.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen08  2>&1 | tee $RESULTS_DIR/scen08.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen09  2>&1 | tee $RESULTS_DIR/scen09.log
-# runlim -r $TO -s $MO  python3 -u mip.py scen10  2>&1 | tee $RESULTS_DIR/scen10.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD200.1  2>&1 | tee $RESULTS_DIR/TUD200.1.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD200.2  2>&1 | tee $RESULTS_DIR/TUD200.2.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD200.3  2>&1 | tee $RESULTS_DIR/TUD200.3.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD200.4  2>&1 | tee $RESULTS_DIR/TUD200.4.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD200.5  2>&1 | tee $RESULTS_DIR/TUD200.5.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD916.1  2>&1 | tee $RESULTS_DIR/TUD916.1.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD916.2  2>&1 | tee $RESULTS_DIR/TUD916.2.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD916.3  2>&1 | tee $RESULTS_DIR/TUD916.3.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD916.4  2>&1 | tee $RESULTS_DIR/TUD916.4.log
-# runlim -r $TO -s $MO  python3 -u mip.py TUD916.5  2>&1 | tee $RESULTS_DIR/TUD916.5.log
+runlim -r $TO -s $MO  python3 -u mip.py graph03  2>&1 | tee $RESULTS_DIR/graph03.log
+runlim -r $TO -s $MO  python3 -u mip.py graph04  2>&1 | tee $RESULTS_DIR/graph04.log
+runlim -r $TO -s $MO  python3 -u mip.py graph05  2>&1 | tee $RESULTS_DIR/graph05.log
+runlim -r $TO -s $MO  python3 -u mip.py graph06  2>&1 | tee $RESULTS_DIR/graph06.log
+runlim -r $TO -s $MO  python3 -u mip.py graph07  2>&1 | tee $RESULTS_DIR/graph07.log
+runlim -r $TO -s $MO  python3 -u mip.py graph10  2>&1 | tee $RESULTS_DIR/graph10.log
+runlim -r $TO -s $MO  python3 -u mip.py graph11  2>&1 | tee $RESULTS_DIR/graph11.log
+runlim -r $TO -s $MO  python3 -u mip.py graph12  2>&1 | tee $RESULTS_DIR/graph12.log
+runlim -r $TO -s $MO  python3 -u mip.py graph13  2>&1 | tee $RESULTS_DIR/graph13.log
+runlim -r $TO -s $MO  python3 -u mip.py scen05  2>&1 | tee $RESULTS_DIR/scen05.log
+runlim -r $TO -s $MO  python3 -u mip.py scen06  2>&1 | tee $RESULTS_DIR/scen06.log
+runlim -r $TO -s $MO  python3 -u mip.py scen07  2>&1 | tee $RESULTS_DIR/scen07.log
+runlim -r $TO -s $MO  python3 -u mip.py scen08  2>&1 | tee $RESULTS_DIR/scen08.log
+runlim -r $TO -s $MO  python3 -u mip.py scen09  2>&1 | tee $RESULTS_DIR/scen09.log
+runlim -r $TO -s $MO  python3 -u mip.py scen10  2>&1 | tee $RESULTS_DIR/scen10.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD200.1  2>&1 | tee $RESULTS_DIR/TUD200.1.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD200.2  2>&1 | tee $RESULTS_DIR/TUD200.2.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD200.3  2>&1 | tee $RESULTS_DIR/TUD200.3.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD200.4  2>&1 | tee $RESULTS_DIR/TUD200.4.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD200.5  2>&1 | tee $RESULTS_DIR/TUD200.5.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD916.1  2>&1 | tee $RESULTS_DIR/TUD916.1.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD916.2  2>&1 | tee $RESULTS_DIR/TUD916.2.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD916.3  2>&1 | tee $RESULTS_DIR/TUD916.3.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD916.4  2>&1 | tee $RESULTS_DIR/TUD916.4.log
+runlim -r $TO -s $MO  python3 -u mip.py TUD916.5  2>&1 | tee $RESULTS_DIR/TUD916.5.log
 
 
 
+cd ..
+cd CP
+./auto.sh
