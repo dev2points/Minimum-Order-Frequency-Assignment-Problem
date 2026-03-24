@@ -528,17 +528,19 @@ def main():
         return
     num_labels = len(set(assignment.values()))
     print("Number of lables used: ", num_labels)
-    if verify_solution(assignment, var, files["var"], files["ctr"]):
-        print("Correct solution!")
-        num_labels = len(set(assignment.values()))
-        print("Number of lables used: ", num_labels)
-    else:   
-        print("Incorrect solution!")
-        return
+    # if verify_solution(assignment, var, files["var"], files["ctr"]):
+    #     print("Correct solution!")
+    #     num_labels = len(set(assignment.values()))
+    #     print("Number of lables used: ", num_labels)
+    # else:   
+    #     print("Incorrect solution!")
+    #     return
     
-    # rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+    solver.delete()
     while num_labels > 1:
-        
+        solver = Solver(name= sys.argv[3])
+        build_constraints(solver, var, var_map, last_var_num, files["ctr"])
+        build_label_constraints(solver, var_map, lable_var_map)
         print("--------------------------------------------------")
         print(f"\nTrying with at most {num_labels - 1} labels...")
         rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
@@ -556,7 +558,7 @@ def main():
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
-    solver.delete()
+        solver.delete()
 
 if __name__ == "__main__":
     main()
