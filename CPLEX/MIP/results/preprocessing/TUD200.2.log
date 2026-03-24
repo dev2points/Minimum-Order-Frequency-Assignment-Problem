@@ -1,0 +1,56 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		TUD200.2
+[runlim] start:			Tue Mar 24 07:22:51 2026
+[runlim] child:			30380
+Building MIP model...
+[runlim] sample:		9.99 time, 10.01 real, 31 MB, 1.25 load
+Build time: 10.38s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 3 times.
+MIP Presolve eliminated 142322 rows and 3423 columns.
+MIP Presolve modified 11966 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 173 rows, 110 columns, and 2046 nonzeros.
+Reduced MIP has 110 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.10 sec. (177.16 ticks)
+Found incumbent of value 48.000000 after 0.11 sec. (193.05 ticks)
+Probing fixed 108 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.17 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 173 rows and 110 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.13 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (193.84 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (193.84 ticks)
+Solution :
+{708, 470, 778, 540, 16, 254, 16, 254, 30, 268, 86, 324, 680, 442, 16, 254, 240, 478, 114, 352, 156, 394, 708, 470, 16, 254, 16, 254, 722, 484, 764, 526, 792, 554, 16, 254, 680, 442, 722, 484, 16, 254, 652, 414, 666, 428, 16, 254, 114, 352, 736, 498, 240, 478, 708, 470, 652, 414, 694, 456, 16, 254, 170, 408, 750, 512, 792, 554, 86, 324, 44, 282, 652, 414, 128, 366, 652, 414, 680, 442, 792, 554, 792, 554, 128, 366, 16, 254, 128, 366, 764, 526, 792, 554, 750, 512, 142, 380, 722, 484, 114, 352, 16, 254, 156, 394, 764, 526, 30, 268, 792, 554, 708, 470, 652, 414, 778, 540, 170, 408, 16, 254, 708, 470, 792, 554, 16, 254, 792, 554, 44, 282, 792, 554, 16, 254, 156, 394, 30, 268, 156, 394, 778, 540, 86, 324, 750, 512, 652, 414, 666, 428, 30, 268, 792, 554, 680, 442, 792, 554, 142, 380, 16, 254, 86, 324, 792, 554, 16, 254, 666, 428, 666, 428, 792, 554, 722, 484, 652, 414, 58, 296, 792, 554, 792, 554, 86, 324, 72, 310, 142, 380, 792, 554, 680, 442, 16, 254, 792, 554}
+Number of labels used: 46
+Total time: 10.57s
+Memory used: 53.63 MB
+[runlim] end:			Tue Mar 24 07:23:02 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			10.62 seconds
+[runlim] time:			10.60 seconds
+[runlim] space:			53 MB
+[runlim] load:			1.30 maximum
+[runlim] samples:		107

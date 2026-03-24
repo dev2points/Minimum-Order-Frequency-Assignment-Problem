@@ -216,16 +216,7 @@ def build_mip_model(var, var_map, label_var_map, ctr_file):
                             senses=["L"],
                             rhs=[0.0]
                         )
-                for vj in vals_j:
-                    allowed = [var_map[(i, vi)] for vi in vals_i if abs(vi - vj) == distance]
-                    if allowed:
-                        inds = [var_map[(j,vj)]] + allowed
-                        coeffs = [1.0] + [-1.0]*len(allowed)
-                        model.linear_constraints.add(
-                            lin_expr=[cplex.SparsePair(ind=inds, val=coeffs)],
-                            senses=["L"],
-                            rhs=[0.0]
-                        )
+                
 
     # Objective: minimize sum of label variables
     obj_inds = l_names
@@ -293,12 +284,12 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    # if(not delete_invalid_labels(var, files["ctr"])):
-    #     print("Cannot find solution!")
-    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
+    if(not delete_invalid_labels(var, files["ctr"])):
+        print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
     var_map = create_var_map(var)
 
     # collect all label values

@@ -134,9 +134,7 @@ def build_gurobi_model(var, ctr_file):
             elif '=' in parts:
                 target = int(parts[4])
                 for vi in vals_i:
-                    for vj in vals_j:
-                        if abs(vi - vj) == target:
-                            model.addConstr(x[(i, vi)] == x[(j, vj)])
+                    model.addConstr(x[(i, vi)] <= sum(x[(j, vj)] for vj in vals_j if abs(vi - vj) == target))
 
     # Minimize number of labels used
     model.setObjective(sum(y[v] for v in label_set), GRB.MINIMIZE)
@@ -234,12 +232,12 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    # if(not delete_invalid_labels(var, files["ctr"])):
-    #     print("Cannot find solution!")
-    #     print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
+    if(not delete_invalid_labels(var, files["ctr"])):
+        print("Cannot find solution!")
+        print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
 
     print("Building Gurobi model...")
     model, x, y = build_gurobi_model(var, files["ctr"])

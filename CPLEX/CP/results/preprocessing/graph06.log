@@ -1,0 +1,55 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		cp.py
+[runlim] argv[2]:		graph06
+[runlim] start:			Mon Mar 23 22:57:53 2026
+[runlim] child:			14749
+[runlim] sample:		9.99 time, 10.01 real, 600 MB, 4.09 load
+[runlim] sample:		19.99 time, 20.01 real, 946 MB, 3.61 load
+[runlim] sample:		29.98 time, 30.01 real, 3201 MB, 3.21 load
+Building CP model...
+Solving CP Optimizer...
+ ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
+ ! Minimization problem - 15132 variables, 1088277 constraints
+ ! Presolve      : 1088679 extractables eliminated
+ ! LogVerbosity         = Terse
+ ! Initial process time : 9.64s (9.60s extraction + 0.05s propagation)
+ !  . Log search space  : 15132.0 (before), 15132.0 (after)
+ !  . Memory usage      : 167.8 MB (before), 167.8 MB (after)
+ ! Using parallel search with 12 workers.
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed    W       Branch decision
+                        0      15132                 -
+ + New bound is 0
+                        0      15132    1            -
+ + New bound is 1
+[runlim] sample:		120.33 time, 40.01 real, 4932 MB, 3.19 load
+[runlim] sample:		181.65 time, 50.01 real, 4977 MB, 3.94 load
+[runlim] sample:		240.57 time, 60.01 real, 5026 MB, 3.93 load
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 1
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 219587
+ ! Number of fails        : 45032
+ ! Total memory usage     : 4.0 GB (4.0 GB CP Optimizer + 0.0 GB Concert)
+ ! Time spent in solve    : 39.03s (29.43s engine + 9.60s extraction)
+ ! Search speed (br. / s) : 7461.3
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 60.49s
+Memory used: 956.39 MB
+[runlim] end:			Mon Mar 23 22:58:55 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			62.63 seconds
+[runlim] time:			244.18 seconds
+[runlim] space:			9205 MB
+[runlim] load:			4.65 maximum
+[runlim] samples:		627

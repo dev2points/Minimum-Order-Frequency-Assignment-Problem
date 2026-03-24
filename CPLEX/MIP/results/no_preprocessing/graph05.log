@@ -1,0 +1,57 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip_no.py
+[runlim] argv[3]:		graph05
+[runlim] start:			Tue Mar 24 12:04:59 2026
+[runlim] child:			34382
+Building MIP model...
+[runlim] sample:		9.99 time, 10.01 real, 30 MB, 1.74 load
+[runlim] sample:		19.99 time, 20.01 real, 33 MB, 1.63 load
+[runlim] sample:		29.99 time, 30.01 real, 36 MB, 1.53 load
+[runlim] sample:		39.98 time, 40.01 real, 39 MB, 1.45 load
+[runlim] sample:		49.98 time, 50.01 real, 41 MB, 1.38 load
+[runlim] sample:		59.97 time, 60.01 real, 44 MB, 1.32 load
+[runlim] sample:		69.97 time, 70.01 real, 45 MB, 1.27 load
+[runlim] sample:		79.97 time, 80.01 real, 48 MB, 1.23 load
+[runlim] sample:		89.96 time, 90.01 real, 49 MB, 1.19 load
+Build time: 91.38s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 1 time.
+[runlim] sample:		115.32 time, 100.01 real, 275 MB, 1.47 load
+Presolve has eliminated 461275 rows and 1148 columns...
+MIP Presolve eliminated 461275 rows and 1148 columns.
+MIP Presolve modified 232592 coefficients.
+Reduced MIP has 59139 rows, 6316 columns, and 650460 nonzeros.
+Reduced MIP has 6316 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 10.03 sec. (16367.36 ticks)
+
+Root node processing (before b&c):
+  Real time             =   10.69 sec. (17331.12 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =   10.69 sec. (17331.12 ticks)
+CPLEX Error  1217: No solution exists.
+No solution found.
+Total time: 102.09s
+Memory used: 190.31 MB
+[runlim] end:			Tue Mar 24 12:06:42 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			102.15 seconds
+[runlim] time:			118.04 seconds
+[runlim] space:			277 MB
+[runlim] load:			1.88 maximum
+[runlim] samples:		1022

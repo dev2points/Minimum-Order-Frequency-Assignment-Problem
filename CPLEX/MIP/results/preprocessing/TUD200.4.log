@@ -1,0 +1,82 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		mip.py
+[runlim] argv[3]:		TUD200.4
+[runlim] start:			Tue Mar 24 07:23:28 2026
+[runlim] child:			30417
+Building MIP model...
+Build time: 8.74s
+Solving MIP (minimizing number of labels)...
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Read_DataCheck                          1
+Legacy callback                                  i
+Tried aggregator 3 times.
+MIP Presolve eliminated 116389 rows and 1766 columns.
+MIP Presolve modified 69290 coefficients.
+Aggregator did 6 substitutions.
+Reduced MIP has 7061 rows, 1952 columns, and 63567 nonzeros.
+Reduced MIP has 1952 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.81 sec. (1358.08 ticks)
+Found incumbent of value 48.000000 after 0.89 sec. (1471.68 ticks)
+Probing fixed 1396 vars, tightened 0 bounds.
+Probing changed sense of 709 constraints.
+Probing time = 0.01 sec. (5.36 ticks)
+Cover probing fixed 2 vars, tightened 44 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 6503 rows and 1723 columns.
+MIP Presolve modified 299 coefficients.
+Reduced MIP has 558 rows, 229 columns, and 6279 nonzeros.
+Reduced MIP has 229 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (37.29 ticks)
+Probing time = 0.00 sec. (0.88 ticks)
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 4 rows and 0 columns.
+MIP Presolve modified 230 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 538 rows, 224 columns, and 6026 nonzeros.
+Reduced MIP has 224 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.17 ticks)
+Probing time = 0.00 sec. (0.92 ticks)
+Clique table members: 667.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 12 threads.
+Root relaxation solution time = 0.00 sec. (1.29 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           48.0000       18.0000            62.50%
+*     0+    0                           22.0000       18.0000            18.18%
+*     0     0      integral     0       20.0000       20.0000       42    0.00%
+Elapsed time = 0.94 sec. (1531.43 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.94 sec. (1531.58 ticks)
+Parallel b&c, 12 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.94 sec. (1531.58 ticks)
+Solution :
+{86, 324, 86, 324, 86, 324, 156, 394, 128, 366, 792, 554, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 792, 554, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 792, 554, 170, 408, 72, 310, 792, 554, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 792, 554, 240, 478, 100, 338, 128, 366, 792, 554, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 792, 554, 170, 408, 240, 478, 156, 394, 792, 554, 114, 352, 72, 310, 792, 554, 72, 310, 156, 394, 792, 554, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 792, 554, 792, 554, 170, 408, 86, 324, 128, 366, 156, 394, 792, 554, 240, 478, 72, 310, 114, 352, 792, 554, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 792, 554, 792, 554, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+Number of labels used: 20
+Total time: 9.75s
+Memory used: 58.57 MB
+[runlim] end:			Tue Mar 24 07:23:38 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			9.80 seconds
+[runlim] time:			10.43 seconds
+[runlim] space:			85 MB
+[runlim] load:			1.39 maximum
+[runlim] samples:		98

@@ -1,39 +1,42 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
-[runlim] argv[1]:		cp.py
+[runlim] argv[1]:		cp_no.py
 [runlim] argv[2]:		graph13
-[runlim] start:			Fri Mar 13 05:07:46 2026
-[runlim] main pid:		24314
-[runlim] sample:		10.0 time, 10.1 real, 610.6 MB
-[runlim] sample:		20.0 time, 20.1 real, 1153.4 MB
-[runlim] sample:		30.0 time, 30.1 real, 2218.7 MB
-[runlim] sample:		40.0 time, 40.1 real, 2490.9 MB
-[runlim] sample:		50.0 time, 50.1 real, 3725.0 MB
-[runlim] sample:		59.9 time, 60.1 real, 5970.6 MB
-[runlim] sample:		69.9 time, 70.1 real, 8026.8 MB
+[runlim] start:			Tue Mar 24 04:11:31 2026
+[runlim] child:			18408
+[runlim] sample:		9.99 time, 10.01 real, 576 MB, 2.60 load
+[runlim] sample:		19.99 time, 20.01 real, 1130 MB, 2.36 load
+[runlim] sample:		29.98 time, 30.01 real, 1956 MB, 2.15 load
+[runlim] sample:		39.98 time, 40.01 real, 2463 MB, 1.97 load
+[runlim] sample:		49.97 time, 50.01 real, 2514 MB, 1.82 load
+[runlim] sample:		59.96 time, 60.01 real, 5589 MB, 1.69 load
+[runlim] sample:		69.94 time, 70.01 real, 8547 MB, 1.59 load
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 35224 variables, 2871236 constraints
- ! Presolve      : 2872154 extractables eliminated
+ ! Minimization problem - 35224 variables, 2853648 constraints
+ ! Presolve      : 2854566 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 24.41s (24.30s extraction + 0.11s propagation)
+ ! Initial process time : 25.32s (25.21s extraction + 0.11s propagation)
  !  . Log search space  : 35224.0 (before), 35224.0 (after)
- !  . Memory usage      : 397.2 MB (before), 397.2 MB (after)
+ !  . Memory usage      : 395.8 MB (before), 395.8 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
                         0      35224                 -
  + New bound is 0
-[runlim] sample:		136.5 time, 80.1 real, 13462.9 MB
-[runlim] end:			Fri Mar 13 05:09:10 2026
+[runlim] sample:		90.03 time, 80.02 real, 8265 MB, 1.50 load
+[runlim] end:			Tue Mar 24 04:12:59 2026
 [runlim] status:		out of memory
 [runlim] result:		3
-[runlim] children:		622
-[runlim] real:			84.33 seconds
-[runlim] time:			183.93 seconds
-[runlim] space:			14127.4 MB
-[runlim] samples:		841
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			88.86 seconds
+[runlim] time:			182.18 seconds
+[runlim] space:			14220 MB
+[runlim] load:			3.11 maximum
+[runlim] samples:		878

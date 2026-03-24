@@ -1,78 +1,22 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		-u
-[runlim] argv[2]:		mip.py
+[runlim] argv[2]:		mip_no.py
 [runlim] argv[3]:		graph06
-[runlim] start:			Fri Mar 13 00:59:43 2026
-[runlim] main pid:		22904
-Building MIP model...
-[runlim] sample:		10.0 time, 10.1 real, 31.6 MB
-[runlim] sample:		20.0 time, 20.1 real, 34.3 MB
-[runlim] sample:		30.0 time, 30.1 real, 36.0 MB
-[runlim] sample:		40.0 time, 40.1 real, 37.9 MB
-[runlim] sample:		50.0 time, 50.1 real, 39.9 MB
-[runlim] sample:		60.0 time, 60.1 real, 40.7 MB
-[runlim] sample:		70.0 time, 70.1 real, 42.9 MB
-[runlim] sample:		80.0 time, 80.1 real, 43.4 MB
-[runlim] sample:		90.0 time, 90.1 real, 46.0 MB
-[runlim] sample:		100.0 time, 100.1 real, 46.5 MB
-[runlim] sample:		109.9 time, 110.1 real, 49.2 MB
-[runlim] sample:		119.9 time, 120.1 real, 50.0 MB
-[runlim] sample:		129.9 time, 130.1 real, 50.3 MB
-[runlim] sample:		139.9 time, 140.1 real, 50.5 MB
-[runlim] sample:		149.9 time, 150.1 real, 54.2 MB
-[runlim] sample:		159.9 time, 160.1 real, 54.7 MB
-[runlim] sample:		169.9 time, 170.1 real, 54.9 MB
-[runlim] sample:		179.9 time, 180.1 real, 55.0 MB
-[runlim] sample:		189.9 time, 190.1 real, 59.0 MB
-[runlim] sample:		199.9 time, 200.1 real, 59.8 MB
-[runlim] sample:		209.9 time, 210.1 real, 60.2 MB
-[runlim] sample:		219.9 time, 220.1 real, 60.4 MB
-[runlim] sample:		229.9 time, 230.1 real, 60.5 MB
-[runlim] sample:		239.9 time, 240.1 real, 60.7 MB
-[runlim] sample:		249.9 time, 250.1 real, 65.5 MB
-[runlim] sample:		259.9 time, 260.1 real, 66.3 MB
-[runlim] sample:		269.9 time, 270.1 real, 66.7 MB
-[runlim] sample:		279.9 time, 280.1 real, 66.9 MB
-[runlim] sample:		289.9 time, 290.1 real, 67.0 MB
-[runlim] sample:		299.9 time, 300.1 real, 67.2 MB
-[runlim] sample:		309.9 time, 310.1 real, 67.3 MB
-[runlim] sample:		319.9 time, 320.1 real, 72.7 MB
-[runlim] sample:		329.9 time, 330.1 real, 73.7 MB
-[runlim] sample:		339.9 time, 340.1 real, 74.3 MB
-[runlim] sample:		349.9 time, 350.1 real, 75.7 MB
-[runlim] sample:		359.9 time, 360.1 real, 75.9 MB
-[runlim] sample:		369.8 time, 370.1 real, 76.0 MB
-Build time: 377.40s
-Solving MIP (minimizing number of labels)...
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-CPXPARAM_Read_DataCheck                          1
-Legacy callback                                  i
-Tried aggregator 2 times.
-[runlim] sample:		381.2 time, 380.1 real, 396.8 MB
-Infeasibility row 'c25':  0  = 1.
-Presolve time = 12.10 sec. (23577.91 ticks)
-
-Root node processing (before b&c):
-  Real time             =   12.15 sec. (23630.06 ticks)
-Parallel b&c, 12 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =   12.15 sec. (23630.06 ticks)
-CPLEX Error  1217: No solution exists.
-No solution found.
-Total time: 389.59s
-Memory used: 81.74 MB
-[runlim] end:			Fri Mar 13 01:06:12 2026
+[runlim] start:			Tue Mar 24 07:50:04 2026
+[runlim] child:			30682
+python3: can't open file '/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/MIP/mip_no.py': [Errno 2] No such file or directory
+[runlim] end:			Tue Mar 24 07:50:04 2026
 [runlim] status:		ok
-[runlim] result:		0
+[runlim] result:		2
 [runlim] children:		0
-[runlim] real:			389.70 seconds
-[runlim] time:			405.51 seconds
-[runlim] space:			419.3 MB
-[runlim] samples:		3896
+[runlim] processes:		0
+[runlim] real:			0.01 seconds
+[runlim] time:			0.00 seconds
+[runlim] space:			0 MB
+[runlim] load:			1.04 maximum
+[runlim] samples:		1

@@ -1,16 +1,17 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
-[runlim] argv[1]:		cp.py
+[runlim] argv[1]:		cp_no.py
 [runlim] argv[2]:		graph07
-[runlim] start:			Fri Mar 13 04:56:45 2026
-[runlim] main pid:		24197
+[runlim] start:			Tue Mar 24 04:09:27 2026
+[runlim] child:			18307
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 3851 variables, 87683 constraints
+ ! Minimization problem - 3851 variables, 85782 constraints
  ! LogVerbosity         = Terse
  ! Initial process time : 0.09s (0.09s extraction + 0.00s propagation)
  !  . Log search space  : 3549.0 (before), 3549.0 (after)
@@ -26,17 +27,19 @@ Solving CP Optimizer...
  ! ----------------------------------------------------------------------------
  ! Number of branches     : 0
  ! Number of fails        : 0
- ! Total memory usage     : 76.1 MB (75.2 MB CP Optimizer + 0.9 MB Concert)
- ! Time spent in solve    : 0.09s (0.00s engine + 0.09s extraction)
+ ! Total memory usage     : 74.5 MB (73.6 MB CP Optimizer + 0.9 MB Concert)
+ ! Time spent in solve    : 0.10s (0.01s engine + 0.09s extraction)
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-Total time: 1.56s
-Memory used: 111.09 MB
-[runlim] end:			Fri Mar 13 04:56:46 2026
+Total time: 1.68s
+Memory used: 103.95 MB
+[runlim] end:			Tue Mar 24 04:09:29 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		10
-[runlim] real:			1.92 seconds
-[runlim] time:			1.59 seconds
-[runlim] space:			210.4 MB
-[runlim] samples:		17
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			1.91 seconds
+[runlim] time:			1.76 seconds
+[runlim] space:			202 MB
+[runlim] load:			5.75 maximum
+[runlim] samples:		19

@@ -1,22 +1,23 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
-[runlim] argv[1]:		cp.py
+[runlim] argv[1]:		cp_no.py
 [runlim] argv[2]:		graph05
-[runlim] start:			Fri Mar 13 04:55:34 2026
-[runlim] main pid:		24144
-[runlim] sample:		10.0 time, 10.1 real, 1064.0 MB
+[runlim] start:			Tue Mar 24 04:08:04 2026
+[runlim] child:			18255
+[runlim] sample:		9.97 time, 10.01 real, 755 MB, 5.11 load
 Building CP model...
 Solving CP Optimizer...
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 7464 variables, 536201 constraints
- ! Presolve      : 536403 extractables eliminated
+ ! Minimization problem - 7464 variables, 532493 constraints
+ ! Presolve      : 532695 extractables eliminated
  ! LogVerbosity         = Terse
- ! Initial process time : 4.32s (4.30s extraction + 0.03s propagation)
+ ! Initial process time : 4.46s (4.44s extraction + 0.03s propagation)
  !  . Log search space  : 7464.0 (before), 7464.0 (after)
- !  . Memory usage      : 83.4 MB (before), 83.4 MB (after)
+ !  . Memory usage      : 83.1 MB (before), 83.1 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
@@ -24,25 +25,29 @@ Solving CP Optimizer...
  + New bound is 0
                         0       7464    1            -
  + New bound is 1
+                     2783       6130    1   F     0 != x_47_338
+ + New bound is 2
+[runlim] sample:		62.18 time, 20.01 real, 2590 MB, 4.80 load
  ! ----------------------------------------------------------------------------
  ! Search completed, model has no solution.
- ! Best bound             : 1
+ ! Best bound             : 2
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 107637
- ! Number of fails        : 33029
+ ! Number of branches     : 88381
+ ! Number of fails        : 24188
  ! Total memory usage     : 2.0 GB (2.0 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 9.94s (5.65s engine + 4.30s extraction)
- ! Search speed (br. / s) : 19084.6
+ ! Time spent in solve    : 10.50s (6.07s engine + 4.44s extraction)
+ ! Search speed (br. / s) : 14584.3
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-Total time: 19.32s
-Memory used: 515.45 MB
-[runlim] sample:		9.4 time, 20.1 real, 468.1 MB
-[runlim] end:			Fri Mar 13 04:55:54 2026
+Total time: 20.60s
+Memory used: 509.58 MB
+[runlim] end:			Tue Mar 24 04:08:26 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		157
-[runlim] real:			20.63 seconds
-[runlim] time:			65.67 seconds
-[runlim] space:			4536.0 MB
-[runlim] samples:		204
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			21.70 seconds
+[runlim] time:			66.85 seconds
+[runlim] space:			4542 MB
+[runlim] load:			5.86 maximum
+[runlim] samples:		217

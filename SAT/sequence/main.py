@@ -141,11 +141,7 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
             distance = int(parts[4])
             if '=' in parts:
                 for iu in vals_u:
-                    for jv in vals_v:
-                        if abs(iu - jv) == distance:
-                            solver.add_clause([-var_map[(u, iu)],  var_map[(v, jv)]])
-                            solver.add_clause([-var_map[(v, jv)],  var_map[(u, iu)]])
-                
+                    solver.add_clause([-var_map[(u, iu)]] + [var_map[(v, jv)] for jv in vals_v if abs(iu - jv) == distance]) #(4)
             elif '>' in parts:
                 # (5)
                 for iu in vals_u:
@@ -179,35 +175,7 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                         if len(clause) > 1:
                             solver.add_clause(clause)   
 
-                for jv in vals_v:
-                    if (jv - distance <= vals_u[0] and jv + distance >= vals_u[-1]):
-                        solver.add_clause([-var_map[(v, jv)]]) #(5)
-                    elif (jv - distance <= vals_u[0]):
-                        for iu in vals_u:
-                            if jv - iu > distance:
-                               solver.add_clause([-var_map[(v, jv)], order_var_map[(u, iu)]]) #(6)
-                               break
-                    elif jv + distance >= vals_u[-1]:
-                        T = jv - distance 
-                        # tìm nhãn gần nhất >= T
-                        for t in vals_u:
-                            if t >= T:
-                                solver.add_clause([-var_map[(v, jv)], -order_var_map[(u, t)]]) #(7)
-                                break
-                    else : # (8)
-                        limit_low  = jv - distance 
-                        limit_high = jv + distance 
-                        clause = [-var_map[(v, jv)]]
-                        for t in vals_u:
-                            if t >= limit_low:
-                                clause.append(-order_var_map[(u, t)])
-                                break
-                        for t in vals_u:
-                            if t > limit_high:
-                                clause.append(order_var_map[(u, t)])
-                                break
-                        if len(clause) > 1:
-                            solver.add_clause(clause)  
+                 
 
     
     
@@ -555,28 +523,22 @@ def main():
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    # rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
+    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
 
-    # print("--------------------------------------------------")
-    # print(f"\nTrying with at most {num_labels - 1} labels...")
+    print("--------------------------------------------------")
+    print(f"\nTrying with at most {num_labels - 1} labels...")
 
-    # assignment = solve_and_print(solver, var_map, None, None, 'first')
-    # if assignment is None:
-    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
-    # num_labels = len(set(assignment.values()))
-    # print("Number of lables used: ", num_labels)
-    # if verify_solution(assignment, var, files["var"], files["ctr"]):
-    #     print("Correct solution!")
-    #     num_labels = len(set(assignment.values()))
-    #     print("Number of lables used: ", num_labels)
-    # else:   
-    #     print("Incorrect solution!")
-    #     return
+    assignment = solve_and_print(solver, var_map, None, None, 'first')
+    if assignment is None:
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
+    num_labels = len(set(assignment.values()))
+    print("Number of lables used: ", num_labels)
     
-    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+    
+    # rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
     while num_labels > 1:
         
         print("--------------------------------------------------")

@@ -1,73 +1,22 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		-u
-[runlim] argv[2]:		mip.py
+[runlim] argv[2]:		mip_no.py
 [runlim] argv[3]:		scen06
-[runlim] start:			Fri Mar 13 01:46:36 2026
-[runlim] main pid:		23120
-Building MIP model...
-[runlim] sample:		10.0 time, 10.0 real, 30.9 MB
-[runlim] sample:		20.0 time, 20.0 real, 33.6 MB
-[runlim] sample:		30.0 time, 30.0 real, 36.7 MB
-[runlim] sample:		40.0 time, 40.0 real, 38.9 MB
-[runlim] sample:		50.0 time, 50.0 real, 41.3 MB
-[runlim] sample:		60.0 time, 60.0 real, 44.2 MB
-[runlim] sample:		70.0 time, 70.0 real, 47.4 MB
-[runlim] sample:		79.9 time, 80.0 real, 48.6 MB
-[runlim] sample:		89.9 time, 90.0 real, 51.8 MB
-[runlim] sample:		99.9 time, 100.0 real, 53.1 MB
-[runlim] sample:		109.9 time, 110.0 real, 53.3 MB
-[runlim] sample:		119.9 time, 120.0 real, 57.8 MB
-[runlim] sample:		129.9 time, 130.0 real, 58.6 MB
-[runlim] sample:		139.9 time, 140.0 real, 58.9 MB
-[runlim] sample:		149.9 time, 150.0 real, 63.3 MB
-Build time: 151.83s
-Solving MIP (minimizing number of labels)...
-Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
-CPXPARAM_Read_DataCheck                          1
-Legacy callback                                  i
-Tried aggregator 2 times.
-Aggregator has done 4010 substitutions...
-MIP Presolve eliminated 745150 rows and 1270 columns.
-MIP Presolve modified 366845 coefficients.
-Aggregator did 4010 substitutions.
-Reduced MIP has 88908 rows, 2784 columns, and 314055 nonzeros.
-Reduced MIP has 2784 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 6.91 sec. (13430.02 ticks)
-Probing fixed 893 vars, tightened 0 bounds.
-Probing changed sense of 31 constraints.
-Probing time = 0.03 sec. (10.64 ticks)
-[runlim] sample:		169.4 time, 160.0 real, 323.1 MB
-Tried aggregator 1 time.
-MIP Presolve eliminated 84300 rows and 1020 columns.
-MIP Presolve modified 3501 coefficients.
-Reduced MIP has 4523 rows, 1764 columns, and 69557 nonzeros.
-Reduced MIP has 1764 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.25 sec. (464.91 ticks)
-Probing fixed 83 vars, tightened 0 bounds.
-Probing changed sense of 30 constraints.
-Probing time = 0.01 sec. (4.04 ticks)
-
-Root node processing (before b&c):
-  Real time             =    8.35 sec. (16218.07 ticks)
-Parallel b&c, 12 threads:
-  Real time             =    0.00 sec. (0.00 ticks)
-  Sync time (average)   =    0.00 sec.
-  Wait time (average)   =    0.00 sec.
-                          ------------
-Total (root+branch&cut) =    8.35 sec. (16218.07 ticks)
-CPLEX Error  1217: No solution exists.
-No solution found.
-Total time: 160.20s
-Memory used: 268.47 MB
-[runlim] end:			Fri Mar 13 01:49:16 2026
+[runlim] start:			Tue Mar 24 07:50:05 2026
+[runlim] child:			30703
+python3: can't open file '/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/MIP/mip_no.py': [Errno 2] No such file or directory
+[runlim] end:			Tue Mar 24 07:50:05 2026
 [runlim] status:		ok
-[runlim] result:		0
+[runlim] result:		2
 [runlim] children:		0
-[runlim] real:			160.30 seconds
-[runlim] time:			169.65 seconds
-[runlim] space:			323.1 MB
-[runlim] samples:		1602
+[runlim] processes:		0
+[runlim] real:			0.01 seconds
+[runlim] time:			0.00 seconds
+[runlim] space:			0 MB
+[runlim] load:			1.04 maximum
+[runlim] samples:		1

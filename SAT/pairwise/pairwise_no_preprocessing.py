@@ -123,10 +123,7 @@ def build_constraints(solver, var, var_map, ctr_file):
             elif '=' in parts:
                 target = int(parts[4])
                 for vi in vals_i:
-                    for vj in vals_j:
-                        if abs(vi - vj) == target:
-                            solver.add_clause([-var_map[(i, vi)], var_map[(j, vj)]])
-    
+                    solver.add_clause([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
 
     
     
@@ -319,7 +316,7 @@ def main():
     #     process = psutil.Process(os.getpid())
     #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     #     return
-    solver = Solver(name='glucose4')
+    solver = Solver(name='cadical195')
     last_var_num, var_map = create_var_map(var)
 
     print("Solve first problem:")
@@ -349,25 +346,25 @@ def main():
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
+    # x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
 
 
 
-    # x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
+    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
 
-    # print("--------------------------------------------------")
-    # print(f"\nTrying with at most {num_lables   - 1} labels...")
+    print("--------------------------------------------------")
+    print(f"\nTrying with at most {num_lables   - 1} labels...")
 
-    # assignment = solve_and_print(solver, var_map, None, None, 'first')
-    # if assignment is None:
-    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
+    assignment = solve_and_print(solver, var_map, None, None, 'first')
+    if assignment is None:
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
     
-    # num_lables = len(set(assignment.values()))
-    # print("Number of lables used: ", num_lables)
-    # print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
+    num_lables = len(set(assignment.values()))
+    print("Number of lables used: ", num_lables)
+    print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
     # process = psutil.Process(os.getpid())
     # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 

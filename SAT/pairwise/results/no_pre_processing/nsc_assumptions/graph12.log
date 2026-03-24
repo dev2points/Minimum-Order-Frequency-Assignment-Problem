@@ -1,4 +1,5 @@
-[runlim] version:		1.10
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
 [runlim] time limit:		311040000 seconds
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
@@ -7,17 +8,19 @@
 [runlim] argv[2]:		pairwise_no_preprocessing.py
 [runlim] argv[3]:		graph12
 [runlim] argv[4]:		assumptions
-[runlim] start:			Thu Mar 12 16:50:06 2026
-[runlim] main pid:		5887
+[runlim] start:			Tue Mar 24 01:39:02 2026
+[runlim] child:			17236
 Solve first problem:
 Cannot find solution.
-Time taken: 0.20 seconds 
-Memory used: 24.64 MB
-[runlim] end:			Thu Mar 12 16:50:06 2026
+Time taken: 0.24 seconds 
+Memory used: 33.05 MB
+[runlim] end:			Tue Mar 24 01:39:03 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		0
-[runlim] real:			0.80 seconds
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.28 seconds
 [runlim] time:			0.19 seconds
-[runlim] space:			24.5 MB
-[runlim] samples:		2
+[runlim] space:			33 MB
+[runlim] load:			1.00 maximum
+[runlim] samples:		3
