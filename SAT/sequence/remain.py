@@ -464,9 +464,7 @@ def main():
     "  strategy: 'nsc', 'sc', or 'tot'\n" \
     "  sat_type: 'incremental' or 'assumptions'\n"\
     "   solver: 'glucose4', 'cadical195'\n"
-    if len(sys.argv) < 5:
-        print(helpers)
-        return
+
     if sys.argv[2] not in strategys:
         raise ValueError("Strategy must be either 'nsc', 'sc', 'nsc_reduced', 'sc_reduced' or 'tot'"
         f"\n {helpers}")

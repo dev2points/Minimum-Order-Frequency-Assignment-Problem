@@ -487,12 +487,12 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    if(not delete_invalid_labels(var, files["ctr"])):
-        print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-        process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-        return
+    # if(not delete_invalid_labels(var, files["ctr"])):
+    #     print("Cannot find solution!")
+    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+    #     process = psutil.Process(os.getpid())
+    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    #     return
         
     last_var_num, var_map = create_var_map(var)
 
@@ -522,7 +522,6 @@ def main():
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
-
     if sys.argv[2] != 'tot':
         rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
 

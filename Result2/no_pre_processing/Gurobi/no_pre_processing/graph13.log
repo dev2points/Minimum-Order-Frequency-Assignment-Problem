@@ -1,0 +1,33 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no.py
+[runlim] argv[3]:		graph13
+[runlim] start:			Tue Mar 24 10:05:53 2026
+[runlim] child:			33682
+Building Gurobi model...
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2663665
+Academic license 2663665 - for non-commercial use only - registered to tu___@vnu.edu.vn
+[runlim] sample:		9.98 time, 10.01 real, 418 MB, 1.23 load
+Build time used: 19.59 sec
+Solving...
+[runlim] sample:		19.98 time, 20.01 real, 1133 MB, 1.20 load
+No solution found.
+Total time used: 24.81 sec
+Memory used: 1518.63 MB
+[runlim] end:			Tue Mar 24 10:06:18 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			25.39 seconds
+[runlim] time:			29.36 seconds
+[runlim] space:			1720 MB
+[runlim] load:			1.28 maximum
+[runlim] samples:		254
