@@ -523,23 +523,25 @@ def main():
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    if sys.argv[2] != 'tot':
-        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
+    # if sys.argv[2] != 'tot':
+    #     rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
 
-        print("--------------------------------------------------")
-        print(f"\nTrying with at most {num_labels - 1} labels...")
+    #     print("--------------------------------------------------")
+    #     print(f"\nTrying with at most {num_labels - 1} labels...")
 
-        assignment = solve_and_print(solver, var_map, None, None, 'first')
-        if assignment is None:
-            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-            process = psutil.Process(os.getpid())
-            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-            return
-        num_labels = len(set(assignment.values()))
-        print("Number of lables used: ", num_labels)
+    #     assignment = solve_and_print(solver, var_map, None, None, 'first')
+    #     if assignment is None:
+    #         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+    #         process = psutil.Process(os.getpid())
+    #         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    #         return
+    #     num_labels = len(set(assignment.values()))
+    #     print("Number of lables used: ", num_labels)
     
-    else:
-        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+    # else:
+    #     rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+
+    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
     while num_labels > 1:
         
         print("--------------------------------------------------")
