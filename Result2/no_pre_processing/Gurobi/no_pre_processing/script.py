@@ -41,6 +41,10 @@ def parse_log(file_path):
             match = re.search(r'Number of labels used:\s*(\d+)', line)
             if match:
                 value = int(match.group(1))
+        if 'Num labels used:' in line:
+            match = re.search(r'Num labels used:\s*(\d+)', line)
+            if match:
+                value = int(match.group(1))
                 
 
     # 🔥 Xử lý status

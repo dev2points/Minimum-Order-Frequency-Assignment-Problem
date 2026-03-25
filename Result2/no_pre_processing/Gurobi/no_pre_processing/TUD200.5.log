@@ -7,25 +7,25 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		main_no.py
 [runlim] argv[3]:		TUD200.5
-[runlim] start:			Tue Mar 24 23:09:11 2026
-[runlim] child:			66366
+[runlim] start:			Wed Mar 25 11:07:34 2026
+[runlim] child:			7249
 Building Gurobi model...
 Set parameter WLSAccessID
 Set parameter WLSSecret
 Set parameter LicenseID to value 2663665
 Academic license 2663665 - for non-commercial use only - registered to tu___@vnu.edu.vn
-Build time used: 4.08 sec
+Build time used: 4.28 sec
 Solving...
 No solution found.
-Total time used: 4.55 sec
-Memory used: 252.23 MB
-[runlim] end:			Tue Mar 24 23:09:16 2026
+Total time used: 5.53 sec
+Memory used: 323.36 MB
+[runlim] end:			Wed Mar 25 11:07:39 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			4.71 seconds
-[runlim] time:			4.70 seconds
-[runlim] space:			372 MB
-[runlim] load:			1.40 maximum
-[runlim] samples:		48
+[runlim] real:			5.69 seconds
+[runlim] time:			8.84 seconds
+[runlim] space:			359 MB
+[runlim] load:			2.26 maximum
+[runlim] samples:		57
