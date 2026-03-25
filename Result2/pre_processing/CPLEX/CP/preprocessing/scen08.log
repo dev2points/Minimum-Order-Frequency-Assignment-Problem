@@ -6,39 +6,40 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen08
-[runlim] start:			Mon Mar 23 23:24:03 2026
-[runlim] child:			15044
-[runlim] sample:		9.99 time, 10.01 real, 564 MB, 2.84 load
-[runlim] sample:		19.99 time, 20.01 real, 1106 MB, 2.56 load
-[runlim] sample:		29.98 time, 30.01 real, 1711 MB, 2.32 load
-[runlim] sample:		39.97 time, 40.01 real, 2747 MB, 2.12 load
-[runlim] sample:		49.97 time, 50.01 real, 2853 MB, 1.94 load
-[runlim] sample:		59.96 time, 60.01 real, 2904 MB, 1.80 load
-[runlim] sample:		69.96 time, 70.01 real, 5754 MB, 1.68 load
-[runlim] sample:		79.95 time, 80.01 real, 6799 MB, 1.57 load
-[runlim] sample:		89.94 time, 90.01 real, 10290 MB, 1.48 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 03:53:03 2026
+[runlim] child:			68858
+--- Building model for 916 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 36248 variables, 3387335 constraints
- ! Presolve      : 3388253 extractables eliminated
+ ! Minimization problem - 916 variables, 5744 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 31.32s (31.19s extraction + 0.13s propagation)
- !  . Log search space  : 36248.0 (before), 36248.0 (after)
- !  . Memory usage      : 439.7 MB (before), 439.7 MB (after)
+ ! Initial process time : 0.03s (0.03s extraction + 0.00s propagation)
+ !  . Log search space  : 4212.8 (before), 4212.8 (after)
+ !  . Memory usage      : 2.3 MB (before), 2.3 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0      36248                 -
+                        0        916                 -
  + New bound is 0
-[runlim] sample:		131.48 time, 100.02 real, 13441 MB, 1.41 load
-[runlim] end:			Mon Mar 23 23:25:46 2026
-[runlim] status:		out of memory
-[runlim] result:		3
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 0
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 13.4 MB (12.9 MB CP Optimizer + 0.5 MB Concert)
+ ! Time spent in solve    : 0.04s (0.01s engine + 0.03s extraction)
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 0.50s
+Memory used: 32.42 MB
+[runlim] end:			Wed Mar 25 03:53:03 2026
+[runlim] status:		ok
+[runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			103.26 seconds
-[runlim] time:			157.18 seconds
-[runlim] space:			14098 MB
-[runlim] load:			3.18 maximum
-[runlim] samples:		1022
+[runlim] real:			0.59 seconds
+[runlim] time:			0.50 seconds
+[runlim] space:			49 MB
+[runlim] load:			9.19 maximum
+[runlim] samples:		6

@@ -7,48 +7,47 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		scen06
-[runlim] start:			Tue Mar 24 07:09:40 2026
-[runlim] child:			30266
-Building MIP model...
-[runlim] sample:		9.99 time, 10.01 real, 30 MB, 1.20 load
-[runlim] sample:		19.98 time, 20.01 real, 34 MB, 1.17 load
-[runlim] sample:		29.98 time, 30.01 real, 38 MB, 1.21 load
-[runlim] sample:		39.97 time, 40.01 real, 40 MB, 1.18 load
-Build time: 45.05s
-Solving MIP (minimizing number of labels)...
+[runlim] start:			Wed Mar 25 00:51:17 2026
+[runlim] child:			67174
+--- Building MIP model for 200 variables ---
+--- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Tolerances_MIPGap                   0
 Legacy callback                                  i
 Tried aggregator 1 time.
-MIP Presolve eliminated 364069 rows and 202 columns.
-MIP Presolve modified 31280 coefficients.
-Reduced MIP has 16732 rows, 5680 columns, and 280460 nonzeros.
-Reduced MIP has 5680 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 2.93 sec. (4474.71 ticks)
-Probing fixed 1981 vars, tightened 0 bounds.
-Probing changed sense of 2348 constraints.
-Probing time = 0.03 sec. (13.15 ticks)
-Presolve time = 0.13 sec. (198.53 ticks)
+MIP Presolve eliminated 364070 rows and 228 columns.
+MIP Presolve modified 29076 coefficients.
+Reduced MIP has 15950 rows, 5654 columns, and 264686 nonzeros.
+Reduced MIP has 5654 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 2.47 sec. (3511.27 ticks)
+Probing fixed 2005 vars, tightened 0 bounds.
+Probing changed sense of 2346 constraints.
+Probing time = 0.04 sec. (12.96 ticks)
+Cover probing fixed 42 vars, tightened 45 bounds.
+Tried aggregator 2 times.
+Presolve time = 0.32 sec. (511.54 ticks)
 
 Root node processing (before b&c):
-  Real time             =    3.67 sec. (5625.35 ticks)
+  Real time             =    3.41 sec. (4951.53 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    3.67 sec. (5625.35 ticks)
+Total (root+branch&cut) =    3.41 sec. (4951.53 ticks)
 CPLEX Error  1217: No solution exists.
-No solution found.
-Total time: 48.81s
-Memory used: 161.64 MB
-[runlim] end:			Tue Mar 24 07:10:29 2026
+No solution found or the problem is infeasible.
+Total time: 4.81s
+Memory used: 176.45 MB
+==============================
+[runlim] end:			Wed Mar 25 00:51:22 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			48.88 seconds
-[runlim] time:			51.70 seconds
-[runlim] space:			196 MB
-[runlim] load:			1.23 maximum
-[runlim] samples:		489
+[runlim] real:			4.87 seconds
+[runlim] time:			7.42 seconds
+[runlim] space:			206 MB
+[runlim] load:			2.50 maximum
+[runlim] samples:		49

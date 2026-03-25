@@ -6,48 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph05
-[runlim] start:			Mon Mar 23 22:57:31 2026
-[runlim] child:			14723
-[runlim] sample:		9.98 time, 10.01 real, 707 MB, 4.36 load
-Building CP model...
-Solving CP Optimizer...
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 7464 variables, 532493 constraints
- ! Presolve      : 532695 extractables eliminated
- ! LogVerbosity         = Terse
- ! Initial process time : 4.47s (4.46s extraction + 0.02s propagation)
- !  . Log search space  : 7464.0 (before), 7464.0 (after)
- !  . Memory usage      : 83.1 MB (before), 83.1 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0       7464                 -
- + New bound is 0
-                        0       7464    1            -
- + New bound is 1
-                     2783       6130    1   F     0 != x_47_338
- + New bound is 2
-[runlim] sample:		59.18 time, 20.01 real, 2590 MB, 4.65 load
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 2
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 88381
- ! Number of fails        : 24188
- ! Total memory usage     : 2.0 GB (2.0 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 10.30s (5.85s engine + 4.46s extraction)
- ! Search speed (br. / s) : 15107.9
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-Total time: 20.55s
-Memory used: 509.58 MB
-[runlim] end:			Mon Mar 23 22:57:53 2026
+[runlim] start:			Wed Mar 25 03:42:59 2026
+[runlim] child:			68677
+Warning: variable 181 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.05 seconds
+Memory used: 22.82 MB
+[runlim] end:			Wed Mar 25 03:42:59 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		2
-[runlim] processes:		3
-[runlim] real:			21.66 seconds
-[runlim] time:			63.74 seconds
-[runlim] space:			4597 MB
-[runlim] load:			4.98 maximum
-[runlim] samples:		217
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.13 seconds
+[runlim] time:			0.10 seconds
+[runlim] space:			23 MB
+[runlim] load:			9.99 maximum
+[runlim] samples:		2

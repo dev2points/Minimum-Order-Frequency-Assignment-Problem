@@ -6,50 +6,40 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp_no.py
 [runlim] argv[2]:		graph06
-[runlim] start:			Tue Mar 24 04:08:26 2026
-[runlim] child:			18280
-[runlim] sample:		9.99 time, 10.01 real, 612 MB, 4.22 load
-[runlim] sample:		19.99 time, 20.01 real, 1055 MB, 3.72 load
-[runlim] sample:		29.97 time, 30.01 real, 3490 MB, 3.30 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 06:00:47 2026
+[runlim] child:			70697
+--- Building model for 400 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 15132 variables, 1088277 constraints
- ! Presolve      : 1088679 extractables eliminated
+ ! Minimization problem - 400 variables, 2170 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 9.57s (9.53s extraction + 0.05s propagation)
- !  . Log search space  : 15132.0 (before), 15132.0 (after)
- !  . Memory usage      : 167.8 MB (before), 167.8 MB (after)
+ ! Initial process time : 0.01s (0.01s extraction + 0.00s propagation)
+ !  . Log search space  : 2034.6 (before), 2034.6 (after)
+ !  . Memory usage      : 1.2 MB (before), 1.2 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0      15132                 -
+                        0        400                 -
  + New bound is 0
-                        0      15132    1            -
- + New bound is 1
-[runlim] sample:		116.23 time, 40.02 real, 4941 MB, 4.16 load
-[runlim] sample:		177.96 time, 50.01 real, 4979 MB, 4.30 load
  ! ----------------------------------------------------------------------------
  ! Search completed, model has no solution.
- ! Best bound             : 1
+ ! Best bound             : 0
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 219587
- ! Number of fails        : 45032
- ! Total memory usage     : 4.0 GB (4.0 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 38.13s (28.60s engine + 9.53s extraction)
- ! Search speed (br. / s) : 7680.6
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 5.3 MB (5.0 MB CP Optimizer + 0.3 MB Concert)
+ ! Time spent in solve    : 0.01s (0.00s engine + 0.01s extraction)
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-Total time: 59.28s
-Memory used: 956.46 MB
-[runlim] sample:		232.30 time, 60.01 real, 5029 MB, 5.75 load
-[runlim] end:			Tue Mar 24 04:09:27 2026
+Total time: 0.09s
+Memory used: 27.59 MB
+[runlim] end:			Wed Mar 25 06:00:47 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			61.45 seconds
-[runlim] time:			233.65 seconds
-[runlim] space:			8941 MB
-[runlim] load:			5.75 maximum
-[runlim] samples:		615
+[runlim] real:			0.17 seconds
+[runlim] time:			0.09 seconds
+[runlim] space:			44 MB
+[runlim] load:			8.01 maximum
+[runlim] samples:		2

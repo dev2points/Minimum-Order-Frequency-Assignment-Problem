@@ -6,48 +6,50 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.5
-[runlim] start:			Tue Mar 24 01:52:47 2026
-[runlim] child:			17378
-[runlim] sample:		10.00 time, 10.01 real, 542 MB, 5.52 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 04:13:06 2026
+[runlim] child:			69897
+--- Building model for 200 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:888:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                          abs(node_91 - node_161) > 470
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:889:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                          abs(node_91 - node_162) > 390
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:900:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                          abs(node_92 - node_161) > 411
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:901:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                          abs(node_92 - node_162) > 508
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:902:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                          abs(node_92 - node_165) > 465
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 7636 variables, 610975 constraints
- ! Presolve      : 611177 extractables eliminated
+ ! Minimization problem - 200 variables, 1125 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 5.17s (5.13s extraction + 0.04s propagation)
- !  . Log search space  : 7636.0 (before), 7636.0 (after)
- !  . Memory usage      : 89.6 MB (before), 89.6 MB (after)
+ ! Initial process time : 0.00s (0.00s extraction + 0.00s propagation)
+ !  . Log search space  : 881.1 (before), 881.1 (after)
+ !  . Memory usage      : 467.8 kB (before), 467.8 kB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0       7636                 -
+                        0        200                 -
  + New bound is 0
-[runlim] sample:		49.21 time, 20.02 real, 2883 MB, 5.78 load
-                        0       7636    1            -
- + New bound is 1
-                      887       5130    2   F     1 != x_84_380
- + New bound is 2
  ! ----------------------------------------------------------------------------
  ! Search completed, model has no solution.
- ! Best bound             : 2
+ ! Best bound             : 0
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 111119
- ! Number of fails        : 29800
- ! Total memory usage     : 2.1 GB (2.1 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 12.12s (6.99s engine + 5.13s extraction)
- ! Search speed (br. / s) : 15919.6
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 2.4 MB (2.3 MB CP Optimizer + 0.1 MB Concert)
+ ! Time spent in solve    : 0.00s (0.00s engine + 0.00s extraction)
  ! ----------------------------------------------------------------------------
 No valid solution: Infeasible
-Total time: 24.00s
-Memory used: 572.95 MB
-[runlim] end:			Tue Mar 24 01:53:13 2026
+Total time: 0.10s
+Memory used: 25.74 MB
+[runlim] end:			Wed Mar 25 04:13:06 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		2
-[runlim] processes:		3
-[runlim] real:			25.26 seconds
-[runlim] time:			76.75 seconds
-[runlim] space:			5159 MB
-[runlim] load:			6.34 maximum
-[runlim] samples:		253
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.18 seconds
+[runlim] time:			0.10 seconds
+[runlim] space:			23 MB
+[runlim] load:			7.08 maximum
+[runlim] samples:		2

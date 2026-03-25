@@ -6,66 +6,53 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp_no.py
 [runlim] argv[2]:		TUD200.4
-[runlim] start:			Tue Mar 24 04:47:47 2026
-[runlim] child:			19098
-[runlim] sample:		9.99 time, 10.01 real, 999 MB, 7.98 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 06:30:52 2026
+[runlim] child:			76424
+--- Building model for 200 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 6960 variables, 459879 constraints
- ! Presolve      : 460081 extractables eliminated
+ ! Minimization problem - 200 variables, 1142 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 3.65s (3.63s extraction + 0.03s propagation)
- !  . Log search space  : 6960.0 (before), 6960.0 (after)
- !  . Memory usage      : 60.0 MB (before), 60.0 MB (after)
+ ! Initial process time : 0.01s (0.01s extraction + 0.00s propagation)
+ !  . Log search space  : 161.3 (before), 161.3 (after)
+ !  . Memory usage      : 800.1 kB (before), 800.1 kB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0       6960                 -
+                        0        200                 -
  + New bound is 0
-                        0       6960    1            -
- + New bound is 1
-                     2985       4122    7   F     0 != x_170_380
- + New bound is 2
- *            45    18384  10.77s       1      (gap is 95.56%)
-[runlim] sample:		71.69 time, 20.01 real, 2221 MB, 7.78 load
- *            43    22407  12.50s      11      (gap is 95.35%)
- *            42    22537  12.74s       4      (gap is 95.24%)
- *            36    22612  13.02s       9      (gap is 94.44%)
- *            35    25608  13.98s       9      (gap is 94.29%)
- *            34    28823  14.36s      11      (gap is 94.12%)
-              34    24427        295    2   F        -
- + New bound is 19 (gap is 44.12%)
- *            27    28522  14.71s       4      (gap is 29.63%)
- *            23    28978  14.75s       4      (gap is 17.39%)
- *            22    30447  14.96s       1      (gap is 13.64%)
- *            20    31266  16.00s       4      (gap is 5.00%)
-              20    29654          4    2   F     1 != x_71_792
- + New bound is 20 (gap is 0.00%)
+                        0         50                 -
+ + New bound is 19
+                        0         50    1            -
+ + New bound is 20
+ *            20        3  0.04s        1      (gap is 0.00%)
  ! ----------------------------------------------------------------------------
- ! Search completed, 10 solutions found.
+ ! Search completed, 1 solution found.
  ! Best objective         : 20 (optimal - effective tol. is 0)
  ! Best bound             : 20
  ! ----------------------------------------------------------------------------
- ! Number of branches     : 345557
- ! Number of fails        : 107652
- ! Total memory usage     : 1.6 GB (1.6 GB CP Optimizer + 0.0 GB Concert)
- ! Time spent in solve    : 16.55s (12.92s engine + 3.63s extraction)
- ! Search speed (br. / s) : 26745.9
+ ! Number of branches     : 4523
+ ! Number of fails        : 1997
+ ! Total memory usage     : 14.5 MB (14.3 MB CP Optimizer + 0.2 MB Concert)
+ ! Time spent in solve    : 0.04s (0.03s engine + 0.01s extraction)
+ ! Search speed (br. / s) : 226150.0
  ! ----------------------------------------------------------------------------
 
-FINAL SOLUTION:
-{86, 324, 86, 324, 86, 324, 156, 394, 652, 414, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310}
+==============================
+OPTIMAL SOLUTION:
+Label list: [86, 324, 86, 324, 86, 324, 156, 394, 128, 366, 652, 414, 86, 324, 114, 352, 156, 394, 100, 338, 156, 394, 86, 324, 100, 338, 652, 414, 170, 408, 128, 366, 72, 310, 156, 394, 128, 366, 100, 338, 114, 352, 652, 414, 170, 408, 72, 310, 652, 414, 100, 338, 142, 380, 86, 324, 156, 394, 170, 408, 114, 352, 652, 414, 240, 478, 100, 338, 128, 366, 652, 414, 142, 380, 72, 310, 128, 366, 72, 310, 128, 366, 72, 310, 170, 408, 128, 366, 652, 414, 170, 408, 240, 478, 156, 394, 652, 414, 114, 352, 72, 310, 652, 414, 72, 310, 156, 394, 652, 414, 170, 408, 72, 310, 100, 338, 72, 310, 100, 338, 72, 310, 86, 324, 72, 310, 128, 366, 72, 310, 652, 414, 652, 414, 170, 408, 86, 324, 128, 366, 156, 394, 652, 414, 240, 478, 72, 310, 114, 352, 652, 414, 86, 324, 114, 352, 114, 352, 86, 324, 72, 310, 86, 324, 652, 414, 652, 414, 240, 478, 240, 478, 100, 338, 72, 310, 86, 324, 86, 324, 142, 380, 142, 380, 72, 310, 240, 478, 240, 478, 156, 394, 170, 408, 170, 408, 156, 394, 72, 310]
 Number of labels used: 20
-Total time: 25.61s
-Memory used: 449.34 MB
-[runlim] end:			Tue Mar 24 04:48:14 2026
+Specific labels: [72, 86, 100, 114, 128, 142, 156, 170, 240, 310, 324, 338, 352, 366, 380, 394, 408, 414, 478, 652]
+==============================
+Total time: 0.08s
+Memory used: 25.65 MB
+[runlim] end:			Wed Mar 25 06:30:53 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			26.58 seconds
-[runlim] time:			98.71 seconds
-[runlim] space:			3789 MB
-[runlim] load:			9.06 maximum
-[runlim] samples:		266
+[runlim] real:			0.15 seconds
+[runlim] time:			0.12 seconds
+[runlim] space:			57 MB
+[runlim] load:			6.86 maximum
+[runlim] samples:		2

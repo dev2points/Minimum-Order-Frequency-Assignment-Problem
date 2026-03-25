@@ -7,82 +7,37 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip_no.py
 [runlim] argv[3]:		graph06
-[runlim] start:			Tue Mar 24 12:06:42 2026
-[runlim] child:			34410
-Building MIP model...
-[runlim] sample:		10.00 time, 10.01 real, 32 MB, 1.40 load
-[runlim] sample:		19.99 time, 20.01 real, 34 MB, 1.34 load
-[runlim] sample:		30.00 time, 30.01 real, 36 MB, 1.28 load
-[runlim] sample:		39.99 time, 40.01 real, 38 MB, 1.24 load
-[runlim] sample:		49.99 time, 50.01 real, 40 MB, 1.20 load
-[runlim] sample:		59.98 time, 60.01 real, 42 MB, 1.17 load
-[runlim] sample:		69.98 time, 70.01 real, 42 MB, 1.14 load
-[runlim] sample:		79.97 time, 80.01 real, 44 MB, 1.12 load
-[runlim] sample:		89.96 time, 90.01 real, 45 MB, 1.26 load
-[runlim] sample:		99.97 time, 100.01 real, 47 MB, 1.22 load
-[runlim] sample:		109.96 time, 110.01 real, 48 MB, 1.19 load
-[runlim] sample:		119.96 time, 120.01 real, 50 MB, 1.16 load
-[runlim] sample:		129.95 time, 130.01 real, 51 MB, 1.13 load
-[runlim] sample:		139.94 time, 140.01 real, 51 MB, 1.11 load
-[runlim] sample:		149.94 time, 150.01 real, 52 MB, 1.10 load
-[runlim] sample:		159.93 time, 160.01 real, 55 MB, 1.08 load
-[runlim] sample:		169.94 time, 170.01 real, 56 MB, 1.07 load
-[runlim] sample:		179.93 time, 180.01 real, 56 MB, 1.06 load
-[runlim] sample:		189.93 time, 190.01 real, 56 MB, 1.05 load
-[runlim] sample:		199.92 time, 200.01 real, 56 MB, 1.04 load
-[runlim] sample:		209.91 time, 210.01 real, 60 MB, 1.03 load
-[runlim] sample:		219.91 time, 220.01 real, 61 MB, 1.03 load
-[runlim] sample:		229.90 time, 230.01 real, 62 MB, 1.02 load
-[runlim] sample:		239.89 time, 240.01 real, 62 MB, 1.02 load
-[runlim] sample:		249.89 time, 250.01 real, 62 MB, 1.09 load
-[runlim] sample:		259.89 time, 260.01 real, 62 MB, 1.08 load
-[runlim] sample:		269.87 time, 270.01 real, 67 MB, 1.06 load
-[runlim] sample:		279.86 time, 280.01 real, 68 MB, 1.05 load
-[runlim] sample:		289.85 time, 290.01 real, 68 MB, 1.04 load
-[runlim] sample:		299.84 time, 300.01 real, 68 MB, 1.04 load
-[runlim] sample:		309.83 time, 310.01 real, 69 MB, 1.03 load
-[runlim] sample:		319.83 time, 320.01 real, 69 MB, 1.03 load
-[runlim] sample:		329.82 time, 330.01 real, 69 MB, 1.18 load
-[runlim] sample:		339.82 time, 340.01 real, 69 MB, 1.15 load
-[runlim] sample:		349.81 time, 350.01 real, 75 MB, 1.12 load
-[runlim] sample:		359.81 time, 360.01 real, 75 MB, 1.11 load
-[runlim] sample:		369.80 time, 370.01 real, 76 MB, 1.09 load
-[runlim] sample:		379.80 time, 380.01 real, 76 MB, 1.07 load
-[runlim] sample:		389.80 time, 390.01 real, 76 MB, 1.06 load
-Build time: 393.97s
-Solving MIP (minimizing number of labels)...
+[runlim] start:			Wed Mar 25 02:42:45 2026
+[runlim] child:			67995
+--- Building MIP model for 400 variables ---
+--- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Tolerances_MIPGap                   0
 Legacy callback                                  i
-Tried aggregator 1 time.
-[runlim] sample:		409.76 time, 400.01 real, 493 MB, 1.21 load
-[runlim] sample:		438.57 time, 410.01 real, 527 MB, 1.49 load
-Presolve has eliminated 998829 rows and 1937 columns...
-MIP Presolve eliminated 998829 rows and 1937 columns.
-MIP Presolve modified 461770 coefficients.
-Reduced MIP has 66827 rows, 13195 columns, and 1213869 nonzeros.
-Reduced MIP has 13195 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 19.80 sec. (33233.17 ticks)
+Infeasibility row 'c91174':  0 <= -1.
+Presolve time = 0.23 sec. (137.60 ticks)
 
 Root node processing (before b&c):
-  Real time             =   20.94 sec. (34945.45 ticks)
+  Real time             =    0.34 sec. (236.98 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =   20.94 sec. (34945.45 ticks)
+Total (root+branch&cut) =    0.34 sec. (236.98 ticks)
 CPLEX Error  1217: No solution exists.
-No solution found.
-Total time: 414.96s
-Memory used: 292.72 MB
-[runlim] end:			Tue Mar 24 12:13:37 2026
+No solution found or the problem is infeasible.
+Total time: 4.25s
+Memory used: 93.39 MB
+==============================
+[runlim] end:			Wed Mar 25 02:42:50 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			415.03 seconds
-[runlim] time:			443.97 seconds
-[runlim] space:			529 MB
-[runlim] load:			1.49 maximum
-[runlim] samples:		4151
+[runlim] real:			4.30 seconds
+[runlim] time:			4.19 seconds
+[runlim] space:			406 MB
+[runlim] load:			2.72 maximum
+[runlim] samples:		43

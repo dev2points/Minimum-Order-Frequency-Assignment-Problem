@@ -51,38 +51,7 @@ def read_var(file, domain):
                 var[idx] = domain[int(parts[1])]
     return var
 
-def delete_invalid_labels(var, ctr_file):
-    # Read constraints and remove invalid labels from domain
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
-    for i,vals in var.items():
-        if len(vals) == 0:
-            print("Warning: variable", i, "has no valid labels after preprocessing.")
-            return False
-    return True
+
 
 
 def build_gurobi_model(var, ctr_file):
@@ -127,14 +96,21 @@ def build_gurobi_model(var, ctr_file):
             if '>' in parts:
                 distance = int(parts[4])
                 for vi in vals_i:
-                    for vj in vals_j:
-                        if abs(vi - vj) <= distance:
+                    not_valid_vj = [vj for vj in vals_j if abs(vi - vj) <= distance]
+                    if len(not_valid_vj) == len(vals_j):
+                        model.addConstr(x[(i, vi)] == 0)
+                    else:
+                        for vj in not_valid_vj:
                             model.addConstr(x[(i, vi)] + x[(j, vj)] <= 1)
+                        
 
             elif '=' in parts:
                 target = int(parts[4])
                 for vi in vals_i:
-                    model.addConstr(x[(i, vi)] <= sum(x[(j, vj)] for vj in vals_j if abs(vi - vj) == target))
+                    if not any(abs(vi - vj) == target for vj in vals_j):
+                        model.addConstr(x[(i, vi)] == 0)
+                    else:
+                        model.addConstr(x[(i, vi)] <= sum(x[(j, vj)] for vj in vals_j if abs(vi - vj) == target))
 
     # Minimize number of labels used
     model.setObjective(sum(y[v] for v in label_set), GRB.MINIMIZE)
@@ -232,12 +208,6 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    # if(not delete_invalid_labels(var, files["ctr"])):
-    #     print("Cannot find solution!")
-    #     print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
 
     print("Building Gurobi model...")
     model, x, y = build_gurobi_model(var, files["ctr"])

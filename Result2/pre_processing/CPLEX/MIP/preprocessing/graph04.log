@@ -7,132 +7,118 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		graph04
-[runlim] start:			Tue Mar 24 06:34:01 2026
-[runlim] child:			19769
-Building MIP model...
-[runlim] sample:		9.98 time, 10.01 real, 32 MB, 1.96 load
-[runlim] sample:		19.98 time, 20.01 real, 34 MB, 1.82 load
-[runlim] sample:		29.97 time, 30.01 real, 35 MB, 1.69 load
-[runlim] sample:		39.97 time, 40.01 real, 37 MB, 1.58 load
-[runlim] sample:		49.97 time, 50.01 real, 39 MB, 1.49 load
-[runlim] sample:		59.96 time, 60.01 real, 41 MB, 1.57 load
-[runlim] sample:		69.96 time, 70.01 real, 43 MB, 1.48 load
-[runlim] sample:		79.96 time, 80.01 real, 44 MB, 1.41 load
-[runlim] sample:		89.96 time, 90.01 real, 46 MB, 1.35 load
-[runlim] sample:		99.95 time, 100.01 real, 47 MB, 1.29 load
-[runlim] sample:		109.95 time, 110.01 real, 47 MB, 1.32 load
-[runlim] sample:		119.94 time, 120.01 real, 50 MB, 1.27 load
-[runlim] sample:		129.94 time, 130.01 real, 50 MB, 1.30 load
-[runlim] sample:		139.93 time, 140.01 real, 51 MB, 1.26 load
-[runlim] sample:		149.93 time, 150.01 real, 53 MB, 1.29 load
-[runlim] sample:		159.93 time, 160.01 real, 54 MB, 1.25 load
-[runlim] sample:		169.92 time, 170.01 real, 55 MB, 1.28 load
-[runlim] sample:		179.92 time, 180.01 real, 55 MB, 1.32 load
-[runlim] sample:		189.91 time, 190.01 real, 55 MB, 1.34 load
-[runlim] sample:		199.91 time, 200.01 real, 59 MB, 1.29 load
-[runlim] sample:		209.90 time, 210.01 real, 60 MB, 1.32 load
-[runlim] sample:		219.90 time, 220.01 real, 60 MB, 1.27 load
-[runlim] sample:		229.90 time, 230.01 real, 61 MB, 1.23 load
-[runlim] sample:		239.89 time, 240.01 real, 61 MB, 1.27 load
-[runlim] sample:		249.89 time, 250.01 real, 65 MB, 1.23 load
-[runlim] sample:		259.88 time, 260.01 real, 66 MB, 1.19 load
-[runlim] sample:		269.88 time, 270.01 real, 67 MB, 1.24 load
-[runlim] sample:		279.87 time, 280.01 real, 67 MB, 1.20 load
-[runlim] sample:		289.88 time, 290.01 real, 67 MB, 1.17 load
-[runlim] sample:		299.87 time, 300.01 real, 68 MB, 1.14 load
-[runlim] sample:		309.86 time, 310.01 real, 68 MB, 1.12 load
-[runlim] sample:		319.86 time, 320.01 real, 68 MB, 1.10 load
-Build time: 321.43s
-Solving MIP (minimizing number of labels)...
+[runlim] start:			Wed Mar 25 00:31:00 2026
+[runlim] child:			67005
+--- Building MIP model for 400 variables ---
+--- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Tolerances_MIPGap                   0
 Legacy callback                                  i
 Tried aggregator 1 time.
-MIP Presolve eliminated 854917 rows and 27 columns.
-MIP Presolve modified 52881 coefficients.
-Reduced MIP has 58887 rows, 14927 columns, and 970080 nonzeros.
-Reduced MIP has 14927 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 5.41 sec. (7357.38 ticks)
-Probing fixed 345 vars, tightened 0 bounds.
-Probing changed sense of 7398 constraints.
-Probing time = 0.14 sec. (56.72 ticks)
+MIP Presolve eliminated 854902 rows and 42 columns.
+MIP Presolve modified 52047 coefficients.
+Reduced MIP has 58739 rows, 14912 columns, and 968774 nonzeros.
+Reduced MIP has 14912 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 5.46 sec. (7338.54 ticks)
+[runlim] sample:		16.15 time, 10.01 real, 358 MB, 1.86 load
+Probing fixed 347 vars, tightened 0 bounds.
+Probing changed sense of 7371 constraints.
+Probing time = 0.14 sec. (56.44 ticks)
 Tried aggregator 2 times.
-[runlim] sample:		338.84 time, 330.01 real, 475 MB, 1.23 load
-MIP Presolve eliminated 13690 rows and 7640 columns.
-MIP Presolve modified 15111 coefficients.
-Aggregator did 6 substitutions.
-Reduced MIP has 45132 rows, 7281 columns, and 969241 nonzeros.
-Reduced MIP has 7281 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 2.74 sec. (4697.29 ticks)
-Probing fixed 65 vars, tightened 0 bounds.
-Probing time = 0.05 sec. (25.28 ticks)
+MIP Presolve eliminated 13601 rows and 7628 columns.
+MIP Presolve modified 15146 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 45055 rows, 7275 columns, and 967514 nonzeros.
+Reduced MIP has 7275 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 2.77 sec. (4700.06 ticks)
+Probing fixed 53 vars, tightened 0 bounds.
+Probing changed sense of 6 constraints.
+Probing time = 0.06 sec. (25.87 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-MIP Presolve eliminated 32 rows and 65 columns.
-MIP Presolve modified 3184 coefficients.
-Reduced MIP has 44881 rows, 7216 columns, and 951873 nonzeros.
+MIP Presolve eliminated 47 rows and 59 columns.
+MIP Presolve modified 3161 coefficients.
+Reduced MIP has 44798 rows, 7216 columns, and 951718 nonzeros.
 Reduced MIP has 7216 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.95 sec. (1333.63 ticks)
+Presolve time = 1.00 sec. (1379.84 ticks)
 Probing time = 0.02 sec. (4.81 ticks)
-Clique table members: 52187.
+Clique table members: 52095.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 12 threads.
-[runlim] sample:		383.70 time, 340.01 real, 620 MB, 1.65 load
-Root relaxation solution time = 13.10 sec. (7001.81 ticks)
+[runlim] sample:		64.98 time, 20.01 real, 679 MB, 2.68 load
+Root relaxation solution time = 14.77 sec. (6434.82 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                           44.0000        0.0000           100.00%
-      0     0       14.0000  1657       44.0000       14.0000       18   68.18%
-
-========== NEW INCUMBENT SOLUTION ==========
-{1: 58, 2: 296, 3: 30, 4: 268, 5: 30, 6: 268, 7: 764, 8: 526, 9: 512, 10: 750, 11: 72, 12: 310, 13: 764, 14: 526, 15: 114, 16: 352, 17: 16, 18: 254, 19: 792, 20: 554, 21: 16, 22: 254, 23: 86, 24: 324, 25: 142, 26: 380, 27: 156, 28: 394, 29: 680, 30: 442, 31: 666, 32: 428, 33: 16, 34: 254, 35: 666, 36: 428, 37: 16, 38: 254, 39: 708, 40: 470, 41: 694, 42: 456, 43: 764, 44: 526, 45: 86, 46: 324, 47: 764, 48: 526, 49: 114, 50: 352, 51: 736, 52: 498, 53: 694, 54: 456, 55: 142, 56: 380, 57: 16, 58: 254, 59: 72, 60: 310, 61: 30, 62: 268, 63: 680, 64: 442, 65: 30, 66: 268, 67: 58, 68: 296, 69: 498, 70: 736, 71: 736, 72: 498, 73: 44, 74: 282, 75: 792, 76: 554, 77: 156, 78: 394, 79: 694, 80: 456, 81: 114, 82: 352, 83: 16, 84: 254, 85: 58, 86: 296, 87: 30, 88: 268, 89: 16, 90: 254, 91: 792, 92: 554, 93: 128, 94: 366, 95: 156, 96: 394, 97: 142, 98: 380, 99: 142, 100: 380, 101: 792, 102: 554, 103: 16, 104: 254, 105: 86, 106: 324, 107: 652, 108: 414, 109: 764, 110: 526, 111: 156, 112: 394, 113: 722, 114: 484, 115: 142, 116: 380, 117: 792, 118: 554, 119: 764, 120: 526, 121: 100, 122: 338, 123: 680, 124: 442, 125: 114, 126: 352, 127: 792, 128: 554, 129: 44, 130: 282, 131: 58, 132: 296, 133: 30, 134: 268, 135: 100, 136: 338, 137: 100, 138: 338, 139: 652, 140: 414, 141: 58, 142: 296, 143: 736, 144: 498, 145: 30, 146: 268, 147: 16, 148: 254, 149: 44, 150: 282, 151: 792, 152: 554, 153: 30, 154: 268, 155: 156, 156: 394, 157: 736, 158: 498, 159: 86, 160: 324, 161: 484, 162: 722, 163: 16, 164: 254, 165: 72, 166: 310, 167: 44, 168: 282, 169: 156, 170: 394, 171: 156, 172: 394, 173: 722, 174: 484, 175: 30, 176: 268, 177: 16, 178: 254, 179: 114, 180: 352, 181: 352, 182: 114, 183: 16, 184: 254, 185: 792, 186: 554, 187: 30, 188: 268, 189: 16, 190: 254, 191: 750, 192: 512, 193: 680, 194: 442, 195: 750, 196: 512, 197: 778, 198: 540, 199: 142, 200: 380, 201: 708, 202: 470, 203: 30, 204: 268, 205: 58, 206: 296, 207: 722, 208: 484, 209: 694, 210: 456, 211: 142, 212: 380, 213: 694, 214: 456, 215: 694, 216: 456, 217: 114, 218: 352, 219: 554, 220: 792, 221: 792, 222: 554, 223: 694, 224: 456, 225: 128, 226: 366, 227: 680, 228: 442, 229: 764, 230: 526, 231: 778, 232: 540, 233: 708, 234: 470, 235: 722, 236: 484, 237: 764, 238: 526, 239: 324, 240: 86, 241: 16, 242: 254, 243: 58, 244: 296, 245: 792, 246: 554, 247: 736, 248: 498, 249: 44, 250: 282, 251: 764, 252: 526, 253: 750, 254: 512, 255: 156, 256: 394, 257: 86, 258: 324, 259: 694, 260: 456, 261: 30, 262: 268, 263: 30, 264: 268, 265: 708, 266: 470, 267: 652, 268: 414, 269: 254, 270: 16, 271: 58, 272: 296, 273: 722, 274: 484, 275: 792, 276: 554, 277: 722, 278: 484, 279: 16, 280: 254, 281: 156, 282: 394, 283: 58, 284: 296, 285: 156, 286: 394, 287: 778, 288: 540, 289: 72, 290: 310, 291: 694, 292: 456, 293: 142, 294: 380, 295: 16, 296: 254, 297: 72, 298: 310, 299: 778, 300: 540, 301: 750, 302: 512, 303: 722, 304: 484, 305: 736, 306: 498, 307: 764, 308: 526, 309: 100, 310: 338, 311: 750, 312: 512, 313: 484, 314: 722, 315: 680, 316: 442, 317: 792, 318: 554, 319: 792, 320: 554, 321: 100, 322: 338, 323: 156, 324: 394, 325: 764, 326: 526, 327: 652, 328: 414, 329: 708, 330: 470, 331: 778, 332: 540, 333: 142, 334: 380, 335: 708, 336: 470, 337: 750, 338: 512, 339: 708, 340: 470, 341: 128, 342: 366, 343: 128, 344: 366, 345: 72, 346: 310, 347: 30, 348: 268, 349: 156, 350: 394, 351: 44, 352: 282, 353: 750, 354: 512, 355: 30, 356: 268, 357: 30, 358: 268, 359: 30, 360: 268, 361: 764, 362: 526, 363: 58, 364: 296, 365: 792, 366: 554, 367: 86, 368: 324, 369: 16, 370: 254, 371: 778, 372: 540, 373: 44, 374: 282, 375: 58, 376: 296, 377: 680, 378: 442, 379: 736, 380: 498, 381: 764, 382: 526, 383: 86, 384: 324, 385: 666, 386: 428, 387: 708, 388: 470, 389: 778, 390: 540, 391: 792, 392: 554, 393: 652, 394: 414, 395: 652, 396: 414, 397: 16, 398: 254, 399: 722, 400: 484}
-Number of labels used: 44
-Total time: 345.83 sec
-Memory: 629.36 MB
-=============================================
-
-========== NEW INCUMBENT SOLUTION ==========
-{1: 58, 2: 296, 3: 30, 4: 268, 5: 30, 6: 268, 7: 764, 8: 526, 9: 512, 10: 750, 11: 72, 12: 310, 13: 764, 14: 526, 15: 114, 16: 352, 17: 16, 18: 254, 19: 792, 20: 554, 21: 16, 22: 254, 23: 86, 24: 324, 25: 142, 26: 380, 27: 156, 28: 394, 29: 680, 30: 442, 31: 666, 32: 428, 33: 16, 34: 254, 35: 666, 36: 428, 37: 16, 38: 254, 39: 708, 40: 470, 41: 694, 42: 456, 43: 764, 44: 526, 45: 86, 46: 324, 47: 764, 48: 526, 49: 114, 50: 352, 51: 736, 52: 498, 53: 694, 54: 456, 55: 142, 56: 380, 57: 16, 58: 254, 59: 72, 60: 310, 61: 30, 62: 268, 63: 680, 64: 442, 65: 30, 66: 268, 67: 58, 68: 296, 69: 498, 70: 736, 71: 736, 72: 498, 73: 44, 74: 282, 75: 792, 76: 554, 77: 156, 78: 394, 79: 694, 80: 456, 81: 114, 82: 352, 83: 16, 84: 254, 85: 58, 86: 296, 87: 30, 88: 268, 89: 16, 90: 254, 91: 792, 92: 554, 93: 128, 94: 366, 95: 156, 96: 394, 97: 142, 98: 380, 99: 142, 100: 380, 101: 792, 102: 554, 103: 16, 104: 254, 105: 86, 106: 324, 107: 652, 108: 414, 109: 764, 110: 526, 111: 156, 112: 394, 113: 722, 114: 484, 115: 142, 116: 380, 117: 792, 118: 554, 119: 764, 120: 526, 121: 100, 122: 338, 123: 680, 124: 442, 125: 114, 126: 352, 127: 792, 128: 554, 129: 44, 130: 282, 131: 58, 132: 296, 133: 30, 134: 268, 135: 100, 136: 338, 137: 100, 138: 338, 139: 652, 140: 414, 141: 58, 142: 296, 143: 736, 144: 498, 145: 30, 146: 268, 147: 16, 148: 254, 149: 44, 150: 282, 151: 792, 152: 554, 153: 30, 154: 268, 155: 156, 156: 394, 157: 736, 158: 498, 159: 86, 160: 324, 161: 484, 162: 722, 163: 16, 164: 254, 165: 72, 166: 310, 167: 44, 168: 282, 169: 156, 170: 394, 171: 156, 172: 394, 173: 722, 174: 484, 175: 30, 176: 268, 177: 16, 178: 254, 179: 114, 180: 352, 181: 352, 182: 114, 183: 16, 184: 254, 185: 792, 186: 554, 187: 30, 188: 268, 189: 16, 190: 254, 191: 750, 192: 512, 193: 680, 194: 442, 195: 750, 196: 512, 197: 778, 198: 540, 199: 142, 200: 380, 201: 708, 202: 470, 203: 30, 204: 268, 205: 58, 206: 296, 207: 722, 208: 484, 209: 694, 210: 456, 211: 142, 212: 380, 213: 694, 214: 456, 215: 694, 216: 456, 217: 114, 218: 352, 219: 554, 220: 792, 221: 792, 222: 554, 223: 694, 224: 456, 225: 128, 226: 366, 227: 680, 228: 442, 229: 764, 230: 526, 231: 778, 232: 540, 233: 708, 234: 470, 235: 722, 236: 484, 237: 764, 238: 526, 239: 324, 240: 86, 241: 16, 242: 254, 243: 58, 244: 296, 245: 792, 246: 554, 247: 736, 248: 498, 249: 44, 250: 282, 251: 764, 252: 526, 253: 750, 254: 512, 255: 156, 256: 394, 257: 86, 258: 324, 259: 694, 260: 456, 261: 30, 262: 268, 263: 30, 264: 268, 265: 708, 266: 470, 267: 652, 268: 414, 269: 254, 270: 16, 271: 58, 272: 296, 273: 722, 274: 484, 275: 792, 276: 554, 277: 722, 278: 484, 279: 16, 280: 254, 281: 156, 282: 394, 283: 58, 284: 296, 285: 156, 286: 394, 287: 778, 288: 540, 289: 72, 290: 310, 291: 694, 292: 456, 293: 142, 294: 380, 295: 16, 296: 254, 297: 72, 298: 310, 299: 778, 300: 540, 301: 750, 302: 512, 303: 722, 304: 484, 305: 736, 306: 498, 307: 764, 308: 526, 309: 100, 310: 338, 311: 750, 312: 512, 313: 484, 314: 722, 315: 680, 316: 442, 317: 792, 318: 554, 319: 792, 320: 554, 321: 100, 322: 338, 323: 156, 324: 394, 325: 764, 326: 526, 327: 652, 328: 414, 329: 708, 330: 470, 331: 778, 332: 540, 333: 142, 334: 380, 335: 708, 336: 470, 337: 750, 338: 512, 339: 708, 340: 470, 341: 128, 342: 366, 343: 128, 344: 366, 345: 72, 346: 310, 347: 30, 348: 268, 349: 156, 350: 394, 351: 44, 352: 282, 353: 750, 354: 512, 355: 30, 356: 268, 357: 30, 358: 268, 359: 30, 360: 268, 361: 764, 362: 526, 363: 58, 364: 296, 365: 792, 366: 554, 367: 86, 368: 324, 369: 16, 370: 254, 371: 778, 372: 540, 373: 44, 374: 282, 375: 58, 376: 296, 377: 680, 378: 442, 379: 736, 380: 498, 381: 764, 382: 526, 383: 86, 384: 324, 385: 666, 386: 428, 387: 708, 388: 470, 389: 778, 390: 540, 391: 792, 392: 554, 393: 652, 394: 414, 395: 652, 396: 414, 397: 16, 398: 254, 399: 722, 400: 484}
-Number of labels used: 44
-Total time: 345.84 sec
-Memory: 629.77 MB
-=============================================
-[runlim] sample:		403.71 time, 350.01 real, 676 MB, 1.63 load
-[runlim] sample:		423.69 time, 360.01 real, 755 MB, 1.69 load
-[runlim] sample:		443.69 time, 370.01 real, 764 MB, 1.74 load
-[runlim] sample:		463.69 time, 380.01 real, 764 MB, 1.78 load
-[runlim] sample:		483.68 time, 390.01 real, 764 MB, 1.89 load
-[runlim] sample:		503.67 time, 400.01 real, 781 MB, 1.90 load
-[runlim] sample:		523.67 time, 410.01 real, 786 MB, 1.92 load
-[runlim] sample:		543.66 time, 420.01 real, 786 MB, 1.93 load
-[runlim] sample:		563.66 time, 430.01 real, 786 MB, 1.94 load
-[runlim] sample:		583.65 time, 440.01 real, 786 MB, 2.03 load
-[runlim] sample:		603.65 time, 450.01 real, 786 MB, 2.18 load
-[runlim] sample:		623.65 time, 460.01 real, 786 MB, 2.31 load
-[runlim] sample:		643.64 time, 470.01 real, 786 MB, 2.42 load
-[runlim] sample:		663.64 time, 480.01 real, 793 MB, 2.51 load
-[runlim] sample:		683.63 time, 490.01 real, 794 MB, 2.58 load
-[runlim] sample:		703.63 time, 500.01 real, 794 MB, 2.73 load
-[runlim] sample:		723.63 time, 510.01 real, 794 MB, 2.77 load
-[runlim] sample:		743.62 time, 520.01 real, 794 MB, 2.81 load
-[runlim] sample:		763.61 time, 530.01 real, 794 MB, 2.76 load
-[runlim] sample:		783.59 time, 540.01 real, 794 MB, 2.80 load
-[runlim] sample:		803.57 time, 550.01 real, 811 MB, 2.83 load
-[runlim] sample:		823.57 time, 560.01 real, 822 MB, 3.01 load
-[runlim] sample:		843.56 time, 570.01 real, 828 MB, 3.08 load
-[runlim] sample:		863.56 time, 580.01 real, 828 MB, 2.92 load
-[runlim] sample:		883.55 time, 590.01 real, 828 MB, 2.92 load
-[runlim] sample:		903.55 time, 600.01 real, 828 MB, 2.78 load
-[runlim] end:			Tue Mar 24 06:44:03 2026
+      0     0       14.0000  1637                     14.0000       16         
+[runlim] sample:		106.72 time, 30.01 real, 732 MB, 2.88 load
+[runlim] sample:		136.71 time, 40.01 real, 891 MB, 2.90 load
+[runlim] sample:		166.71 time, 50.01 real, 952 MB, 2.91 load
+[runlim] sample:		196.70 time, 60.01 real, 986 MB, 2.93 load
+[runlim] sample:		226.70 time, 70.01 real, 986 MB, 2.94 load
+[runlim] sample:		256.69 time, 80.01 real, 991 MB, 2.95 load
+[runlim] sample:		286.69 time, 90.01 real, 992 MB, 2.96 load
+[runlim] sample:		316.69 time, 100.01 real, 992 MB, 3.04 load
+[runlim] sample:		346.68 time, 110.01 real, 992 MB, 3.04 load
+[runlim] sample:		376.67 time, 120.01 real, 1001 MB, 3.03 load
+[runlim] sample:		406.67 time, 130.01 real, 965 MB, 3.03 load
+[runlim] sample:		436.66 time, 140.01 real, 970 MB, 3.02 load
+[runlim] sample:		466.66 time, 150.01 real, 970 MB, 3.02 load
+[runlim] sample:		496.66 time, 160.01 real, 970 MB, 3.01 load
+[runlim] sample:		526.65 time, 170.01 real, 973 MB, 3.01 load
+[runlim] sample:		547.08 time, 180.01 real, 973 MB, 2.86 load
+[runlim] sample:		567.07 time, 190.01 real, 973 MB, 2.72 load
+[runlim] sample:		587.07 time, 200.01 real, 973 MB, 2.61 load
+[runlim] sample:		607.07 time, 210.01 real, 973 MB, 2.59 load
+[runlim] sample:		627.05 time, 220.01 real, 973 MB, 2.50 load
+[runlim] sample:		647.05 time, 230.01 real, 973 MB, 2.42 load
+[runlim] sample:		667.04 time, 240.01 real, 973 MB, 2.36 load
+[runlim] sample:		687.03 time, 250.01 real, 973 MB, 2.30 load
+[runlim] sample:		707.02 time, 260.01 real, 973 MB, 2.25 load
+[runlim] sample:		727.02 time, 270.01 real, 973 MB, 2.22 load
+[runlim] sample:		747.01 time, 280.01 real, 973 MB, 2.18 load
+[runlim] sample:		767.01 time, 290.01 real, 973 MB, 2.31 load
+[runlim] sample:		787.01 time, 300.01 real, 973 MB, 2.35 load
+[runlim] sample:		807.01 time, 310.01 real, 973 MB, 2.37 load
+[runlim] sample:		827.01 time, 320.01 real, 973 MB, 2.31 load
+[runlim] sample:		847.01 time, 330.01 real, 973 MB, 2.26 load
+[runlim] sample:		867.00 time, 340.01 real, 973 MB, 2.22 load
+[runlim] sample:		887.00 time, 350.01 real, 973 MB, 2.19 load
+[runlim] sample:		907.00 time, 360.01 real, 973 MB, 2.16 load
+[runlim] sample:		927.00 time, 370.01 real, 973 MB, 2.13 load
+[runlim] sample:		946.99 time, 380.01 real, 973 MB, 2.11 load
+[runlim] sample:		966.99 time, 390.01 real, 973 MB, 2.09 load
+[runlim] sample:		986.99 time, 400.01 real, 973 MB, 2.08 load
+[runlim] sample:		1006.99 time, 410.01 real, 973 MB, 2.07 load
+[runlim] sample:		1026.98 time, 420.01 real, 973 MB, 2.06 load
+[runlim] sample:		1046.98 time, 430.01 real, 973 MB, 2.05 load
+[runlim] sample:		1066.98 time, 440.01 real, 973 MB, 2.04 load
+[runlim] sample:		1086.98 time, 450.01 real, 973 MB, 2.03 load
+[runlim] sample:		1106.97 time, 460.01 real, 973 MB, 2.03 load
+[runlim] sample:		1126.97 time, 470.01 real, 973 MB, 2.02 load
+[runlim] sample:		1146.97 time, 480.01 real, 973 MB, 2.18 load
+[runlim] sample:		1166.96 time, 490.01 real, 973 MB, 2.15 load
+[runlim] sample:		1186.96 time, 500.01 real, 973 MB, 2.13 load
+[runlim] sample:		1206.96 time, 510.01 real, 973 MB, 2.11 load
+[runlim] sample:		1226.96 time, 520.01 real, 973 MB, 2.09 load
+[runlim] sample:		1246.95 time, 530.01 real, 973 MB, 2.08 load
+[runlim] sample:		1266.95 time, 540.01 real, 973 MB, 2.06 load
+[runlim] sample:		1286.95 time, 550.01 real, 973 MB, 2.05 load
+[runlim] sample:		1306.95 time, 560.01 real, 973 MB, 2.05 load
+[runlim] sample:		1326.95 time, 570.01 real, 973 MB, 2.04 load
+[runlim] sample:		1346.94 time, 580.01 real, 973 MB, 2.03 load
+[runlim] sample:		1366.94 time, 590.01 real, 973 MB, 2.03 load
+[runlim] sample:		1386.94 time, 600.01 real, 973 MB, 2.02 load
+[runlim] end:			Wed Mar 25 00:41:01 2026
 [runlim] status:		out of time
 [runlim] result:		2
 [runlim] children:		1
 [runlim] processes:		2
 [runlim] real:			601.06 seconds
-[runlim] time:			903.55 seconds
-[runlim] space:			828 MB
-[runlim] load:			3.09 maximum
+[runlim] time:			1386.94 seconds
+[runlim] space:			1001 MB
+[runlim] load:			3.04 maximum
 [runlim] samples:		6000

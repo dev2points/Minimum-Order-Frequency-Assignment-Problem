@@ -127,14 +127,21 @@ def build_gurobi_model(var, ctr_file):
             if '>' in parts:
                 distance = int(parts[4])
                 for vi in vals_i:
-                    for vj in vals_j:
-                        if abs(vi - vj) <= distance:
+                    not_valid_vj = [vj for vj in vals_j if abs(vi - vj) <= distance]
+                    if len(not_valid_vj) == len(vals_j):
+                        model.addConstr(x[(i, vi)] == 0)
+                    else:
+                        for vj in not_valid_vj:
                             model.addConstr(x[(i, vi)] + x[(j, vj)] <= 1)
+                        
 
             elif '=' in parts:
                 target = int(parts[4])
                 for vi in vals_i:
-                    model.addConstr(x[(i, vi)] <= sum(x[(j, vj)] for vj in vals_j if abs(vi - vj) == target))
+                    if not any(abs(vi - vj) == target for vj in vals_j):
+                        model.addConstr(x[(i, vi)] == 0)
+                    else:
+                        model.addConstr(x[(i, vi)] <= sum(x[(j, vj)] for vj in vals_j if abs(vi - vj) == target))
 
     # Minimize number of labels used
     model.setObjective(sum(y[v] for v in label_set), GRB.MINIMIZE)

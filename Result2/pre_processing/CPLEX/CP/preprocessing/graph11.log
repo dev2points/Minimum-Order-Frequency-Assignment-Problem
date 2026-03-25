@@ -6,34 +6,46 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph11
-[runlim] start:			Mon Mar 23 23:08:58 2026
-[runlim] child:			14855
-[runlim] sample:		9.96 time, 10.01 real, 538 MB, 4.85 load
-[runlim] sample:		19.92 time, 20.01 real, 1221 MB, 4.34 load
-[runlim] sample:		29.91 time, 30.01 real, 1638 MB, 3.90 load
-[runlim] sample:		39.85 time, 40.01 real, 3308 MB, 3.45 load
-[runlim] sample:		49.80 time, 50.01 real, 5810 MB, 3.08 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 03:53:01 2026
+[runlim] child:			68756
+--- Building model for 680 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:3872:26): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_414 - node_624) > 315
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:3966:26): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_424 - node_638) > 333
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:4332:26): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_482 - node_622) > 423
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 25688 variables, 1917718 constraints
- ! Presolve      : 1918400 extractables eliminated
+ ! Minimization problem - 680 variables, 3757 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 16.80s (16.74s extraction + 0.07s propagation)
- !  . Log search space  : 25688.0 (before), 25688.0 (after)
- !  . Memory usage      : 243.5 MB (before), 243.5 MB (after)
+ ! Initial process time : 0.00s (0.00s extraction + 0.00s propagation)
+ !  . Log search space  : 2901.3 (before), 2901.3 (after)
+ !  . Memory usage      : 959.4 kB (before), 959.4 kB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0      25688                 -
+                        0        680                 -
  + New bound is 0
-[runlim] end:			Mon Mar 23 23:09:59 2026
-[runlim] status:		out of memory
-[runlim] result:		3
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 0
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 6.9 MB (6.5 MB CP Optimizer + 0.4 MB Concert)
+ ! Time spent in solve    : 0.01s (0.01s engine + 0.00s extraction)
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 0.30s
+Memory used: 29.54 MB
+[runlim] end:			Wed Mar 25 03:53:01 2026
+[runlim] status:		ok
+[runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			60.87 seconds
-[runlim] time:			120.33 seconds
-[runlim] space:			14047 MB
-[runlim] load:			5.46 maximum
-[runlim] samples:		598
+[runlim] real:			0.38 seconds
+[runlim] time:			0.29 seconds
+[runlim] space:			47 MB
+[runlim] load:			9.19 maximum
+[runlim] samples:		4

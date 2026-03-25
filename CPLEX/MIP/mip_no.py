@@ -32,9 +32,20 @@ class MyIncumbentCallback(MIPInfoCallback):
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
-    suffix = "txt" if base.lower().startswith(("graph", "tud")) else "TXT"
-    f_names = ["dom", "var", "ctr"]
-    return {n: os.path.join(dataset_folder, f"{n.upper() if suffix == 'TXT' else n}.{suffix}") for n in f_names}
+    if base.lower().startswith(("graph", "tud")):
+        return {
+            "domain": os.path.join(dataset_folder, "dom.txt"),
+            "var": os.path.join(dataset_folder, "var.txt"),
+            "ctr": os.path.join(dataset_folder, "ctr.txt")
+        }
+    elif base.lower().startswith("scen"):
+        return {
+            "domain": os.path.join(dataset_folder, "DOM.TXT"),
+            "var": os.path.join(dataset_folder, "VAR.TXT"),
+            "ctr": os.path.join(dataset_folder, "CTR.TXT")
+        }
+    else:
+        raise ValueError("Not a valid dataset: " + dataset_folder)
 
 def read_domain(file):
     domain = []

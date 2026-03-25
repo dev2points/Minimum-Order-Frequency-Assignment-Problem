@@ -6,37 +6,46 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph13
-[runlim] start:			Mon Mar 23 23:10:03 2026
-[runlim] child:			14907
-[runlim] sample:		10.00 time, 10.01 real, 568 MB, 3.05 load
-[runlim] sample:		19.99 time, 20.01 real, 1112 MB, 2.73 load
-[runlim] sample:		29.99 time, 30.01 real, 1894 MB, 2.46 load
-[runlim] sample:		39.99 time, 40.01 real, 2457 MB, 2.24 load
-[runlim] sample:		49.98 time, 50.01 real, 2509 MB, 2.05 load
-[runlim] sample:		59.98 time, 60.01 real, 5235 MB, 1.89 load
-[runlim] sample:		69.98 time, 70.01 real, 7677 MB, 1.75 load
-[runlim] sample:		79.97 time, 80.01 real, 8512 MB, 1.63 load
-Building CP model...
-Solving CP Optimizer...
+[runlim] start:			Wed Mar 25 03:53:01 2026
+[runlim] child:			68784
+--- Building model for 916 variables ---
+--- Solving with CP Optimizer (Integer Mode) ---
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:1096:24): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_6 - node_756) > 515
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:1836:25): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_86 - node_358) > 477
+/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:6261:26): Warning: The constraint is always false, the model is infeasible.
+                                                                                                           abs(node_672 - node_777) > 392
  ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 35224 variables, 2853648 constraints
- ! Presolve      : 2854566 extractables eliminated
+ ! Minimization problem - 916 variables, 5273 constraints
  ! LogVerbosity         = Terse
- ! Initial process time : 25.55s (25.45s extraction + 0.11s propagation)
- !  . Log search space  : 35224.0 (before), 35224.0 (after)
- !  . Memory usage      : 395.8 MB (before), 395.8 MB (after)
+ ! Initial process time : 0.00s (0.00s extraction + 0.00s propagation)
+ !  . Log search space  : 3952.4 (before), 3952.4 (after)
+ !  . Memory usage      : 1.2 MB (before), 1.2 MB (after)
  ! Using parallel search with 12 workers.
  ! ----------------------------------------------------------------------------
  !          Best Branches  Non-fixed    W       Branch decision
-                        0      35224                 -
+                        0        916                 -
  + New bound is 0
-[runlim] end:			Mon Mar 23 23:11:33 2026
-[runlim] status:		out of memory
-[runlim] result:		3
+ ! ----------------------------------------------------------------------------
+ ! Search completed, model has no solution.
+ ! Best bound             : 0
+ ! ----------------------------------------------------------------------------
+ ! Number of branches     : 0
+ ! Number of fails        : 0
+ ! Total memory usage     : 10.2 MB (9.7 MB CP Optimizer + 0.5 MB Concert)
+ ! Time spent in solve    : 0.02s (0.02s engine + 0.00s extraction)
+ ! ----------------------------------------------------------------------------
+No valid solution: Infeasible
+Total time: 0.44s
+Memory used: 31.84 MB
+[runlim] end:			Wed Mar 25 03:53:02 2026
+[runlim] status:		ok
+[runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			90.26 seconds
-[runlim] time:			181.38 seconds
-[runlim] space:			14089 MB
-[runlim] load:			3.42 maximum
-[runlim] samples:		892
+[runlim] real:			0.52 seconds
+[runlim] time:			0.48 seconds
+[runlim] space:			48 MB
+[runlim] load:			9.19 maximum
+[runlim] samples:		6

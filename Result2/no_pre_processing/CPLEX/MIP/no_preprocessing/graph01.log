@@ -7,13 +7,13 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip_no.py
 [runlim] argv[3]:		graph01
-[runlim] start:			Tue Mar 24 10:29:39 2026
-[runlim] child:			33890
-Building MIP model...
-Build time: 7.44s
-Solving MIP (minimizing number of labels)...
+[runlim] start:			Wed Mar 25 01:12:06 2026
+[runlim] child:			67445
+--- Building MIP model for 200 variables ---
+--- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Tolerances_MIPGap                   0
 Legacy callback                                  i
 Tried aggregator 2 times.
 MIP Presolve eliminated 58890 rows and 0 columns.
@@ -21,8 +21,8 @@ MIP Presolve modified 19778 coefficients.
 Aggregator did 1 substitutions.
 Reduced MIP has 23587 rows, 6967 columns, and 123196 nonzeros.
 Reduced MIP has 6967 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.24 sec. (235.45 ticks)
-Found incumbent of value 48.000000 after 0.39 sec. (415.25 ticks)
+Presolve time = 0.23 sec. (235.45 ticks)
+Found incumbent of value 48.000000 after 0.38 sec. (415.25 ticks)
 Probing changed sense of 3460 constraints.
 Probing time = 0.03 sec. (6.88 ticks)
 Tried aggregator 1 time.
@@ -30,19 +30,19 @@ MIP Presolve eliminated 8369 rows and 3459 columns.
 MIP Presolve modified 11870 coefficients.
 Reduced MIP has 15218 rows, 3508 columns, and 120846 nonzeros.
 Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.30 sec. (289.79 ticks)
-Probing time = 0.01 sec. (1.83 ticks)
+Presolve time = 0.29 sec. (289.79 ticks)
+Probing time = 0.03 sec. (1.83 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 15218 rows, 3508 columns, and 120846 nonzeros.
 Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.12 sec. (127.58 ticks)
+Presolve time = 0.13 sec. (127.58 ticks)
 Probing time = 0.01 sec. (2.13 ticks)
 Clique table members: 15218.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 12 threads.
-Root relaxation solution time = 0.81 sec. (448.05 ticks)
+Root relaxation solution time = 0.75 sec. (448.05 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -51,35 +51,35 @@ Root relaxation solution time = 0.81 sec. (448.05 ticks)
 *     0+    0                           18.0000        0.0000           100.00%
       0     0        cutoff             18.0000       18.0000     1908    0.00%
 
-========== NEW INCUMBENT SOLUTION ==========
-{1: 470, 2: 708, 3: 470, 4: 708, 5: 16, 6: 254, 7: 170, 8: 408, 9: 408, 10: 170, 11: 72, 12: 310, 13: 254, 14: 16, 15: 470, 16: 708, 17: 470, 18: 708, 19: 16, 20: 254, 21: 540, 22: 778, 23: 142, 24: 380, 25: 778, 26: 540, 27: 708, 28: 470, 29: 470, 30: 708, 31: 540, 32: 778, 33: 114, 34: 352, 35: 666, 36: 428, 37: 16, 38: 254, 39: 254, 40: 16, 41: 540, 42: 778, 43: 72, 44: 310, 45: 16, 46: 254, 47: 254, 48: 16, 49: 666, 50: 428, 51: 142, 52: 380, 53: 512, 54: 750, 55: 142, 56: 380, 57: 142, 58: 380, 59: 540, 60: 778, 61: 470, 62: 708, 63: 254, 64: 16, 65: 470, 66: 708, 67: 750, 68: 512, 69: 540, 70: 778, 71: 470, 72: 708, 73: 170, 74: 408, 75: 666, 76: 428, 77: 470, 78: 708, 79: 428, 80: 666, 81: 16, 82: 254, 83: 512, 84: 750, 85: 512, 86: 750, 87: 16, 88: 254, 89: 540, 90: 778, 91: 380, 92: 142, 93: 16, 94: 254, 95: 352, 96: 114, 97: 170, 98: 408, 99: 142, 100: 380, 101: 470, 102: 708, 103: 512, 104: 750, 105: 778, 106: 540, 107: 540, 108: 778, 109: 540, 110: 778, 111: 16, 112: 254, 113: 512, 114: 750, 115: 778, 116: 540, 117: 72, 118: 310, 119: 540, 120: 778, 121: 408, 122: 170, 123: 170, 124: 408, 125: 708, 126: 470, 127: 750, 128: 512, 129: 540, 130: 778, 131: 512, 132: 750, 133: 72, 134: 310, 135: 408, 136: 170, 137: 540, 138: 778, 139: 512, 140: 750, 141: 470, 142: 708, 143: 254, 144: 16, 145: 708, 146: 470, 147: 16, 148: 254, 149: 428, 150: 666, 151: 72, 152: 310, 153: 540, 154: 778, 155: 778, 156: 540, 157: 778, 158: 540, 159: 352, 160: 114, 161: 666, 162: 428, 163: 470, 164: 708, 165: 470, 166: 708, 167: 512, 168: 750, 169: 16, 170: 254, 171: 540, 172: 778, 173: 254, 174: 16, 175: 114, 176: 352, 177: 16, 178: 254, 179: 540, 180: 778, 181: 512, 182: 750, 183: 352, 184: 114, 185: 142, 186: 380, 187: 310, 188: 72, 189: 540, 190: 778, 191: 428, 192: 666, 193: 408, 194: 170, 195: 750, 196: 512, 197: 16, 198: 254, 199: 512, 200: 750}
-Number of labels used: 18
-Total time: 9.19 sec
-Memory: 189.98 MB
-=============================================
+Num labels used: 18
+Current incumbent solution: {16, 72, 114, 142, 170, 254, 310, 352, 380, 408, 428, 470, 512, 540, 666, 708, 750, 778}}
+Time taken: 2.01s
       0     0        cutoff             18.0000       18.0000     1908    0.00%
-Elapsed time = 1.73 sec. (1339.15 ticks, tree = 0.01 MB, solutions = 2)
+Elapsed time = 1.68 sec. (1339.15 ticks, tree = 0.01 MB, solutions = 2)
 
 Root node processing (before b&c):
-  Real time             =    1.73 sec. (1339.39 ticks)
+  Real time             =    1.68 sec. (1339.39 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    1.73 sec. (1339.39 ticks)
-Solution :
+Total (root+branch&cut) =    1.68 sec. (1339.39 ticks)
+
+==============================
+FINAL INCUMBENT SOLUTION:
 {470, 708, 470, 708, 16, 254, 170, 408, 408, 170, 72, 310, 254, 16, 470, 708, 470, 708, 16, 254, 540, 778, 142, 380, 778, 540, 708, 470, 470, 708, 540, 778, 114, 352, 666, 428, 16, 254, 254, 16, 540, 778, 72, 310, 16, 254, 254, 16, 666, 428, 142, 380, 512, 750, 142, 380, 142, 380, 540, 778, 470, 708, 254, 16, 470, 708, 750, 512, 540, 778, 470, 708, 170, 408, 666, 428, 470, 708, 428, 666, 16, 254, 512, 750, 512, 750, 16, 254, 540, 778, 380, 142, 16, 254, 352, 114, 170, 408, 142, 380, 470, 708, 512, 750, 778, 540, 540, 778, 540, 778, 16, 254, 512, 750, 778, 540, 72, 310, 540, 778, 408, 170, 170, 408, 708, 470, 750, 512, 540, 778, 512, 750, 72, 310, 408, 170, 540, 778, 512, 750, 470, 708, 254, 16, 708, 470, 16, 254, 428, 666, 72, 310, 540, 778, 778, 540, 778, 540, 352, 114, 666, 428, 470, 708, 470, 708, 512, 750, 16, 254, 540, 778, 254, 16, 114, 352, 16, 254, 540, 778, 512, 750, 352, 114, 142, 380, 310, 72, 540, 778, 428, 666, 408, 170, 750, 512, 16, 254, 512, 750}
 Number of labels used: 18
-Total time: 9.20s
-Memory used: 154.63 MB
-[runlim] end:			Tue Mar 24 10:29:48 2026
+Total time: 2.02s
+Memory used: 179.90 MB
+==============================
+[runlim] end:			Wed Mar 25 01:12:08 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			9.26 seconds
-[runlim] time:			13.87 seconds
-[runlim] space:			185 MB
-[runlim] load:			2.64 maximum
-[runlim] samples:		93
+[runlim] real:			2.08 seconds
+[runlim] time:			6.67 seconds
+[runlim] space:			193 MB
+[runlim] load:			1.93 maximum
+[runlim] samples:		21
