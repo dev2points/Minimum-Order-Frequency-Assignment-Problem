@@ -6,40 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen08
-[runlim] start:			Wed Mar 25 03:53:03 2026
-[runlim] child:			68858
---- Building model for 916 variables ---
---- Solving with CP Optimizer (Integer Mode) ---
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 916 variables, 5744 constraints
- ! LogVerbosity         = Terse
- ! Initial process time : 0.03s (0.03s extraction + 0.00s propagation)
- !  . Log search space  : 4212.8 (before), 4212.8 (after)
- !  . Memory usage      : 2.3 MB (before), 2.3 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0        916                 -
- + New bound is 0
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 0
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 0
- ! Number of fails        : 0
- ! Total memory usage     : 13.4 MB (12.9 MB CP Optimizer + 0.5 MB Concert)
- ! Time spent in solve    : 0.04s (0.01s engine + 0.03s extraction)
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-Total time: 0.50s
-Memory used: 32.42 MB
-[runlim] end:			Wed Mar 25 03:53:03 2026
+[runlim] start:			Thu Mar 26 04:16:36 2026
+[runlim] child:			31916
+Warning: variable 825 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.28 seconds
+Memory used: 24.42 MB
+[runlim] end:			Thu Mar 26 04:16:36 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		2
-[runlim] processes:		3
-[runlim] real:			0.59 seconds
-[runlim] time:			0.50 seconds
-[runlim] space:			49 MB
-[runlim] load:			9.19 maximum
-[runlim] samples:		6
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.35 seconds
+[runlim] time:			0.30 seconds
+[runlim] space:			24 MB
+[runlim] load:			6.32 maximum
+[runlim] samples:		4

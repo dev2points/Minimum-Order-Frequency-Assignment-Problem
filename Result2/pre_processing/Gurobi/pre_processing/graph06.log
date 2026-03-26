@@ -7,25 +7,19 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		main.py
 [runlim] argv[3]:		graph06
-[runlim] start:			Tue Mar 24 22:04:38 2026
-[runlim] child:			65273
-Building Gurobi model...
-Set parameter WLSAccessID
-Set parameter WLSSecret
-Set parameter LicenseID to value 2663665
-Academic license 2663665 - for non-commercial use only - registered to tu___@vnu.edu.vn
-Build time used: 2.51 sec
-Solving...
-No solution found.
-Total time used: 2.60 sec
-Memory used: 160.48 MB
-[runlim] end:			Tue Mar 24 22:04:41 2026
+[runlim] start:			Thu Mar 26 00:48:47 2026
+[runlim] child:			28285
+Warning: variable 365 has no valid labels after preprocessing.
+Cannot find solution!
+Total time used: 0.09 sec
+Memory used: 19.61 MB
+[runlim] end:			Thu Mar 26 00:48:47 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			2.73 seconds
-[runlim] time:			2.70 seconds
-[runlim] space:			206 MB
-[runlim] load:			1.66 maximum
-[runlim] samples:		28
+[runlim] real:			0.13 seconds
+[runlim] time:			0.10 seconds
+[runlim] space:			19 MB
+[runlim] load:			2.30 maximum
+[runlim] samples:		2

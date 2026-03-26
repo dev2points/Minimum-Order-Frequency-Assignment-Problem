@@ -6,19 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD916.5
-[runlim] start:			Wed Mar 25 04:24:06 2026
-[runlim] child:			70039
-Warning: variable 41 has no valid labels after preprocessing.
+[runlim] start:			Thu Mar 26 04:44:52 2026
+[runlim] child:			32174
+Warning: variable 366 has no valid labels after preprocessing.
 Cannot find solution!
-Time taken: 0.26 seconds
-Memory used: 23.15 MB
-[runlim] end:			Wed Mar 25 04:24:06 2026
+Time taken: 0.19 seconds
+Memory used: 24.01 MB
+[runlim] end:			Thu Mar 26 04:44:52 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.33 seconds
-[runlim] time:			0.30 seconds
-[runlim] space:			23 MB
-[runlim] load:			8.08 maximum
-[runlim] samples:		4
+[runlim] real:			0.26 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			24 MB
+[runlim] load:			7.03 maximum
+[runlim] samples:		3

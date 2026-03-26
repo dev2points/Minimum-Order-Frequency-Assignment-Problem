@@ -6,46 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		graph11
-[runlim] start:			Wed Mar 25 03:53:01 2026
-[runlim] child:			68756
---- Building model for 680 variables ---
---- Solving with CP Optimizer (Integer Mode) ---
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:3872:26): Warning: The constraint is always false, the model is infeasible.
-                                                                                                           abs(node_414 - node_624) > 315
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:3966:26): Warning: The constraint is always false, the model is infeasible.
-                                                                                                           abs(node_424 - node_638) > 333
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:4332:26): Warning: The constraint is always false, the model is infeasible.
-                                                                                                           abs(node_482 - node_622) > 423
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 680 variables, 3757 constraints
- ! LogVerbosity         = Terse
- ! Initial process time : 0.00s (0.00s extraction + 0.00s propagation)
- !  . Log search space  : 2901.3 (before), 2901.3 (after)
- !  . Memory usage      : 959.4 kB (before), 959.4 kB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0        680                 -
- + New bound is 0
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 0
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 0
- ! Number of fails        : 0
- ! Total memory usage     : 6.9 MB (6.5 MB CP Optimizer + 0.4 MB Concert)
- ! Time spent in solve    : 0.01s (0.01s engine + 0.00s extraction)
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-Total time: 0.30s
-Memory used: 29.54 MB
-[runlim] end:			Wed Mar 25 03:53:01 2026
+[runlim] start:			Thu Mar 26 04:16:34 2026
+[runlim] child:			31875
+Warning: variable 367 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.15 seconds
+Memory used: 23.57 MB
+[runlim] end:			Thu Mar 26 04:16:34 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		2
-[runlim] processes:		3
-[runlim] real:			0.38 seconds
-[runlim] time:			0.29 seconds
-[runlim] space:			47 MB
-[runlim] load:			9.19 maximum
-[runlim] samples:		4
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.22 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			24 MB
+[runlim] load:			6.32 maximum
+[runlim] samples:		3

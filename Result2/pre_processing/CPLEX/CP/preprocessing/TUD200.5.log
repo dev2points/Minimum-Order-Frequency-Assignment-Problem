@@ -6,50 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		TUD200.5
-[runlim] start:			Wed Mar 25 04:13:06 2026
-[runlim] child:			69897
---- Building model for 200 variables ---
---- Solving with CP Optimizer (Integer Mode) ---
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:888:25): Warning: The constraint is always false, the model is infeasible.
-                                                                                                          abs(node_91 - node_161) > 470
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:889:25): Warning: The constraint is always false, the model is infeasible.
-                                                                                                          abs(node_91 - node_162) > 390
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:900:25): Warning: The constraint is always false, the model is infeasible.
-                                                                                                          abs(node_92 - node_161) > 411
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:901:25): Warning: The constraint is always false, the model is infeasible.
-                                                                                                          abs(node_92 - node_162) > 508
-/home/ap/Desktop/Minimum-Order-Frequency-Assignment-Problem/CPLEX/CP/cp.py:113(stream:902:25): Warning: The constraint is always false, the model is infeasible.
-                                                                                                          abs(node_92 - node_165) > 465
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 200 variables, 1125 constraints
- ! LogVerbosity         = Terse
- ! Initial process time : 0.00s (0.00s extraction + 0.00s propagation)
- !  . Log search space  : 881.1 (before), 881.1 (after)
- !  . Memory usage      : 467.8 kB (before), 467.8 kB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0        200                 -
- + New bound is 0
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 0
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 0
- ! Number of fails        : 0
- ! Total memory usage     : 2.4 MB (2.3 MB CP Optimizer + 0.1 MB Concert)
- ! Time spent in solve    : 0.00s (0.00s engine + 0.00s extraction)
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-Total time: 0.10s
-Memory used: 25.74 MB
-[runlim] end:			Wed Mar 25 04:13:06 2026
+[runlim] start:			Thu Mar 26 04:34:13 2026
+[runlim] child:			32061
+Warning: variable 163 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.05 seconds
+Memory used: 22.84 MB
+[runlim] end:			Thu Mar 26 04:34:14 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.18 seconds
+[runlim] real:			0.12 seconds
 [runlim] time:			0.10 seconds
 [runlim] space:			23 MB
-[runlim] load:			7.08 maximum
+[runlim] load:			7.91 maximum
 [runlim] samples:		2

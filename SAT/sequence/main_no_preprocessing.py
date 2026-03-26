@@ -551,11 +551,11 @@ def main():
             process = psutil.Process(os.getpid())
             print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
             break
-        # if verify_solution(assignment, var, files["var"], files["ctr"]):
-        #     print("Correct solution!")
-        # else:
-        #     print("Incorrect solution!")
-        #     break
+        if verify_solution(assignment, var, files["var"], files["ctr"]):
+            print("Correct solution!")
+        else:
+            print("Incorrect solution!")
+            break
         num_labels = len(set(assignment.values())) 
         print("Number of lables used: ", num_labels)
         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")

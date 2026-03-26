@@ -48,6 +48,7 @@ def read_var(file, domain):
     return var # domain subset for each variable
 def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
+    constraint = {}
     with open(ctr_file) as f:
         for line in f:
             if line.strip() == '\x00':
@@ -57,22 +58,30 @@ def delete_invalid_labels(var, ctr_file):
                 continue
             u, v = int(parts[0]), int(parts[1])
             distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+            constraint[(u, v)] = (parts[3], distance)
+    while True:
+            changed = False
+            for (u, v), (op, distance) in constraint.items():
+                if op == '=':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+                elif op == '>':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+                else:
+                    continue
+
+                if len(new_var_u) != len(var[u]) or len(new_var_v) != len(var[v]):
+                    changed = True
+                    var[u] = new_var_u
+                    var[v] = new_var_v
+            for i,vals in var.items():
+                if len(vals) == 0:
+                    print("Warning: variable", i, "has no valid labels after preprocessing.")
+                    return False
+            if not changed:
+                break
+    return True
 
 def create_var_map(var):
     var_map = {}

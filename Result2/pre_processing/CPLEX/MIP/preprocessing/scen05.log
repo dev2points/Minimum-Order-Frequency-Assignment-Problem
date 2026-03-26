@@ -7,102 +7,98 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		scen05
-[runlim] start:			Wed Mar 25 00:51:11 2026
-[runlim] child:			67159
+[runlim] start:			Thu Mar 26 06:25:22 2026
+[runlim] child:			32807
 --- Building MIP model for 400 variables ---
 --- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
 CPXPARAM_Read_DataCheck                          1
 CPXPARAM_MIP_Tolerances_MIPGap                   0
 Legacy callback                                  i
-Tried aggregator 10 times.
-MIP Presolve eliminated 386408 rows and 2484 columns.
-MIP Presolve modified 76156 coefficients.
-Aggregator did 195 substitutions.
-Reduced MIP has 24111 rows, 6603 columns, and 355081 nonzeros.
-Reduced MIP has 6603 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 3.15 sec. (4876.06 ticks)
-Found incumbent of value 48.000000 after 3.87 sec. (6064.01 ticks)
-Probing fixed 3222 vars, tightened 0 bounds.
-Probing changed sense of 4045 constraints.
-Probing time = 0.04 sec. (15.79 ticks)
-Cover probing fixed 300 vars, tightened 114 bounds.
-Tried aggregator 3 times.
-MIP Presolve eliminated 23525 rows and 6286 columns.
-MIP Presolve modified 4445 coefficients.
-Aggregator did 51 substitutions.
-Reduced MIP has 508 rows, 265 columns, and 2173 nonzeros.
-Reduced MIP has 265 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.08 sec. (146.35 ticks)
-Probing fixed 14 vars, tightened 0 bounds.
-Probing changed sense of 26 constraints.
-Probing time = 0.00 sec. (0.40 ticks)
-Cover probing fixed 2 vars, tightened 0 bounds.
-Tried aggregator 3 times.
-MIP Presolve eliminated 381 rows and 169 columns.
-MIP Presolve modified 10 coefficients.
-Aggregator did 8 substitutions.
-Reduced MIP has 119 rows, 87 columns, and 437 nonzeros.
-Reduced MIP has 87 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (1.23 ticks)
-Probing changed sense of 5 constraints.
-Probing time = 0.00 sec. (0.09 ticks)
+Tried aggregator 4 times.
+MIP Presolve eliminated 66616 rows and 484 columns.
+MIP Presolve modified 6448 coefficients.
+Aggregator did 472 substitutions.
+Reduced MIP has 5911 rows, 2814 columns, and 75420 nonzeros.
+Reduced MIP has 2814 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.28 sec. (368.23 ticks)
+Probing fixed 718 vars, tightened 0 bounds.
+Probing changed sense of 1235 constraints.
+Probing time = 0.01 sec. (8.20 ticks)
+Cover probing fixed 4 vars, tightened 16 bounds.
 Tried aggregator 2 times.
-MIP Presolve eliminated 69 rows and 43 columns.
+MIP Presolve eliminated 5516 rows and 2586 columns.
+MIP Presolve modified 1956 coefficients.
+Aggregator did 8 substitutions.
+Reduced MIP has 376 rows, 219 columns, and 1407 nonzeros.
+Reduced MIP has 219 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.04 sec. (62.51 ticks)
+Probing fixed 6 vars, tightened 0 bounds.
+Probing changed sense of 22 constraints.
+Probing time = 0.00 sec. (0.32 ticks)
+Tried aggregator 4 times.
+MIP Presolve eliminated 280 rows and 131 columns.
+MIP Presolve modified 11 coefficients.
+Aggregator did 13 substitutions.
+Reduced MIP has 83 rows, 73 columns, and 268 nonzeros.
+Reduced MIP has 73 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.94 ticks)
+Probing changed sense of 4 constraints.
+Probing time = 0.00 sec. (0.06 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 50 rows and 38 columns.
 Aggregator did 1 substitutions.
-Reduced MIP has 49 rows, 43 columns, and 210 nonzeros.
-Reduced MIP has 43 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.26 ticks)
-Probing time = 0.00 sec. (0.04 ticks)
+Reduced MIP has 32 rows, 33 columns, and 146 nonzeros.
+Reduced MIP has 33 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.16 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-MIP Presolve eliminated 11 rows and 9 columns.
-Reduced MIP has 38 rows, 33 columns, and 180 nonzeros.
+Reduced MIP has 32 rows, 33 columns, and 146 nonzeros.
 Reduced MIP has 33 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.14 ticks)
+Presolve time = 0.00 sec. (0.10 ticks)
 Probing time = 0.00 sec. (0.03 ticks)
-Clique table members: 52.
+Clique table members: 46.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 12 threads.
-Root relaxation solution time = 0.00 sec. (0.05 ticks)
+Root relaxation solution time = 0.00 sec. (0.04 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                           48.0000       38.0000            20.83%
 *     0+    0                           40.0000       38.0000             5.00%
-      0     0        cutoff             40.0000       40.0000        4    0.00%
+      0     0        cutoff             40.0000       40.0000        3    0.00%
 
 Num labels used: 40
 Current incumbent solution: {16, 30, 44, 58, 72, 86, 114, 128, 142, 156, 254, 268, 282, 296, 310, 324, 352, 366, 380, 394, 414, 428, 442, 456, 470, 484, 498, 526, 540, 554, 652, 666, 680, 694, 708, 722, 736, 764, 778, 792}}
-Time taken: 5.56s
-      0     0        cutoff             40.0000       40.0000        4    0.00%
-Elapsed time = 4.01 sec. (6259.80 ticks, tree = 0.01 MB, solutions = 2)
+Time taken: 1.09s
+      0     0        cutoff             40.0000       40.0000        3    0.00%
+Elapsed time = 0.50 sec. (702.54 ticks, tree = 0.01 MB, solutions = 1)
 
 Root node processing (before b&c):
-  Real time             =    4.01 sec. (6260.11 ticks)
+  Real time             =    0.50 sec. (702.64 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    4.01 sec. (6260.11 ticks)
+Total (root+branch&cut) =    0.50 sec. (702.64 ticks)
 
 ==============================
 FINAL INCUMBENT SOLUTION:
-{156, 394, 156, 394, 16, 254, 128, 366, 554, 792, 254, 16, 128, 366, 428, 666, 792, 554, 554, 792, 16, 254, 722, 484, 666, 428, 442, 680, 72, 310, 428, 666, 128, 366, 764, 526, 44, 282, 254, 16, 442, 680, 736, 498, 268, 30, 310, 72, 736, 498, 792, 554, 310, 72, 764, 526, 324, 86, 442, 680, 114, 352, 498, 736, 296, 58, 58, 296, 540, 778, 296, 58, 86, 324, 554, 792, 296, 58, 296, 58, 30, 268, 30, 268, 296, 58, 394, 156, 128, 366, 16, 254, 268, 30, 792, 554, 156, 394, 380, 142, 792, 554, 254, 16, 156, 394, 324, 86, 554, 792, 540, 778, 394, 156, 30, 268, 310, 72, 254, 16, 156, 394, 456, 694, 310, 72, 268, 30, 792, 554, 526, 764, 394, 156, 394, 156, 268, 30, 708, 470, 680, 442, 778, 540, 442, 680, 680, 442, 128, 366, 352, 114, 352, 114, 72, 310, 778, 540, 722, 484, 778, 540, 366, 128, 268, 30, 428, 666, 764, 526, 30, 268, 394, 156, 86, 324, 764, 526, 778, 540, 352, 114, 470, 708, 680, 442, 268, 30, 114, 352, 666, 428, 428, 666, 156, 394, 72, 310, 428, 666, 652, 414, 792, 554, 254, 16, 442, 680, 540, 778, 380, 142, 128, 366, 708, 470, 526, 764, 268, 30, 540, 778, 484, 722, 44, 282, 58, 296, 554, 792, 680, 442, 16, 254, 778, 540, 366, 128, 666, 428, 394, 156, 526, 764, 268, 30, 442, 680, 296, 58, 680, 442, 268, 30, 498, 736, 282, 44, 324, 86, 310, 72, 86, 324, 764, 526, 540, 778, 540, 778, 736, 498, 58, 296, 310, 72, 442, 680, 114, 352, 680, 442, 128, 366, 128, 366, 128, 366, 58, 296, 156, 394, 694, 456, 778, 540, 442, 680, 394, 156, 778, 540, 296, 58, 394, 156, 296, 58, 694, 456, 128, 366, 254, 16, 554, 792, 442, 680, 666, 428, 470, 708, 352, 114, 58, 296, 526, 764, 540, 778, 86, 324, 708, 470, 128, 366, 428, 666, 540, 778, 16, 254, 324, 86, 268, 30, 128, 366, 526, 764, 778, 540, 722, 484, 540, 778, 268, 30, 708, 470, 296, 58, 540, 778, 428, 666, 282, 44, 764, 526, 114, 352, 778, 540, 128, 366, 554, 792, 498, 736, 282, 44, 540, 778, 268, 30, 268, 30, 694, 456, 778, 540, 268, 30, 114, 352, 268, 30, 114, 352}
+{156, 394, 156, 394, 268, 30, 128, 366, 484, 722, 254, 16, 128, 366, 414, 652, 792, 554, 554, 792, 16, 254, 736, 498, 666, 428, 442, 680, 72, 310, 428, 666, 128, 366, 764, 526, 44, 282, 254, 16, 442, 680, 736, 498, 268, 30, 310, 72, 736, 498, 792, 554, 310, 72, 764, 526, 352, 114, 442, 680, 114, 352, 498, 736, 254, 16, 58, 296, 554, 792, 296, 58, 86, 324, 554, 792, 296, 58, 296, 58, 30, 268, 30, 268, 296, 58, 366, 128, 128, 366, 16, 254, 268, 30, 792, 554, 156, 394, 380, 142, 792, 554, 254, 16, 156, 394, 324, 86, 554, 792, 554, 792, 394, 156, 30, 268, 310, 72, 254, 16, 156, 394, 456, 694, 310, 72, 268, 30, 792, 554, 526, 764, 394, 156, 394, 156, 268, 30, 708, 470, 680, 442, 778, 540, 442, 680, 722, 484, 114, 352, 352, 114, 352, 114, 58, 296, 778, 540, 722, 484, 778, 540, 366, 128, 268, 30, 428, 666, 764, 526, 30, 268, 394, 156, 86, 324, 764, 526, 778, 540, 352, 114, 470, 708, 680, 442, 268, 30, 114, 352, 666, 428, 428, 666, 156, 394, 72, 310, 428, 666, 652, 414, 792, 554, 254, 16, 442, 680, 540, 778, 380, 142, 114, 352, 708, 470, 526, 764, 268, 30, 540, 778, 484, 722, 30, 268, 58, 296, 554, 792, 680, 442, 30, 268, 778, 540, 366, 128, 666, 428, 296, 58, 526, 764, 268, 30, 428, 666, 296, 58, 708, 470, 268, 30, 498, 736, 268, 30, 324, 86, 310, 72, 86, 324, 764, 526, 540, 778, 540, 778, 764, 526, 44, 282, 282, 44, 498, 736, 128, 366, 680, 442, 128, 366, 128, 366, 128, 366, 58, 296, 72, 310, 680, 442, 764, 526, 442, 680, 394, 156, 778, 540, 296, 58, 394, 156, 296, 58, 694, 456, 128, 366, 254, 16, 554, 792, 442, 680, 708, 470, 442, 680, 352, 114, 58, 296, 526, 764, 540, 778, 86, 324, 694, 456, 128, 366, 540, 778, 540, 778, 16, 254, 324, 86, 296, 58, 114, 352, 540, 778, 778, 540, 722, 484, 540, 778, 268, 30, 778, 540, 282, 44, 540, 778, 428, 666, 268, 30, 764, 526, 282, 44, 778, 540, 114, 352, 554, 792, 498, 736, 282, 44, 540, 778, 268, 30, 268, 30, 694, 456, 764, 526, 296, 58, 114, 352, 282, 44, 114, 352}
 Number of labels used: 40
-Total time: 5.56s
-Memory used: 267.93 MB
+Total time: 1.10s
+Memory used: 75.59 MB
 ==============================
-[runlim] end:			Wed Mar 25 00:51:17 2026
+[runlim] end:			Thu Mar 26 06:25:23 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			5.62 seconds
-[runlim] time:			7.52 seconds
-[runlim] space:			267 MB
-[runlim] load:			2.63 maximum
-[runlim] samples:		57
+[runlim] real:			1.15 seconds
+[runlim] time:			1.22 seconds
+[runlim] space:			70 MB
+[runlim] load:			3.00 maximum
+[runlim] samples:		12

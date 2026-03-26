@@ -7,8 +7,8 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		graph01
-[runlim] start:			Tue Mar 24 23:10:33 2026
-[runlim] child:			66405
+[runlim] start:			Thu Mar 26 04:44:52 2026
+[runlim] child:			32181
 --- Building MIP model for 200 variables ---
 --- Solving with CPLEX MIP ---
 Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
@@ -21,8 +21,8 @@ MIP Presolve modified 19778 coefficients.
 Aggregator did 1 substitutions.
 Reduced MIP has 23587 rows, 6967 columns, and 123196 nonzeros.
 Reduced MIP has 6967 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.23 sec. (235.45 ticks)
-Found incumbent of value 48.000000 after 0.38 sec. (415.25 ticks)
+Presolve time = 0.25 sec. (235.45 ticks)
+Found incumbent of value 48.000000 after 0.41 sec. (415.25 ticks)
 Probing changed sense of 3460 constraints.
 Probing time = 0.03 sec. (6.88 ticks)
 Tried aggregator 1 time.
@@ -30,19 +30,19 @@ MIP Presolve eliminated 8369 rows and 3459 columns.
 MIP Presolve modified 11870 coefficients.
 Reduced MIP has 15218 rows, 3508 columns, and 120846 nonzeros.
 Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.28 sec. (289.79 ticks)
+Presolve time = 0.30 sec. (289.79 ticks)
 Probing time = 0.01 sec. (1.83 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 15218 rows, 3508 columns, and 120846 nonzeros.
 Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.11 sec. (127.58 ticks)
+Presolve time = 0.14 sec. (127.58 ticks)
 Probing time = 0.01 sec. (2.13 ticks)
 Clique table members: 15218.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: deterministic, using up to 12 threads.
-Root relaxation solution time = 0.79 sec. (448.05 ticks)
+Root relaxation solution time = 0.81 sec. (448.05 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -53,33 +53,33 @@ Root relaxation solution time = 0.79 sec. (448.05 ticks)
 
 Num labels used: 18
 Current incumbent solution: {16, 72, 114, 142, 170, 254, 310, 352, 380, 408, 428, 470, 512, 540, 666, 708, 750, 778}}
-Time taken: 2.04s
+Time taken: 2.18s
       0     0        cutoff             18.0000       18.0000     1908    0.00%
-Elapsed time = 1.67 sec. (1339.15 ticks, tree = 0.01 MB, solutions = 2)
+Elapsed time = 1.78 sec. (1339.15 ticks, tree = 0.01 MB, solutions = 2)
 
 Root node processing (before b&c):
-  Real time             =    1.67 sec. (1339.39 ticks)
+  Real time             =    1.78 sec. (1339.39 ticks)
 Parallel b&c, 12 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    1.67 sec. (1339.39 ticks)
+Total (root+branch&cut) =    1.78 sec. (1339.39 ticks)
 
 ==============================
 FINAL INCUMBENT SOLUTION:
 {470, 708, 470, 708, 16, 254, 170, 408, 408, 170, 72, 310, 254, 16, 470, 708, 470, 708, 16, 254, 540, 778, 142, 380, 778, 540, 708, 470, 470, 708, 540, 778, 114, 352, 666, 428, 16, 254, 254, 16, 540, 778, 72, 310, 16, 254, 254, 16, 666, 428, 142, 380, 512, 750, 142, 380, 142, 380, 540, 778, 470, 708, 254, 16, 470, 708, 750, 512, 540, 778, 470, 708, 170, 408, 666, 428, 470, 708, 428, 666, 16, 254, 512, 750, 512, 750, 16, 254, 540, 778, 380, 142, 16, 254, 352, 114, 170, 408, 142, 380, 470, 708, 512, 750, 778, 540, 540, 778, 540, 778, 16, 254, 512, 750, 778, 540, 72, 310, 540, 778, 408, 170, 170, 408, 708, 470, 750, 512, 540, 778, 512, 750, 72, 310, 408, 170, 540, 778, 512, 750, 470, 708, 254, 16, 708, 470, 16, 254, 428, 666, 72, 310, 540, 778, 778, 540, 778, 540, 352, 114, 666, 428, 470, 708, 470, 708, 512, 750, 16, 254, 540, 778, 254, 16, 114, 352, 16, 254, 540, 778, 512, 750, 352, 114, 142, 380, 310, 72, 540, 778, 428, 666, 408, 170, 750, 512, 16, 254, 512, 750}
 Number of labels used: 18
-Total time: 2.04s
-Memory used: 161.68 MB
+Total time: 2.19s
+Memory used: 162.22 MB
 ==============================
-[runlim] end:			Tue Mar 24 23:10:35 2026
+[runlim] end:			Thu Mar 26 04:44:54 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			2.10 seconds
-[runlim] time:			6.39 seconds
-[runlim] space:			192 MB
-[runlim] load:			1.70 maximum
-[runlim] samples:		21
+[runlim] real:			2.25 seconds
+[runlim] time:			6.74 seconds
+[runlim] space:			193 MB
+[runlim] load:			7.03 maximum
+[runlim] samples:		23

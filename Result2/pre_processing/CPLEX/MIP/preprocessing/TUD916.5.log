@@ -7,19 +7,19 @@
 [runlim] argv[1]:		-u
 [runlim] argv[2]:		mip.py
 [runlim] argv[3]:		TUD916.5
-[runlim] start:			Wed Mar 25 01:12:06 2026
-[runlim] child:			67441
-Warning: variable 41 has no valid labels after preprocessing.
+[runlim] start:			Thu Mar 26 06:51:26 2026
+[runlim] child:			33047
+Warning: variable 366 has no valid labels after preprocessing.
 Cannot find solution!
-Time taken: 0.24 seconds
-Memory used: 19.26 MB
-[runlim] end:			Wed Mar 25 01:12:06 2026
+Time taken: 0.19 seconds
+Memory used: 20.10 MB
+[runlim] end:			Thu Mar 26 06:51:26 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.29 seconds
+[runlim] real:			0.24 seconds
 [runlim] time:			0.20 seconds
-[runlim] space:			19 MB
-[runlim] load:			1.92 maximum
+[runlim] space:			20 MB
+[runlim] load:			2.04 maximum
 [runlim] samples:		3

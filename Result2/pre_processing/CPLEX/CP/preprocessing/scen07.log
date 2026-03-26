@@ -6,40 +6,19 @@
 [runlim] argv[0]:		python3
 [runlim] argv[1]:		cp.py
 [runlim] argv[2]:		scen07
-[runlim] start:			Wed Mar 25 03:53:02 2026
-[runlim] child:			68840
---- Building model for 400 variables ---
---- Solving with CP Optimizer (Integer Mode) ---
- ! --------------------------------------------------- CP Optimizer 22.1.1.0 --
- ! Minimization problem - 400 variables, 2865 constraints
- ! LogVerbosity         = Terse
- ! Initial process time : 0.02s (0.02s extraction + 0.00s propagation)
- !  . Log search space  : 1752.7 (before), 1752.7 (after)
- !  . Memory usage      : 1.1 MB (before), 1.1 MB (after)
- ! Using parallel search with 12 workers.
- ! ----------------------------------------------------------------------------
- !          Best Branches  Non-fixed    W       Branch decision
-                        0        400                 -
- + New bound is 0
- ! ----------------------------------------------------------------------------
- ! Search completed, model has no solution.
- ! Best bound             : 0
- ! ----------------------------------------------------------------------------
- ! Number of branches     : 0
- ! Number of fails        : 0
- ! Total memory usage     : 6.8 MB (6.6 MB CP Optimizer + 0.2 MB Concert)
- ! Time spent in solve    : 0.02s (0.00s engine + 0.02s extraction)
- ! ----------------------------------------------------------------------------
-No valid solution: Infeasible
-Total time: 0.24s
-Memory used: 28.38 MB
-[runlim] end:			Wed Mar 25 03:53:03 2026
+[runlim] start:			Thu Mar 26 04:16:36 2026
+[runlim] child:			31913
+Warning: variable 302 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.20 seconds
+Memory used: 23.46 MB
+[runlim] end:			Thu Mar 26 04:16:36 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.32 seconds
-[runlim] time:			0.28 seconds
-[runlim] space:			28 MB
-[runlim] load:			9.19 maximum
-[runlim] samples:		4
+[runlim] real:			0.27 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			23 MB
+[runlim] load:			6.32 maximum
+[runlim] samples:		3

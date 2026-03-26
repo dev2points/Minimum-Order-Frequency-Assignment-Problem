@@ -10,19 +10,19 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Wed Mar 25 12:12:27 2026
-[runlim] child:			5610
-Solve first problem:
-Cannot find solution.
-Time taken: 0.20 seconds
-Memory used: 28.74 MB
-[runlim] end:			Wed Mar 25 12:12:28 2026
+[runlim] start:			Wed Mar 25 21:10:08 2026
+[runlim] child:			21758
+Warning: variable 365 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.09 seconds
+Memory used: 18.16 MB
+[runlim] end:			Wed Mar 25 21:10:08 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.24 seconds
-[runlim] time:			0.20 seconds
-[runlim] space:			29 MB
-[runlim] load:			1.18 maximum
-[runlim] samples:		3
+[runlim] real:			0.13 seconds
+[runlim] time:			0.11 seconds
+[runlim] space:			18 MB
+[runlim] load:			1.07 maximum
+[runlim] samples:		2

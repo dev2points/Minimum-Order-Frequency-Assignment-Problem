@@ -10,19 +10,19 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Wed Mar 25 12:12:27 2026
-[runlim] child:			5607
+[runlim] start:			Wed Mar 25 21:10:08 2026
+[runlim] child:			21755
 Warning: variable 181 has no valid labels after preprocessing.
 Cannot find solution!
-Time taken: 0.09 seconds
-Memory used: 17.58 MB
-[runlim] end:			Wed Mar 25 12:12:27 2026
+Time taken: 0.04 seconds
+Memory used: 17.86 MB
+[runlim] end:			Wed Mar 25 21:10:08 2026
 [runlim] status:		ok
 [runlim] result:		0
-[runlim] children:		1
-[runlim] processes:		2
-[runlim] real:			0.13 seconds
-[runlim] time:			0.05 seconds
-[runlim] space:			17 MB
-[runlim] load:			1.18 maximum
-[runlim] samples:		2
+[runlim] children:		0
+[runlim] processes:		0
+[runlim] real:			0.08 seconds
+[runlim] time:			0.00 seconds
+[runlim] space:			0 MB
+[runlim] load:			1.07 maximum
+[runlim] samples:		1

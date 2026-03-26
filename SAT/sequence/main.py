@@ -50,6 +50,7 @@ def read_var(file, domain):
 
 def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
+    constraint = {}
     with open(ctr_file) as f:
         for line in f:
             if line.strip() == '\x00':
@@ -59,28 +60,30 @@ def delete_invalid_labels(var, ctr_file):
                 continue
             u, v = int(parts[0]), int(parts[1])
             distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
-    for i,vals in var.items():
-        if len(vals) == 0:
-            print("Warning: variable", i, "has no valid labels after preprocessing.")
-            return False
-    return True
+            constraint[(u, v)] = (parts[3], distance)
+    while True:
+            changed = False
+            for (u, v), (op, distance) in constraint.items():
+                if op == '=':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in new_var_u)]
+                elif op == '>':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in new_var_u)]
+                else:
+                    continue
 
+                if len(new_var_u) != len(var[u]) or len(new_var_v) != len(var[v]):
+                    changed = True
+                    var[u] = new_var_u
+                    var[v] = new_var_v
+            for i,vals in var.items():
+                if len(vals) == 0:
+                    print("Warning: variable", i, "has no valid labels after preprocessing.")
+                    return False
+            if not changed:
+                break
+    return True
 def create_var_map(var):
     var_map = {}
     counter = 1
@@ -143,11 +146,8 @@ def build_constraints(solver, var, var_map, last_var_num, ctr_file):
                 for iu in vals_u:
                     solver.add_clause([-var_map[(u, iu)]] + [var_map[(v, jv)] for jv in vals_v if abs(iu - jv) == distance]) #(4)
             elif '>' in parts:
-                # (5)
                 for iu in vals_u:
-                    if (iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]):
-                        solver.add_clause([-var_map[(u, iu)]]) #(5)
-                    elif (iu - distance <= vals_v[0]):
+                    if (iu - distance <= vals_v[0]):
                         for jv in vals_v:
                             if jv - iu > distance:
                                solver.add_clause([-var_map[(u, iu)], order_var_map[(v, jv)]]) #(6)
@@ -523,25 +523,25 @@ def main():
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    # if sys.argv[2] != 'tot':
-    #     rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
+    if sys.argv[2] != 'tot':
+        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
 
-    #     print("--------------------------------------------------")
-    #     print(f"\nTrying with at most {num_labels - 1} labels...")
+        print("--------------------------------------------------")
+        print(f"\nTrying with at most {num_labels - 1} labels...")
 
-    #     assignment = solve_and_print(solver, var_map, None, None, 'first')
-    #     if assignment is None:
-    #         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-    #         process = psutil.Process(os.getpid())
-    #         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #         return
-    #     num_labels = len(set(assignment.values()))
-    #     print("Number of lables used: ", num_labels)
+        assignment = solve_and_print(solver, var_map, None, None, 'first')
+        if assignment is None:
+            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            return
+        num_labels = len(set(assignment.values()))
+        print("Number of lables used: ", num_labels)
     
-    # else:
-    #     rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+    else:
+        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
 
-    rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+    # rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
     while num_labels > 1:
         
         print("--------------------------------------------------")

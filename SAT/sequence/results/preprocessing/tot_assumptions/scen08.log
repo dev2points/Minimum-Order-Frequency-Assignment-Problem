@@ -10,19 +10,19 @@
 [runlim] argv[4]:		tot
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Tue Mar 24 16:56:31 2026
-[runlim] child:			47898
-Solve first problem:
-Cannot find solution.
-Time taken: 0.60 seconds
-Memory used: 50.38 MB
-[runlim] end:			Tue Mar 24 16:56:32 2026
+[runlim] start:			Wed Mar 25 21:28:06 2026
+[runlim] child:			21934
+Warning: variable 825 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.27 seconds
+Memory used: 19.01 MB
+[runlim] end:			Wed Mar 25 21:28:06 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.65 seconds
-[runlim] time:			0.60 seconds
-[runlim] space:			51 MB
-[runlim] load:			1.09 maximum
-[runlim] samples:		7
+[runlim] real:			0.31 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			19 MB
+[runlim] load:			1.10 maximum
+[runlim] samples:		3
