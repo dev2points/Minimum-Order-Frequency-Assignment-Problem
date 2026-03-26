@@ -10,19 +10,19 @@
 [runlim] argv[4]:		nsc
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Mon Mar 23 16:12:28 2026
-[runlim] child:			11475
-Solve first problem:
-Cannot find solution.
-Time taken: 0.26 seconds
-Memory used: 29.69 MB
-[runlim] end:			Mon Mar 23 16:12:28 2026
+[runlim] start:			Wed Mar 25 21:11:10 2026
+[runlim] child:			21785
+Warning: variable 302 has no valid labels after preprocessing.
+Cannot find solution!
+Time taken: 0.19 seconds
+Memory used: 18.38 MB
+[runlim] end:			Wed Mar 25 21:11:10 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.31 seconds
+[runlim] real:			0.23 seconds
 [runlim] time:			0.20 seconds
-[runlim] space:			29 MB
-[runlim] load:			1.22 maximum
+[runlim] space:			18 MB
+[runlim] load:			1.02 maximum
 [runlim] samples:		3

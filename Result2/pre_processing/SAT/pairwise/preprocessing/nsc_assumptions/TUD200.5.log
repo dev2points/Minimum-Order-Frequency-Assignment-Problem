@@ -8,19 +8,19 @@
 [runlim] argv[2]:		pairwise.py
 [runlim] argv[3]:		TUD200.5
 [runlim] argv[4]:		assumptions
-[runlim] start:			Mon Mar 23 17:53:01 2026
-[runlim] child:			11971
+[runlim] start:			Thu Mar 26 02:28:20 2026
+[runlim] child:			31232
 Solve first problem:
 Cannot find solution.
-Time taken: 0.31 seconds 
-Memory used: 38.64 MB
-[runlim] end:			Mon Mar 23 17:53:01 2026
+Time taken: 0.29 seconds 
+Memory used: 38.62 MB
+[runlim] end:			Thu Mar 26 02:28:20 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.35 seconds
-[runlim] time:			0.29 seconds
+[runlim] real:			0.34 seconds
+[runlim] time:			0.30 seconds
 [runlim] space:			38 MB
-[runlim] load:			1.12 maximum
+[runlim] load:			1.05 maximum
 [runlim] samples:		4
