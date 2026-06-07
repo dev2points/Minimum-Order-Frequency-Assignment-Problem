@@ -123,7 +123,7 @@ def create_order_var_map(var, var_map, last_var_num, wcnf):
             wcnf.append([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])  
             wcnf.append([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]])
 
-    return counter, order_var_map
+    return counter - 1, order_var_map
 
 def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
     # Phương pháp 1: Product/Position/Order-based Encoding
@@ -292,7 +292,7 @@ def main():
         if model:
             assignment = {}
             for (i, v), varnum in var_map.items():
-                if model[varnum - 1] > 0:
+                if varnum in model:
                     if i in assignment:
                         raise ValueError(f"Warning: variable {i} assigned multiple values.")
                     assignment[i] = v
