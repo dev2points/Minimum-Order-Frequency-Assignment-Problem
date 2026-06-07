@@ -3,7 +3,7 @@ import psutil
 import sys
 import time
 from pysat.solvers import Solver
-from pysat.card import ITotalizer
+from pysat.card import CardEnc, ITotalizer
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -94,13 +94,12 @@ def create_order_var_map(var,var_map, last_var_num, solver):
             counter += 1             
     return order_var_map # dict mapping (u,i) to order variable number
 
-def build_constraints(solver, var, var_map, ctr_file):
+def build_constraints(solver, var, var_map, ctr_file, type_card):
     # Exactly One
     for i, vals in var.items():
-        solver.add_clause([var_map[(i, v)] for v in vals])
-        for j in range(len(vals)):
-            for k in range(j+1, len(vals)):
-                solver.add_clause([-var_map[(i, vals[j])], -var_map[(i, vals[k])]])
+        clauses = CardEnc.equals([var_map[(i, v)] for v in vals], bound=1, encoding=type_card)
+        for clause in clauses:
+            solver.add_clause(clause)
 
     # Distance constraints
     with open(ctr_file) as f:
@@ -296,12 +295,12 @@ def verify_solution_simple(assignment, var, ctr_file):
 
 def main():
     start_time = time.perf_counter()
-    if len(sys.argv) < 2:
-        print("Use: python main.py <dataset_folder>")
+    if len(sys.argv) < 3:
+        print("Use: python main.py <dataset_folder> <cardinality_encoding>")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
-
+    type_card = int(sys.argv[2])
     try:
         files = get_file_names(dataset_folder)
     except ValueError as e:
@@ -322,7 +321,7 @@ def main():
     print("Solve first problem:")
     
     # solver = Cadical195()
-    build_constraints(solver, var, var_map, files["ctr"])
+    build_constraints(solver, var, var_map, files["ctr"], type_card)
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:

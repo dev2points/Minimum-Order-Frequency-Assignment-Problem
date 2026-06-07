@@ -3,7 +3,9 @@ import psutil
 import sys
 import time
 from pysat.solvers import Solver
-from pysat.card import ITotalizer
+from pysat.card import CardEnc, ITotalizer
+from pysat.formula import CNF
+from pysat import card
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -46,42 +48,7 @@ def read_var(file, domain):
             else:
                 var[idx] = domain[int(parts[1])]
     return var # domain subset for each variable
-def delete_invalid_labels(var, ctr_file):
-    # Read constraints and remove invalid labels from domain
-    constraint = {}
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            constraint[(u, v)] = (parts[3], distance)
-    while True:
-            changed = False
-            for (u, v), (op, distance) in constraint.items():
-                if op == '=':
-                    new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
-                elif op == '>':
-                    new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-                else:
-                    continue
 
-                if len(new_var_u) != len(var[u]) or len(new_var_v) != len(var[v]):
-                    changed = True
-                    var[u] = new_var_u
-                    var[v] = new_var_v
-            for i,vals in var.items():
-                if len(vals) == 0:
-                    print("Warning: variable", i, "has no valid labels after preprocessing.")
-                    return False
-            if not changed:
-                break
-    return True
 
 def create_var_map(var):
     var_map = {}
@@ -93,23 +60,16 @@ def create_var_map(var):
             
     return counter, var_map # dict mapping (i, v) to variable number
 
-def create_order_var_map(var,var_map, last_var_num, solver):
-    counter = last_var_num + 1
-    order_var_map = {}
 
-    for u, labels in var.items():
-        for i in labels:
-            order_var_map[(u,i)] = counter
-            counter += 1             
-    return order_var_map # dict mapping (u,i) to order variable number
+def build_constraints(solver, var, var_map, ctr_file, type_card):
+    top_id = max(var_map.values())
 
-def build_constraints(solver, var, var_map, ctr_file):
     # Exactly One
     for i, vals in var.items():
-        solver.add_clause([var_map[(i, v)] for v in vals])
-        for j in range(len(vals)):
-            for k in range(j+1, len(vals)):
-                solver.add_clause([-var_map[(i, vals[j])], -var_map[(i, vals[k])]])
+        enc = CardEnc.equals([var_map[(i, v)] for v in vals], bound=1,top_id=top_id, encoding=type_card)
+        for clause in enc.clauses:
+            solver.add_clause(clause)
+        top_id = enc.nv
 
     # Distance constraints
     with open(ctr_file) as f:
@@ -134,7 +94,7 @@ def build_constraints(solver, var, var_map, ctr_file):
                 for vi in vals_i:
                     solver.add_clause([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
     
-
+    return top_id
     
     
                             
@@ -208,19 +168,10 @@ def add_limit_label_constraints(solver, lits, K):
     rhs = [r[n][j] for j in range(1, K + 1)]
     return rhs
 
-    # if isinstance(lits, dict):
-    #     lits = list(lits.values())
-    
-    # top = solver.nof_vars()
-    # tot = ITotalizer(lits=lits, ubound=K, top_id=top)
-
-    # for c in tot.cnf.clauses:
-    #     solver.add_clause(c)
-
-    # return tot.rhs
 
 def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
+    constraint = {}
     with open(ctr_file) as f:
         for line in f:
             if line.strip() == '\x00':
@@ -230,26 +181,29 @@ def delete_invalid_labels(var, ctr_file):
                 continue
             u, v = int(parts[0]), int(parts[1])
             distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
-    for i,vals in var.items():
-        if len(vals) == 0:
-            print("Warning: variable", i, "has no valid labels after preprocessing.")
-            return False
+            constraint[(u, v)] = (parts[3], distance)
+    while True:
+            changed = False
+            for (u, v), (op, distance) in constraint.items():
+                if op == '=':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+                elif op == '>':
+                    new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+                else:
+                    continue
+
+                if len(new_var_u) != len(var[u]) or len(new_var_v) != len(var[v]):
+                    changed = True
+                    var[u] = new_var_u
+                    var[v] = new_var_v
+            for i,vals in var.items():
+                if len(vals) == 0:
+                    print("Warning: variable", i, "has no valid labels after preprocessing.")
+                    return False
+            if not changed:
+                break
     return True
 
 def solve_and_print(solver, var_map, rhs, num_labels, type):
@@ -306,8 +260,8 @@ def verify_solution_simple(assignment, var, ctr_file):
 
 def main():
     start_time = time.perf_counter()
-    if len(sys.argv) < 2:
-        print("Use: python main.py <dataset_folder>")
+    if len(sys.argv) < 4:
+        print("Use: python main.py <dataset_folder> <type_sat> <type_card>")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
@@ -317,7 +271,7 @@ def main():
     except ValueError as e:
         print(e)
         return
-
+    type_card = int(sys.argv[3])
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
@@ -332,7 +286,7 @@ def main():
     print("Solve first problem:")
     
     # solver = Cadical195()
-    build_constraints(solver, var, var_map, files["ctr"])
+    top_id = build_constraints(solver, var, var_map, files["ctr"], type_card)
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
@@ -353,10 +307,8 @@ def main():
     print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
+    lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
-
-    # x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
 
     x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
     print("--------------------------------------------------")
