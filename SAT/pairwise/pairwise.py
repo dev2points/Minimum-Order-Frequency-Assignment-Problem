@@ -57,7 +57,7 @@ def create_var_map(var):
         for v in vals:
             counter += 1
             var_map[(i, v)] = counter
-            
+    print("Number of assignment variables: ", counter)
     return counter, var_map # dict mapping (i, v) to variable number
 
 
@@ -70,7 +70,8 @@ def build_constraints(solver, var, var_map, ctr_file, type_card):
         for clause in enc.clauses:
             solver.add_clause(clause)
         top_id = enc.nv
-
+    exo_clauses = solver.nof_clauses()
+    print("Number of clauses for exactly one constraints: ", exo_clauses)
     # Distance constraints
     with open(ctr_file) as f:
         for line in f:
@@ -93,6 +94,7 @@ def build_constraints(solver, var, var_map, ctr_file, type_card):
                 target = int(parts[4])
                 for vi in vals_i:
                     solver.add_clause([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
+    print("Number of clauses for distance constraints: ", solver.nof_clauses() - exo_clauses)
     
     return top_id
     
@@ -104,13 +106,16 @@ def create_label_var_map(labels, start_index):
     for lb in labels:
         label_var_map[lb] = current
         current += 1
+    print("Number of label variables: ", len(label_var_map))
     return label_var_map
     
 # ánh xạ biến active -> biến xác nhận label được sử dụng    
 def build_label_constraints(solver, var_map, label_var_map):
+    last_clause_count = solver.nof_clauses()
     for (i, v), varnum in var_map.items():
         lb_varnum = label_var_map[v]
         solver.add_clause([-varnum, lb_varnum])
+    print("Number of clauses for label constraints: ", solver.nof_clauses() - last_clause_count)
 
 def add_limit_label_constraints(solver, lits, K):
     if isinstance(lits, dict):
@@ -130,8 +135,8 @@ def add_limit_label_constraints(solver, lits, K):
         for j in range(1, K + 1):
             top += 1
             r[i][j] = top
-
-
+    print("Number of new variables for cardinality constraints: ", top - solver.nof_vars())
+    last_clause_count = solver.nof_clauses()
     # (1)  ¬x_i ∨ r(i,1)
     for i in range(1, n + 1):
         solver.add_clause([-lits[i - 1], r[i][1]])
@@ -166,6 +171,8 @@ def add_limit_label_constraints(solver, lits, K):
 
     # rhs[j-1] ⇔ sum(lits) ≤ j
     rhs = [r[n][j] for j in range(1, K + 1)]
+    
+    print("Number of clauses for cardinality constraints: ", solver.nof_clauses() - last_clause_count)
     return rhs
 
 
@@ -283,11 +290,12 @@ def main():
     solver = Solver(name='cadical195')
     last_var_num, var_map = create_var_map(var)
 
-    print("Solve first problem:")
+    
     
     # solver = Cadical195()
     top_id = build_constraints(solver, var, var_map, files["ctr"], type_card)
-
+    print("---------------------------------------------------")
+    print("Solve first problem:")
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
@@ -307,10 +315,15 @@ def main():
     print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    print("--------------------------------------------------")
+
     lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
     x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
+    
+    print("Initial variable count: ", solver.nof_vars())
+    print("Initial clause count: ", solver.nof_clauses())
     print("--------------------------------------------------")
     print(f"\nTrying with at most {num_lables - 1} labels...")
 

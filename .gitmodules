@@ -1,0 +1,3 @@
+[submodule "EvalMaxSAT"]
+	path = EvalMaxSAT
+	url = https://github.com/FlorentAvellaneda/EvalMaxSAT.git
