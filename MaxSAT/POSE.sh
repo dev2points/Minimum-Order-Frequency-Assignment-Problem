@@ -1,7 +1,7 @@
 TO=600
 MO=14000
 
-RESULTS_DIR=results/POSE
+RESULTS_DIR=results/processing/POSE
 mkdir -p $RESULTS_DIR
 
 

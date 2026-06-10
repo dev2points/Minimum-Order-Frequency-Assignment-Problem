@@ -6,11 +6,11 @@ cd "$(dirname "$0")"
 TO=${TO:-600}
 MO=${MO:-14000}
 
-mkdir -p results/solve
+mkdir -p results/no_preprocessing
 
 solve_one() {
 	local wcnf=$1
-	local log_file="results/solve/${wcnf%.wcnf}.log"
+	local log_file="results/no_preprocessing/${wcnf%.wcnf}.log"
 	mkdir -p "$(dirname "$log_file")"
 	./runlim -r "$TO" -s "$MO" ./EvalMaxSAT_bin "$wcnf" 2>&1 | tee "$log_file"
 }

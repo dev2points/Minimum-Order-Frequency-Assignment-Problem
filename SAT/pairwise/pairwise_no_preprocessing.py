@@ -4,6 +4,8 @@ import sys
 import time
 from pysat.solvers import Solver
 from pysat.card import CardEnc, ITotalizer
+from pysat.formula import CNF
+from pysat import card
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -46,33 +48,7 @@ def read_var(file, domain):
             else:
                 var[idx] = domain[int(parts[1])]
     return var # domain subset for each variable
-def delete_invalid_labels(var, ctr_file):
-    # Read constraints and remove invalid labels from domain
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+
 
 def create_var_map(var):
     var_map = {}
@@ -81,26 +57,21 @@ def create_var_map(var):
         for v in vals:
             counter += 1
             var_map[(i, v)] = counter
-            
+    print("Number of assignment variables: ", counter)
     return counter, var_map # dict mapping (i, v) to variable number
 
-def create_order_var_map(var,var_map, last_var_num, solver):
-    counter = last_var_num + 1
-    order_var_map = {}
-
-    for u, labels in var.items():
-        for i in labels:
-            order_var_map[(u,i)] = counter
-            counter += 1             
-    return order_var_map # dict mapping (u,i) to order variable number
 
 def build_constraints(solver, var, var_map, ctr_file, type_card):
+    top_id = max(var_map.values())
+
     # Exactly One
     for i, vals in var.items():
-        clauses = CardEnc.equals([var_map[(i, v)] for v in vals], bound=1, encoding=type_card)
-        for clause in clauses:
+        enc = CardEnc.equals([var_map[(i, v)] for v in vals], bound=1,top_id=top_id, encoding=type_card)
+        for clause in enc.clauses:
             solver.add_clause(clause)
-
+        top_id = enc.nv
+    exo_clauses = solver.nof_clauses()
+    print("Number of clauses for exactly one constraints: ", exo_clauses)
     # Distance constraints
     with open(ctr_file) as f:
         for line in f:
@@ -123,7 +94,9 @@ def build_constraints(solver, var, var_map, ctr_file, type_card):
                 target = int(parts[4])
                 for vi in vals_i:
                     solver.add_clause([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
-
+    print("Number of clauses for distance constraints: ", solver.nof_clauses() - exo_clauses)
+    
+    return top_id
     
     
                             
@@ -133,13 +106,16 @@ def create_label_var_map(labels, start_index):
     for lb in labels:
         label_var_map[lb] = current
         current += 1
+    print("Number of label variables: ", len(label_var_map))
     return label_var_map
     
 # ánh xạ biến active -> biến xác nhận label được sử dụng    
 def build_label_constraints(solver, var_map, label_var_map):
+    last_clause_count = solver.nof_clauses()
     for (i, v), varnum in var_map.items():
         lb_varnum = label_var_map[v]
         solver.add_clause([-varnum, lb_varnum])
+    print("Number of clauses for label constraints: ", solver.nof_clauses() - last_clause_count)
 
 def add_limit_label_constraints(solver, lits, K):
     if isinstance(lits, dict):
@@ -159,8 +135,8 @@ def add_limit_label_constraints(solver, lits, K):
         for j in range(1, K + 1):
             top += 1
             r[i][j] = top
-
-
+    print("Number of new variables for cardinality constraints: ", top - solver.nof_vars())
+    last_clause_count = solver.nof_clauses()
     # (1)  ¬x_i ∨ r(i,1)
     for i in range(1, n + 1):
         solver.add_clause([-lits[i - 1], r[i][1]])
@@ -195,51 +171,12 @@ def add_limit_label_constraints(solver, lits, K):
 
     # rhs[j-1] ⇔ sum(lits) ≤ j
     rhs = [r[n][j] for j in range(1, K + 1)]
+    
+    print("Number of clauses for cardinality constraints: ", solver.nof_clauses() - last_clause_count)
     return rhs
 
-    # if isinstance(lits, dict):
-    #     lits = list(lits.values())
-    
-    # top = solver.nof_vars()
-    # tot = ITotalizer(lits=lits, ubound=K, top_id=top)
 
-    # for c in tot.cnf.clauses:
-    #     solver.add_clause(c)
 
-    # return tot.rhs
-
-def delete_invalid_labels(var, ctr_file):
-    # Read constraints and remove invalid labels from domain
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '>' in parts:
-                var[u] = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
-    with open(ctr_file) as f:
-        for line in f:
-            if line.strip() == '\x00':
-                continue
-            parts = line.strip().split()
-            if not parts:
-                continue
-            u, v = int(parts[0]), int(parts[1])
-            distance = int(parts[4])
-            if '=' in parts:
-                # Remove labels from domain that violate the equality constraint
-                var[u] = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])] 
-                var[v] = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
-    for i,vals in var.items():
-        if len(vals) == 0:
-            print("Warning: variable", i, "has no valid labels after preprocessing.")
-            return False
-    return True
 
 def solve_and_print(solver, var_map, rhs, num_labels, type):
     if type != 'incremental' and type != 'assumptions' and type != 'first':
@@ -295,34 +232,30 @@ def verify_solution_simple(assignment, var, ctr_file):
 
 def main():
     start_time = time.perf_counter()
-    if len(sys.argv) < 3:
-        print("Use: python main.py <dataset_folder> <cardinality_encoding>")
+    if len(sys.argv) < 4:
+        print("Use: python main.py <dataset_folder> <type_sat> <type_card>")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
-    type_card = int(sys.argv[2])
+
     try:
         files = get_file_names(dataset_folder)
     except ValueError as e:
         print(e)
         return
-
+    type_card = int(sys.argv[3])
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-    # if(not delete_invalid_labels(var, files["ctr"])):
-    #     print("Cannot find solution!")
-    #     print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
-    #     process = psutil.Process(os.getpid())
-    #     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    #     return
+
     solver = Solver(name='cadical195')
     last_var_num, var_map = create_var_map(var)
 
-    print("Solve first problem:")
+    
     
     # solver = Cadical195()
-    build_constraints(solver, var, var_map, files["ctr"], type_card)
-
+    top_id = build_constraints(solver, var, var_map, files["ctr"], type_card)
+    print("---------------------------------------------------")
+    print("Solve first problem:")
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
@@ -342,17 +275,17 @@ def main():
     print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-    lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
+    print("--------------------------------------------------")
+
+    lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    # x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables)
-
-
-
     x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
-
+    
+    print("Initial variable count: ", solver.nof_vars())
+    print("Initial clause count: ", solver.nof_clauses())
     print("--------------------------------------------------")
-    print(f"\nTrying with at most {num_lables   - 1} labels...")
+    print(f"\nTrying with at most {num_lables - 1} labels...")
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
@@ -364,9 +297,8 @@ def main():
     num_lables = len(set(assignment.values()))
     print("Number of lables used: ", num_lables)
     print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
-    # process = psutil.Process(os.getpid())
-    # print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-
+    process = psutil.Process(os.getpid())
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     
 

@@ -3,6 +3,13 @@
 ./kmtotalizer.sh
 ./ladder.sh
 
+cd ..
+cd MaxSAT
+./auto.sh
+cd ..
+cd evalmaxsat
+./run_pipeline.sh
+./run_pipeline_no_processing.sh
 
 
 
