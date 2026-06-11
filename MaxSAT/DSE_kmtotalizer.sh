@@ -5,7 +5,7 @@ RESULTS_DIR=results/no_processing/DSE/kmtotalizer
 mkdir -p $RESULTS_DIR
 
 
-./runlim -r $TO -s $MO  python3 -u main_no_processing.py scen01 DSE 8    2>&1 | tee $RESULTS_DIR/scen01.log
+# ./runlim -r $TO -s $MO  python3 -u main_no_processing.py scen01 DSE 8    2>&1 | tee $RESULTS_DIR/scen01.log
 ./runlim -r $TO -s $MO  python3 -u main_no_processing.py scen02 DSE 8    2>&1 | tee $RESULTS_DIR/scen02.log
 ./runlim -r $TO -s $MO  python3 -u main_no_processing.py scen03 DSE 8    2>&1 | tee $RESULTS_DIR/scen03.log
 ./runlim -r $TO -s $MO  python3 -u main_no_processing.py scen04 DSE 8    2>&1 | tee $RESULTS_DIR/scen04.log

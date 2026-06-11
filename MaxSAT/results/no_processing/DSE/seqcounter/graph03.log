@@ -1,0 +1,34 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no_processing.py
+[runlim] argv[3]:		graph03
+[runlim] argv[4]:		DSE
+[runlim] argv[5]:		1
+[runlim] start:			Thu Jun 11 10:31:06 2026
+[runlim] child:			11544
+---  DSE  [Cardinality Encoding: 1] ---
+ solving MaxSAT (RC2)...
+[runlim] sample:		9.99 time, 10.01 real, 148 MB, 1.01 load
+[runlim] sample:		19.98 time, 20.01 real, 173 MB, 1.01 load
+
+--------------------------------------------------
+Found solution!
+Number of labels used: 20
+--------------------------------------------------
+Time taken: 23.48 seconds
+Memory used: 171.69 MB
+[runlim] end:			Thu Jun 11 10:31:30 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			23.55 seconds
+[runlim] time:			23.48 seconds
+[runlim] space:			174 MB
+[runlim] load:			1.01 maximum
+[runlim] samples:		236
