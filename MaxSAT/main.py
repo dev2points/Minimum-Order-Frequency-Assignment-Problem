@@ -147,6 +147,10 @@ def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
                     wcnf.append([-var_map[(u, iu)]] + [var_map[(v, jv)] for jv in vals_v if abs(iu - jv) == distance])
             elif '>' in parts:
                 for iu in vals_u:
+                    # Preprocessing should already remove this unsupported label.
+                    # The no-preprocessing encoder must keep this unit clause active.
+                    # if (iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]):
+                    #     wcnf.append([-var_map[(u, iu)]])
                     if (iu - distance <= vals_v[0]):
                         for jv in vals_v:
                             if jv - iu > distance:

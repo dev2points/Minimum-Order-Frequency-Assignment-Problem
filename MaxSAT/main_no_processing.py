@@ -109,7 +109,11 @@ def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
                     wcnf.append([-var_map[(u, iu)]] + [var_map[(v, jv)] for jv in vals_v if abs(iu - jv) == distance])
             elif '>' in parts:
                 for iu in vals_u:
-                    if (iu - distance <= vals_v[0]):
+                    # Without preprocessing, an assignment can make every label of v
+                    # violate |u - v| > distance, so u=iu must be forbidden.
+                    if (iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]):
+                        wcnf.append([-var_map[(u, iu)]])
+                    elif (iu - distance <= vals_v[0]):
                         for jv in vals_v:
                             if jv - iu > distance:
                                wcnf.append([-var_map[(u, iu)], order_var_map[(v, jv)]])
