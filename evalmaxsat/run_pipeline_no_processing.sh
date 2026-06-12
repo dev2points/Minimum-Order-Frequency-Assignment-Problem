@@ -21,12 +21,12 @@ run_case() {
 		group="POSE"
 		log_file="results/no_preprocessing/pipeline/$group/${dataset}.log"
 		mkdir -p "$(dirname "$log_file")"
-		./runlim -r "$TO" -s "$MO" "$PYTHON_BIN" -u evalmaxsat_no_processing.py "$dataset" POSE 2>&1 | tee "$log_file"
+		./runlim -r "$TO" -s "$MO" "$PYTHON_BIN" -u evalmaxsat_no_processing.py "$dataset" POSE 2>&1 | tee "$log_file" || true
 	else
 		group="DSE_${card}"
-		log_file="results/pipeline/$group/${dataset}.log"
+		log_file="results/no_preprocessing/pipeline/$group/${dataset}.log"
 		mkdir -p "$(dirname "$log_file")"
-		./runlim -r "$TO" -s "$MO" "$PYTHON_BIN" -u evalmaxsat_no_processing.py "$dataset" DSE "$card" 2>&1 | tee "$log_file"
+		./runlim -r "$TO" -s "$MO" "$PYTHON_BIN" -u evalmaxsat_no_processing.py "$dataset" DSE "$card" 2>&1 | tee "$log_file" || true
 	fi
 }
 
