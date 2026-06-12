@@ -61,7 +61,7 @@ def create_var_map(var):
     return counter, var_map # dict mapping (i, v) to variable number
 
 
-def build_constraints(solver, var, var_map, ctr_file, type_card):
+def build_constraints(solver, var, var_map, ctr_file, type_card, distance_mode, distance_card):
     top_id = max(var_map.values())
 
     # Exactly One
@@ -85,10 +85,24 @@ def build_constraints(solver, var, var_map, ctr_file, type_card):
             vals_j = var.get(j, [])
             if '>' in parts:
                 distance = int(parts[4])
-                for vi in vals_i:
-                    for vj in vals_j:
-                        if abs(vi - vj) <= distance:
-                            solver.add_clause([-var_map[(i, vi)], -var_map[(j, vj)]])
+                if distance_mode == 'pairwise':
+                    for vi in vals_i:
+                        for vj in vals_j:
+                            if abs(vi - vj) <= distance:
+                                solver.add_clause([-var_map[(i, vi)], -var_map[(j, vj)]])
+                elif distance_mode == 'card':
+                    for vi in vals_i:
+                        forbidden = [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) <= distance]
+                        if forbidden:
+                            enc = CardEnc.atmost(
+                                [var_map[(i, vi)]] + forbidden,
+                                bound=1,
+                                top_id=top_id,
+                                encoding=distance_card,
+                            )
+                            for clause in enc.clauses:
+                                solver.add_clause(clause)
+                            top_id = enc.nv
                             
             elif '=' in parts:
                 target = int(parts[4])
@@ -233,7 +247,9 @@ def verify_solution_simple(assignment, var, ctr_file):
 def main():
     start_time = time.perf_counter()
     if len(sys.argv) < 4:
-        print("Use: python main.py <dataset_folder> <type_sat> <type_card>")
+        print("Use: python main.py <dataset_folder> <type_sat> <type_card> [distance_mode] [distance_card]")
+        print("  distance_mode: 'pairwise' (default) or 'card'")
+        print("  distance_card: cardinality encoding for distance constraints; defaults to type_card")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
@@ -244,6 +260,14 @@ def main():
         print(e)
         return
     type_card = int(sys.argv[3])
+    distance_mode = sys.argv[4].lower() if len(sys.argv) >= 5 else 'pairwise'
+    if distance_mode not in ('pairwise', 'card'):
+        print("Invalid distance_mode. Use 'pairwise' or 'card'.")
+        return
+    distance_card = int(sys.argv[5]) if len(sys.argv) >= 6 else type_card
+    print("Exactly-one cardinality encoding: ", type_card)
+    print("Distance constraint mode: ", distance_mode)
+    print("Distance cardinality encoding: ", distance_card)
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
 
@@ -253,7 +277,7 @@ def main():
     
     
     # solver = Cadical195()
-    top_id = build_constraints(solver, var, var_map, files["ctr"], type_card)
+    top_id = build_constraints(solver, var, var_map, files["ctr"], type_card, distance_mode, distance_card)
     print("---------------------------------------------------")
     print("Solve first problem:")
     assignment = solve_and_print(solver, var_map, None, None, 'first')
