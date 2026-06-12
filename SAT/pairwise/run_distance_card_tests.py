@@ -6,12 +6,7 @@ import time
 
 
 DEFAULT_DATASETS = [
-    "graph03",
     "graph04",
-    "graph11",
-    "graph12",
-    "graph13",
-    "TUD200.1"
 ]
 
 ALIASES = {
@@ -91,13 +86,19 @@ def main():
         help="Datasets or aliases, e.g. g3 g4 g11 g12 g13",
     )
     parser.add_argument("--solve-mode", default="assumptions", choices=["first", "assumptions", "incremental"])
-    parser.add_argument("--type-card", type=int, nargs="+", default=[5], help="Exactly-one cardinality encoding(s).")
+    parser.add_argument(
+        "--type-card",
+        type=int,
+        nargs="+",
+        default=[1, 2, 3, 4, 5, 6, 7, 8],
+        help="Exactly-one cardinality encoding(s).",
+    )
     parser.add_argument("--distance-mode", default="card", choices=["pairwise", "card"])
     parser.add_argument(
         "--distance-card",
         type=int,
         nargs="+",
-        default=[1, 5, 6, 8],
+        default=[1, 2, 3, 4, 5, 6, 7, 8],
         help="Distance AMO cardinality encoding(s).",
     )
     parser.add_argument("--timeout", type=int, default=600, help="Timeout per run in seconds.")
