@@ -1,0 +1,34 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no.py
+[runlim] argv[3]:		scen06
+[runlim] argv[4]:		600
+[runlim] start:			Sun Jun 14 16:22:02 2026
+[runlim] child:			42910
+Dataset: scen06
+Preprocessing: off
+Building CP-SAT CP-style model for 200 variables...
+Number of frequency variables: 200
+Number of label variables: 44
+Build time: 0.15s
+Solving with OR-Tools CP-SAT CP-style model...
+Status: INFEASIBLE
+No solution found.
+Objective bound: 0.0
+Total time: 0.64s
+Memory used: 126.29 MB
+[runlim] end:			Sun Jun 14 16:22:03 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			1.00 seconds
+[runlim] time:			1.98 seconds
+[runlim] space:			119 MB
+[runlim] load:			10.36 maximum
+[runlim] samples:		10

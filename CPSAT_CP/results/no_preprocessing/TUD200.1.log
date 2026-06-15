@@ -1,0 +1,78 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no.py
+[runlim] argv[3]:		TUD200.1
+[runlim] argv[4]:		600
+[runlim] start:			Sun Jun 14 16:22:08 2026
+[runlim] child:			43000
+Dataset: TUD200.1
+Preprocessing: off
+Building CP-SAT CP-style model for 200 variables...
+Number of frequency variables: 200
+Number of label variables: 48
+Build time: 0.16s
+Solving with OR-Tools CP-SAT CP-style model...
+Number of labels used: 42
+Time taken: 5.19s
+Number of labels used: 38
+Time taken: 5.20s
+Number of labels used: 36
+Time taken: 5.65s
+Number of labels used: 36
+Time taken: 5.66s
+Number of labels used: 34
+Time taken: 6.15s
+Number of labels used: 32
+Time taken: 7.33s
+Number of labels used: 32
+Time taken: 7.43s
+Number of labels used: 30
+Time taken: 7.48s
+Number of labels used: 22
+Time taken: 7.54s
+Number of labels used: 20
+Time taken: 7.58s
+Number of labels used: 18
+Time taken: 7.62s
+Number of labels used: 16
+Time taken: 7.66s
+Number of labels used: 14
+Time taken: 7.75s
+Number of labels used: 12
+Time taken: 8.19s
+[runlim] sample:		75.10 time, 10.02 real, 645 MB, 9.96 load
+[runlim] sample:		194.12 time, 20.02 real, 694 MB, 10.27 load
+[runlim] sample:		313.14 time, 30.02 real, 776 MB, 10.62 load
+[runlim] sample:		432.13 time, 40.02 real, 794 MB, 10.98 load
+[runlim] sample:		551.11 time, 50.02 real, 806 MB, 11.14 load
+[runlim] sample:		670.09 time, 60.02 real, 819 MB, 11.27 load
+[runlim] sample:		789.06 time, 70.02 real, 829 MB, 11.38 load
+[runlim] sample:		908.07 time, 80.02 real, 835 MB, 11.48 load
+[runlim] sample:		1027.10 time, 90.02 real, 838 MB, 11.56 load
+[runlim] sample:		1146.06 time, 100.02 real, 840 MB, 11.71 load
+[runlim] sample:		1265.04 time, 110.02 real, 851 MB, 11.83 load
+[runlim] sample:		1383.98 time, 120.02 real, 852 MB, 12.01 load
+Status: OPTIMAL
+Solution:
+{1: 142, 2: 380, 3: 380, 4: 142, 5: 254, 6: 16, 7: 58, 8: 296, 9: 16, 10: 254, 11: 16, 12: 254, 13: 792, 14: 554, 15: 750, 16: 512, 17: 58, 18: 296, 19: 442, 20: 680, 21: 750, 22: 512, 23: 792, 24: 554, 25: 792, 26: 554, 27: 254, 28: 16, 29: 16, 30: 254, 31: 142, 32: 380, 33: 512, 34: 750, 35: 792, 36: 554, 37: 792, 38: 554, 39: 296, 40: 58, 41: 750, 42: 512, 43: 792, 44: 554, 45: 512, 46: 750, 47: 142, 48: 380, 49: 680, 50: 442, 51: 380, 52: 142, 53: 380, 54: 142, 55: 296, 56: 58, 57: 16, 58: 254, 59: 554, 60: 792, 61: 58, 62: 296, 63: 680, 64: 442, 65: 16, 66: 254, 67: 442, 68: 680, 69: 442, 70: 680, 71: 380, 72: 142, 73: 750, 74: 512, 75: 554, 76: 792, 77: 680, 78: 442, 79: 680, 80: 442, 81: 380, 82: 142, 83: 58, 84: 296, 85: 792, 86: 554, 87: 254, 88: 16, 89: 296, 90: 58, 91: 680, 92: 442, 93: 750, 94: 512, 95: 680, 96: 442, 97: 142, 98: 380, 99: 680, 100: 442, 101: 142, 102: 380, 103: 296, 104: 58, 105: 296, 106: 58, 107: 380, 108: 142, 109: 554, 110: 792, 111: 58, 112: 296, 113: 750, 114: 512, 115: 680, 116: 442, 117: 296, 118: 58, 119: 16, 120: 254, 121: 442, 122: 680, 123: 554, 124: 792, 125: 680, 126: 442, 127: 442, 128: 680, 129: 380, 130: 142, 131: 442, 132: 680, 133: 58, 134: 296, 135: 750, 136: 512, 137: 750, 138: 512, 139: 750, 140: 512, 141: 142, 142: 380, 143: 442, 144: 680, 145: 554, 146: 792, 147: 296, 148: 58, 149: 296, 150: 58, 151: 792, 152: 554, 153: 380, 154: 142, 155: 554, 156: 792, 157: 254, 158: 16, 159: 58, 160: 296, 161: 750, 162: 512, 163: 16, 164: 254, 165: 142, 166: 380, 167: 380, 168: 142, 169: 58, 170: 296, 171: 512, 172: 750, 173: 792, 174: 554, 175: 512, 176: 750, 177: 58, 178: 296, 179: 792, 180: 554, 181: 750, 182: 512, 183: 554, 184: 792, 185: 254, 186: 16, 187: 296, 188: 58, 189: 680, 190: 442, 191: 16, 192: 254, 193: 750, 194: 512, 195: 442, 196: 680, 197: 58, 198: 296, 199: 380, 200: 142}
+Number of labels used: 12
+Objective value: 12.0
+Best objective bound: 12.0
+Solution is CORRECT!
+Total time: 120.69s
+Memory used: 718.12 MB
+[runlim] end:			Sun Jun 14 16:24:09 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			121.09 seconds
+[runlim] time:			1394.66 seconds
+[runlim] space:			853 MB
+[runlim] load:			12.01 maximum
+[runlim] samples:		1211
