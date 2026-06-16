@@ -6,3 +6,6 @@ cplexenv
 convert_dataset_to_.dat
 test.py
 venv310
+CPSAT/CP_SAT_Y_LINK_NOTE.md
+__pycache__/
+*.pyc
