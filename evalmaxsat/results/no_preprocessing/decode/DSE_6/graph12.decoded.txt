@@ -1,0 +1,8 @@
+dataset=graph12
+encoding=DSE_6
+solver_status=UNSATISFIABLE
+objective=None
+assigned_vars=0
+assignment_complete=False
+num_labels_used=0
+labels_used=

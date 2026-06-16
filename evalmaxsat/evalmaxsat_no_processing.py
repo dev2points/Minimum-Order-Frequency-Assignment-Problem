@@ -140,12 +140,7 @@ def build_constraints_pose(wcnf: WCNF, var: Dict[int, list], var_map: Dict[Tuple
                     stats["distance_clauses"] += 1
             elif ">" in parts:
                 for iu in vals_u:
-                    # Without preprocessing, an assignment can make every label of v
-                    # violate |u - v| > distance, so u=iu must be forbidden.
-                    if vals_v and iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]:
-                        wcnf.append([-var_map[(u, iu)]])
-                        stats["distance_clauses"] += 1
-                    elif vals_v and iu - distance <= vals_v[0]:
+                    if vals_v and iu - distance <= vals_v[0]:
                         for jv in vals_v:
                             if jv - iu > distance:
                                 wcnf.append([-var_map[(u, iu)], order_var_map[(v, jv)]])
