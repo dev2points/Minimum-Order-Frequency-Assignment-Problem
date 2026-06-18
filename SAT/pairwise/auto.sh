@@ -1,14 +1,20 @@
-# ./matched_seqcounter.sh
-# ./matched_totalizer.sh
-# ./matched_cardnetwrk.sh
-./matched_bitwise.sh
-./matched_kmtotalizer.sh
-# cd ..
-# cd ..
-# cd CPSAT
-# ./auto.sh
-# ./auto_no.sh
-# cd ..
-# cd CPSAT_CP
-# ./auto.sh
-# ./auto_no.sh
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+
+./DSE_seqcounter_pre.sh "$@"
+./DSE_seqcounter_no.sh "$@"
+./DSE_totalizer_pre.sh "$@"
+./DSE_totalizer_no.sh "$@"
+./DSE_ladder_pre.sh "$@"
+./DSE_ladder_no.sh "$@"
+./DSE_kmtotalizer_pre.sh "$@"
+./DSE_kmtotalizer_no.sh "$@"
+./CARD_seqcounter_pre.sh "$@"
+./CARD_seqcounter_no.sh "$@"
+./CARD_totalizer_pre.sh "$@"
+./CARD_totalizer_no.sh "$@"
+./CARD_ladder_pre.sh "$@"
+./CARD_ladder_no.sh "$@"
+./CARD_kmtotalizer_pre.sh "$@"
+./CARD_kmtotalizer_no.sh "$@"
