@@ -142,7 +142,7 @@ def build_label_constraints(solver, var_map, label_var_map):
         solver.add_clause([-varnum, lb_varnum])
     print("Number of clauses for label constraints: ", solver.nof_clauses() - last_clause_count)
 
-def add_limit_label_constraints(solver, lits, K):
+def amk_nsc(solver, lits, K):
     if isinstance(lits, dict):
         lits = list(lits.values())
 
@@ -199,6 +199,29 @@ def add_limit_label_constraints(solver, lits, K):
     
     print("Number of clauses for cardinality constraints: ", solver.nof_clauses() - last_clause_count)
     return rhs
+
+
+def amk_tot(solver, lits, K):
+    if isinstance(lits, dict):
+        lits = list(lits.values())
+
+    top = solver.nof_vars()
+    tot = ITotalizer(lits=lits, ubound=K, top_id=top)
+
+    last_clause_count = solver.nof_clauses()
+    for clause in tot.cnf.clauses:
+        solver.add_clause(clause)
+    print("Number of clauses for cardinality constraints: ", solver.nof_clauses() - last_clause_count)
+
+    return tot.rhs
+
+
+def add_limit_label_constraints(solver, lits, K, strategy='nsc'):
+    if strategy == 'nsc':
+        return amk_nsc(solver, lits, K)
+    if strategy == 'tot':
+        return amk_tot(solver, lits, K)
+    raise ValueError("strategy must be either 'nsc' or 'tot'")
 
 
 def delete_invalid_labels(var, ctr_file):
@@ -292,10 +315,26 @@ def verify_solution_simple(assignment, var, ctr_file):
 
 def main():
     start_time = time.perf_counter()
-    if len(sys.argv) < 4:
-        print("Use: python main.py <dataset_folder> <type_sat> <type_card> [distance_mode] [distance_card]")
+    solvers = ["glucose4", "cadical195"]
+    strategies = ["nsc", "tot"]
+    sat_types = ["incremental", "assumptions"]
+    if len(sys.argv) < 5:
+        print("Use: python main.py <dataset_folder> <strategy> <sat_type> <solver> [type_card] [distance_mode] [distance_card]")
+        print("  strategy: 'nsc' (default DSE+INCSC) or 'tot' (DSE+INC)")
+        print("  sat_type: 'incremental' or 'assumptions'")
+        print("  solver: 'glucose4' or 'cadical195'")
+        print("  type_card: exactly-one encoding id, used when distance_mode='card'; default is 1")
         print("  distance_mode: 'pairwise' (default) or 'card'")
         print("  distance_card: cardinality encoding for distance constraints; defaults to type_card")
+        return
+    if sys.argv[2] not in strategies:
+        print("Invalid strategy. Use 'nsc' or 'tot'.")
+        return
+    if sys.argv[3] not in sat_types:
+        print("Invalid sat_type. Use 'incremental' or 'assumptions'.")
+        return
+    if sys.argv[4] not in solvers:
+        print("Invalid solver. Use 'glucose4' or 'cadical195'.")
         return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
@@ -305,15 +344,21 @@ def main():
     except ValueError as e:
         print(e)
         return
-    type_card = int(sys.argv[3])
-    distance_mode = sys.argv[4].lower() if len(sys.argv) >= 5 else 'pairwise'
+    objective_strategy = sys.argv[2].lower()
+    sat_type = sys.argv[3]
+    solver_name = sys.argv[4]
+    type_card = int(sys.argv[5]) if len(sys.argv) >= 6 else 1
+    distance_mode = sys.argv[6].lower() if len(sys.argv) >= 7 else 'pairwise'
     if distance_mode not in ('pairwise', 'card'):
         print("Invalid distance_mode. Use 'pairwise' or 'card'.")
         return
-    distance_card = int(sys.argv[5]) if len(sys.argv) >= 6 else type_card
+    distance_card = int(sys.argv[7]) if len(sys.argv) >= 8 else type_card
     print("Exactly-one cardinality encoding: ", type_card)
     print("Distance constraint mode: ", distance_mode)
     print("Distance cardinality encoding: ", distance_card)
+    print("Objective strategy: ", objective_strategy)
+    print("SAT type: ", sat_type)
+    print("Solver: ", solver_name)
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
     if(not delete_invalid_labels(var, files["ctr"])):
@@ -322,7 +367,7 @@ def main():
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
         return
-    solver = Solver(name='cadical195')
+    solver = Solver(name=solver_name)
     last_var_num, var_map = create_var_map(var)
 
     
@@ -355,25 +400,29 @@ def main():
     lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    x_vars = add_limit_label_constraints(solver, lable_var_map,num_lables - 1)
+    if objective_strategy == 'nsc':
+        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables - 1, objective_strategy)
+    else:
+        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables, objective_strategy)
     
     print("Initial variable count: ", solver.nof_vars())
     print("Initial clause count: ", solver.nof_clauses())
-    print("--------------------------------------------------")
-    print(f"\nTrying with at most {num_lables - 1} labels...")
+    if objective_strategy == 'nsc':
+        print("--------------------------------------------------")
+        print(f"\nTrying with at most {num_lables - 1} labels...")
 
-    assignment = solve_and_print(solver, var_map, None, None, 'first')
-    if assignment is None:
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
+        assignment = solve_and_print(solver, var_map, None, None, 'first')
+        if assignment is None:
+            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds ")
+            process = psutil.Process(os.getpid())
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            return
+        
+        num_lables = len(set(assignment.values()))
+        print("Number of lables used: ", num_lables)
+        print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
         process = psutil.Process(os.getpid())
         print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
-        return
-    
-    num_lables = len(set(assignment.values()))
-    print("Number of lables used: ", num_lables)
-    print(f"Total time: {time.perf_counter() - start_time:.2f} seconds")
-    process = psutil.Process(os.getpid())
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
 
     
 
@@ -381,7 +430,7 @@ def main():
         
         print("--------------------------------------------------")
         print(f"\nTrying with at most {num_lables - 1} labels...")
-        assignment = solve_and_print(solver, var_map, x_vars, num_lables, sys.argv[2])
+        assignment = solve_and_print(solver, var_map, x_vars, num_lables, sat_type)
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_lables)
