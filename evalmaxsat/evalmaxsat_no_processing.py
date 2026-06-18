@@ -10,18 +10,23 @@ from pysat.card import CardEnc
 from pysat.formula import WCNF
 
 
-def build_paths(dataset: str, encoding: str, card: Optional[int]) -> Tuple[str, str, str]:
+def build_paths(dataset: str, encoding: str, exact_encoding: Optional[int], amo_encoding: Optional[int]) -> Tuple[str, str, str]:
     if encoding == "POSE":
         group = "POSE"
         filename = f"{dataset}_POSE.wcnf"
+    elif encoding == "DSE":
+        group = "DSE"
+        filename = f"{dataset}_DSE.wcnf"
     else:
-        if card is None:
-            raise ValueError("card encoding is required for DSE")
-        group = f"DSE_{card}"
-        filename = f"{dataset}_DSE_{card}.wcnf"
+        if exact_encoding is None:
+            raise ValueError("exact encoding is required for CARD")
+        if amo_encoding is None:
+            amo_encoding = exact_encoding
+        group = f"CARD_{exact_encoding}_{amo_encoding}"
+        filename = f"{dataset}_CARD_{exact_encoding}_{amo_encoding}.wcnf"
 
-    wcnf_dir = os.path.join("wcnf","no_preprocessing", group)
-    decode_dir = os.path.join("results","no_preprocessing", "decode", group)
+    wcnf_dir = os.path.join("wcnf", "no_preprocessing", group)
+    decode_dir = os.path.join("results", "no_preprocessing", "decode", group)
     return os.path.join(wcnf_dir, filename), decode_dir, group
 
 
@@ -69,7 +74,6 @@ def read_var(file_path: str, domain: list) -> Dict[int, list]:
     return var
 
 
-
 def create_var_map(var: Dict[int, list]) -> Tuple[int, Dict[Tuple[int, int], int]]:
     var_map = {}
     counter = 1
@@ -80,8 +84,48 @@ def create_var_map(var: Dict[int, list]) -> Tuple[int, Dict[Tuple[int, int], int
     return counter, var_map
 
 
-def create_order_var_map(var: Dict[int, list], var_map: Dict[Tuple[int, int], int], last_var_num: int,
-                         wcnf: WCNF, stats: dict) -> Tuple[int, Dict[Tuple[int, int], int]]:
+def add_exactly_one(wcnf: WCNF, lits: list, top_id: int, mode: str, encoding: Optional[int], stats: dict) -> int:
+    if mode == "manual":
+        wcnf.append(list(lits))
+        stats["card_clauses"] += 1
+        for i in range(len(lits)):
+            for j in range(i + 1, len(lits)):
+                wcnf.append([-lits[i], -lits[j]])
+                stats["card_clauses"] += 1
+        return top_id
+
+    enc = CardEnc.equals(list(lits), bound=1, top_id=top_id, encoding=encoding)
+    for clause in enc.clauses:
+        wcnf.append(clause)
+    stats["card_clauses"] += len(enc.clauses)
+    return enc.nv
+
+
+def add_atmost_one(wcnf: WCNF, lits: list, top_id: int, mode: str, encoding: Optional[int], stats: dict) -> int:
+    if len(lits) <= 1:
+        return top_id
+
+    if mode == "manual":
+        for i in range(len(lits)):
+            for j in range(i + 1, len(lits)):
+                wcnf.append([-lits[i], -lits[j]])
+                stats["card_clauses"] += 1
+        return top_id
+
+    enc = CardEnc.atmost(list(lits), bound=1, top_id=top_id, encoding=encoding)
+    for clause in enc.clauses:
+        wcnf.append(clause)
+    stats["card_clauses"] += len(enc.clauses)
+    return enc.nv
+
+
+def create_order_var_map(
+    var: Dict[int, list],
+    var_map: Dict[Tuple[int, int], int],
+    last_var_num: int,
+    wcnf: WCNF,
+    stats: dict,
+) -> Tuple[int, Dict[Tuple[int, int], int]]:
     counter = last_var_num + 1
     order_var_map = {}
 
@@ -117,8 +161,14 @@ def create_order_var_map(var: Dict[int, list], var_map: Dict[Tuple[int, int], in
     return counter - 1, order_var_map
 
 
-def build_constraints_pose(wcnf: WCNF, var: Dict[int, list], var_map: Dict[Tuple[int, int], int],
-                           last_var_num: int, ctr_file: str, stats: dict) -> int:
+def build_constraints_pose(
+    wcnf: WCNF,
+    var: Dict[int, list],
+    var_map: Dict[Tuple[int, int], int],
+    last_var_num: int,
+    ctr_file: str,
+    stats: dict,
+) -> int:
     counter, order_var_map = create_order_var_map(var, var_map, last_var_num, wcnf, stats)
 
     with open(ctr_file, encoding="utf-8", errors="ignore") as f:
@@ -172,19 +222,18 @@ def build_constraints_pose(wcnf: WCNF, var: Dict[int, list], var_map: Dict[Tuple
     return counter
 
 
-def build_constraints_dse(wcnf: WCNF, var: Dict[int, list], var_map: Dict[Tuple[int, int], int],
-                          ctr_file: str, type_card: int, stats: dict) -> int:
+def build_constraints_dse(
+    wcnf: WCNF,
+    var: Dict[int, list],
+    var_map: Dict[Tuple[int, int], int],
+    ctr_file: str,
+    stats: dict,
+) -> int:
     top_id = max(var_map.values())
 
     for i, vals in var.items():
         lits = [var_map[(i, v)] for v in vals]
-        enc = CardEnc.equals(lits, bound=1, top_id=top_id, encoding=type_card)
-        for clause in enc.clauses:
-            wcnf.append(clause)
-        stats["card_clauses"] += len(enc.clauses)
-        top_id = enc.nv
-
-    stats["card_aux_vars"] = top_id - max(var_map.values())
+        top_id = add_exactly_one(wcnf, lits, top_id, "manual", None, stats)
 
     with open(ctr_file, encoding="utf-8", errors="ignore") as f:
         for line in f:
@@ -214,6 +263,56 @@ def build_constraints_dse(wcnf: WCNF, var: Dict[int, list], var_map: Dict[Tuple[
     return top_id
 
 
+def build_constraints_card(
+    wcnf: WCNF,
+    var: Dict[int, list],
+    var_map: Dict[Tuple[int, int], int],
+    ctr_file: str,
+    exact_encoding: int,
+    amo_encoding: int,
+    stats: dict,
+) -> int:
+    top_id = max(var_map.values())
+
+    for i, vals in var.items():
+        lits = [var_map[(i, v)] for v in vals]
+        top_id = add_exactly_one(wcnf, lits, top_id, "card", exact_encoding, stats)
+
+    with open(ctr_file, encoding="utf-8", errors="ignore") as f:
+        for line in f:
+            if line.strip() == "\x00":
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+
+            i, j = int(parts[0]), int(parts[1])
+            vals_i = var.get(i, [])
+            vals_j = var.get(j, [])
+
+            if ">" in parts:
+                distance = int(parts[4])
+                for vi in vals_i:
+                    forbidden = [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) <= distance]
+                    if forbidden:
+                        top_id = add_atmost_one(
+                            wcnf,
+                            [var_map[(i, vi)]] + forbidden,
+                            top_id,
+                            "card",
+                            amo_encoding,
+                            stats,
+                        )
+            elif "=" in parts:
+                target = int(parts[4])
+                for vi in vals_i:
+                    wcnf.append([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
+                    stats["distance_clauses"] += 1
+
+    stats["card_aux_vars"] = top_id - max(var_map.values())
+    return top_id
+
+
 def create_label_var_map(labels: list, start_index: int) -> Dict[int, int]:
     label_var_map = {}
     current = start_index
@@ -223,8 +322,7 @@ def create_label_var_map(labels: list, start_index: int) -> Dict[int, int]:
     return label_var_map
 
 
-def build_maxsat_label_constraints(wcnf: WCNF, var_map: Dict[Tuple[int, int], int],
-                                   label_var_map: Dict[int, int], stats: dict) -> None:
+def build_maxsat_label_constraints(wcnf: WCNF, var_map: Dict[Tuple[int, int], int], label_var_map: Dict[int, int], stats: dict) -> None:
     for (_, v), varnum in var_map.items():
         lb_varnum = label_var_map[v]
         wcnf.append([-varnum, lb_varnum])
@@ -264,12 +362,17 @@ def add_wcnf_header_comments(outfile: str, dataset: str, encoding: str, stats: d
         f.write(content)
 
 
-def generate_wcnf(dataset: str, encoding: str, card: Optional[int], outfile: str) -> Tuple[bool, Dict[Tuple[int, int], int], Dict[int, list]]:
+def generate_wcnf(
+    dataset: str,
+    encoding: str,
+    exact_encoding: Optional[int],
+    amo_encoding: Optional[int],
+    outfile: str,
+) -> Tuple[bool, Dict[Tuple[int, int], int], Dict[int, list]]:
     dataset_folder = os.path.join("dataset", dataset)
     files = get_file_names(dataset_folder)
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-
 
     last_var_num, var_map = create_var_map(var)
     wcnf = WCNF()
@@ -288,9 +391,16 @@ def generate_wcnf(dataset: str, encoding: str, card: Optional[int], outfile: str
     if encoding == "POSE":
         top_var_num = build_constraints_pose(wcnf, var, var_map, last_var_num, files["ctr"], stats)
         encoding_name = "POSE"
+    elif encoding == "DSE":
+        top_var_num = build_constraints_dse(wcnf, var, var_map, files["ctr"], stats)
+        encoding_name = "DSE"
     else:
-        top_var_num = build_constraints_dse(wcnf, var, var_map, files["ctr"], int(card), stats)
-        encoding_name = f"DSE_{card}"
+        if exact_encoding is None:
+            raise ValueError("exact encoding is required for CARD")
+        if amo_encoding is None:
+            amo_encoding = exact_encoding
+        top_var_num = build_constraints_card(wcnf, var, var_map, files["ctr"], exact_encoding, amo_encoding, stats)
+        encoding_name = f"CARD_{exact_encoding}_{amo_encoding}"
 
     label_var_map = create_label_var_map(domain[0], top_var_num + 1)
     build_maxsat_label_constraints(wcnf, var_map, label_var_map, stats)
@@ -360,8 +470,7 @@ def decode_solution(bitstring: str, var_map: Dict[Tuple[int, int], int], var_dom
     return solution, feasible_assignment
 
 
-def write_decode_file(path: str, dataset: str, encoding: str, status: Optional[str], objective: Optional[int],
-                      solution: Dict[int, int], feasible_assignment: bool) -> None:
+def write_decode_file(path: str, dataset: str, encoding: str, status: Optional[str], objective: Optional[int], solution: Dict[int, int], feasible_assignment: bool) -> None:
     used_labels = sorted(set(solution.values()))
     with open(path, "w", encoding="utf-8") as f:
         f.write(f"dataset={dataset}\n")
@@ -382,27 +491,35 @@ def main() -> int:
         description="Generate WCNF, solve with EvalMaxSAT_bin, and decode a feasible assignment."
     )
     parser.add_argument("dataset", help="Dataset name, e.g. scen04")
-    parser.add_argument("encoding", choices=["POSE", "DSE"], help="Encoding type")
-    parser.add_argument("card", nargs="?", type=int, default=None, help="Cardinality encoding for DSE")
+    parser.add_argument("encoding", choices=["POSE", "DSE", "CARD"], help="Encoding type")
+    parser.add_argument("exact_encoding", nargs="?", type=int, default=None, help="Cardinality encoding for exactly-one constraints in CARD")
+    parser.add_argument("amo_encoding", nargs="?", type=int, default=None, help="Cardinality encoding for at-most-one distance constraints in CARD")
     args = parser.parse_args()
 
     dataset = args.dataset
     encoding = args.encoding
-    card = args.card
+    exact_encoding = args.exact_encoding
+    amo_encoding = args.amo_encoding
 
-    if encoding == "DSE" and card is None:
-        print("[ERROR] DSE requires a card encoding (example: 1, 5, 6, 8)")
+    if encoding == "CARD" and exact_encoding is None:
+        print("[ERROR] CARD requires an exactly-one encoding (example: 1, 5, 6, 8)")
         return 2
 
-    wcnf_file, decode_dir, group = build_paths(dataset, encoding, card)
+    if encoding == "CARD" and amo_encoding is None:
+        amo_encoding = exact_encoding
+
+    wcnf_file, decode_dir, group = build_paths(dataset, encoding, exact_encoding, amo_encoding)
     os.makedirs(os.path.dirname(wcnf_file), exist_ok=True)
     os.makedirs(decode_dir, exist_ok=True)
     if os.path.exists(wcnf_file):
         os.remove(wcnf_file)
 
-    print(f"[INFO] Generating WCNF for {dataset} ({encoding}{'' if card is None else ',' + str(card)})")
+    suffix = ""
+    if encoding == "CARD":
+        suffix = f",{exact_encoding},{amo_encoding}"
+    print(f"[INFO] Generating WCNF for {dataset} ({encoding}{suffix})")
     try:
-        generated, var_map, var_domains = generate_wcnf(dataset, encoding, card, wcnf_file)
+        generated, var_map, var_domains = generate_wcnf(dataset, encoding, exact_encoding, amo_encoding, wcnf_file)
     except ValueError as exc:
         print(f"[ERROR] {exc}")
         return 2
@@ -425,7 +542,11 @@ def main() -> int:
 
     solution, complete = decode_solution(bitstring, var_map, var_domains)
     decode_file = os.path.join(decode_dir, f"{dataset}.decoded.txt")
-    write_decode_file(decode_file, dataset, f"{encoding}{'' if card is None else '_' + str(card)}", status, objective, solution, complete)
+    if encoding == "CARD":
+        encoding_name = f"CARD_{exact_encoding}_{amo_encoding}"
+    else:
+        encoding_name = encoding
+    write_decode_file(decode_file, dataset, encoding_name, status, objective, solution, complete)
 
     used_labels = len(set(solution.values()))
     print("[INFO] Decode summary")

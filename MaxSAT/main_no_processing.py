@@ -4,7 +4,8 @@ import time
 import psutil
 from pysat.formula import WCNF
 from pysat.examples.rc2 import RC2
-from pysat.card import CardEnc, EncType
+from pysat.card import CardEnc
+
 
 def get_file_names(dataset_folder):
     base = os.path.basename(dataset_folder)
@@ -12,16 +13,16 @@ def get_file_names(dataset_folder):
         return {
             "domain": os.path.join(dataset_folder, "dom.txt"),
             "var": os.path.join(dataset_folder, "var.txt"),
-            "ctr": os.path.join(dataset_folder, "ctr.txt")
+            "ctr": os.path.join(dataset_folder, "ctr.txt"),
         }
-    elif base.lower().startswith("scen"):
+    if base.lower().startswith("scen"):
         return {
             "domain": os.path.join(dataset_folder, "DOM.TXT"),
             "var": os.path.join(dataset_folder, "VAR.TXT"),
-            "ctr": os.path.join(dataset_folder, "CTR.TXT")
+            "ctr": os.path.join(dataset_folder, "CTR.TXT"),
         }
-    else:
-        raise ValueError("Not a valid dataset: " + dataset_folder)
+    raise ValueError("Not a valid dataset: " + dataset_folder)
+
 
 def read_domain(file):
     domain = []
@@ -32,7 +33,8 @@ def read_domain(file):
                 continue
             values = list(map(int, parts[2:]))
             domain.append(values)
-    return domain 
+    return domain
+
 
 def read_var(file, domain):
     var = {}
@@ -48,6 +50,7 @@ def read_var(file, domain):
                 var[idx] = domain[int(parts[1])]
     return var
 
+
 def create_var_map(var):
     var_map = {}
     counter = 1
@@ -56,6 +59,43 @@ def create_var_map(var):
             var_map[(i, v)] = counter
             counter += 1
     return counter, var_map
+
+
+def add_exactly_one(wcnf, lits, top_id, mode, encoding=None):
+    if mode == "manual":
+        wcnf.append(list(lits))
+        for i in range(len(lits)):
+            for j in range(i + 1, len(lits)):
+                wcnf.append([-lits[i], -lits[j]])
+        return top_id
+
+    if mode == "card":
+        enc = CardEnc.equals(list(lits), bound=1, top_id=top_id, encoding=encoding)
+        for clause in enc.clauses:
+            wcnf.append(clause)
+        return enc.nv
+
+    raise ValueError(f"Unsupported exactly-one mode: {mode}")
+
+
+def add_atmost_one(wcnf, lits, top_id, mode, encoding=None):
+    if len(lits) <= 1:
+        return top_id
+
+    if mode == "manual":
+        for i in range(len(lits)):
+            for j in range(i + 1, len(lits)):
+                wcnf.append([-lits[i], -lits[j]])
+        return top_id
+
+    if mode == "card":
+        enc = CardEnc.atmost(list(lits), bound=1, top_id=top_id, encoding=encoding)
+        for clause in enc.clauses:
+            wcnf.append(clause)
+        return enc.nv
+
+    raise ValueError(f"Unsupported at-most-one mode: {mode}")
+
 
 def create_order_var_map(var, var_map, last_var_num, wcnf):
     counter = last_var_num + 1
@@ -66,34 +106,35 @@ def create_order_var_map(var, var_map, last_var_num, wcnf):
             order_var_map[(u, i)] = counter
             counter += 1
 
-    # Monotonicity constraints (Hard clauses cho POSE)
     for u, labels in var.items():
         if len(labels) <= 0:
             print("Warning: variable", u, "has no valid labels.")
             return
-            
+
         last_i = labels[-1]
         wcnf.append([-var_map[(u, last_i)], order_var_map[(u, last_i)]])
         wcnf.append([-order_var_map[(u, last_i)], var_map[(u, last_i)]])
-        
+
         for idx in range(1, len(labels)):
             wcnf.append([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx - 1])]])
         wcnf.append([order_var_map[(u, labels[0])]])
-        
-        for idx in range(len(labels)-1):
+
+        for idx in range(len(labels) - 1):
             wcnf.append([-var_map[(u, labels[idx])], order_var_map[(u, labels[idx])]])
-            wcnf.append([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])  
-            wcnf.append([-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]])
+            wcnf.append([-var_map[(u, labels[idx])], -order_var_map[(u, labels[idx + 1])]])
+            wcnf.append(
+                [-order_var_map[(u, labels[idx])], order_var_map[(u, labels[idx + 1])], var_map[(u, labels[idx])]]
+            )
 
     return counter - 1, order_var_map
 
+
 def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
-    # Phương pháp 1: Product/Position/Order-based Encoding
     counter, order_var_map = create_order_var_map(var, var_map, last_var_num, wcnf)
 
     with open(ctr_file) as f:
         for line in f:
-            if line.strip() == '\x00':
+            if line.strip() == "\x00":
                 continue
             parts = line.strip().split()
             if not parts:
@@ -103,30 +144,28 @@ def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
             vals_u = var.get(u, [])
             vals_v = var.get(v, [])
             distance = int(parts[4])
-            
-            if '=' in parts:
+
+            if "=" in parts:
                 for iu in vals_u:
                     wcnf.append([-var_map[(u, iu)]] + [var_map[(v, jv)] for jv in vals_v if abs(iu - jv) == distance])
-            elif '>' in parts:
+            elif ">" in parts:
                 for iu in vals_u:
-                    # Without preprocessing, an assignment can make every label of v
-                    # violate |u - v| > distance, so u=iu must be forbidden.
-                    if (iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]):
+                    if iu - distance <= vals_v[0] and iu + distance >= vals_v[-1]:
                         wcnf.append([-var_map[(u, iu)]])
-                    elif (iu - distance <= vals_v[0]):
+                    elif iu - distance <= vals_v[0]:
                         for jv in vals_v:
                             if jv - iu > distance:
-                               wcnf.append([-var_map[(u, iu)], order_var_map[(v, jv)]])
-                               break
+                                wcnf.append([-var_map[(u, iu)], order_var_map[(v, jv)]])
+                                break
                     elif iu + distance >= vals_v[-1]:
-                        T = iu - distance 
+                        t_limit = iu - distance
                         for t in vals_v:
-                            if t >= T:
+                            if t >= t_limit:
                                 wcnf.append([-var_map[(u, iu)], -order_var_map[(v, t)]])
                                 break
-                    else: 
-                        limit_low  = iu - distance 
-                        limit_high = iu + distance 
+                    else:
+                        limit_low = iu - distance
+                        limit_high = iu + distance
                         clause = [-var_map[(u, iu)]]
                         for t in vals_v:
                             if t >= limit_low:
@@ -137,25 +176,19 @@ def build_constraints_POSE(wcnf, var, var_map, last_var_num, ctr_file):
                                 clause.append(order_var_map[(v, t)])
                                 break
                         if len(clause) > 1:
-                            wcnf.append(clause)   
+                            wcnf.append(clause)
     return counter
 
-def build_constraints_DSE(wcnf, var, var_map, ctr_file, type_card):
-    # Phương pháp 2: Direct Encoding (Sử dụng CardEnc cho ràng buộc Exactly-One)
+
+def build_constraints_DSE(wcnf, var, var_map, ctr_file, _type_card):
     top_id = max(var_map.values())
 
-    # Ràng buộc Đúng-Một-Nhãn (Exactly One) cho mỗi biến
     for i, vals in var.items():
-        lits = [var_map[(i, v)] for v in vals]
-        enc = CardEnc.equals(lits, bound=1, top_id=top_id, encoding=type_card)
-        for clause in enc.clauses:
-            wcnf.append(clause)
-        top_id = enc.nv
+        top_id = add_exactly_one(wcnf, [var_map[(i, v)] for v in vals], top_id, mode="manual")
 
-    # Ràng buộc khoảng cách (Distance constraints)
     with open(ctr_file) as f:
         for line in f:
-            if line.strip() == '\x00':
+            if line.strip() == "\x00":
                 continue
             parts = line.strip().split()
             if not parts:
@@ -163,20 +196,63 @@ def build_constraints_DSE(wcnf, var, var_map, ctr_file, type_card):
             i, j = int(parts[0]), int(parts[1])
             vals_i = var.get(i, [])
             vals_j = var.get(j, [])
-            
-            if '>' in parts:
+
+            if ">" in parts:
                 distance = int(parts[4])
                 for vi in vals_i:
                     for vj in vals_j:
                         if abs(vi - vj) <= distance:
                             wcnf.append([-var_map[(i, vi)], -var_map[(j, vj)]])
-                            
-            elif '=' in parts:
+            elif "=" in parts:
                 target = int(parts[4])
                 for vi in vals_i:
                     wcnf.append([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
-    
+
     return top_id
+
+
+def build_constraints_CARD(wcnf, var, var_map, ctr_file, exact_encoding, amo_encoding):
+    top_id = max(var_map.values())
+
+    for i, vals in var.items():
+        top_id = add_exactly_one(
+            wcnf,
+            [var_map[(i, v)] for v in vals],
+            top_id,
+            mode="card",
+            encoding=exact_encoding,
+        )
+
+    with open(ctr_file) as f:
+        for line in f:
+            if line.strip() == "\x00":
+                continue
+            parts = line.strip().split()
+            if not parts:
+                continue
+            i, j = int(parts[0]), int(parts[1])
+            vals_i = var.get(i, [])
+            vals_j = var.get(j, [])
+
+            if ">" in parts:
+                distance = int(parts[4])
+                for vi in vals_i:
+                    forbidden = [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) <= distance]
+                    if forbidden:
+                        top_id = add_atmost_one(
+                            wcnf,
+                            [var_map[(i, vi)]] + forbidden,
+                            top_id,
+                            mode="card",
+                            encoding=amo_encoding,
+                        )
+            elif "=" in parts:
+                target = int(parts[4])
+                for vi in vals_i:
+                    wcnf.append([-var_map[(i, vi)]] + [var_map[(j, vj)] for vj in vals_j if abs(vi - vj) == target])
+
+    return top_id
+
 
 def create_label_var_map(labels, start_index):
     label_var_map = {}
@@ -186,6 +262,7 @@ def create_label_var_map(labels, start_index):
         current += 1
     return label_var_map
 
+
 def build_maxsat_label_constraints(wcnf, var_map, label_var_map):
     for (i, v), varnum in var_map.items():
         lb_varnum = label_var_map[v]
@@ -194,29 +271,44 @@ def build_maxsat_label_constraints(wcnf, var_map, label_var_map):
     for v, lb_varnum in label_var_map.items():
         wcnf.append([-lb_varnum], weight=1)
 
+
 def main():
     start_time = time.perf_counter()
-    
-    helpers = "Usage: python3 main.py <dataset_folder> <encoding_method> [<card_encoding>]\n" \
-              "  encoding_method: 'POSE' or 'DSE'\n" \
-              "  card_encoding (only for DSE): integer corresponding to Cardinality encoding (default: 1 - seqcounter)\n"
-              
+
+    helpers = (
+        "Usage: python3 main_no_processing.py <dataset_folder> <encoding_method> [<encoding_1>] [<encoding_2>]\n"
+        "  encoding_method: 'POSE', 'DSE', or 'CARD'\n"
+        "  DSE: optional third argument is accepted for backward compatibility but ignored.\n"
+        "  CARD: encoding_1 controls exactly-one, encoding_2 controls AMO for distance constraints.\n"
+        "        If encoding_2 is omitted, it defaults to encoding_1.\n"
+    )
+
     if len(sys.argv) < 3:
         print(helpers)
         return
 
     encoding_method = sys.argv[2].upper()
-    if encoding_method not in ['POSE', 'DSE']:
-        print(f"Lỗi: Phương pháp mã hóa không hợp lệ.\n{helpers}")
+    if encoding_method not in ["POSE", "DSE", "CARD"]:
+        print(f"Error: invalid encoding method.\n{helpers}")
         return
 
-    # Cấu hình loại mã hóa cardinality cho hàm DSE nếu người dùng truyền vào
-    type_card = int(sys.argv[3] if len(sys.argv) >= 4 else 1)  # Mặc định là 1 (seqcounter)
-    if encoding_method == 'DSE' and len(sys.argv) >= 4:
+    dse_compat_encoding = 1
+    exact_encoding = 1
+    amo_encoding = 1
+
+    if encoding_method == "DSE" and len(sys.argv) >= 4:
         try:
-            type_card = int(sys.argv[3])
+            dse_compat_encoding = int(sys.argv[3])
         except ValueError:
-            print("Lỗi: card_encoding phải là một số nguyên.")
+            print("Error: DSE compatibility encoding must be an integer.")
+            return
+
+    if encoding_method == "CARD":
+        try:
+            exact_encoding = int(sys.argv[3]) if len(sys.argv) >= 4 else 1
+            amo_encoding = int(sys.argv[4]) if len(sys.argv) >= 5 else exact_encoding
+        except ValueError:
+            print("Error: CARD encodings must be integers.")
             return
 
     dataset_folder = os.path.join("dataset", sys.argv[1])
@@ -230,29 +322,27 @@ def main():
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
 
-        
     last_var_num, var_map = create_var_map(var)
     wcnf = WCNF()
 
-    # Nhánh kiểm soát phương pháp Encoding qua tham số đầu vào
-    if encoding_method == 'POSE':
-        print("---  POSE  ---")
+    if encoding_method == "POSE":
+        print("--- POSE ---")
         top_var_num = build_constraints_POSE(wcnf, var, var_map, last_var_num, files["ctr"])
+    elif encoding_method == "DSE":
+        print(f"--- DSE [compat arg: {dse_compat_encoding}] ---")
+        top_var_num = build_constraints_DSE(wcnf, var, var_map, files["ctr"], dse_compat_encoding)
     else:
-        print(f"---  DSE  [Cardinality Encoding: {type_card}] ---")
-        top_var_num = build_constraints_DSE(wcnf, var, var_map, files["ctr"], type_card)
+        print(f"--- CARD [Exactly-One: {exact_encoding}, AMO: {amo_encoding}] ---")
+        top_var_num = build_constraints_CARD(wcnf, var, var_map, files["ctr"], exact_encoding, amo_encoding)
 
-    # Khởi tạo các biến quản lý nhãn dựa trên top_var_num nhận về từ hàm tương ứng
     label_var_map = create_label_var_map(domain[0], top_var_num + 1)
-    
-    # Xây dựng các ràng buộc mềm/cứng để tối ưu hóa số nhãn
     build_maxsat_label_constraints(wcnf, var_map, label_var_map)
 
     print(" solving MaxSAT (RC2)...")
-    
+
     with RC2(wcnf) as rc2:
         model = rc2.compute()
-        
+
         if model:
             assignment = {}
             for (i, v), varnum in var_map.items():
@@ -260,7 +350,7 @@ def main():
                     if i in assignment:
                         raise ValueError(f"Warning: variable {i} assigned multiple values.")
                     assignment[i] = v
-                    
+
             num_labels = len(set(assignment.values()))
             print("\n--------------------------------------------------")
             print("Found solution!")
@@ -273,6 +363,7 @@ def main():
     print(f"Time taken: {end_time - start_time:.2f} seconds")
     process = psutil.Process(os.getpid())
     print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+
 
 if __name__ == "__main__":
     main()

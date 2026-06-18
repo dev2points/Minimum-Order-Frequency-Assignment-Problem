@@ -66,10 +66,21 @@ def build_constraints(solver, var, var_map, ctr_file, type_card, distance_mode, 
 
     # Exactly One
     for i, vals in var.items():
-        enc = CardEnc.equals([var_map[(i, v)] for v in vals], bound=1,top_id=top_id, encoding=type_card)
-        for clause in enc.clauses:
-            solver.add_clause(clause)
-        top_id = enc.nv
+        if distance_mode == 'pairwise':
+            solver.add_clause([var_map[(i, v)] for v in vals])
+            for j in range(len(vals)):
+                for k in range(j + 1, len(vals)):
+                    solver.add_clause([-var_map[(i, vals[j])], -var_map[(i, vals[k])]])
+        elif distance_mode == 'card':
+            enc = CardEnc.equals(
+                [var_map[(i, v)] for v in vals],
+                bound=1,
+                top_id=top_id,
+                encoding=type_card,
+            )
+            for clause in enc.clauses:
+                solver.add_clause(clause)
+            top_id = enc.nv
     exo_clauses = solver.nof_clauses()
     print("Number of clauses for exactly one constraints: ", exo_clauses)
     # Distance constraints
