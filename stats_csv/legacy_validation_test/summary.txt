@@ -1,0 +1,5 @@
+total_rows=2100
+total_mismatches=57
+legacy_csv: rows=1260, mismatches=2
+workbook_vs_result: rows=420, mismatches=8
+workbook_vs_result2: rows=420, mismatches=47

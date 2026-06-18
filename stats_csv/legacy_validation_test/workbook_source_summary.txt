@@ -1,0 +1,5 @@
+total_rows=420
+result=41
+result2=2
+both=371
+neither=6

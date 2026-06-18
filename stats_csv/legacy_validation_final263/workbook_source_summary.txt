@@ -1,0 +1,5 @@
+total_rows=1269
+result=0
+result2=402
+both=863
+neither=4
