@@ -46,10 +46,15 @@ def read_var(file, domain):
                 continue
             idx = int(parts[0])
             if len(parts) >= 4:
-                var[idx] = [int(parts[-2])]
+                domain_idx = int(parts[1])
+                if int(parts[-2]) not in domain[domain_idx]:
+                    print(f"Warning: variable {idx} has assigned label {parts[-2]} that is not in the domain {domain_idx}.")
+                    return None
+                else:
+                    var[idx] = [int(parts[-2])]
             else:
                 var[idx] = domain[int(parts[1])]
-    return var
+    return var # domain subset for each variable
 
 
 
@@ -208,7 +213,13 @@ def main():
 
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
-
+    if var is None:
+        print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
+    
     print("Building Gurobi model...")
     model, x, y = build_gurobi_model(var, files["ctr"])
     model.update()
