@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-./_run_batch.sh no_processing POSE "$@"
+./_run_batch.sh processing CARD 5 5 "$@"
