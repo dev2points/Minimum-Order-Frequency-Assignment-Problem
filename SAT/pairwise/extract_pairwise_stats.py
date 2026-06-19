@@ -149,6 +149,12 @@ def extract_target_bound(lines: List[str]) -> tuple[int, str, str]:
         return optimal_value - 1, "optimal", "optimal_minus_one"
     if last_trying is not None:
         return last_trying, "timeout", "last_trying_line"
+    if any("has no valid labels after preprocessing" in line for line in lines):
+        return 0, "preprocess_unsat", "no_formula"
+    if any("Cannot find solution!" in line for line in lines):
+        return 0, "preprocess_unsat", "no_formula"
+    if any("Solve first problem:" in line for line in lines) and any("Cannot find solution." in line for line in lines):
+        return 0, "first_solve_unsat", "no_trying_line"
     raise ValueError("Cannot infer target bound from log.")
 
 
@@ -222,6 +228,28 @@ def build_stats(config: LogConfig) -> StatsRow:
     if preprocessed:
         ok = silent_call(module.delete_invalid_labels, var, files["ctr"])
         if not ok:
+            if config.status == "preprocess_unsat":
+                return StatsRow(
+                    log_path=str(config.log_path),
+                    script_name=config.script_name,
+                    dataset=config.dataset,
+                    type_sat=config.type_sat,
+                    type_card=config.type_card,
+                    distance_mode=config.distance_mode,
+                    distance_card=config.distance_card,
+                    target_bound=config.target_bound,
+                    status=config.status,
+                    target_source=config.target_source,
+                    preprocessed=preprocessed,
+                    base_vars=0,
+                    base_clauses=0,
+                    label_vars=0,
+                    label_clauses=0,
+                    bound_vars=0,
+                    bound_clauses=0,
+                    total_vars=0,
+                    total_clauses=0,
+                )
             raise ValueError(f"Preprocessing removed all labels for at least one variable in {config.log_path}")
 
     solver = CountingSolver()
@@ -238,6 +266,29 @@ def build_stats(config: LogConfig) -> StatsRow:
     )
     base_vars = solver.nof_vars()
     base_clauses = solver.nof_clauses()
+
+    if config.status == "first_solve_unsat":
+        return StatsRow(
+            log_path=str(config.log_path),
+            script_name=config.script_name,
+            dataset=config.dataset,
+            type_sat=config.type_sat,
+            type_card=config.type_card,
+            distance_mode=config.distance_mode,
+            distance_card=config.distance_card,
+            target_bound=config.target_bound,
+            status=config.status,
+            target_source=config.target_source,
+            preprocessed=preprocessed,
+            base_vars=base_vars,
+            base_clauses=base_clauses,
+            label_vars=0,
+            label_clauses=0,
+            bound_vars=0,
+            bound_clauses=0,
+            total_vars=base_vars,
+            total_clauses=base_clauses,
+        )
 
     label_var_map = silent_call(module.create_label_var_map, domain[0], top_id + 1)
     silent_call(module.build_label_constraints, solver, var_map, label_var_map)

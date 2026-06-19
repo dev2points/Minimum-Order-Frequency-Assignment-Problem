@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 TO=600
 MO=14000
 
-RESULT=results/preprocessing/matched_bitwise
-NO_RESULT=results/no_preprocessing/matched_bitwise
+RESULT=results/preprocessing/matched_bitwise_INC
+NO_RESULT=results/no_preprocessing/matched_bitwise_INC
 mkdir -p "$RESULT"
 mkdir -p "$NO_RESULT"
 
@@ -21,9 +21,9 @@ DATASETS=(
 )
 
 for ds in "${DATASETS[@]}"; do
-  ./runlim -r "$TO" -s "$MO" python3 -u pairwise.py "$ds" nsc assumptions cadical195 4 card 4 2>&1 | tee "$RESULT/$ds.log"
+  ./runlim -r "$TO" -s "$MO" python3 -u pairwise.py "$ds" tot assumptions cadical195 4 card 4 2>&1 | tee "$RESULT/$ds.log"
 done
 
 for ds in "${DATASETS[@]}"; do
-  ./runlim -r "$TO" -s "$MO" python3 -u pairwise_no_preprocessing.py "$ds" nsc assumptions cadical195 4 card 4 2>&1 | tee "$NO_RESULT/$ds.log"
+  ./runlim -r "$TO" -s "$MO" python3 -u pairwise_no_preprocessing.py "$ds" tot assumptions cadical195 4 card 4 2>&1 | tee "$NO_RESULT/$ds.log"
 done
