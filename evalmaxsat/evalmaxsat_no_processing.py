@@ -68,7 +68,12 @@ def read_var(file_path: str, domain: list) -> Dict[int, list]:
                 continue
             idx = int(parts[0])
             if len(parts) >= 4:
-                var[idx] = [int(parts[-2])]
+                domain_idx = int(parts[1])
+                if int(parts[-2]) not in domain[domain_idx]:
+                    print(f"Warning: variable {idx} has assigned label {parts[-2]} that is not in the domain {domain_idx}.")
+                    return None
+                else:
+                    var[idx] = [int(parts[-2])]
             else:
                 var[idx] = domain[int(parts[1])]
     return var
@@ -373,6 +378,8 @@ def generate_wcnf(
     files = get_file_names(dataset_folder)
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
+    if var is None:
+        return False, {}, {}
 
     last_var_num, var_map = create_var_map(var)
     wcnf = WCNF()
