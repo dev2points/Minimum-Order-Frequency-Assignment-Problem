@@ -411,10 +411,8 @@ def main():
     lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    if objective_strategy == 'nsc':
-        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables - 1, objective_strategy)
-    else:
-        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables, objective_strategy)
+
+    x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables - 1, objective_strategy)
     
     print("Initial variable count: ", solver.nof_vars())
     print("Initial clause count: ", solver.nof_clauses())

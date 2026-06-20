@@ -543,7 +543,7 @@ def main():
         print("Number of lables used: ", num_labels)
     
     else:
-        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels, sys.argv[2])
+        rhs = add_limit_label_constraints(solver, lable_var_map,num_labels - 1, sys.argv[2])
     while num_labels > 1:
         
         print("--------------------------------------------------")

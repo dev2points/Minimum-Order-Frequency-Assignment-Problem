@@ -61,10 +61,19 @@ def read_var(file, domain):
     with open(file) as f:
         for line in f:
             parts = line.strip().split()
-            if not parts: continue
+            if not parts:
+                continue
             idx = int(parts[0])
-            var[idx] = [int(parts[-2])] if len(parts) >= 4 else domain[int(parts[1])]
-    return var
+            if len(parts) >= 4:
+                domain_idx = int(parts[1])
+                if int(parts[-2]) not in domain[domain_idx]:
+                    print(f"Warning: variable {idx} has assigned label {parts[-2]} that is not in the domain {domain_idx}.")
+                    return None
+                else:
+                    var[idx] = [int(parts[-2])]
+            else:
+                var[idx] = domain[int(parts[1])]
+    return var # domain subset for each variable
 
 def delete_invalid_labels(var, ctr_file):
     # Read constraints and remove invalid labels from domain
@@ -188,6 +197,12 @@ def main():
     
     domain = read_domain(files["domain"])
     var_data = read_var(files["var"], domain)
+    if var_data is None:
+        print("Cannot find solution due to invalid variable assignments!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
 
     if(not delete_invalid_labels(var_data, files["ctr"])):
         print("Cannot find solution!")

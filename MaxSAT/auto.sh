@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
+=======
+# ./DSE_totalizer.sh
+# ./DSE_seqcounter.sh
+# ./DSE_kmtotalizer.sh
+./DSE_cardnetwrk.sh
+# ./POSE.sh
+# ./POSEno.sh
+>>>>>>> a057817 (run POSE and pairwise INC)
 
 ./POSE.sh "$@"
 ./POSEno.sh "$@"
