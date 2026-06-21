@@ -1,9 +1,5 @@
-cd SAT/sequence
-# ./nsc_assumptions.sh 
-# ./nsc_assumptions_no_preprocessing.sh
-./tot_assumptions.sh
-./tot_assumptions_no_preprocessing.sh
-
+cd MaxSAT
+./auto.sh
 cd ..
-cd pairwise
+cd evalmaxsat
 ./auto.sh

@@ -1,0 +1,33 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main.py
+[runlim] argv[3]:		TUD200.4
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		5
+[runlim] argv[6]:		5
+[runlim] start:			Sun Jun 21 05:08:19 2026
+[runlim] child:			7456
+--- CARD [Exactly-One: 5, AMO: 5] ---
+ solving MaxSAT (RC2)...
+
+--------------------------------------------------
+Found solution!
+Number of labels used: 20
+--------------------------------------------------
+Time taken: 0.12 seconds
+Memory used: 26.58 MB
+[runlim] end:			Sun Jun 21 05:08:20 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.17 seconds
+[runlim] time:			0.10 seconds
+[runlim] space:			21 MB
+[runlim] load:			1.17 maximum
+[runlim] samples:		2

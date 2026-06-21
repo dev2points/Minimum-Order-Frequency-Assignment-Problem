@@ -1,0 +1,16 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat.py
+[runlim] argv[3]:		graph01
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		1
+[runlim] argv[6]:		1
+[runlim] start:			Sat Jun 20 23:01:00 2026
+[runlim] child:			5096
+[INFO] Generating WCNF for graph01 (CARD,1,1)
+[INFO] Solving wcnf/processing/CARD_1_1/graph01_CARD_1_1.wcnf
