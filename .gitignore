@@ -9,3 +9,4 @@ venv310
 CPSAT/CP_SAT_Y_LINK_NOTE.md
 __pycache__/
 *.pyc
+*.wcnf

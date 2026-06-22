@@ -1,0 +1,86 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		graph10
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		1
+[runlim] argv[6]:		1
+[runlim] start:			Sun Jun 21 23:00:05 2026
+[runlim] child:			17255
+[INFO] Generating WCNF for graph10 (CARD,1,1)
+[runlim] sample:		10.00 time, 10.01 real, 796 MB, 0.93 load
+[INFO] Solving wcnf/no_preprocessing/CARD_1_1/graph10_CARD_1_1.wcnf
+[runlim] sample:		19.88 time, 20.01 real, 1133 MB, 1.02 load
+[runlim] sample:		29.88 time, 30.01 real, 1006 MB, 1.17 load
+[runlim] sample:		39.88 time, 40.01 real, 1147 MB, 1.15 load
+[runlim] sample:		49.87 time, 50.01 real, 1040 MB, 1.12 load
+[runlim] sample:		59.86 time, 60.01 real, 1043 MB, 1.10 load
+[runlim] sample:		69.86 time, 70.01 real, 1047 MB, 1.09 load
+[runlim] sample:		79.85 time, 80.01 real, 1049 MB, 1.07 load
+[runlim] sample:		89.85 time, 90.01 real, 1040 MB, 1.06 load
+[runlim] sample:		99.85 time, 100.01 real, 1043 MB, 1.05 load
+[runlim] sample:		109.84 time, 110.01 real, 1047 MB, 1.04 load
+[runlim] sample:		119.84 time, 120.01 real, 1043 MB, 1.04 load
+[runlim] sample:		129.83 time, 130.01 real, 1043 MB, 1.03 load
+[runlim] sample:		139.82 time, 140.01 real, 1042 MB, 1.02 load
+[runlim] sample:		149.82 time, 150.01 real, 1042 MB, 1.02 load
+[runlim] sample:		159.82 time, 160.01 real, 1044 MB, 1.02 load
+[runlim] sample:		169.81 time, 170.01 real, 1046 MB, 1.01 load
+[runlim] sample:		179.81 time, 180.01 real, 1047 MB, 1.01 load
+[runlim] sample:		189.80 time, 190.01 real, 1046 MB, 1.01 load
+[runlim] sample:		199.79 time, 200.01 real, 1051 MB, 1.01 load
+[runlim] sample:		209.79 time, 210.01 real, 1046 MB, 1.01 load
+[runlim] sample:		219.78 time, 220.01 real, 1047 MB, 1.00 load
+[runlim] sample:		229.78 time, 230.01 real, 1046 MB, 1.00 load
+[runlim] sample:		239.77 time, 240.01 real, 1046 MB, 1.00 load
+[runlim] sample:		249.77 time, 250.01 real, 1045 MB, 1.00 load
+[runlim] sample:		259.77 time, 260.01 real, 1046 MB, 1.00 load
+[runlim] sample:		269.76 time, 270.01 real, 1046 MB, 1.00 load
+[runlim] sample:		279.75 time, 280.01 real, 1046 MB, 1.00 load
+[runlim] sample:		289.75 time, 290.01 real, 1046 MB, 1.00 load
+[runlim] sample:		299.75 time, 300.01 real, 1046 MB, 1.00 load
+[runlim] sample:		309.74 time, 310.01 real, 1046 MB, 1.00 load
+[runlim] sample:		319.73 time, 320.01 real, 1046 MB, 1.00 load
+[runlim] sample:		329.73 time, 330.01 real, 1047 MB, 1.00 load
+[runlim] sample:		339.72 time, 340.01 real, 1046 MB, 1.00 load
+[runlim] sample:		349.72 time, 350.01 real, 1048 MB, 1.00 load
+[runlim] sample:		359.71 time, 360.01 real, 1047 MB, 1.00 load
+[runlim] sample:		369.71 time, 370.01 real, 1149 MB, 1.00 load
+[runlim] sample:		379.70 time, 380.01 real, 1048 MB, 1.00 load
+[runlim] sample:		389.70 time, 390.01 real, 1049 MB, 1.00 load
+[runlim] sample:		399.69 time, 400.01 real, 1049 MB, 1.00 load
+[runlim] sample:		409.68 time, 410.01 real, 1046 MB, 1.00 load
+[runlim] sample:		419.68 time, 420.01 real, 1046 MB, 1.00 load
+[runlim] sample:		429.68 time, 430.01 real, 1049 MB, 1.00 load
+[runlim] sample:		439.67 time, 440.01 real, 1050 MB, 1.00 load
+[runlim] sample:		449.67 time, 450.01 real, 1050 MB, 1.00 load
+[runlim] sample:		459.67 time, 460.01 real, 1049 MB, 1.00 load
+[runlim] sample:		469.66 time, 470.01 real, 1049 MB, 1.00 load
+[runlim] sample:		479.66 time, 480.01 real, 1051 MB, 1.00 load
+[runlim] sample:		489.65 time, 490.01 real, 1051 MB, 1.00 load
+[runlim] sample:		499.64 time, 500.01 real, 1049 MB, 1.00 load
+[runlim] sample:		509.64 time, 510.01 real, 1049 MB, 1.00 load
+[runlim] sample:		519.64 time, 520.01 real, 1049 MB, 1.08 load
+[runlim] sample:		529.63 time, 530.01 real, 1052 MB, 1.22 load
+[runlim] sample:		539.62 time, 540.01 real, 1052 MB, 1.19 load
+[runlim] sample:		549.62 time, 550.01 real, 1051 MB, 1.16 load
+[runlim] sample:		559.62 time, 560.01 real, 1051 MB, 1.13 load
+[runlim] sample:		569.61 time, 570.01 real, 1051 MB, 1.11 load
+[runlim] sample:		579.61 time, 580.01 real, 1050 MB, 1.09 load
+[runlim] sample:		589.60 time, 590.01 real, 1050 MB, 1.08 load
+[runlim] sample:		599.60 time, 600.01 real, 1054 MB, 1.15 load
+[runlim] end:			Sun Jun 21 23:10:06 2026
+[runlim] status:		out of time
+[runlim] result:		2
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			601.06 seconds
+[runlim] time:			599.60 seconds
+[runlim] space:			1280 MB
+[runlim] load:			1.22 maximum
+[runlim] samples:		6000

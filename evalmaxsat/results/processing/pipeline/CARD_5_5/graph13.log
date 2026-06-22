@@ -1,0 +1,27 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat.py
+[runlim] argv[3]:		graph13
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		5
+[runlim] argv[6]:		5
+[runlim] start:			Mon Jun 22 01:09:55 2026
+[runlim] child:			17959
+[INFO] Generating WCNF for graph13 (CARD,5,5)
+[SKIP] No solution found in preprocessing step
+[SKIP] No WCNF generated for graph13 (CARD_5_5); preprocessing found no feasible solution
+[runlim] end:			Mon Jun 22 01:09:56 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.23 seconds
+[runlim] time:			0.20 seconds
+[runlim] space:			18 MB
+[runlim] load:			1.02 maximum
+[runlim] samples:		3
