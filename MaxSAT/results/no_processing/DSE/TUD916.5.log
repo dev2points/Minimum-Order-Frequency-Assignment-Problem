@@ -1,0 +1,28 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no_processing.py
+[runlim] argv[3]:		TUD916.5
+[runlim] argv[4]:		DSE
+[runlim] start:			Sat Jun 27 19:44:50 2026
+[runlim] child:			27865
+--- DSE [compat arg: 1] ---
+ solving MaxSAT (RC2)...
+No solution found.
+--------------------------------------------------
+Time taken: 4.48 seconds
+Memory used: 580.94 MB
+[runlim] end:			Sat Jun 27 19:44:54 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			4.69 seconds
+[runlim] time:			4.60 seconds
+[runlim] space:			642 MB
+[runlim] load:			1.02 maximum
+[runlim] samples:		47

@@ -8,19 +8,19 @@
 [runlim] argv[2]:		main.py
 [runlim] argv[3]:		graph07
 [runlim] argv[4]:		600
-[runlim] start:			Sun Jun 14 12:28:14 2026
-[runlim] child:			24566
-Warning: variable 3 has no valid labels after preprocessing.
+[runlim] start:			Fri Jun 26 17:20:06 2026
+[runlim] child:			8668
+Warning: variable 182 has assigned label 716 that is not in the domain 5.
 Cannot find solution!
-Total time: 0.01s
-Memory used: 83.41 MB
-[runlim] end:			Sun Jun 14 12:28:15 2026
+Time taken: 0.00 seconds
+Memory used: 82.71 MB
+[runlim] end:			Fri Jun 26 17:20:06 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.38 seconds
-[runlim] time:			1.39 seconds
-[runlim] space:			80 MB
-[runlim] load:			12.47 maximum
+[runlim] real:			0.37 seconds
+[runlim] time:			1.30 seconds
+[runlim] space:			79 MB
+[runlim] load:			1.02 maximum
 [runlim] samples:		4

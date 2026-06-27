@@ -12,5 +12,7 @@
 # ./CARD_ladder_no.sh "$@"
 # ./CARD_kmtotalizer.sh "$@"
 # ./CARD_kmtotalizer_no.sh "$@"
-./CARD_cardnetwrk.sh "$@"
-./CARD_cardnetwrk_no.sh "$@"
+# ./CARD_cardnetwrk.sh "$@"
+# ./CARD_cardnetwrk_no.sh "$@"
+./DSE.sh
+./DSE_no.sh

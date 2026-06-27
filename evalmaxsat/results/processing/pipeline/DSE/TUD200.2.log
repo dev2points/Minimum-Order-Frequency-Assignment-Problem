@@ -1,0 +1,32 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat.py
+[runlim] argv[3]:		TUD200.2
+[runlim] argv[4]:		DSE
+[runlim] start:			Sat Jun 27 16:15:24 2026
+[runlim] child:			25732
+[INFO] Generating WCNF for TUD200.2 (DSE)
+[INFO] Solving wcnf/processing/DSE/TUD200.2_DSE.wcnf
+c nombre de var = 249
+o 46
+s OPTIMUM FOUND
+v 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111011111111111101111111111111111111111111111
+c Total time : 0.00066568s
+[INFO] Decode summary
+[INFO] status=OPTIMUM FOUND, objective=46, assigned_vars=200, complete=True, labels_used=46
+[INFO] Decoded assignment file: results/processing/decode/DSE/TUD200.2.decoded.txt
+[runlim] end:			Sat Jun 27 16:15:25 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			0.15 seconds
+[runlim] time:			0.05 seconds
+[runlim] space:			17 MB
+[runlim] load:			0.99 maximum
+[runlim] samples:		2

@@ -1,0 +1,44 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		pairwise_no_preprocessing.py
+[runlim] argv[3]:		graph13
+[runlim] argv[4]:		tot
+[runlim] argv[5]:		assumptions
+[runlim] argv[6]:		cadical195
+[runlim] argv[7]:		6
+[runlim] argv[8]:		card
+[runlim] argv[9]:		6
+[runlim] start:			Sat Jun 27 13:03:05 2026
+[runlim] child:			24841
+Exactly-one cardinality encoding:  6
+Distance constraint mode:  card
+Distance cardinality encoding:  6
+Objective strategy:  tot
+SAT type:  assumptions
+Solver:  cadical195
+Number of assignment variables:  35176
+Number of clauses for exactly one constraints:  895428
+[runlim] sample:		9.99 time, 10.01 real, 2166 MB, 1.03 load
+[runlim] sample:		19.99 time, 20.01 real, 4308 MB, 1.02 load
+[runlim] sample:		29.99 time, 30.01 real, 6956 MB, 1.02 load
+Number of clauses for distance constraints:  43674878
+---------------------------------------------------
+Solve first problem:
+Cannot find solution.
+Time taken: 33.87 seconds 
+Memory used: 7566.52 MB
+[runlim] end:			Sat Jun 27 13:03:42 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			37.05 seconds
+[runlim] time:			36.99 seconds
+[runlim] space:			7566 MB
+[runlim] load:			1.04 maximum
+[runlim] samples:		371

@@ -247,10 +247,10 @@ def delete_invalid_labels(var, ctr_file):
             for (u, v), (op, distance) in constraint.items():
                 if op == '=':
                     new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in new_var_u)]
                 elif op == '>':
                     new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in new_var_u)]
                 else:
                     continue
 
