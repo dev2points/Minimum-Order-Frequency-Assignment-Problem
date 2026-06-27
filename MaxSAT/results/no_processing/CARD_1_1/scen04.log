@@ -1,0 +1,41 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no_processing.py
+[runlim] argv[3]:		scen04
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		1
+[runlim] argv[6]:		1
+[runlim] start:			Sun Jun 21 02:15:24 2026
+[runlim] child:			6786
+--- CARD [Exactly-One: 1, AMO: 1] ---
+ solving MaxSAT (RC2)...
+[runlim] sample:		10.00 time, 10.01 real, 628 MB, 1.00 load
+[runlim] sample:		19.99 time, 20.01 real, 628 MB, 1.00 load
+[runlim] sample:		29.99 time, 30.01 real, 628 MB, 1.00 load
+[runlim] sample:		39.98 time, 40.01 real, 628 MB, 1.00 load
+[runlim] sample:		49.98 time, 50.01 real, 628 MB, 1.00 load
+[runlim] sample:		59.98 time, 60.01 real, 628 MB, 1.00 load
+[runlim] sample:		69.97 time, 70.01 real, 628 MB, 1.00 load
+[runlim] sample:		79.97 time, 80.01 real, 628 MB, 1.15 load
+
+--------------------------------------------------
+Found solution!
+Number of labels used: 46
+--------------------------------------------------
+Time taken: 82.26 seconds
+Memory used: 528.07 MB
+[runlim] end:			Sun Jun 21 02:16:46 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			82.42 seconds
+[runlim] time:			82.37 seconds
+[runlim] space:			641 MB
+[runlim] load:			1.22 maximum
+[runlim] samples:		825

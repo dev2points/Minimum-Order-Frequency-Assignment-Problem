@@ -8,7 +8,7 @@ MO=${MO:-14000}
 PYTHON_BIN=${PYTHON_BIN:-python3}
 
 mapfile -t DATASETS < <(find dataset -mindepth 1 -maxdepth 1 -type d | sort | xargs -n 1 basename)
-DSE_ENCODINGS=(1 5 6 8)
+DSE_ENCODINGS=(3)
 
 run_case() {
 	local dataset=$1

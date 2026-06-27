@@ -44,7 +44,12 @@ def read_var(file, domain):
                 continue
             idx = int(parts[0])
             if len(parts) >= 4:
-                var[idx] = [int(parts[-2])]
+                domain_idx = int(parts[1])
+                if int(parts[-2]) not in domain[domain_idx]:
+                    print(f"Warning: variable {idx} has assigned label {parts[-2]} that is not in the domain {domain_idx}.")
+                    return None
+                else:
+                    var[idx] = [int(parts[-2])]
             else:
                 var[idx] = domain[int(parts[1])]
     return var # domain subset for each variable
@@ -242,10 +247,10 @@ def delete_invalid_labels(var, ctr_file):
             for (u, v), (op, distance) in constraint.items():
                 if op == '=':
                     new_var_u = [label for label in var[u] if any(abs(label - label_v) == distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in var[u])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) == distance for label_u in new_var_u)]
                 elif op == '>':
                     new_var_u = [label for label in var[u] if any(abs(label - label_v) > distance for label_v in var[v])]
-                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in var[u])]
+                    new_var_v = [label for label in var[v] if any(abs(label - label_u) > distance for label_u in new_var_u)]
                 else:
                     continue
 
@@ -361,6 +366,12 @@ def main():
     print("Solver: ", solver_name)
     domain = read_domain(files["domain"])
     var = read_var(files["var"], domain)
+    if var is None:
+        print("Cannot find solution!")
+        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        process = psutil.Process(os.getpid())
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        return
     if(not delete_invalid_labels(var, files["ctr"])):
         print("Cannot find solution!")
         print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
@@ -400,10 +411,8 @@ def main():
     lable_var_map = create_label_var_map(domain[0], top_id + 1)
     build_label_constraints(solver, var_map, lable_var_map)
 
-    if objective_strategy == 'nsc':
-        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables - 1, objective_strategy)
-    else:
-        x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables, objective_strategy)
+
+    x_vars = add_limit_label_constraints(solver, lable_var_map, num_lables - 1, objective_strategy)
     
     print("Initial variable count: ", solver.nof_vars())
     print("Initial clause count: ", solver.nof_clauses())

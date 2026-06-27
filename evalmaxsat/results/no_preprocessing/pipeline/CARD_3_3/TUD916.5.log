@@ -1,0 +1,35 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		TUD916.5
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		3
+[runlim] argv[6]:		3
+[runlim] start:			Mon Jun 22 08:05:23 2026
+[runlim] child:			19903
+[INFO] Generating WCNF for TUD916.5 (CARD,3,3)
+[runlim] sample:		9.99 time, 10.01 real, 1469 MB, 1.22 load
+[runlim] sample:		19.99 time, 20.01 real, 2569 MB, 1.26 load
+[runlim] sample:		29.89 time, 30.01 real, 2569 MB, 1.22 load
+[INFO] Solving wcnf/no_preprocessing/CARD_3_3/TUD916.5_CARD_3_3.wcnf
+[runlim] sample:		39.74 time, 40.01 real, 2466 MB, 1.19 load
+s UNSATISFIABLE
+c Total time : 7.11741s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_3_3/TUD916.5.decoded.txt
+[runlim] end:			Mon Jun 22 08:06:06 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			43.75 seconds
+[runlim] time:			43.44 seconds
+[runlim] space:			4140 MB
+[runlim] load:			1.29 maximum
+[runlim] samples:		438

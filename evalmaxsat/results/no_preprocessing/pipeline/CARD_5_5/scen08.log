@@ -1,0 +1,34 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		scen08
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		5
+[runlim] argv[6]:		5
+[runlim] start:			Mon Jun 22 03:51:35 2026
+[runlim] child:			18623
+[INFO] Generating WCNF for scen08 (CARD,5,5)
+[runlim] sample:		9.99 time, 10.01 real, 1525 MB, 1.16 load
+[runlim] sample:		19.94 time, 20.01 real, 2254 MB, 1.13 load
+[runlim] sample:		29.84 time, 30.01 real, 2254 MB, 1.11 load
+[INFO] Solving wcnf/no_preprocessing/CARD_5_5/scen08_CARD_5_5.wcnf
+s UNSATISFIABLE
+c Total time : 5.50689s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_5_5/scen08.decoded.txt
+[runlim] end:			Mon Jun 22 03:52:14 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			38.24 seconds
+[runlim] time:			37.87 seconds
+[runlim] space:			2829 MB
+[runlim] load:			1.19 maximum
+[runlim] samples:		383

@@ -1,0 +1,32 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		scen10
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		1
+[runlim] argv[6]:		1
+[runlim] start:			Sun Jun 21 23:43:55 2026
+[runlim] child:			17453
+[INFO] Generating WCNF for scen10 (CARD,1,1)
+[INFO] Solving wcnf/no_preprocessing/CARD_1_1/scen10_CARD_1_1.wcnf
+c found falsified original clause
+s UNSATISFIABLE
+c Total time : 0.0391716s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_1_1/scen10.decoded.txt
+[runlim] end:			Sun Jun 21 23:43:55 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			0.63 seconds
+[runlim] time:			0.58 seconds
+[runlim] space:			58 MB
+[runlim] load:			1.06 maximum
+[runlim] samples:		7

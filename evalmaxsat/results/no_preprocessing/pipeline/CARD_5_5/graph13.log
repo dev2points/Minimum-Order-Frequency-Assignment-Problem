@@ -1,0 +1,34 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		graph13
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		5
+[runlim] argv[6]:		5
+[runlim] start:			Mon Jun 22 03:14:55 2026
+[runlim] child:			18478
+[INFO] Generating WCNF for graph13 (CARD,5,5)
+[runlim] sample:		9.99 time, 10.01 real, 1527 MB, 1.09 load
+[runlim] sample:		19.94 time, 20.01 real, 1909 MB, 1.07 load
+[INFO] Solving wcnf/no_preprocessing/CARD_5_5/graph13_CARD_5_5.wcnf
+[runlim] sample:		29.68 time, 30.01 real, 1084 MB, 1.06 load
+s UNSATISFIABLE
+c Total time : 4.75164s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_5_5/graph13.decoded.txt
+[runlim] end:			Mon Jun 22 03:15:28 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			33.01 seconds
+[runlim] time:			32.57 seconds
+[runlim] space:			2395 MB
+[runlim] load:			1.14 maximum
+[runlim] samples:		330

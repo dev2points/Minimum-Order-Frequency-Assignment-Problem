@@ -8,27 +8,19 @@
 [runlim] argv[2]:		main_no.py
 [runlim] argv[3]:		graph07
 [runlim] argv[4]:		600
-[runlim] start:			Sun Jun 14 18:28:30 2026
-[runlim] child:			60198
-Dataset: graph07
-Preprocessing: off
-Building CP-SAT model for 400 variables...
-Number of assignment variables: 3802
-Number of label variables: 49
-Build time: 0.39s
-Solving with OR-Tools CP-SAT...
-Status: INFEASIBLE
-No solution found.
-Objective bound: 0.0
-Total time: 0.43s
-Memory used: 125.15 MB
-[runlim] end:			Sun Jun 14 18:28:31 2026
+[runlim] start:			Fri Jun 26 17:20:05 2026
+[runlim] child:			8651
+Warning: variable 182 has assigned label 716 that is not in the domain 5.
+Cannot find solution!
+Time taken: 0.00 seconds
+Memory used: 82.80 MB
+[runlim] end:			Fri Jun 26 17:20:06 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.79 seconds
-[runlim] time:			1.79 seconds
-[runlim] space:			117 MB
-[runlim] load:			9.03 maximum
-[runlim] samples:		8
+[runlim] real:			0.35 seconds
+[runlim] time:			1.37 seconds
+[runlim] space:			83 MB
+[runlim] load:			1.02 maximum
+[runlim] samples:		4

@@ -1,0 +1,33 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		main_no_processing.py
+[runlim] argv[3]:		scen08
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		3
+[runlim] argv[6]:		3
+[runlim] start:			Sun Jun 21 19:28:01 2026
+[runlim] child:			14471
+--- CARD [Exactly-One: 3, AMO: 3] ---
+[runlim] sample:		10.00 time, 10.01 real, 1491 MB, 1.02 load
+[runlim] sample:		19.99 time, 20.01 real, 2991 MB, 1.02 load
+ solving MaxSAT (RC2)...
+[runlim] sample:		29.98 time, 30.01 real, 6871 MB, 1.01 load
+No solution found.
+--------------------------------------------------
+Time taken: 33.03 seconds
+Memory used: 5915.93 MB
+[runlim] end:			Sun Jun 21 19:28:36 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		1
+[runlim] processes:		2
+[runlim] real:			34.54 seconds
+[runlim] time:			34.48 seconds
+[runlim] space:			7969 MB
+[runlim] load:			1.02 maximum
+[runlim] samples:		346
