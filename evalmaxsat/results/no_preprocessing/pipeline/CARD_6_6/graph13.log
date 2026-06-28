@@ -1,0 +1,43 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		graph13
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		6
+[runlim] argv[6]:		6
+[runlim] start:			Sun Jun 28 02:02:47 2026
+[runlim] child:			5978
+[INFO] Generating WCNF for graph13 (CARD,6,6)
+[runlim] sample:		9.99 time, 10.01 real, 1716 MB, 1.01 load
+[runlim] sample:		20.00 time, 20.01 real, 3466 MB, 1.01 load
+[runlim] sample:		29.99 time, 30.01 real, 5165 MB, 1.01 load
+[runlim] sample:		39.98 time, 40.01 real, 7060 MB, 1.01 load
+[runlim] sample:		49.98 time, 50.01 real, 8345 MB, 1.00 load
+[runlim] sample:		59.89 time, 60.01 real, 8345 MB, 1.00 load
+[runlim] sample:		69.78 time, 70.01 real, 8345 MB, 1.00 load
+[runlim] sample:		79.68 time, 80.01 real, 8345 MB, 1.00 load
+[runlim] sample:		89.62 time, 90.01 real, 8345 MB, 1.00 load
+[runlim] sample:		99.57 time, 100.01 real, 8345 MB, 1.00 load
+[INFO] Solving wcnf/no_preprocessing/CARD_6_6/graph13_CARD_6_6.wcnf
+[runlim] sample:		109.24 time, 110.01 real, 3199 MB, 1.00 load
+[runlim] sample:		119.25 time, 120.01 real, 7042 MB, 1.00 load
+s UNSATISFIABLE
+c Total time : 16.1557s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_6_6/graph13.decoded.txt
+[runlim] end:			Sun Jun 28 02:04:49 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			121.74 seconds
+[runlim] time:			120.84 seconds
+[runlim] space:			10682 MB
+[runlim] load:			1.02 maximum
+[runlim] samples:		1218

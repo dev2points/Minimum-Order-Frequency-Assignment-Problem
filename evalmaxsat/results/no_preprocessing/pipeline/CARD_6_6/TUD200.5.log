@@ -1,0 +1,33 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		TUD200.5
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		6
+[runlim] argv[6]:		6
+[runlim] start:			Sun Jun 28 03:00:07 2026
+[runlim] child:			6201
+[INFO] Generating WCNF for TUD200.5 (CARD,6,6)
+[runlim] sample:		9.93 time, 10.01 real, 1706 MB, 1.09 load
+[runlim] sample:		19.88 time, 20.01 real, 1776 MB, 1.08 load
+[INFO] Solving wcnf/no_preprocessing/CARD_6_6/TUD200.5_CARD_6_6.wcnf
+s UNSATISFIABLE
+c Total time : 3.50053s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_6_6/TUD200.5.decoded.txt
+[runlim] end:			Sun Jun 28 03:00:33 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			26.03 seconds
+[runlim] time:			25.72 seconds
+[runlim] space:			2242 MB
+[runlim] load:			1.11 maximum
+[runlim] samples:		261
