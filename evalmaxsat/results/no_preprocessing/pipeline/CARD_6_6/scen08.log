@@ -1,0 +1,47 @@
+[runlim] version:		2.0.0rc12
+[runlim] host:			ap-Precision-7550
+[runlim] time limit:		311040000 seconds
+[runlim] real time limit:	600 seconds
+[runlim] space limit:		14000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat_no_processing.py
+[runlim] argv[3]:		scen08
+[runlim] argv[4]:		CARD
+[runlim] argv[5]:		6
+[runlim] argv[6]:		6
+[runlim] start:			Sun Jun 28 02:41:49 2026
+[runlim] child:			6104
+[INFO] Generating WCNF for scen08 (CARD,6,6)
+[runlim] sample:		9.97 time, 10.01 real, 1788 MB, 1.22 load
+[runlim] sample:		19.97 time, 20.01 real, 3437 MB, 1.19 load
+[runlim] sample:		29.97 time, 30.01 real, 5133 MB, 1.16 load
+[runlim] sample:		39.96 time, 40.01 real, 7040 MB, 1.13 load
+[runlim] sample:		49.96 time, 50.01 real, 8842 MB, 1.11 load
+[runlim] sample:		59.96 time, 60.01 real, 10433 MB, 1.09 load
+[runlim] sample:		69.90 time, 70.01 real, 10433 MB, 1.08 load
+[runlim] sample:		79.80 time, 80.01 real, 10433 MB, 1.07 load
+[runlim] sample:		89.75 time, 90.01 real, 10433 MB, 1.06 load
+[runlim] sample:		99.69 time, 100.01 real, 10433 MB, 1.05 load
+[runlim] sample:		109.64 time, 110.01 real, 10433 MB, 1.04 load
+[runlim] sample:		119.59 time, 120.01 real, 10433 MB, 1.03 load
+[runlim] sample:		128.52 time, 130.01 real, 7995 MB, 1.19 load
+[runlim] sample:		132.59 time, 140.01 real, 765 MB, 1.16 load
+[INFO] Solving wcnf/no_preprocessing/CARD_6_6/scen08_CARD_6_6.wcnf
+[runlim] sample:		139.88 time, 150.01 real, 4162 MB, 1.21 load
+[runlim] sample:		149.88 time, 160.01 real, 8583 MB, 1.25 load
+s UNSATISFIABLE
+c Total time : 20.1729s
+[INFO] Decode summary
+[INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
+[INFO] Decoded assignment file: results/no_preprocessing/decode/CARD_6_6/scen08.decoded.txt
+[runlim] end:			Sun Jun 28 02:44:33 2026
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		2
+[runlim] processes:		3
+[runlim] real:			164.06 seconds
+[runlim] time:			153.72 seconds
+[runlim] space:			12900 MB
+[runlim] load:			1.28 maximum
+[runlim] samples:		1641
