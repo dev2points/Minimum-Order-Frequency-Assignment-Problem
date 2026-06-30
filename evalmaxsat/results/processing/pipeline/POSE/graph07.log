@@ -4,21 +4,23 @@
 [runlim] real time limit:	600 seconds
 [runlim] space limit:		14000 MB
 [runlim] argv[0]:		python3
-[runlim] argv[1]:		evalmaxsat.py
-[runlim] argv[2]:		graph07
-[runlim] argv[3]:		POSE
-[runlim] start:			Fri Jun 26 17:14:27 2026
-[runlim] child:			8035
+[runlim] argv[1]:		-u
+[runlim] argv[2]:		evalmaxsat.py
+[runlim] argv[3]:		graph07
+[runlim] argv[4]:		POSE
+[runlim] start:			Tue Jun 30 13:15:46 2026
+[runlim] child:			10929
 [INFO] Generating WCNF for graph07 (POSE)
 Warning: variable 182 has assigned label 716 that is not in the domain 5.
 [SKIP] No WCNF generated for graph07 (POSE); preprocessing found no feasible solution
-[runlim] end:			Fri Jun 26 17:14:27 2026
+Time taken: 0.00 seconds
+[runlim] end:			Tue Jun 30 13:15:46 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
 [runlim] processes:		0
-[runlim] real:			0.03 seconds
+[runlim] real:			0.04 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0 MB
-[runlim] load:			0.64 maximum
+[runlim] load:			1.20 maximum
 [runlim] samples:		1

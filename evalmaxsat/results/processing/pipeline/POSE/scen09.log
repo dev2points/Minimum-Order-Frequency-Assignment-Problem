@@ -8,18 +8,19 @@
 [runlim] argv[2]:		evalmaxsat.py
 [runlim] argv[3]:		scen09
 [runlim] argv[4]:		POSE
-[runlim] start:			Fri Jun 12 06:34:50 2026
-[runlim] child:			13986
+[runlim] start:			Tue Jun 30 13:48:54 2026
+[runlim] child:			11097
 [INFO] Generating WCNF for scen09 (POSE)
 [SKIP] No solution found in preprocessing step
 [SKIP] No WCNF generated for scen09 (POSE); preprocessing found no feasible solution
-[runlim] end:			Fri Jun 12 06:34:50 2026
+Time taken: 0.01 seconds
+[runlim] end:			Tue Jun 30 13:48:54 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
 [runlim] processes:		0
-[runlim] real:			0.04 seconds
+[runlim] real:			0.05 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0 MB
-[runlim] load:			1.04 maximum
+[runlim] load:			1.29 maximum
 [runlim] samples:		1

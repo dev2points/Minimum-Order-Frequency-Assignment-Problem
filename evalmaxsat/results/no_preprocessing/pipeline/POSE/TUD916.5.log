@@ -8,22 +8,23 @@
 [runlim] argv[2]:		evalmaxsat_no_processing.py
 [runlim] argv[3]:		TUD916.5
 [runlim] argv[4]:		POSE
-[runlim] start:			Fri Jun 12 14:56:14 2026
-[runlim] child:			16704
+[runlim] start:			Tue Jun 30 14:45:50 2026
+[runlim] child:			13365
 [INFO] Generating WCNF for TUD916.5 (POSE)
 [INFO] Solving wcnf/no_preprocessing/POSE/TUD916.5_POSE.wcnf
 s UNSATISFIABLE
-c Total time : 0.121871s
+c Total time : 0.121663s
 [INFO] Decode summary
 [INFO] status=UNSATISFIABLE, objective=None, assigned_vars=0, complete=False, labels_used=0
 [INFO] Decoded assignment file: results/no_preprocessing/decode/POSE/TUD916.5.decoded.txt
-[runlim] end:			Fri Jun 12 14:56:15 2026
+Time taken: 1.07 seconds
+[runlim] end:			Tue Jun 30 14:45:51 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		2
 [runlim] processes:		3
-[runlim] real:			1.09 seconds
-[runlim] time:			0.98 seconds
-[runlim] space:			74 MB
-[runlim] load:			1.07 maximum
+[runlim] real:			1.10 seconds
+[runlim] time:			0.99 seconds
+[runlim] space:			72 MB
+[runlim] load:			1.02 maximum
 [runlim] samples:		11
