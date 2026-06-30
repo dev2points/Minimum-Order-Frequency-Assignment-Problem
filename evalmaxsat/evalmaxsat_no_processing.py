@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from typing import Dict, Optional, Tuple
 
 from pysat.card import CardEnc
@@ -493,6 +494,11 @@ def write_decode_file(path: str, dataset: str, encoding: str, status: Optional[s
             f.write(f"x[{var_id}]={solution[var_id]}\n")
 
 
+def finish(return_code: int, start_time: float) -> int:
+    print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+    return return_code
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Generate WCNF, solve with EvalMaxSAT_bin, and decode a feasible assignment."
@@ -507,10 +513,11 @@ def main() -> int:
     encoding = args.encoding
     exact_encoding = args.exact_encoding
     amo_encoding = args.amo_encoding
+    start_time = time.perf_counter()
 
     if encoding == "CARD" and exact_encoding is None:
         print("[ERROR] CARD requires an exactly-one encoding (example: 1, 5, 6, 8)")
-        return 2
+        return finish(2, start_time)
 
     if encoding == "CARD" and amo_encoding is None:
         amo_encoding = exact_encoding
@@ -529,14 +536,14 @@ def main() -> int:
         generated, var_map, var_domains = generate_wcnf(dataset, encoding, exact_encoding, amo_encoding, wcnf_file)
     except ValueError as exc:
         print(f"[ERROR] {exc}")
-        return 2
+        return finish(2, start_time)
     except Exception as exc:
         print(f"[ERROR] Generation failed: {exc}")
-        return 1
+        return finish(1, start_time)
 
     if not generated or not os.path.exists(wcnf_file):
         print(f"[SKIP] No WCNF generated for {dataset} ({group})")
-        return 0
+        return finish(0, start_time)
 
     print(f"[INFO] Solving {wcnf_file}")
     solve = run_solver(wcnf_file)
@@ -560,7 +567,7 @@ def main() -> int:
     print(f"[INFO] status={status}, objective={objective}, assigned_vars={len(solution)}, complete={complete}, labels_used={used_labels}")
     print(f"[INFO] Decoded assignment file: {decode_file}")
 
-    return 0
+    return finish(0, start_time)
 
 
 if __name__ == "__main__":

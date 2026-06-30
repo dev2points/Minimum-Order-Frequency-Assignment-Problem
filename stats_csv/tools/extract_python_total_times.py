@@ -16,11 +16,16 @@ LABEL_COUNT_RE_LIST = [
     re.compile(r"Number of labels used:\s*(\d+)"),
     re.compile(r"Num labels used:\s*(\d+)"),
 ]
+TRYING_SOLUTION_RE = re.compile(r"Trying with at most\s+(\d+)\s+labels\.\.\.\s*Solution:", re.IGNORECASE)
 CPLEX_CP_STAR_OBJECTIVE_RE = re.compile(r"^\s*\*\s+(\d+)\s", re.MULTILINE)
 CPLEX_CP_BEST_OBJECTIVE_RE = re.compile(r"Best objective\s*:\s*([0-9.]+)")
 EVALMAXSAT_TOTAL_TIME_RE = re.compile(r"c Total time\s*:\s*([0-9.]+)\s*s")
 EVALMAXSAT_STATUS_RE = re.compile(r"^s\s+(.+)$", re.MULTILINE)
 EVALMAXSAT_OBJECTIVE_RE = re.compile(r"^o\s+(\d+)$", re.MULTILINE)
+EVALMAXSAT_INFO_STATUS_RE = re.compile(r"\[INFO\]\s+status=([^,\n]+)")
+EVALMAXSAT_INFO_OBJECTIVE_RE = re.compile(r"\[INFO\].*?\bobjective=(\d+)")
+EVALMAXSAT_INFO_LABELS_RE = re.compile(r"\[INFO\].*?\blabels_used=(\d+)")
+RUNLIM_REAL_RE = re.compile(r"\[runlim\]\s+real:\s*([0-9.]+)\s+seconds")
 
 
 def last_float(pattern: re.Pattern[str], text: str) -> float | None:
@@ -39,6 +44,17 @@ def last_int(patterns: list[re.Pattern[str]], text: str) -> int | None:
                 last_value = int(match.group(1))
                 last_end = match.end()
     return last_value
+
+
+def last_incumbent_label_value(text: str) -> int | None:
+    explicit_value = last_int(LABEL_COUNT_RE_LIST, text)
+    trying_values = [int(value) for value in TRYING_SOLUTION_RE.findall(text)]
+
+    candidates = []
+    if explicit_value is not None:
+        candidates.append(explicit_value)
+    candidates.extend(trying_values)
+    return min(candidates) if candidates else None
 
 
 def parse_cplex_cp_objective(text: str) -> int | None:
@@ -96,11 +112,11 @@ def parse_cpsat_log(log_path: Path, preprocessing: bool, method: str, variant: s
 
     total_time = last_float(CP_TOTAL_TIME_RE, text)
     time_taken = last_float(TIME_TAKEN_RE, text)
-    label_value = last_int(LABEL_COUNT_RE_LIST, text)
+    label_value = last_incumbent_label_value(text)
     objective_value = last_float(OBJECTIVE_VALUE_RE, text)
 
     report_value = None
-    if not timeout and not oom and status in {"optimal", "feasible", "infeasible"}:
+    if not oom and status in {"optimal", "feasible", "timeout"}:
         if label_value is not None:
             report_value = label_value
         elif objective_value is not None:
@@ -112,6 +128,9 @@ def parse_cpsat_log(log_path: Path, preprocessing: bool, method: str, variant: s
     elif total_time is not None:
         report_time = total_time
         report_time_rule = "python_total_time"
+    elif status == "infeasible" and time_taken is not None:
+        report_time = time_taken
+        report_time_rule = "python_early_exit_time_taken"
     else:
         report_time = None
         report_time_rule = "missing"
@@ -126,7 +145,7 @@ def parse_cpsat_log(log_path: Path, preprocessing: bool, method: str, variant: s
         "report_value": report_value,
         "report_time_s": report_time,
         "report_time_rule": report_time_rule,
-        "python_e2e_time_s": total_time,
+        "python_e2e_time_s": total_time if total_time is not None else report_time,
         "time_taken_s": time_taken,
         "total_time_s": total_time,
         "time_taken_role": "incumbent_callback" if time_taken is not None else "",
@@ -135,7 +154,12 @@ def parse_cpsat_log(log_path: Path, preprocessing: bool, method: str, variant: s
     }
 
 
-def parse_cardinality_log(log_path: Path, preprocessing: bool, variant: str) -> dict[str, object]:
+def parse_cardinality_log(
+    log_path: Path,
+    preprocessing: bool,
+    variant: str,
+    method: str = "cardinality",
+) -> dict[str, object]:
     text = log_path.read_text(encoding="utf-8", errors="ignore")
 
     has_solution = "Solution:" in text
@@ -163,14 +187,17 @@ def parse_cardinality_log(log_path: Path, preprocessing: bool, variant: str) -> 
 
     total_time = last_float(CARD_TOTAL_TIME_RE, text)
     time_taken = last_float(TIME_TAKEN_RE, text)
-    label_value = last_int(LABEL_COUNT_RE_LIST, text)
+    label_value = last_incumbent_label_value(text)
     optimal_value_match = re.search(r"Optimal number of labels used:\s*(\d+)", text)
 
     report_value = None
-    if not timeout and not oom and status == "optimal":
-        if optimal_value_match is not None:
-            report_value = int(optimal_value_match.group(1))
-        else:
+    if not oom:
+        if status == "optimal":
+            if optimal_value_match is not None:
+                report_value = int(optimal_value_match.group(1))
+            else:
+                report_value = label_value
+        elif timeout and has_solution:
             report_value = label_value
 
     if timeout:
@@ -197,7 +224,7 @@ def parse_cardinality_log(log_path: Path, preprocessing: bool, variant: str) -> 
 
     return {
         "source_family": "current",
-        "method": "cardinality",
+        "method": method,
         "variant": variant,
         "preprocessing": "on" if preprocessing else "off",
         "dataset": log_path.stem,
@@ -226,7 +253,7 @@ def parse_legacy_log(
     timeout = has_runlim_timeout(text)
     oom = has_runlim_oom(text)
 
-    value = last_int(LABEL_COUNT_RE_LIST, text)
+    value = last_incumbent_label_value(text)
     if value is None and method == "CPX_CP":
         value = parse_cplex_cp_objective(text)
     total_time_candidates = [
@@ -285,7 +312,14 @@ def parse_maxsat_rc2_log(log_path: Path, preprocessing: bool, variant: str) -> d
     timeout = has_runlim_timeout(text)
     oom = has_runlim_oom(text)
     has_solution = "Found solution!" in text
-    has_no_solution = "No solution found." in text
+    has_no_solution = any(
+        message in text
+        for message in (
+            "No solution found.",
+            "No solution found in the preprocessing step!",
+            "Cannot find solution!",
+        )
+    )
 
     if timeout:
         status = "timeout"
@@ -299,18 +333,29 @@ def parse_maxsat_rc2_log(log_path: Path, preprocessing: bool, variant: str) -> d
         status = "unknown"
 
     time_taken = last_float(TIME_TAKEN_RE, text)
-    label_value = last_int(LABEL_COUNT_RE_LIST, text)
+    runlim_real = last_float(RUNLIM_REAL_RE, text)
+    label_value = last_incumbent_label_value(text)
 
-    report_value = label_value if status == "optimal" and not timeout and not oom else None
+    report_value = label_value if label_value is not None and not oom and status in {"optimal", "timeout"} else None
     if timeout:
         report_time = 600.0
         report_time_rule = "runlim_timeout_cap"
     elif time_taken is not None:
         report_time = time_taken
         report_time_rule = "python_time_taken"
+    elif status == "infeasible" and runlim_real is not None:
+        report_time = runlim_real
+        report_time_rule = "runlim_real_for_early_exit"
     else:
         report_time = None
         report_time_rule = "missing"
+
+    if time_taken is not None:
+        time_taken_role = "python_final_time_taken"
+    elif status == "infeasible" and runlim_real is not None:
+        time_taken_role = "runlim_real_for_early_exit"
+    else:
+        time_taken_role = ""
 
     return {
         "source_family": "current",
@@ -322,10 +367,10 @@ def parse_maxsat_rc2_log(log_path: Path, preprocessing: bool, variant: str) -> d
         "report_value": report_value,
         "report_time_s": report_time,
         "report_time_rule": report_time_rule,
-        "python_e2e_time_s": time_taken if not timeout else None,
+        "python_e2e_time_s": report_time if not timeout else None,
         "time_taken_s": time_taken,
-        "total_time_s": None,
-        "time_taken_role": "python_final_time_taken" if time_taken is not None else "",
+        "total_time_s": runlim_real if time_taken is None else None,
+        "time_taken_role": time_taken_role,
         "timeout_limit_s": 600.0 if timeout else None,
         "log_path": str(log_path),
     }
@@ -337,28 +382,35 @@ def parse_evalmaxsat_log(log_path: Path, preprocessing: bool, variant: str) -> d
     timeout = has_runlim_timeout(text)
     oom = has_runlim_oom(text)
     solver_status_match = EVALMAXSAT_STATUS_RE.findall(text)
+    info_status_match = EVALMAXSAT_INFO_STATUS_RE.findall(text)
     solver_status = solver_status_match[-1].strip() if solver_status_match else ""
-    total_time = last_float(EVALMAXSAT_TOTAL_TIME_RE, text)
-    objective = last_int([EVALMAXSAT_OBJECTIVE_RE], text)
+    info_status = info_status_match[-1].strip() if info_status_match else ""
+    solver_total_time = last_float(EVALMAXSAT_TOTAL_TIME_RE, text)
+    time_taken = last_float(TIME_TAKEN_RE, text)
+    objective = last_int([EVALMAXSAT_INFO_LABELS_RE, EVALMAXSAT_INFO_OBJECTIVE_RE, EVALMAXSAT_OBJECTIVE_RE], text)
+    status_text = info_status or solver_status
 
     if timeout:
         status = "timeout"
     elif oom:
         status = "out_of_memory"
-    elif solver_status == "OPTIMUM FOUND":
+    elif status_text == "OPTIMUM FOUND":
         status = "optimal"
-    elif solver_status == "UNSATISFIABLE":
+    elif status_text == "UNSATISFIABLE":
         status = "infeasible"
     else:
         status = "unknown"
 
-    report_value = objective if status == "optimal" and not timeout and not oom else None
+    report_value = objective if objective is not None and not oom and status in {"optimal", "timeout"} else None
     if timeout:
         report_time = 600.0
         report_time_rule = "runlim_timeout_cap"
-    elif total_time is not None:
-        report_time = total_time
-        report_time_rule = "python_total_time"
+    elif time_taken is not None:
+        report_time = time_taken
+        report_time_rule = "python_time_taken"
+    elif solver_total_time is not None:
+        report_time = solver_total_time
+        report_time_rule = "evalmaxsat_solver_total_time"
     else:
         report_time = None
         report_time_rule = "missing"
@@ -373,10 +425,10 @@ def parse_evalmaxsat_log(log_path: Path, preprocessing: bool, variant: str) -> d
         "report_value": report_value,
         "report_time_s": report_time,
         "report_time_rule": report_time_rule,
-        "python_e2e_time_s": total_time if not timeout else None,
-        "time_taken_s": None,
-        "total_time_s": total_time,
-        "time_taken_role": "",
+        "python_e2e_time_s": time_taken if not timeout else None,
+        "time_taken_s": time_taken,
+        "total_time_s": solver_total_time,
+        "time_taken_role": "python_final_time_taken" if time_taken is not None else "evalmaxsat_solver_total_time",
         "timeout_limit_s": 600.0 if timeout else None,
         "log_path": str(log_path),
     }
@@ -407,12 +459,19 @@ def collect_cardinality_rows(source_root: Path) -> list[dict[str, object]]:
         mode_dir = pairwise_root / mode_name
         if not mode_dir.exists():
             continue
-        for variant_dir in sorted(mode_dir.glob("matched_*")):
+        for variant_dir in sorted(mode_dir.iterdir()):
             if not variant_dir.is_dir():
                 continue
-            variant = variant_dir.name.removeprefix("matched_")
+            if variant_dir.name.startswith("matched_"):
+                method = "cardinality"
+                variant = variant_dir.name.removeprefix("matched_").lower()
+            elif variant_dir.name in {"dse_inc", "dse_incsc"}:
+                method = "sat_pairwise"
+                variant = variant_dir.name.lower()
+            else:
+                continue
             for log_path in sorted(variant_dir.glob("*.log")):
-                rows.append(parse_cardinality_log(log_path, preprocessing, variant))
+                rows.append(parse_cardinality_log(log_path, preprocessing, variant, method))
     return rows
 
 
@@ -586,7 +645,7 @@ def collect_maxsat_rc2_rows(source_root: Path) -> list[dict[str, object]]:
 
     pose_configs = [
         (maxsat_root / "processing" / "POSE", True, "pose"),
-        (maxsat_root / "no_pre_processing" / "POSE", False, "pose"),
+        (maxsat_root / "no_processing" / "POSE", False, "pose"),
     ]
     for log_dir, preprocessing, variant in pose_configs:
         if not log_dir.exists():
@@ -598,10 +657,23 @@ def collect_maxsat_rc2_rows(source_root: Path) -> list[dict[str, object]]:
         dse_root = maxsat_root / mode_name / "DSE"
         if not dse_root.exists():
             continue
+        for log_path in sorted(dse_root.glob("*.log")):
+            rows.append(parse_maxsat_rc2_log(log_path, preprocessing, "dse"))
         for variant_dir in sorted(dse_root.iterdir()):
             if not variant_dir.is_dir():
                 continue
-            variant = f"dse_{variant_dir.name}"
+            variant = f"dse_{variant_dir.name.lower()}"
+            for log_path in sorted(variant_dir.glob("*.log")):
+                rows.append(parse_maxsat_rc2_log(log_path, preprocessing, variant))
+
+    for mode_name, preprocessing in (("processing", True), ("no_processing", False)):
+        mode_dir = maxsat_root / mode_name
+        if not mode_dir.exists():
+            continue
+        for variant_dir in sorted(mode_dir.glob("CARD_*")):
+            if not variant_dir.is_dir():
+                continue
+            variant = variant_dir.name.lower()
             for log_path in sorted(variant_dir.glob("*.log")):
                 rows.append(parse_maxsat_rc2_log(log_path, preprocessing, variant))
 
