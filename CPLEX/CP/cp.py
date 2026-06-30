@@ -148,15 +148,15 @@ def main():
     var_data = read_var(files["var"], domain_data)
     if var_data is None:
         print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     if(not delete_invalid_labels(var_data, files["ctr"])):
         print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
         
         
@@ -176,9 +176,9 @@ def main():
     status = result.get_solve_status()
     if status not in ("Optimal", "Feasible"):
         print("No valid solution:", status)
-        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
+        print(f"Total time: {time.perf_counter() - start_time:.5f}s")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     
     # Bước 4: Xuất kết quả
@@ -201,8 +201,8 @@ def main():
     # Thông số hệ thống
     end_time = time.perf_counter()
     process = psutil.Process(os.getpid())
-    print(f"Total time: {end_time - start_time:.2f}s")
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    print(f"Total time: {end_time - start_time:.5f}s")
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
 
 if __name__ == "__main__":
     main()

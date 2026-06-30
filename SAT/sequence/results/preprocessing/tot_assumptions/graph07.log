@@ -10,13 +10,13 @@
 [runlim] argv[4]:		tot
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Sat Jun 20 00:18:01 2026
-[runlim] child:			38216
+[runlim] start:			Tue Jun 30 15:32:15 2026
+[runlim] child:			21308
 Warning: variable 182 has assigned label 716 that is not in the domain 5.
 Cannot find solution!
-Time taken: 0.00 seconds
-Memory used: 20.38 MB
-[runlim] end:			Sat Jun 20 00:18:01 2026
+Time taken: 0.00026 seconds
+Memory used: 17.41797 MB
+[runlim] end:			Tue Jun 30 15:32:15 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
@@ -24,5 +24,5 @@ Memory used: 20.38 MB
 [runlim] real:			0.05 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0 MB
-[runlim] load:			1.10 maximum
+[runlim] load:			0.47 maximum
 [runlim] samples:		1

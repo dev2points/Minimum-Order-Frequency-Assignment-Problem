@@ -138,9 +138,9 @@ def mycallback(model, where):
         #     print("Solution is CORRECT!")
         # else:
         #     print("Solution is INCORRECT!")
-        print(f"Total time used: {time.perf_counter() - model._time:.2f} sec")
+        print(f"Total time used: {time.perf_counter() - model._time:.5f} sec")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         print("================================")
 
 def extract_solution_from_dict(var_map, sol_dict):
@@ -215,9 +215,9 @@ def main():
     var = read_var(files["var"], domain)
     if var is None:
         print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     
     print("Building Gurobi model...")
@@ -230,7 +230,7 @@ def main():
     model._time = start_time
 
 
-    print(f"Build time used: {time.perf_counter() - start_time:.2f} sec")
+    print(f"Build time used: {time.perf_counter() - start_time:.5f} sec")
     
 
     print("Solving...")
@@ -238,9 +238,9 @@ def main():
 
     if model.status != GRB.OPTIMAL:
         print("No solution found.")
-        print(f"Total time used: {time.perf_counter() - start_time:.2f} sec")
+        print(f"Total time used: {time.perf_counter() - start_time:.5f} sec")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     
 

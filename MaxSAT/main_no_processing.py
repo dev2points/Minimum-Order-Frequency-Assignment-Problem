@@ -328,9 +328,9 @@ def main():
     var = read_var(files["var"], domain)
     if var is None:
             print("Cannot find solution!")
-            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+            print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
             process = psutil.Process(os.getpid())
-            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
             return
     last_var_num, var_map = create_var_map(var)
     wcnf = WCNF()
@@ -370,9 +370,9 @@ def main():
 
     end_time = time.perf_counter()
     print("--------------------------------------------------")
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time taken: {end_time - start_time:.5f} seconds")
     process = psutil.Process(os.getpid())
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
 
 
 if __name__ == "__main__":

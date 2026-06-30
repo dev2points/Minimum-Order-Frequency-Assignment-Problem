@@ -218,7 +218,7 @@ class IncumbentPrinter(cp_model.CpSolverSolutionCallback):
             if self.BooleanValue(x_var):
                 assignment[i] = value
         print("Number of labels used:", len(set(assignment.values())))
-        print(f"Time taken: {time.perf_counter() - self._start_time:.2f}s")
+        print(f"Time taken: {time.perf_counter() - self._start_time:.5f}s")
 
 
 def solve_with_callback(solver, model, callback):
@@ -243,15 +243,15 @@ def run(preprocess):
     var = read_var(files["var"], domain)
     if var is None:
         print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     
     if preprocess and not delete_invalid_labels(var, files["ctr"]):
         print("Cannot find solution!")
-        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
-        print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.2f} MB")
+        print(f"Total time: {time.perf_counter() - start_time:.5f}s")
+        print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.5f} MB")
         return
 
     print("Dataset:", dataset_name)
@@ -260,7 +260,7 @@ def run(preprocess):
     model, x, y = build_cpsat_model(var, files["ctr"])
     print("Number of assignment variables:", len(x))
     print("Number of label variables:", len(y))
-    print(f"Build time: {time.perf_counter() - start_time:.2f}s")
+    print(f"Build time: {time.perf_counter() - start_time:.5f}s")
 
     solver = cp_model.CpSolver()
     solver.parameters.num_search_workers = os.cpu_count() or 1
@@ -277,8 +277,8 @@ def run(preprocess):
     if status not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         print("No solution found.")
         print(f"Objective bound: {solver.BestObjectiveBound()}")
-        print(f"Total time: {time.perf_counter() - start_time:.2f}s")
-        print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.2f} MB")
+        print(f"Total time: {time.perf_counter() - start_time:.5f}s")
+        print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.5f} MB")
         return
 
     assignment = extract_solution(solver, x)
@@ -288,5 +288,5 @@ def run(preprocess):
     print("Objective value:", solver.ObjectiveValue())
     print("Best objective bound:", solver.BestObjectiveBound())
     print("Solution is CORRECT!" if verify_solution(assignment, var, files["ctr"]) else "Solution is INCORRECT!")
-    print(f"Total time: {time.perf_counter() - start_time:.2f}s")
-    print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.2f} MB")
+    print(f"Total time: {time.perf_counter() - start_time:.5f}s")
+    print(f"Memory used: {psutil.Process(os.getpid()).memory_info().rss / 1024**2:.5f} MB")

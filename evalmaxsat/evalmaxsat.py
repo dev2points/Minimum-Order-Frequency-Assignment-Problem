@@ -559,7 +559,7 @@ def write_decode_file(
 
 
 def finish(return_code: int, start_time: float) -> int:
-    print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+    print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
     return return_code
 
 

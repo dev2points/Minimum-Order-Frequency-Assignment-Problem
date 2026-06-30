@@ -494,9 +494,9 @@ def main():
     var = read_var(files["var"], domain)
     if var is None:
         print("Cannot find solution!")
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
         
     last_var_num, var_map = create_var_map(var)
@@ -508,9 +508,9 @@ def main():
 
     assignment = solve_and_print(solver, var_map, None, None, 'first')
     if assignment is None:
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
         return
     # if verify_solution(assignment, var, files["var"], files["ctr"]):
     #     print("Correct solution!")
@@ -522,9 +522,9 @@ def main():
     num_labels = len(set(assignment.values()))
     print("Number of lables used: ", num_labels)
     end_time = time.perf_counter()
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time taken: {end_time - start_time:.5f} seconds")
     process = psutil.Process(os.getpid())
-    print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+    print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
     lable_var_map = create_label_var_map(domain[0], solver.nof_vars() + 1)
     build_label_constraints(solver, var_map, lable_var_map)
     if sys.argv[2] != 'tot':
@@ -535,9 +535,9 @@ def main():
 
         assignment = solve_and_print(solver, var_map, None, None, 'first')
         if assignment is None:
-            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+            print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
             process = psutil.Process(os.getpid())
-            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
             return
         num_labels = len(set(assignment.values()))
         print("Number of lables used: ", num_labels)
@@ -552,9 +552,9 @@ def main():
         if assignment is None:
             print("No more solutions found.")
             print("Optimal number of labels used: ", num_labels)
-            print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+            print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
             process = psutil.Process(os.getpid())
-            print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+            print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
             break
         if verify_solution(assignment, var, files["var"], files["ctr"]):
             print("Correct solution!")
@@ -563,9 +563,9 @@ def main():
             break
         num_labels = len(set(assignment.values())) 
         print("Number of lables used: ", num_labels)
-        print(f"Time taken: {time.perf_counter() - start_time:.2f} seconds")
+        print(f"Time taken: {time.perf_counter() - start_time:.5f} seconds")
         process = psutil.Process(os.getpid())
-        print(f"Memory used: {process.memory_info().rss / 1024**2:.2f} MB")
+        print(f"Memory used: {process.memory_info().rss / 1024**2:.5f} MB")
 
     solver.delete()
 

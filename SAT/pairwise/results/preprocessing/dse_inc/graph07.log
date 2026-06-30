@@ -10,8 +10,8 @@
 [runlim] argv[4]:		tot
 [runlim] argv[5]:		assumptions
 [runlim] argv[6]:		cadical195
-[runlim] start:			Fri Jun 26 22:21:25 2026
-[runlim] child:			16428
+[runlim] start:			Tue Jun 30 15:29:29 2026
+[runlim] child:			20881
 Exactly-one cardinality encoding:  1
 Distance constraint mode:  pairwise
 Distance cardinality encoding:  1
@@ -20,15 +20,15 @@ SAT type:  assumptions
 Solver:  cadical195
 Warning: variable 182 has assigned label 716 that is not in the domain 5.
 Cannot find solution!
-Time taken: 0.00 seconds
-Memory used: 20.07 MB
-[runlim] end:			Fri Jun 26 22:21:25 2026
+Time taken: 0.00032 seconds
+Memory used: 17.17188 MB
+[runlim] end:			Tue Jun 30 15:29:29 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		0
 [runlim] processes:		0
-[runlim] real:			0.04 seconds
+[runlim] real:			0.05 seconds
 [runlim] time:			0.00 seconds
 [runlim] space:			0 MB
-[runlim] load:			1.04 maximum
+[runlim] load:			0.47 maximum
 [runlim] samples:		1

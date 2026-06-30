@@ -8,19 +8,19 @@
 [runlim] argv[2]:		main_no.py
 [runlim] argv[3]:		graph07
 [runlim] argv[4]:		600
-[runlim] start:			Fri Jun 26 17:20:06 2026
-[runlim] child:			8692
+[runlim] start:			Tue Jun 30 15:17:03 2026
+[runlim] child:			19509
 Warning: variable 182 has assigned label 716 that is not in the domain 5.
 Cannot find solution!
-Time taken: 0.00 seconds
-Memory used: 82.62 MB
-[runlim] end:			Fri Jun 26 17:20:06 2026
+Time taken: 0.00031 seconds
+Memory used: 82.48438 MB
+[runlim] end:			Tue Jun 30 15:17:03 2026
 [runlim] status:		ok
 [runlim] result:		0
 [runlim] children:		1
 [runlim] processes:		2
-[runlim] real:			0.40 seconds
-[runlim] time:			1.35 seconds
-[runlim] space:			70 MB
-[runlim] load:			1.02 maximum
+[runlim] real:			0.36 seconds
+[runlim] time:			1.33 seconds
+[runlim] space:			79 MB
+[runlim] load:			1.06 maximum
 [runlim] samples:		4
